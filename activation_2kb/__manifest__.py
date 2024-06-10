@@ -24,7 +24,7 @@
     'auto_install': False,
     'external_dependencies': {
         'python': [
-            'cryptography==3.3.2',
+            'cryptography',
             'pycryptodome==3.20.0'
         ],
     }
