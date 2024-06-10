@@ -201,7 +201,7 @@ class GibUblTR12(models.AbstractModel):
             }
             headers = {
                 "Content-Type": "application/json",
-                "x_auth": company.auth_key_2kb,
+                "x-auth": company.auth_key_2kb,
             }
             r = requests.post(
                 self._get_url(app), json=payload, headers=headers, timeout=15

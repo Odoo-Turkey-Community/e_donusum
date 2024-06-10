@@ -33,7 +33,7 @@ class ResCompany(models.Model):
 
         headers = {
             'Content-Type': 'application/json',
-            'x_auth': self.auth_key_2kb
+            'x-auth': self.auth_key_2kb
         }
         payload = {
             "json_rpc": "2.0",
@@ -96,7 +96,7 @@ class ResCompany(models.Model):
 
         headers = {
             'Content-Type': 'application/json',
-            'x_auth': self.auth_key_2kb
+            'x-auth': self.auth_key_2kb
         }
         payload = {
             "json_rpc": "2.0",
