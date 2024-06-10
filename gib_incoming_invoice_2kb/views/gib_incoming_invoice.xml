@@ -72,6 +72,8 @@
             <field name="sender"/>
             <filter name="is_approvable" string="Cevap Bekleyenler" domain="[('is_approvable', '=', True)]"/>
             <filter name="issue_date" string="Düzenleme Tarihi" date="issue_date"/>
+            <filter name="importable" string="İşlenecek" domain="[('is_importable', '=', False)]"/>
+            <filter name="not_importable" string="İşlenmedi" domain="[('is_importable', '=', True)]"/>
             <group expand="0" string="Group By">
                 <filter string="Faturayı Kesen" name="sender" context="{'group_by': 'sender'}"/>
                 <filter string="Fatura Türü" name="gib_profile" context="{'group_by': 'gib_profile'}"/>
