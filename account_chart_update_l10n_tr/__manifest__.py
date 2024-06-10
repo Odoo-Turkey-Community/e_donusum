@@ -9,7 +9,7 @@
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
     "category": "Accounting",
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
     'sequence': 1453,
     "depends": [
         "account_chart_update",
