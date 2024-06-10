@@ -12,8 +12,7 @@
     'license': 'AGPL-3',
     'sequence': 1453,
     "depends": [
-        "account_chart_update",
-        "l10n_tr_2kb",
+        "account_chart_update"
     ],
     "installable": True,
     "auto_install": True,
