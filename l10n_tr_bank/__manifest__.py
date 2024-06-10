@@ -12,7 +12,7 @@
     """,
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
-    "website": "https://github.com/Odoo-Turkey-Community",
+    "website": "https://2kb.com.tr",
     'license': 'Other proprietary',
     "sequence": 1453,
     "category": "account",
@@ -26,5 +26,6 @@
     ],
     "installable": True,
     "application": False,
-    "auto_install": False
+    "auto_install": False,
+    'images': ['images/main_screenshot.png']
 }

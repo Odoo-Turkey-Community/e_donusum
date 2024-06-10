@@ -10,7 +10,7 @@
     "license": "Other proprietary",
     'maintainer': 'Quanimo',
     "author": "Kıta, Quanimo, Broadmax",
-    "website": "https://github.com/Odoo-Turkey-Community",
+    "website": "https://2kb.com.tr",
     "depends": ["account", "account_edi", "l10n_tr_2kb", "activation_2kb"],
     "data": [
         "security/ir.model.access.csv",
@@ -25,4 +25,5 @@
     ],
     "demo": [],
     "application": True,
+    'images': ['images/main_screenshot.png']
 }

@@ -4,7 +4,6 @@
 
 {
     "name": "İZİBİZ E-Dönüşüm Sağlayıcısı",
-    "version": "16.0.0.0.1",
     "summary": "İZİBİZ E-Dönüşüm Sağlayıcısı",
     "description": """
         İZİBİZ E-Dönüşüm Sağlayıcısı
@@ -12,7 +11,7 @@
     "version": "1.0",
     'maintainer': 'Quanimo',
     "author": "Kıta, Quanimo, Broadmax",
-    "website": "https://github.com/Odoo-Turkey-Community",
+    "website": "https://2kb.com.tr",
     'license': 'Other proprietary',
     "sequence": 1453,
     "category": "Accounting/Localizations/Account Charts",
@@ -26,4 +25,5 @@
     "installable": True,
     "application": True,
     "auto_install": False,
+    'images': ['images/main_screenshot.png']
 }

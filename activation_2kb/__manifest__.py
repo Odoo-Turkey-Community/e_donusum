@@ -10,7 +10,7 @@
 
     'maintainer': 'Quanimo, Kıta',
     "author": "Kıta, Quanimo, Broadmax",
-    "website": "https://github.com/Odoo-Turkey-Community",
+    "website": "https://2kb.com.tr",
     'license': 'Other proprietary',
     'sequence': 1453,
 
@@ -27,5 +27,6 @@
             'cryptography',
             'pycryptodome==3.20.0'
         ],
-    }
+    },
+    'images': ['images/main_screenshot.png']
 }

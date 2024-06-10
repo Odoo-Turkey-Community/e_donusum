@@ -9,7 +9,7 @@
     "version": "1.0",
     'maintainer': 'Quanimo',
     "author": "Kıta, Quanimo, Broadmax",
-    "website": "https://github.com/Odoo-Turkey-Community",
+    "website": "https://2kb.com.tr",
     'license': 'Other proprietary',
     "depends": ["gib_invoice_2kb"],
     "data": [
@@ -17,4 +17,5 @@
         "views/gib_incoming_invoice.xml",
     ],
     "demo": [],
+    'images': ['images/main_screenshot.png']
 }
