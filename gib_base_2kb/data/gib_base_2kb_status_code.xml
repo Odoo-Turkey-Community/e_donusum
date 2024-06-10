@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="gib_status_code-1000" model="gib_base_2kb.code">
+            <field name="name">Zarf Kuyruğa Eklendi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1000</field>
+            <field name="value2">waiting</field>
+        </record>
+        <record id="gib_status_code-1100" model="gib_base_2kb.code">
+            <field name="name">Zarf İşleniyor</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1100</field>
+            <field name="value2">waiting</field>
+        </record>
+        <record id="gib_status_code-1110" model="gib_base_2kb.code">
+            <field name="name">Zip Dosyası Değil</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1110</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1111" model="gib_base_2kb.code">
+            <field name="name">Zarf ID Uzunluğu Geçersiz</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1111</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1120" model="gib_base_2kb.code">
+            <field name="name">Zarf Arşivden Kopyalanamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1120</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1130" model="gib_base_2kb.code">
+            <field name="name">Zip Açılamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1130</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1131" model="gib_base_2kb.code">
+            <field name="name">Zip Bir Dosya İçermeli</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1131</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1132" model="gib_base_2kb.code">
+            <field name="name">Xml Dosyası Değil</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1132</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1133" model="gib_base_2kb.code">
+            <field name="name">Zarf ID ve XML Dosyasının Adı Aynı Olmalı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1133</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1140" model="gib_base_2kb.code">
+            <field name="name">Döküman Ayrıştırılamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1140</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1141" model="gib_base_2kb.code">
+            <field name="name">Zarf ID Yok</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1141</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1142" model="gib_base_2kb.code">
+            <field name="name">Zarf ID ve Zip Dosyası Adı Aynı Olmalı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1142</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1143" model="gib_base_2kb.code">
+            <field name="name">Geçersiz Versiyon</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1143</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1150" model="gib_base_2kb.code">
+            <field name="name">Schematron Kontrol Sonucu Hatalı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1150</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1160" model="gib_base_2kb.code">
+            <field name="name">XML Şema Kontrolünden Geçemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1160</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1161" model="gib_base_2kb.code">
+            <field name="name">İmza Sahibi TCKN VKN Alınamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1161</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1162" model="gib_base_2kb.code">
+            <field name="name">İmza Kaydedilemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1162</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1163" model="gib_base_2kb.code">
+            <field name="name">Gönderilen Zarf Sistemde Daha Önce Kayıtlı Olan Bir Faturayı İçermektedir</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1163</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1170" model="gib_base_2kb.code">
+            <field name="name">Yetki Kontrol Edilemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1170</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1171" model="gib_base_2kb.code">
+            <field name="name">Gönderici Birim Yetkisi Yok</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1171</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1172" model="gib_base_2kb.code">
+            <field name="name">Posta Kutusu Yetkisi Yok</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1172</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1175" model="gib_base_2kb.code">
+            <field name="name">İmza Yetkisi Kontrol Edilemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1175</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1176" model="gib_base_2kb.code">
+            <field name="name">İmza Sahibi Yetkisiz</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1176</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1177" model="gib_base_2kb.code">
+            <field name="name">Geçersiz İmza</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1177</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1180" model="gib_base_2kb.code">
+            <field name="name">Adres Kontrol Edilemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1180</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1181" model="gib_base_2kb.code">
+            <field name="name">Adres Bulunamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1181</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1182" model="gib_base_2kb.code">
+            <field name="name">Kullanıcı Eklenemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1182</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1183" model="gib_base_2kb.code">
+            <field name="name">Kullanıcı Silinemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1183</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1190" model="gib_base_2kb.code">
+            <field name="name">Sistem Yanıtı Hazırlanamadı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1190</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1195" model="gib_base_2kb.code">
+            <field name="name">Sistem Hatası</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1195</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1200" model="gib_base_2kb.code">
+            <field name="name">Zarf Başarıyla İşlendi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1200</field>
+            <field name="value2">waiting</field>
+        </record>
+        <record id="gib_status_code-1210" model="gib_base_2kb.code">
+            <field name="name">Döküman Bulunan Adrese Gönderilemedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1210</field>
+            <field name="value2">waiting</field>
+        </record>
+        <record id="gib_status_code-1215" model="gib_base_2kb.code">
+            <field name="name">Döküman Gönderimi Başarısız. Tekrar Gönderme Sonlandı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1215</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1220" model="gib_base_2kb.code">
+            <field name="name">Hedeften Sistem Yanıtı Gelmedi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1220</field>
+            <field name="value2">waiting</field>
+        </record>
+        <record id="gib_status_code-1230" model="gib_base_2kb.code">
+            <field name="name">Hedeften Sistem Yanıtı Başarısız Geldi</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1230</field>
+            <field name="value2">error</field>
+        </record>
+        <record id="gib_status_code-1300" model="gib_base_2kb.code">
+            <field name="name">Başarıyla Tamamlandı</field>
+            <field name="type">gib_status_code</field>
+            <field name="value">1300</field>
+            <field name="value2">success</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="gib_local_menu" name="E-Dönüşüm" parent="account.menu_finance_configuration" sequence="3"/>
+</odoo>

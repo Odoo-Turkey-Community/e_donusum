@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Kıta Yazılım
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="gib_invoice_restricted_cancel_wizard_form_view">
+        <field name="name">gib.invoice.restricted.cancel.wizard.form (in gib_invoice_2kb)</field>
+        <field name="model">gib.invoice.restricted.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Harici GİB Faturası İptali">
+                <group>
+                    <p colspan="2" class="text-warning">
+                        NOT: Bu iptal işlemi sadece ODOO ERP üzerinde e-fatura durum değişimi yapmaktadır, resmi olarak bir kuruma iptal talebi iletmemektedir.
+Temel e-Faturanın resmi olarak iptal edilmesi / iletilmesi ancak;<br/>
+                    <i class="fa fa-xs fa-arrow-right ms-3 me-1"/>
+GİB İptal Portali üzerinden mali mühür ile iptal etme,<br/>
+                <i class="fa fa-xs fa-arrow-right ms-3 me-1"/>
+Noter üzerinden resmi tebligat yapmak,<br/>
+            <i class="fa fa-xs fa-arrow-right ms-3 me-1"/>
+İadeli Taahhütlü Posta Yoluyla Tebligat Yapmak,<br/>
+        <i class="fa fa-xs fa-arrow-right ms-3 me-1"/>
+KEP üzerinden İptal / İade etmek, şeklindedir. Lütfen öncelikle bu işlemleri yapınız.
+
+    </p>
+</group>
+<group>
+    <group>
+        <field name="invoice_id" readonly="1"/>
+        <field name="gib_invoice_name"/>
+        <field name="partner_id"/>
+        <field name="cancel_reason"/>
+    </group>
+    <group>
+        <field name="invoice_date"/>
+        <field name="gib_status"/>
+    </group>
+
+</group>
+<footer>
+    <button name="force_to_cancel_gib_invoice" string="İptal Et" class="btn-primary" type="object"/>
+    <button string="Kapat" class="btn-default" special="cancel"/>
+</footer>
+</form>
+</field>
+</record>
+
+<record model="ir.actions.act_window" id="gib_invoice_restricted_cancel_wizard_act_window">
+<field name="name">Harici GİB Faturası İptali</field>
+<field name="res_model">gib.invoice.restricted.cancel.wizard</field>
+<field name="view_mode">form</field>
+<field name="context">{}</field>
+<field name="target">new</field>
+<field name="binding_model_id" ref="model_account_move"/>
+<field name="binding_view_types">form</field>
+</record>
+
+</odoo>

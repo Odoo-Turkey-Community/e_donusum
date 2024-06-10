@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2023 Kita Yazilim
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="gib_provider_form_view">
+        <field name="name">gib_base_2kb.provider.form (in izibiz_2kb)</field>
+        <field name="model">gib_base_2kb.provider</field>
+        <field name="inherit_id" ref="gib_base_2kb.view_gib_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position='inside'>
+                <button name="dowload_wsdl" type="object" string="WSDL İndir"/>
+                <button name="configure_cron" type="object" string="Zamanlanmış Görevleri Yapılandır"/>
+            </xpath>
+            <xpath expr="//notebook" position='inside'>
+                <page string="İZİBİZ Bilişim" attrs="{'invisible': [('provider', '!=', 'izibiz')]}">
+                    <group>
+                        <group string="API Bilgileri">
+                            <field name="izibiz_username" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
+                            <field name="izibiz_password" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
+                            <field name="izibiz_jwt" invisible="1"/>
+                            <field name="izibiz_keep_log"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//notebook" position='inside'>
+                <page string="İZİBİZ Zamanlanmiş Görevler" attrs="{'invisible': [('provider', '!=', 'izibiz')]}">
+                    <group>
+                        <field colspan="2" name="izibiz_cron_ids" nolabel="1" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

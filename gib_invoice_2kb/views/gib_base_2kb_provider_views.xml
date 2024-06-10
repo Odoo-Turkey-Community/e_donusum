@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View gib_base_2kb.provider form -->
+    <record id="view_gib_base_2kb_provider_form" model="ir.ui.view">
+        <field name="name">view.gib_base_2kb.provider.form</field>
+        <field name="model">gib_base_2kb.provider</field>
+        <field name="inherit_id" ref="gib_base_2kb.view_gib_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='send_as_draft']" position="after">
+                <field name="alias_inv_gb"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

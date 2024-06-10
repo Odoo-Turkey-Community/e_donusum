@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="account_tax_office_view_tree" model="ir.ui.view">
+        <field name="name">account.tax.office.view.tree</field>
+        <field name="model">account.tax.office</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="state_id"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="account_tax_office_view_search" model="ir.ui.view">
+        <field name="name">account.tax.office.view.searh</field>
+        <field name="model">account.tax.office</field>
+        <field name="arch" type="xml">
+            <search string="Tax Office">
+                <field name="name" string="Tax Office" filter_domain="['|', ('name','ilike',self), ('code','ilike',self)]"/>
+                <field name="state_id"/>
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="State" name="state_id" context="{'group_by':'state_id'}" help="State"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="account_tax_office_action" model="ir.actions.act_window">
+        <field name="name">Tax Office</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.tax.office</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new Tax Office
+            </p><p>
+            Create and manage the Tax Office that will be managed by Odoo from here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="account_tax_office_menu_action"
+            name="Tax Offices"
+            sequence="20"
+            action="account_tax_office_action"
+            parent="account.account_account_menu"/>
+</odoo>

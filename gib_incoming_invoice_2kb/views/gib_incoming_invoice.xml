@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2023 Kıta Yazılım
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record model="ir.ui.view" id="gib_incoming_invoice_form_view">
+        <field name="name">gib.incoming.invoice.form (in gib_incoming_invoice_2kb)</field>
+        <field name="model">gib.incoming.invoice</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
+                    <button string="Aktif/Pasif" name="toggle_is_importable" type="object"/>
+            </header>
+            <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
+                    <p>
+                        <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile gelen faturaları satırlarıyla içer aktarabilir satın alma faturaları oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
+                    <a href="https://2kb.com.tr" target="_blank">2kb.com.tr yi ziyaret edin!</a>
+                    </p>
+            </div>
+            <sheet>
+
+                <span class="o_form_label">Gelen E-Fatura</span>
+                <h1 class="mt0">
+                    <field name="name" readonly="True"/>
+                </h1>
+                <style>
+                        .purchase_inv_style span{color: #eb1a4a !important}
+                </style>
+                <group>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="issue_date" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="gib_provider_id" readonly="1"/>
+                        <field name="gib_profile"/>
+                        <field name="invoice_type"/>
+                        <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="sender"/>
+                        <field name="sender_vat"/>
+                        <field name="is_importable"/>
+                    </group>
+                    <group>
+                    </group>
+                </group>
+                <group name="financial_info_div">
+                    <group>
+                    </group>
+                    <!-- Totals (only invoices / receipts) -->
+                    <group class="oe_subtotal_footer">
+                        <field name="tax_exclude" readonly="1"/>
+                        <field name="tax_amount" readonly="1"/>
+                        <field name="total_amount" class="oe_subtotal_footer_separator" readonly="1"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record model="ir.ui.view" id="gib_incoming_invoice_search_view">
+    <field name="name">gib.incoming.invoice.search (in gib_incoming_invoice_2kb)</field>
+    <field name="model">gib.incoming.invoice</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="sender"/>
+            <filter name="is_approvable" string="Cevap Bekleyenler" domain="[('is_approvable', '=', True)]"/>
+            <filter name="issue_date" string="Düzenleme Tarihi" date="issue_date"/>
+            <group expand="0" string="Group By">
+                <filter string="Faturayı Kesen" name="sender" context="{'group_by': 'sender'}"/>
+                <filter string="Fatura Türü" name="gib_profile" context="{'group_by': 'gib_profile'}"/>
+                <filter string="Durumu" name="state" context="{'group_by': 'state'}"/>
+                <filter string="Para Birimi" name="currency_code" context="{'group_by': 'currency_code'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+<record model="ir.ui.view" id="gib_incoming_invoice_tree_view">
+    <field name="name">gib.incoming.invoice.tree (in gib_incoming_invoice_2kb)</field>
+    <field name="model">gib.incoming.invoice</field>
+    <field name="arch" type="xml">
+        <tree create="false" decoration-warning="is_importable==True">
+            <header>
+                <button string="Aktif/Pasif" name="toggle_is_importable" type="object" icon="fa-edit" title="Edit"/>
+            </header>
+            <field name="is_approvable" invisible="1"/>
+            <field name="is_importable" invisible="1"/>
+            <field name="issue_date"/>
+            <field name="name"/>
+            <field name="sender"/>
+            <field name="total_amount" string="Fatura Tutarı"/>
+            <field name="currency_code" />
+            <field name="sender_alias" optional="show"/>
+            <field name="reciever_alias" optional="hide"/>
+            <field name="gib_profile" optional="hide"/>
+            <field name="invoice_type" optional="show"/>
+            <field name="gib_provider_id" optional="hide"/>
+            <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}" optional="show"/>
+            <button help="PDF" title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
+            <button help="Kabul Et" title="Kabul Et" class="fa fa-check btn-success" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
+            <button help="Reddet" title="Reddet" class="fa fa-times btn-danger" name="approve_or_deny" type="object" context="{'answer':'RED'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
+        </tree>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="gib_incoming_invoice_act_window">
+    <field name="name">Gelen Faturalar</field>
+    <field name="res_model">gib.incoming.invoice</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[]</field>
+    <field name="context">{}</field>
+</record>
+
+<record model="ir.ui.menu" id="gib_incoming_invoice_main_menu">
+    <field name="name">Gelen Faturalar</field>
+    <field name="parent_id" ref="account.menu_finance_entries"/>
+    <field name="sequence" eval="60"/>
+</record>
+
+<record model="ir.ui.menu" id="gib_incoming_invoice_menu">
+    <field name="name">Gelen Faturalar</field>
+    <field name="parent_id" ref="gib_incoming_invoice_2kb.gib_incoming_invoice_main_menu"/>
+    <field name="action" ref="gib_incoming_invoice_2kb.gib_incoming_invoice_act_window"/>
+    <field name="sequence" eval="2"/>
+</record>
+
+</odoo>

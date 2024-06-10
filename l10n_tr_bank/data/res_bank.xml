@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="tr_bank_0010" model="res.bank">
+    <field name="name">Türkiye Cumhuriyeti Ziraat Bankası A.Ş.</field>
+    <field name="street">Hacıbayram Mah. Atatürk Bulvarı No 8 Ulus</field>
+    <field name="city">Altındağ</field>
+    <field name="state" ref="base.state_tr_06"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">312-584 20 00</field>
+    <field name="website">http://www.ziraatbank.com.tr</field>
+    <field name="email">ziraatbank@hs01.kep.tr</field>
+    <field name="eft_code">0010</field>
+    <field name="bic">TCZBTR2A </field>
+  </record>
+  <record id="tr_bank_0012" model="res.bank">
+    <field name="name">Türkiye Halk Bankası A.Ş.</field>
+    <field name="street">Barbaros Mah. Şebboy Sok. No 4/1</field>
+    <field name="city">Ataşehir</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-503 70 70</field>
+    <field name="website">http://www.halkbank.com.tr</field>
+    <field name="email">halkbank.muhaberat@hs03.kep.tr</field>
+    <field name="eft_code">0012</field>
+    <field name="bic">TRHBTR2A </field>
+  </record>
+  <record id="tr_bank_0015" model="res.bank">
+    <field name="name">Türkiye Vakıflar Bankası T.A.O.</field>
+    <field name="street">Finanskent Mahallesi Finans Caddesi No:40/1</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-724 10 00</field>
+    <field name="website">http://www.vakifbank.com.tr</field>
+    <field name="email">vakifbanktao@hs01.kep.tr</field>
+    <field name="eft_code">0015</field>
+    <field name="bic">TVBATR2A </field>
+  </record>
+  <record id="tr_bank_0046" model="res.bank">
+    <field name="name">Akbank T.A.Ş.</field>
+    <field name="street">Sabancı Center 4. Levent</field>
+    <field name="city">Beşitaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-385 55 55</field>
+    <field name="website">http://www.akbank.com</field>
+    <field name="email">akbank@akbank.hs03.kep.tr</field>
+    <field name="eft_code">0046</field>
+    <field name="bic">AKBKTRIS </field>
+  </record>
+  <record id="tr_bank_0135" model="res.bank">
+    <field name="name">Anadolubank A.Ş.</field>
+    <field name="street">Saray Mah. Toya Sok. No 3</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-687 70 00</field>
+    <field name="website">http://www.anadolubank.com.tr</field>
+    <field name="email">anadolubank@hs02.kep.tr </field>
+    <field name="eft_code">0135</field>
+    <field name="bic">ANDLTRIS </field>
+  </record>
+  <record id="tr_bank_0103" model="res.bank">
+    <field name="name">Fibabanka A.Ş.</field>
+    <field name="street">Esentepe Mah. Büyükdere Cad. No 129</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-381 82 00</field>
+    <field name="website">http://www.fibabanka.com.tr</field>
+    <field name="email">fibabanka.resmikurumlar@hs03.kep.tr</field>
+    <field name="eft_code">0103</field>
+    <field name="bic">FBHLTRIS </field>
+  </record>
+  <record id="tr_bank_0059" model="res.bank">
+    <field name="name">Şekerbank T.A.Ş.</field>
+    <field name="street">Emniyet Evleri Mah. Eski Büyükdere Cad. No 1/1A</field>
+    <field name="city">Kağıthane</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-319 70 00</field>
+    <field name="website">http://www.sekerbank.com.tr</field>
+    <field name="email">sekerbank.haberlesme@sekerbank.hs03.kep.tr</field>
+    <field name="eft_code">0059</field>
+    <field name="bic">SEKETR2A </field>
+  </record>
+  <record id="tr_bank_0096" model="res.bank">
+    <field name="name">Turkish Bank A.Ş.</field>
+    <field name="street">Esentepe Mah. Ali Kaya Sk. Polat Plaza A Blok No. 1A/52</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-373 63 73</field>
+    <field name="website">http://www.turkishbank.com.tr</field>
+    <field name="email">turkishbank.muhaberat@hs03.kep.tr</field>
+    <field name="eft_code">0096</field>
+    <field name="bic">TUBATRIS </field>
+  </record>
+  <record id="tr_bank_0032" model="res.bank">
+    <field name="name">Türk Ekonomi Bankası A.Ş.</field>
+    <field name="street">Saray Mah. Sokullu Cad. TEB Kampüs C ve D Blok No 7A-7B</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-635 35 35</field>
+    <field name="website">http://www.teb.com.tr</field>
+    <field name="email">turkekonomibankasi@hs03.kep.tr</field>
+    <field name="eft_code">0032</field>
+    <field name="bic">TEBUTRIS </field>
+  </record>
+  <record id="tr_bank_0064" model="res.bank">
+    <field name="name">Türkiye İş Bankası A.Ş.</field>
+    <field name="street">İş Kuleleri Levent</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-316 00 00</field>
+    <field name="website">http://www.isbank.com.tr</field>
+    <field name="email">isbankasi@hs02.kep.tr</field>
+    <field name="eft_code">0064</field>
+    <field name="bic">ISBKTRIS </field>
+  </record>
+  <record id="tr_bank_0067" model="res.bank">
+    <field name="name">Yapı ve Kredi Bankası A.Ş.</field>
+    <field name="street">Yapı Kredi Plaza D Blok Levent</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-339 70 00</field>
+    <field name="website">http://www.yapikredi.com.tr</field>
+    <field name="email">yapikredi@yapikredi.hs02.kep.tr</field>
+    <field name="eft_code">0067</field>
+    <field name="bic">YAPITRISXXX</field>
+  </record>
+  <record id="tr_bank_0100" model="res.bank">
+    <field name="name">Adabank A.Ş.</field>
+    <field name="street">Büyükdere Cad. Rumelihan No 40 Kat 2 Mecidiyeköy</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-272 64 20</field>
+    <field name="website">http://www.adabank.com.tr</field>
+    <field name="email">adabank@hs01.kep.tr</field>
+    <field name="eft_code">0100</field>
+    <field name="bic">ADABTRIS </field>
+  </record>
+  <record id="tr_bank_0029" model="res.bank">
+    <field name="name">Birleşik Fon Bankası A.Ş.</field>
+    <field name="street">Büyükdere Cad. No 143 Kat 1-2 Esentepe</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-340 10 00</field>
+    <field name="website">http://www.fonbank.com.tr</field>
+    <field name="email">fonbank@hs01.kep.tr</field>
+    <field name="eft_code">0029</field>
+    <field name="bic">BAYDTRIS </field>
+  </record>
+  <record id="tr_bank_0124" model="res.bank">
+    <field name="name">Alternatifbank A.Ş.</field>
+    <field name="street">Ayazağa Mah. Azerbaycan Cad. 2D Blok No.3M İç Kapı No 1</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-315 65 00</field>
+    <field name="website">http://www.alternatifbank.com.tr</field>
+    <field name="email">alternatifbank@hs01.kep.tr</field>
+    <field name="eft_code">0124</field>
+    <field name="bic">ALFBTRIS </field>
+  </record>
+  <record id="tr_bank_0091" model="res.bank">
+    <field name="name">Arap Türk Bankası A.Ş.</field>
+    <field name="street">Valikonağı Cad. No 10 Nişantaşı</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-225 05 00 (20 Hat)</field>
+    <field name="website">http://www.atbank.com.tr</field>
+    <field name="email">atbank@hs03.kep.tr</field>
+    <field name="eft_code">0091</field>
+    <field name="bic">ATUBTRIS </field>
+  </record>
+  <record id="tr_bank_0149" model="res.bank">
+    <field name="name">Bank of China Turkey A.Ş.</field>
+    <field name="street">Büyükdere Cad. No 209 Tekfen Tower Kat 21 4. Levent</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-260 88 88</field>
+    <field name="website">http://www.bankofchina.com.tr</field>
+    <field name="email">bankofchina.turkey@hs03.kep.tr</field>
+    <field name="eft_code">0149</field>
+    <field name="bic">BKCHTRIS </field>
+  </record>
+  <record id="tr_bank_0125" model="res.bank">
+    <field name="name">Burgan Bank A.Ş.</field>
+    <field name="street">Maslak Mah. Eski Büyükdere Cad. No 13</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-371 37 37 </field>
+    <field name="website">http://www.burgan.com.tr</field>
+    <field name="email">burganbank@hs03.kep.tr</field>
+    <field name="eft_code">0125</field>
+    <field name="bic">TEKFTRIS </field>
+  </record>
+  <record id="tr_bank_0092" model="res.bank">
+    <field name="name">Citibank A.Ş.</field>
+    <field name="street">Saray Mah. Ömer Faik Atakan Cad. No 3 Yılmaz Plaza</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-319 45 00</field>
+    <field name="website">http://www.citibank.com.tr</field>
+    <field name="email">citibank.muhaberat@hs03.kep.tr</field>
+    <field name="eft_code">0092</field>
+    <field name="bic">CITITRIX </field>
+  </record>
+  <record id="tr_bank_0134" model="res.bank">
+    <field name="name">Denizbank A.Ş.</field>
+    <field name="street">Büyükdere Cad. No 141 Esentepe</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-348 20 00</field>
+    <field name="website">http://www.denizbank.com</field>
+    <field name="email">denizbank.haberlesme@hs09.kep.tr</field>
+    <field name="eft_code">0134</field>
+    <field name="bic">DENITRIS </field>
+  </record>
+  <record id="tr_bank_0115" model="res.bank">
+    <field name="name">Deutsche Bank A.Ş.</field>
+    <field name="street">Esentepe Mah. Büyükdere Cad. Ferko Signature No 175/149</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-317 01 00</field>
+    <field name="website">http://www.db.com.tr</field>
+    <field name="email">db.iletisim@db.hs03.kep.tr</field>
+    <field name="eft_code">0115</field>
+    <field name="bic">BKTRTRIS </field>
+  </record>
+  <record id="tr_bank_0123" model="res.bank">
+    <field name="name">HSBC Bank A.Ş.</field>
+    <field name="street">Esentepe Mah. Büyükdere Cad. No 128</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-376 40 00</field>
+    <field name="website">http://www.hsbc.com.tr</field>
+    <field name="email">hsbcbankas@hs03.kep.tr</field>
+    <field name="eft_code">0123</field>
+    <field name="bic">HSBCTRIX </field>
+  </record>
+  <record id="tr_bank_0109" model="res.bank">
+    <field name="name">ICBC Turkey Bank A.Ş.</field>
+    <field name="street">Maslak Mah. Dereboyu/2 Cad. No 13</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-335 53 35</field>
+    <field name="website">http://www.icbc.com.tr</field>
+    <field name="email">icbcturkey@hs02.kep.tr</field>
+    <field name="eft_code">0109</field>
+    <field name="bic">ICBKTRIS </field>
+  </record>
+  <record id="tr_bank_0099" model="res.bank">
+    <field name="name">ING Bank A.Ş.</field>
+    <field name="street">Reşitpaşa Mah. Eski Büyükdere Cad. No 8</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-335 10 00</field>
+    <field name="website">http://www.ing.com.tr</field>
+    <field name="email">ingbank@hs03.kep.tr</field>
+    <field name="eft_code">0099</field>
+    <field name="bic">INGBTRIS </field>
+  </record>
+  <record id="tr_bank_0147" model="res.bank">
+    <field name="name">MUFG Bank Turkey A.Ş.</field>
+    <field name="street">Fatih Sultan Mehmet Mah. Poligon Cad. Buyaka 2 Sitesi 2 Blok No: 8B, İç Kapı No: 82</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-600 30 00</field>
+    <field name="website">http://www.tu.bk.mufg.jp</field>
+    <field name="email">mufgturkey@hs02.kep.tr</field>
+    <field name="eft_code">0147</field>
+    <field name="bic">BOTKTRIS </field>
+  </record>
+  <record id="tr_bank_0146" model="res.bank">
+    <field name="name">Odea Bank A.Ş.</field>
+    <field name="street">Büyükdere Cad. Levent 199, No 199/119 Kat 33-40</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-304 84 44</field>
+    <field name="website">http://www.odeabank.com.tr</field>
+    <field name="email">odeabank.yonetimtebligat@hs09.kep.tr</field>
+    <field name="eft_code">0146</field>
+    <field name="bic">ODEATRIS </field>
+  </record>
+  <record id="tr_bank_0111" model="res.bank">
+    <field name="name">QNB Finansbank A.Ş.</field>
+    <field name="street">Esentepe Mah. Büyükdere Cad. Kristal Kule Binası No 215</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-318 50 00</field>
+    <field name="website">http://www.qnbfinansbank.com</field>
+    <field name="email">qnbfinansbank@hs05.kep.tr</field>
+    <field name="eft_code">0111</field>
+    <field name="bic">FNNBTRIS </field>
+  </record>
+  <record id="tr_bank_0137" model="res.bank">
+    <field name="name">Rabobank A.Ş.</field>
+    <field name="street">Esentepe Mah. Büyükdere Cad. Bahar Sok. River Plaza No 13 Kat 7 Ofis No 15-16</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-708 46 00</field>
+    <field name="website">http://www.rabobank.com.tr</field>
+    <field name="email">rabobank.muhaberat@hs03.kep.tr</field>
+    <field name="eft_code">0137</field>
+    <field name="bic">RABOTRIS </field>
+  </record>
+  <record id="tr_bank_0108" model="res.bank">
+    <field name="name">Turkland Bank A.Ş.</field>
+    <field name="street">19 Mayıs Mah. 19 Mayıs Cad. Şişli Plaza A Blok No 7</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-368 34 34</field>
+    <field name="website">http://www.tbank.com.tr</field>
+    <field name="email">tbank@tbank.hs03.kep.tr </field>
+    <field name="eft_code">0108</field>
+    <field name="bic">TBNKTRIS </field>
+  </record>
+  <record id="tr_bank_0062" model="res.bank">
+    <field name="name">Türkiye Garanti Bankası A.Ş.</field>
+    <field name="street">Nispetiye Mah. Aytar Cad. No 2 Levent</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-318 18 18</field>
+    <field name="website">http://www.garantibbva.com.tr</field>
+    <field name="email">garanti@hs03.kep.tr</field>
+    <field name="eft_code">0062</field>
+    <field name="bic">TGBATRIS </field>
+  </record>
+  <record id="tr_bank_0094" model="res.bank">
+    <field name="name">Bank Mellat</field>
+    <field name="street">Büyükdere Cad. Binbirçiçek Sok. No 1 1.Levent </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-279 80 15</field>
+    <field name="website">http://www.mellatbank.com</field>
+    <field name="email">bankmellat@hs03.kep.tr</field>
+    <field name="eft_code">0094</field>
+    <field name="bic">BKMTTRIS </field>
+  </record>
+  <record id="tr_bank_0097" model="res.bank">
+    <field name="name">Habib Bank Limited</field>
+    <field name="street">Levent Mah. Meltem Sok. İş Bankası Kuleleri Kule 2 Kat 26 No 10/14 İç Kapı No 27</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-375 79 50</field>
+    <field name="website">http://www.hbl.com.tr/</field>
+    <field name="email">habibbank@hs03.kep.tr </field>
+    <field name="eft_code">0097</field>
+    <field name="bic">HABBTRIS </field>
+  </record>
+  <record id="tr_bank_0148" model="res.bank">
+    <field name="name">Intesa Sanpaolo S.p.A.</field>
+    <field name="street">Meltem Sok. No 10 İş Kuleleri Kule 2 Kat 21 Levent</field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-385 06 00</field>
+    <field name="website">http://www.intesasanpaolo.com.tr</field>
+    <field name="email">intesasanpaolo.istanbul@hs03.kep.tr</field>
+    <field name="eft_code">0148</field>
+    <field name="bic">BCITTRIS </field>
+  </record>
+  <record id="tr_bank_0098" model="res.bank">
+    <field name="name">JPMorgan Chase Bank N.A.</field>
+    <field name="street">Büyükdere Cad. No 185 Kanyon Ofis Binası Kat 8 Levent </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-319 85 00</field>
+    <field name="website">http://www.jpmorgan.com/pages/international/turkey</field>
+    <field name="email">jpmorganchasebank@hs03.kep.tr</field>
+    <field name="eft_code">0098</field>
+    <field name="bic">CHASTRIS </field>
+  </record>
+  <record id="tr_bank_0122" model="res.bank">
+    <field name="name">Société Générale (SA)</field>
+    <field name="street">Nispetiye Cad. Akmerkez E-3 Blok Kat 10 Etiler </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-319 34 00</field>
+    <field name="website">http://www.societegenerale.com.tr</field>
+    <field name="email">societegenerale.ist@hs03.kep.tr</field>
+    <field name="eft_code">0122</field>
+    <field name="bic">SOGETRIS</field>
+  </record>
+  <record id="tr_bank_0004" model="res.bank">
+    <field name="name">İller Bankası A.Ş.</field>
+    <field name="street">Emniyet Mah. Hipodrom Cad. No 9/21 Yenimahalle </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_06"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">312-508 70 00, 303 30 00</field>
+    <field name="website">http://www.ilbank.gov.tr</field>
+    <field name="email">illerbankasi@hs01.kep.tr</field>
+    <field name="eft_code">0004</field>
+  </record>
+  <record id="tr_bank_0016" model="res.bank">
+    <field name="name">Türk Eximbank</field>
+    <field name="street">Saray Mah. Ahmet Tevfik İleri Cad. No 19</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-666 55 00</field>
+    <field name="website">http://www.eximbank.gov.tr</field>
+    <field name="email">tikb.turkeximbank@hs02.kep.tr</field>
+    <field name="eft_code">0016</field>
+    <field name="bic">TIKBTR2A </field>
+  </record>
+  <record id="tr_bank_0017" model="res.bank">
+    <field name="name">Türkiye Kalkınma ve Yatırım Bankası A.Ş.</field>
+    <field name="street">Saray Mah. Dr. Adnan Büyükdeniz Cad. No 10</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-636 87 00</field>
+    <field name="website">http://www.kalkinma.com.tr</field>
+    <field name="email">kalkinmabankasi@hs02.kep.tr</field>
+    <field name="eft_code">0017</field>
+    <field name="bic">TKBNTR2A </field>
+  </record>
+  <record id="tr_bank_0143" model="res.bank">
+    <field name="name">Aktif Yatırım Bankası A.Ş.</field>
+    <field name="street">Esentepe Mah. Kore Şehitleri Cad. No 8/1</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-340 80 00</field>
+    <field name="website">http://www.aktifbank.com.tr</field>
+    <field name="email">aktifbank@hs03.kep.tr</field>
+    <field name="eft_code">0143</field>
+    <field name="bic">CAYTTRIS </field>
+  </record>
+  <record id="tr_bank_0138" model="res.bank">
+    <field name="name">Diler Yatırım Bankası A.Ş.</field>
+    <field name="street">Eski Büyükdere Cad. No 1 Maslak No/1 Plaza Kat 3 Maslak </field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-253 66 30</field>
+    <field name="website">http://www.dilerbank.com.tr</field>
+    <field name="email">dilerbank@hs03.kep.tr</field>
+    <field name="eft_code">0138</field>
+    <field name="bic">DYAKTRIS </field>
+  </record>
+  <record id="tr_bank_0139" model="res.bank">
+    <field name="name">GSD Yatırım Bankası A.Ş.</field>
+    <field name="street">Aydınevler Mah. Kaptan Rıfat Sok. No 3 GSD Binası Küçükyalı</field>
+    <field name="city">Maltepe</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-587 90 00</field>
+    <field name="website">http://www.gsdbank.com.tr</field>
+    <field name="email">gsdbank@hs03.kep.tr</field>
+    <field name="eft_code">0139</field>
+    <field name="bic">GSDBTRIS </field>
+  </record>
+  <record id="tr_bank_0132" model="res.bank">
+    <field name="name">İstanbul Takas ve Saklama Bankası A.Ş.</field>
+    <field name="street">Reşitpaşa Mah. Borsa İstanbul Cad. No 4 Emirgan</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-315 25 25</field>
+    <field name="website">http://www.takasbank.com.tr</field>
+    <field name="email">takasbank.haberlesme@hs03.kep.tr</field>
+    <field name="eft_code">0132</field>
+    <field name="bic">TVSBTRIS </field>
+  </record>
+  <record id="tr_bank_0141" model="res.bank">
+    <field name="name">Nurol Yatırım Bankası A.Ş.</field>
+    <field name="street">Büyükdere Cad. Nurol Plaza No 255 Kat 15/1502 Maslak</field>
+    <field name="city">Sarıyer</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-286 81 00</field>
+    <field name="website">http://www.nurolbank.com.tr</field>
+    <field name="email">nurolbank.muhaberat@nurolbank.hs03.kep.tr</field>
+    <field name="eft_code">0141</field>
+    <field name="bic">NUROTRIS </field>
+  </record>
+  <record id="tr_bank_0014" model="res.bank">
+    <field name="name">Türkiye Sınai Kalkınma Bankası A.Ş.</field>
+    <field name="street">Meclisi Mebusan Cad. No 81 Fındıklı </field>
+    <field name="city">Beyoğlu</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-334 50 50</field>
+    <field name="website">http://www.tskb.com.tr</field>
+    <field name="email">tskb@hs02.kep.tr</field>
+    <field name="eft_code">0014</field>
+    <field name="bic">TSKBTRIS </field>
+  </record>
+  <record id="tr_bank_0129" model="res.bank">
+    <field name="name">Bank of America Yatırım Bank A.Ş.</field>
+    <field name="street">Büyükdere Cad. No 185 Kanyon Ofisi Bloğu Kat 11 Levent </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-319 95 00</field>
+    <field name="website">http://www.mlyb.com.tr</field>
+    <field name="email">mlbank@hs01.kep.tr</field>
+    <field name="eft_code">0129</field>
+    <field name="bic">MEYYTRISXXX </field>
+  </record>
+  <record id="tr_bank_0142" model="res.bank">
+    <field name="name">BankPozitif Kredi ve Kalkınma Bankası A.Ş.</field>
+    <field name="street">Rüzgarlıbahçe Mah. Kumlu Sok. No 3 Kavacık</field>
+    <field name="city">Beykoz</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">216-538 25 25</field>
+    <field name="website">http://www.bankpozitif.com.tr</field>
+    <field name="email">bankpozitif.muhaberat@hs03.kep.tr</field>
+    <field name="eft_code">0142</field>
+    <field name="bic">BPTRTRIS </field>
+  </record>
+  <record id="tr_bank_0116" model="res.bank">
+    <field name="name">Pasha Yatırım Bankası A.Ş.</field>
+    <field name="street">Sultan Selim Mah. Hümeyra Sok. Pasha Plaza No 2/7 Kat 5</field>
+    <field name="city">Kağıthane</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-705 89 00</field>
+    <field name="website">http://www.pashabank.com.tr</field>
+    <field name="email">ashabank.tebligat@hs09.kep.tr; pashabank.fkb@hs09.kep.tr</field>
+    <field name="eft_code">0116</field>
+    <field name="bic">PAHATRIS </field>
+  </record>
+  <record id="tr_bank_0121" model="res.bank">
+    <field name="name">Standard Chartered Yatırım Bankası Türk A.Ş.</field>
+    <field name="street">Büyükdere Cad. Yapı Kredi Plaza, C Blok, Kat 15 Levent </field>
+    <field name="city">Beşiktaş</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">212-339 37 00</field>
+    <field name="website">http://www.standardchartered.com.tr</field>
+    <field name="email">scbank.etebligat@hs02.kep.tr</field>
+    <field name="eft_code">0121</field>
+    <field name="bic">SCBLTRIS </field>
+  </record>
+</odoo>

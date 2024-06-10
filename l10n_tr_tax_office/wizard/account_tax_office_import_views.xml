@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="account_tax_office_import_view_form" model="ir.ui.view">
+        <field name="name">Tax Office XML Import from EBYN</field>
+        <field name="model">account.tax.office.import</field>
+        <field name="arch" type="xml">
+            <form string="XML Import">
+                <p>You can import the EBYN xml file with this wizard.</p>
+                <group>
+                    <group>
+                        <field name="xml_file" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="import_xml" string="Import XML" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_tax_office_import_action" model="ir.actions.act_window">
+        <field name="name">Tax Office XML Import</field>
+        <field name="res_model">account.tax.office.import</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="account_tax_office_import_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+            id="account_tax_office_import_menu_action"
+            sequence="21"
+            name="Tax Offices Import from (EBYN)"
+            action="account_tax_office_import_action"
+            parent="account.account_account_menu"/>
+
+</odoo>

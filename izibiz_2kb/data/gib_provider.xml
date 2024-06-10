@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="provider-izibiz_2" model="gib_base_2kb.provider">
+        <field name="name">İZİBİZ Bilişim Teknolojileri</field>
+        <field name="provider">izibiz</field>
+        <field name="send_as_draft">false</field>
+        <field name="prod_environment">true</field>
+        <field name="conn_srv">https://api.kitayazilim.com.tr</field>
+        <field name="conn_user"></field>
+        <field name="conn_password"></field>
+    </record>
+</odoo>

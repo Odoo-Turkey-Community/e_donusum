@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View res.company form -->
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_activation"
+                        attrs="{'invisible': ['|', ('priv_key_2kb', '!=', False), ('auth_key_2kb', '=', False)]}"
+                        type="object" string="2KB Activation"/>
+                    <button name="action_deactivation"
+                        attrs="{'invisible': [('priv_key_2kb', '=', False)]}"
+                        type="object" string="DeActivation"/>
+                    <button name="action_test_message"
+                        attrs="{'invisible': [('priv_key_2kb', '=', False)]}"
+                        type="object" string="Test Message"/>
+                </header>
+            </xpath>
+
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="auth_key_2kb"/>
+                <field name="is_encrypted_messaging"/>
+                <field name="priv_key_2kb" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Certificate" groups="base.group_no_one">
+                    <group>
+                        <field name="priv_key_2kb"/>
+                        <field name="pub_key_2kb"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

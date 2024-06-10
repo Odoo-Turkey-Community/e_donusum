@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="profile_id-TEMELFATURA" model="gib_base_2kb.code">
+            <field name="name">Temel Fatura</field>
+            <field name="type">profile_id</field>
+            <field name="value">TEMELFATURA</field>
+            <field name="value2">e-inv</field>
+        </record>
+        <record id="profile_id-TICARIFATURA" model="gib_base_2kb.code">
+            <field name="name">Ticari Fatura</field>
+            <field name="type">profile_id</field>
+            <field name="value">TICARIFATURA</field>
+            <field name="value2">e-inv</field>
+        </record>
+        <record id="profile_id-EARSIVFATURA" model="gib_base_2kb.code">
+            <field name="name">E-Arşiv</field>
+            <field name="type">profile_id</field>
+            <field name="value">EARSIVFATURA</field>
+            <field name="value2">e-arsv</field>
+        </record>
+        <record id="type_code-SATIS" model="gib_base_2kb.code">
+            <field name="name">Satış</field>
+            <field name="type">type_code</field>
+            <field name="value">SATIS</field>
+            <field name="value2" />
+        </record>
+        <record id="type_code-IADE" model="gib_base_2kb.code">
+            <field name="name">İade</field>
+            <field name="type">type_code</field>
+            <field name="value">IADE</field>
+            <field name="value2" />
+        </record>
+    </data>
+</odoo>

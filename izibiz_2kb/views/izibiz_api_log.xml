@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2024 Kita Yazilim
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="izibiz_api_log_form_view">
+        <field name="name">izibiz.api.log.form (in izibiz_2kb)</field>
+        <field name="model">izibiz.api.log</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="desc"/>
+                        <field name="inovice_id"/>
+                        <field name="operation"/>
+                        <field name="blocking_level"/>
+                        <field name="long_desc"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="izibiz_api_log_search_view">
+        <field name="name">izibiz.api.log.search (in izibiz_2kb)</field>
+        <field name="model">izibiz.api.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="desc"/>
+                <field name="inovice_id"/>
+                <field name="operation"/>
+                <field name="blocking_level"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="izibiz_api_log_tree_view">
+        <field name="name">izibiz.api.log.tree (in izibiz_2kb)</field>
+        <field name="model">izibiz.api.log</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="desc"/>
+                <field name="inovice_id"/>
+                <field name="operation"/>
+                <field name="blocking_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="izibiz_api_log_act_window">
+        <field name="name">Izibiz Api Log</field>
+        <field name="res_model">izibiz.api.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="izibiz_api_log_menu">
+        <field name="name">Izibiz Api Log</field>
+        <field name="parent_id" ref="gib_base_2kb.gib_local_menu"/>
+        <field name="action" ref="izibiz_2kb.izibiz_api_log_act_window"/>
+        <field name="sequence" eval="26"/>
+    </record>
+
+</odoo>

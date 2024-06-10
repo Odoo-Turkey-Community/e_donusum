@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+gib_base_2kb_provider_portal_access,gib_base_2kb.provider.portal_access,model_gib_base_2kb_provider,base.group_portal,1,0,0,0
+gib_base_2kb_provider_internal_access,gib_base_2kb.provider.internal_access,model_gib_base_2kb_provider,base.group_user,1,0,0,0
+gib_base_2kb_provider_manager_access,gib_base_2kb.provider.manager_access,model_gib_base_2kb_provider,account.group_account_manager,1,1,1,0
+gib_base_2kb_code_portal,gib_base_2kb.code.portal,model_gib_base_2kb_code,base.group_portal,1,0,0,0
+gib_base_2kb_code_internal,gib_base_2kb.code.internal,model_gib_base_2kb_code,base.group_user,1,0,0,0
+gib_base_2kb_alias_portal,gib_base_2kb.alias.portal,model_gib_base_2kb_alias,base.group_portal,1,0,0,0
+gib_base_2kb_alias_internal,gib_base_2kb.alias.portal,model_gib_base_2kb_alias,base.group_user,1,1,1,1

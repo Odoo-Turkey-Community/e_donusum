@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="send_type-ELEKTRONIK" model="gib_base_2kb.code">
+            <field name="name">Elektronik</field>
+            <field name="type">send_type</field>
+            <field name="value">ELEKTRONIK</field>
+            <field name="value2" />
+        </record>
+        <record id="send_type-KAGIT" model="gib_base_2kb.code">
+            <field name="name">Kağıt</field>
+            <field name="type">send_type</field>
+            <field name="value">KAGIT</field>
+            <field name="value2" />
+        </record>
+    </data>
+</odoo>

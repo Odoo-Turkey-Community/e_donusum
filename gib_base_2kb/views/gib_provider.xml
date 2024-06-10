@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_gib_provider_tree" model="ir.ui.view">
+        <field name="name">gib_base_2kb.provider.tree</field>
+        <field name="model">gib_base_2kb.provider</field>
+        <field name="arch" type="xml">
+            <tree string="Özel Entegratör">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="provider"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_gib_provider_form" model="ir.ui.view">
+        <field name="name">gib_base_2kb.provider.form</field>
+        <field name="model">gib_base_2kb.provider</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="configure_gib_template" type="object" string="Şablonları Yapılandır"/>
+                    <button name="get_partner_alias" type="object" class="oe_highlight" string="GİB VERİ"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title" name="title">
+                        <!--<label for="name" string="Özel Entegratör"/>-->
+                        <h1>
+                            <field name="name" placeholder="Entegrator Adını Giriniz"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="vat" invisible="1"/>
+                            <field name="provider"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="prod_environment" widget="boolean_toggle" groups="base.group_no_one"/>
+                            <field name="send_as_draft" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group/>
+                            <group>
+                                <field name="invoice_logo" widget="image" class="oe_avatar"/>
+                            </group>
+                            <group>
+                                <field name="invoice_sign" widget="image" class="oe_avatar"/>
+                            </group>
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- <page string="Bağlantı Bilgileri" name="connector_inform">
+                            <group>
+                                <group>
+                                    <field name="conn_srv"/>
+                                </group>
+                                <group>
+                                    <field name="conn_user"/>
+                                    <field name="conn_password"/>
+                                </group>
+                            </group>
+                        </page> -->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="gib_provider_act_window">
+        <field name="name">Entegratörler</field>
+        <field name="res_model">gib_base_2kb.provider</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="gib_provider_menu">
+        <field name="name">Entegratörler</field>
+        <field name="parent_id" ref="gib_base_2kb.gib_local_menu"/>
+        <field name="action" ref="gib_base_2kb.gib_provider_act_window"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
+</odoo>
