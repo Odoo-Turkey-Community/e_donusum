@@ -18,10 +18,10 @@ Addon | Version | Maintainers | Summary
 [activation_2kb](activation_2kb/) | 1.0 |  | 2KB Activation
 [gib_base_2kb](gib_base_2kb/) | 1.0 |  | E-Dönüşüm Altyapısı
 [gib_invoice_2kb](gib_invoice_2kb/) | 1.0 |  | E-Fatura ve E-Arşiv Konnektörü
-[gib_incoming_invoice_2kb](gib_incoming_invoice_2kb/) | 16.0.1.0.0 |  | Gelen E-Faturaların Alınması
+[gib_incoming_invoice_2kb](gib_incoming_invoice_2kb/) | 1.0 |  | Gelen E-Faturaların Alınması
 [l10n_tr_2kb](l10n_tr_2kb/) | 1.0 |  | Turkey Localization Extension
 [l10n_tr_bank](l10n_tr_bank/) | 1.0 |  | Türkiye Bankaları
-[l10n_tr_tax_office](l10n_tr_tax_office/) | 16.0.0.0.1 |  | Turkey Tax Offices
+[l10n_tr_tax_office](l10n_tr_tax_office/) | 1.0 |  | Turkey Tax Offices
 [izibiz_2kb](izibiz_2kb/) | 1.0 |  | İZİBİZ E-Dönüşüm Sağlayıcısı
 
 [//]: # (end addons)
