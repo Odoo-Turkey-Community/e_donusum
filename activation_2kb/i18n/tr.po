@@ -57,7 +57,7 @@ msgstr "Şirketler"
 #: model_terms:ir.ui.view,arch_db:activation_2kb.view_company_form
 #, fuzzy
 msgid "DeActivation"
-msgstr "Etkinleştirme"
+msgstr "Pasife Al"
 
 #. module: activation_2kb
 #: model:ir.model.fields,field_description:activation_2kb.field_res_company__is_encrypted_messaging
