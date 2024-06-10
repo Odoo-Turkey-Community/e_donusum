@@ -387,6 +387,7 @@ class GibUblTR12(models.AbstractModel):
                 "customization_id": "TR1.2",
                 "profile_id": invoice.gib_profile_id.value,
                 "id": invoice.gib_invoice_name,
+                "copy_indicator": 'false',
                 "uuid": invoice.gib_uuid,
                 "issue_date": self.format_date(invoice.invoice_date),
                 "issue_time": self.format_time(),
