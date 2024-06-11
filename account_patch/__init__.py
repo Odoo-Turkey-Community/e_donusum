@@ -16,7 +16,6 @@ def new_try_loading(self, company=False, install_demo=True):
         self.env.ref("l10n_tr.chart_template_7b", False),
     ]
     # İlk kurulumda force gelmemiş ise Türkiyenin muhasebe hesap ve vergilerini yükleme kullanıcı kendi seçsin
-    # TODO review: "Tek Düzen Hesap Planı" in self.name
     if not self.env.context.get("force", False) and self in l10n_tr_chart:
         return
     return self.origin_try_loading(company, install_demo)

@@ -7,8 +7,7 @@ import json
 
 from odoo import models, release, fields, _
 from odoo.exceptions import ValidationError, AccessError
-from ..tools.crypt_message import CryptEncrypteMessage
-
+from odoo.addons.activation_2kb.tools.crypt_message import CryptEncrypteMessage
 
 
 class ResCompany(models.Model):
