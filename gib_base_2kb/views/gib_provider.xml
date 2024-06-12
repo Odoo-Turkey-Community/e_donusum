@@ -28,7 +28,6 @@
                     </div>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <div class="oe_title" name="title">
-                        <!--<label for="name" string="Özel Entegratör"/>-->
                         <h1>
                             <field name="name" placeholder="Entegrator Adını Giriniz"/>
                         </h1>
@@ -55,17 +54,6 @@
                         </group>
                     </group>
                     <notebook>
-                        <!-- <page string="Bağlantı Bilgileri" name="connector_inform">
-                            <group>
-                                <group>
-                                    <field name="conn_srv"/>
-                                </group>
-                                <group>
-                                    <field name="conn_user"/>
-                                    <field name="conn_password"/>
-                                </group>
-                            </group>
-                        </page> -->
                     </notebook>
                 </sheet>
             </form>

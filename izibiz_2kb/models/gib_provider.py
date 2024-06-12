@@ -6,11 +6,9 @@ import os
 import base64
 import logging
 import requests
-import pytz
-from datetime import datetime, date, timedelta
+from datetime import timedelta
 from collections import namedtuple
 from odoo import fields, models, api, Command
-from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
 from textwrap import dedent
 
@@ -41,16 +39,13 @@ class GibProvider(models.Model):
     izibiz_password = fields.Char(string="Password")
     izibiz_jwt = fields.Char(string="Token")
     izibiz_keep_log = fields.Boolean("Servis Loglarını Sakla", default=False)
-    izibiz_cron_ids = fields.Many2many(
-        "ir.cron", string="İzibiz Servisler"
-    )  # TODO readonly=True
+    izibiz_cron_ids = fields.Many2many("ir.cron", string="İzibiz Servisler")
 
     def _sync_cron(self):
         """Synchronise the related cron fields to reflect this alert"""
         for provider in self:
             for cron_id in provider.with_context(active_test=False).izibiz_cron_ids:
                 cron_required = provider.active
-                # cron_id.name = f"Lunch: alert chat notification ({alert.name})"
                 cron_id.active = cron_required
 
     def write(self, values):
@@ -67,14 +62,6 @@ class GibProvider(models.Model):
 
     def _get_izibiz_service(self):
         return IzibizService(self)
-
-    def _get_provider_info(self):
-        # TODO depricated
-        self.ensure_one()
-        if self.provider != "izibiz":
-            return super()._get_provider_info()
-
-        return [self.izibiz_password, self.izibiz_username]
 
     ####################################################
     # Config Helper
@@ -495,12 +482,8 @@ class GibProvider(models.Model):
     # İncoming e-İnvoice API
     ####################################################
 
-    def _get_incoming_invoices(
-        self, erp_status, startDate=False, endDate=False
-    ):
-        res = super()._get_incoming_invoices(
-            erp_status, lucaTransferStatus, startDate, endDate
-        )
+    def _get_incoming_invoices(self, erp_status, startDate=False, endDate=False):
+        res = super()._get_incoming_invoices(erp_status, startDate, endDate)
         if self.provider != "izibiz":
             return res
 
@@ -859,35 +842,52 @@ class GibProvider(models.Model):
         return cron_id
 
     def _configure_income_invoice(self, cron_required):
-        cron_id = self.env.ref('izibiz_2kb.cron_daily_get_income_invoice_%d' % self.id, False)
+        cron_id = self.env.ref(
+            "izibiz_2kb.cron_daily_get_income_invoice_%d" % self.id, False
+        )
         if cron_id:
-            cron_id.write({
-                'active': cron_required,
-            })
+            cron_id.write(
+                {
+                    "active": cron_required,
+                }
+            )
         else:
-            cron_id = self.env['ir.cron'].sudo().create([{
-                'user_id': self.env.ref('base.user_root').id,
-                'active': cron_required,
-                'interval_type': 'hours',
-                'interval_number': 4,
-                'numbercall': -1,
-                'doall': False,
-                'name': "izibiz_2kb: GIB Gelen e-Fatura Servisi - %s" % self.name,
-                'model_id': self.env['ir.model']._get_id(self._name),
-                'state': 'code',
-                'code': dedent(f"""\
+            cron_id = (
+                self.env["ir.cron"]
+                .sudo()
+                .create(
+                    [
+                        {
+                            "user_id": self.env.ref("base.user_root").id,
+                            "active": cron_required,
+                            "interval_type": "hours",
+                            "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
+                            "name": "izibiz_2kb: GIB Gelen e-Fatura Servisi - %s"
+                            % self.name,
+                            "model_id": self.env["ir.model"]._get_id(self._name),
+                            "state": "code",
+                            "code": dedent(
+                                f"""\
                 # This cron is dynamically controlled by {self._description}.
                 # Do NOT modify this cron, modify the related record instead.
-                env['{self._name}'].browse([{self.id}]).cron_daily_get_income_invoice()"""),
-            }])
-            self.env['ir.model.data'].create({
-                'module': 'izibiz_2kb',
-                'name': 'cron_daily_get_income_invoice_%d' % self.id,
-                'model': 'ir.cron',
-                'res_id': cron_id.id,
-                'noupdate': True})
+                env['{self._name}'].browse([{self.id}]).cron_daily_get_income_invoice()"""
+                            ),
+                        }
+                    ]
+                )
+            )
+            self.env["ir.model.data"].create(
+                {
+                    "module": "izibiz_2kb",
+                    "name": "cron_daily_get_income_invoice_%d" % self.id,
+                    "model": "ir.cron",
+                    "res_id": cron_id.id,
+                    "noupdate": True,
+                }
+            )
         return cron_id
-
 
     def configure_cron(self):
         """
@@ -917,7 +917,7 @@ class GibProvider(models.Model):
             cron_id = self._configure_despatch_state(cron_required)
             cron_ids.append(cron_id)
 
-        if self._module_installed('gib_incoming_invoice_2kb'):
+        if self._module_installed("gib_incoming_invoice_2kb"):
             cron_id = self._configure_income_invoice(cron_required)
             cron_ids.append(cron_id)
 
@@ -948,7 +948,7 @@ class GibProvider(models.Model):
             partner.get_partner_alias()
         return True
 
-    # e-fatura, e-arşiv
+    # region #! e-fatura, e-arşiv
     def cron_get_invoice_state_info(self, days_ago=7):
         "e-Fatura durum Güncelleme servisi"
 
@@ -1125,7 +1125,10 @@ class GibProvider(models.Model):
             _logger.error("cron_daily_get_invoice_advice: " + str(result["error"]))
             return False
 
-        _logger.info("cron_daily_get_invoice_advice: Alınan fatura adedi: " + str(len(result["result"])))
+        _logger.info(
+            "cron_daily_get_invoice_advice: Alınan fatura adedi: "
+            + str(len(result["result"]))
+        )
         gid_to_create = []
         for incoming in result["result"]:
             if incoming.HEADER.CDATE.isoformat() > ldata_str:
@@ -1156,10 +1159,13 @@ class GibProvider(models.Model):
 
         GII.create(gid_to_create)
         ICP.set_param(icp_key, ldata_str)
-        _logger.info("cron_daily_get_invoice_advice: Fatura alındı. Tarih: " + ldata_str)
+        _logger.info(
+            "cron_daily_get_invoice_advice: Fatura alındı. Tarih: " + ldata_str
+        )
         return True
 
-    # e-irsaliye
+    # endregion
+    # region #! e-irsaliye
     def cron_daily_get_despatch_advice(self):
         """
         Günlük olarak gelen e-irsaliyeleri izibiz'den çeker.
@@ -1209,3 +1215,4 @@ class GibProvider(models.Model):
         ICP.set_param(icp_key, ldata_str)
         return True
 
+    # endregion

@@ -11,12 +11,12 @@
                 <header>
                     <button title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
                     <button string="Aktif/Pasif" name="toggle_is_importable" type="object"/>
-            </header>
-            <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
+                </header>
+                <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
                     <p>
                         <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile gelen faturaları satırlarıyla içer aktarabilir satın alma faturaları oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
                     <a href="https://2kb.com.tr" target="_blank">2kb.com.tr yi ziyaret edin!</a>
-                    </p>
+                </p>
             </div>
             <sheet>
 
@@ -51,7 +51,6 @@
                 <group name="financial_info_div">
                     <group>
                     </group>
-                    <!-- Totals (only invoices / receipts) -->
                     <group class="oe_subtotal_footer">
                         <field name="tax_exclude" readonly="1"/>
                         <field name="tax_amount" readonly="1"/>

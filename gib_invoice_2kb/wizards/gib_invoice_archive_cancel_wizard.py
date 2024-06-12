@@ -3,7 +3,6 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
 
 
 class GibInvoiceArchiveCancelWizard(models.TransientModel):
