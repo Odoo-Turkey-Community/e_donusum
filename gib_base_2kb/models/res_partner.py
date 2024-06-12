@@ -11,7 +11,7 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    # TODO : document_type kaldırılacak
+    # TODO : document_type kaldırılacak # her hangi bir modelde bağlantı bulunamadı kaldırılabilir
     document_type = fields.Selection(
         selection=[("invoice", "e-Fatura"), ("despatchadvice", "e-İrsaliye")],
         string="Döküman Tipi",

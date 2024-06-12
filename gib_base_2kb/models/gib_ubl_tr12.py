@@ -7,7 +7,7 @@ import logging
 import requests
 import json
 
-from odoo import models, fields, http, _
+from odoo import models, fields, _
 from odoo.tools import float_repr
 from odoo.exceptions import ValidationError, UserError
 from odoo.tools.float_utils import float_round
@@ -177,7 +177,7 @@ class GibUblTR12(models.AbstractModel):
 
     def get_authenticate_on_server(self, provider, app, vals):
         data = {
-            "provider": provider._get_provider_info(),
+            "provider": provider.name,
             "vals": vals,
         }
         company = provider.company_id

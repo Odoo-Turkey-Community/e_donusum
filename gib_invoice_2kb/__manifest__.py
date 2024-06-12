@@ -7,10 +7,10 @@
     "summary": """E-Fatura ve E-Arşiv için uygun ortamı uygulamanız için hazırlar""",
     "description": """E-Fatura ve E-Arşiv için ihtiyaç duyulan altyapı bu geliştirme ile sisteminize eklenir.""",
     "version": "1.0",
-    'maintainer': 'Quanimo',
+    "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
+    "license": "Other proprietary",
     "depends": [
         "gib_base_2kb",
     ],
@@ -25,5 +25,5 @@
         "wizards/gib_invoice_archive_cancel_wizard.xml",
     ],
     "demo": [],
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }

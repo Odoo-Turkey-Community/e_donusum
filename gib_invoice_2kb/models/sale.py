@@ -10,6 +10,4 @@ class SaleOrder(models.Model):
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
-        # partner = self.env["res.partner"].browse(invoice_vals["partner_id"])
-        # invoice_vals["gib_profile_id"] = partner.commercial_partner_id.profile_id.id
         return invoice_vals

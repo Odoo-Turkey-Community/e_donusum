@@ -2,7 +2,7 @@
 # Copyright (C) 2024 Odoo Turkey Community (https://github.com/orgs/Odoo-Turkey-Community/dashboard)
 # License Other proprietary. Please see the license file in the Addon folder.
 
-from odoo import _, api, fields, models
+from odoo import fields, models
 
 
 class IzibizApiLog(models.Model):

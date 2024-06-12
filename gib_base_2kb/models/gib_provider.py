@@ -144,12 +144,6 @@ class GibUBLProvider(models.Model):
             },
         }
 
-    def _get_provider_info(self):
-        """
-        Entegratör bilgisini geri döner
-        """
-        return []
-
     def get_default_provider(self):
         return self.search([], limit=1)
 

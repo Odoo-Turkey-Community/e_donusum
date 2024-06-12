@@ -30,7 +30,6 @@ class GibUBLProvider(models.Model):
 
         return self._get_move_applicability(doc_id)
 
-    # @api.model
     def _get_move_applicability(self, move):
         self.ensure_one()
         if (
@@ -155,7 +154,6 @@ class GibUBLProvider(models.Model):
 
         :rtype: pdf content
         """
-        # TO OVERRIDE
         self.ensure_one()
         return b""
 

@@ -531,7 +531,7 @@ class AccountMove(models.Model):
     def _retry_edi_documents_error_hook(self):
         attachment_to_unlink = self.env["ir.attachment"]
         for doc in self:
-            if doc.gib_state == 'to_send':
+            if doc.gib_state == "to_send":
                 attachment_to_unlink |= doc.gib_attachment_id
                 doc.write({"gib_attachment_id": False})
 
@@ -609,19 +609,8 @@ class AccountMove(models.Model):
     def _check_tax_suitability(self, line):
 
         forbidden_rates = ["8", "18"]
-        # taxs_without_group_code = line.tax_ids.filtered(
-        #     lambda t: t.amount_type != "group" and not t.tax_group_id.l10n_tr_code
-        # )
-        # if taxs_without_group_code:
-        #     return f"{line.product_id.name} satırında {','.join(taxs_without_group_code.mapped('name'))} için vergi grubu kodunu kontrol edin"
 
-        for tax in line.tax_ids:
-            #     if (
-            #         tax.l10n_tr_tax_type == "withdraw"
-            #         and not tax.children_tax_ids.filtered(lambda t: t.l10n_tr_code)
-            #     ):
-            #         return f"{line.product_id.name} satırı için {tax.name} vergi yapılandırması doğru değil"
-
+        for tax in line.tax_ids.filtered(lambda tax: tax.tax_group_id.code == "0015"):
             if str(int(tax.amount)) in forbidden_rates:
                 return f"{tax.name} için %{int(tax.amount)}  oranı  %{', %'.join(forbidden_rates)}  oranlarından biri olamaz"
 
@@ -631,7 +620,6 @@ class AccountMove(models.Model):
         :param move:    The move to check.
         :returns:       A list of error messages.
         """
-        # TO OVERRIDE
         error = []
         error.extend(move.gib_provider_id._check_provider_configuration())
 
@@ -712,8 +700,7 @@ class AccountMove(models.Model):
         )
         customer_error and error.append(customer_error)
 
-        # if not supplier_error and not customer_error:
-        if not error:  # ! TODO Vergi no normalize edilecek (Ülke Kodundan)
+        if not error:
             supplier_vat = re.sub(r"\D+", "", supplier.vat or "").strip()
             if not len(supplier_vat) in [10, 11]:
                 error.append(
@@ -725,9 +712,9 @@ class AccountMove(models.Model):
                     error.append(
                         f"Ödeyici {move.commercial_partner_id}, için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
                     )
-            # TODO izibiz test için
-            # if supplier.vat == customer.vat:
-            #     error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
+
+            if supplier.vat == customer.vat:
+                error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
 
         # endregion
         # region #! ------------------ Move Master GİB Profil ID Doğrulamaları ------------------
@@ -735,7 +722,6 @@ class AccountMove(models.Model):
         if move.gib_profile_id == self.env.ref(
             "gib_invoice_2kb.profile_id-EARSIVFATURA"
         ):
-            # move.gib_alias_pk = False
             move.gib_alias_pk and error.append(
                 "E-Arşiv faturasında Gönderici Posta Kutusu Olamaz!"
             )
@@ -780,7 +766,6 @@ class AccountMove(models.Model):
             lambda line: line.display_type not in ("line_note", "line_section")
         )
         for line in move_lines:
-            # line_error = self._check_required_fields(line, ['tax_ids', 'price_unit', 'quantity'])
             line_error = self._check_required_fields(line, ["tax_ids"])
             if line.discount < 0:
                 error.append(
@@ -795,15 +780,6 @@ class AccountMove(models.Model):
                 error.append(line_tax_error)
 
         # endregion
-
-        # for item in supplier_identification.keys():
-        #     if item not in schema_list:
-        #         errno.append(item + " Geçersiz Şema")
-        #
-        # for item in customer_identification.keys():
-        #     if item not in schema_list:
-        #         errno.append(item + " Geçersiz Şema")
-
         return error
 
     def _customer_vat_is_required(self, customer):

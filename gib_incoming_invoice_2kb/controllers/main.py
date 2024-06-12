@@ -19,7 +19,6 @@ class Controller(http.Controller):
                 ("Content-Type", "application/pdf"),
                 ("Content-Length", len(pdf_res.content)),
             ]
-            # ('Content-Disposition', 'attachment; filename=table.pdf')
             return request.make_response(pdf_res.content, headers=pdfhttpheaders)
         except Exception:
             text = "PDF alınamadı. Lütfen daha sonra tekrar deneyiniz!"

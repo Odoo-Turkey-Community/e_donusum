@@ -17,9 +17,7 @@ class GibUblTR12(models.AbstractModel):
             try:
                 tax._validate_repartition_lines()
             except ValidationError as e:
-                error_msg = _(
-                    "Tax '%s' is invalid: %s", tax.name, e.args[0]
-                )  # args[0] gives the error message
+                error_msg = _("Tax '%s' is invalid: %s", tax.name, e.args[0])
                 raise ValidationError(error_msg)
 
     def _export_invoice_filename(self, invoice):
@@ -209,9 +207,7 @@ class GibUblTR12(models.AbstractModel):
         if not line.discount:
             return []
 
-        # Price subtotal without discount:
         net_price_subtotal = line.price_subtotal
-        # Price subtotal with discount:
         if line.discount == 100.0:
             gross_price_subtotal = 0.0
         else:
@@ -229,16 +225,13 @@ class GibUblTR12(models.AbstractModel):
         return [allowance_vals]
 
     def _get_invoice_line_price_vals(self, line):
-        # Price subtotal without discount:
         net_price_subtotal = line.price_subtotal
-        # Price subtotal with discount:
         if line.discount == 100.0:
             gross_price_subtotal = 0.0
         else:
             gross_price_subtotal = net_price_subtotal / (
                 1.0 - (line.discount or 0.0) / 100.0
             )
-        # Price subtotal with discount / quantity:
         gross_price_unit = line.currency_id.round(
             (gross_price_subtotal / line.quantity) if line.quantity else 0.0
         )
@@ -259,7 +252,6 @@ class GibUblTR12(models.AbstractModel):
                 "id": "000",
                 "currency_name": line.move_id.currency_id.name,
                 "currency_dp": line.move_id.currency_id.decimal_places,
-                # "declared_customs_value_amount": 150,
                 "goods_item_list": [
                     {
                         "required_customs_id": (
@@ -276,13 +268,6 @@ class GibUblTR12(models.AbstractModel):
                         else False
                     ),
                 },
-                # "transport_handling_unit_vals": {
-                #    "actual_Package_vals": {
-                #        "id": "AZX",
-                #        "quantity": 2,
-                #        "packaging_type_code": "1A",
-                #    }
-                # },
             },
         }
 
@@ -324,7 +309,6 @@ class GibUblTR12(models.AbstractModel):
             grouping_key_generator=grouping_key_generator
         )
 
-        # Compute values for invoice lines.
         line_extension_amount = 0.0
 
         invoice_lines = invoice.invoice_line_ids.filtered(
@@ -335,14 +319,12 @@ class GibUblTR12(models.AbstractModel):
         )
         invoice_line_vals_list = []
         for idx, line in enumerate(invoice_lines, 1):
-            # line_taxes_vals = taxes_vals["invoice_line_tax_details"][line]
             line_taxes_vals = taxes_vals["tax_details_per_record"][line]
             line_vals = self._get_invoice_line_vals(line, line_taxes_vals)
             line_vals.update({"id": idx})
             invoice_line_vals_list.append(line_vals)
             line_extension_amount += line_vals["line_extension_amount"]
 
-        # Compute the total allowance/charge amounts.
         allowance_total_amount = 0.0
         for allowance_charge_vals in document_allowance_charge_vals_list:
             if allowance_charge_vals["charge_indicator"] == "false":
@@ -354,7 +336,6 @@ class GibUblTR12(models.AbstractModel):
             if invoice.partner_id.type == "invoice"
             else invoice.commercial_partner_id
         )
-        # OrderReference/SalesOrderID (sales_order_id) is optional
         order_reference_vals = {}
         sales_order_id = (
             "sale_line_ids" in invoice.invoice_line_ids._fields
@@ -387,7 +368,7 @@ class GibUblTR12(models.AbstractModel):
                 "customization_id": "TR1.2",
                 "profile_id": invoice.gib_profile_id.value,
                 "id": invoice.gib_invoice_name,
-                "copy_indicator": 'false',
+                "copy_indicator": "false",
                 "uuid": invoice.gib_uuid,
                 "issue_date": self.format_date(invoice.invoice_date),
                 "issue_time": self.format_time(),
@@ -437,7 +418,7 @@ class GibUblTR12(models.AbstractModel):
                     "payable_amount": invoice.amount_total,
                 },
                 "invoice_line_vals": invoice_line_vals_list,
-                "currency_dp": invoice.currency_id.decimal_places,  # currency decimal places
+                "currency_dp": invoice.currency_id.decimal_places,
                 "currency_name": invoice.currency_id.name.upper(),
             },
         }

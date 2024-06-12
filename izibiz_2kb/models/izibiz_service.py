@@ -219,9 +219,6 @@ class IzibizService:
                     register_time_start,
                     alias_modify_date,
                 )
-            elif responce.ERROR_TYPE.ERROR_CODE in (10008,):
-                # 'Belirtilen kritere uygun kayıt bulunamamıştır.( Fatura Bulunamadı! Fatura UUID :0242c327-826f-4eb6-945d-12e36cc4e274, ID :null)'
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
 
@@ -259,7 +256,7 @@ class IzibizService:
                 self.auth()
                 return self.load_invoice(move_content, retry=False)
             elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
-                # Bilinmryen hata
+                # bilinmeyen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
                 if self.provider.izibiz_keep_log:
@@ -323,7 +320,7 @@ class IzibizService:
                 self.auth()
                 return self.send_invoice(move_content, GB, PK, retry=False)
             elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
-                # Bilinmryen hata
+                # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
                 if self.provider.izibiz_keep_log:
@@ -340,7 +337,11 @@ class IzibizService:
                         }
                     )
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES + " Kod: " + str(responce.ERROR_TYPE.ERROR_CODE)
+                error = (
+                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    + " Kod: "
+                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                )
                 blocking_level = "error"
                 if self.provider.izibiz_keep_log:
                     log_model.create(
@@ -412,9 +413,6 @@ class IzibizService:
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_status(id, uuid)
-            elif responce.ERROR_TYPE.ERROR_CODE in (10008,):
-                # 'Belirtilen kritere uygun kayıt bulunamamıştır.( Fatura Bulunamadı! Fatura UUID :0242c327-826f-4eb6-945d-12e36cc4e274, ID :null)'
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
 
@@ -707,7 +705,7 @@ class IzibizService:
                     move_content, atype, sub_status, retry=False
                 )
             elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
-                # Bilinmryen hata
+                # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
                 if self.provider.izibiz_keep_log:
@@ -724,7 +722,11 @@ class IzibizService:
                         }
                     )
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES + " Kod: " + str(responce.ERROR_TYPE.ERROR_CODE)
+                error = (
+                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    + " Kod: "
+                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                )
                 blocking_level = "error"
                 if self.provider.izibiz_keep_log:
                     log_model.create(
@@ -858,7 +860,11 @@ class IzibizService:
                 # tekrarlı gönderin
                 success = True
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES + " Kod: " + str(responce.ERROR_TYPE.ERROR_CODE)
+                error = (
+                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    + " Kod: "
+                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                )
 
         return {
             "success": success,
@@ -970,7 +976,7 @@ class IzibizService:
                 success = True
                 blocking_level = "info"
             elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
-                # Bilinmryen hata
+                # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
             else:
@@ -1012,7 +1018,7 @@ class IzibizService:
                 success = True
                 blocking_level = "info"
             elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
-                # Bilinmryen hata
+                # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
             else:

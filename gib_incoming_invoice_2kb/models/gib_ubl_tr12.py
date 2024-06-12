@@ -4,8 +4,7 @@
 
 import re
 
-from lxml import etree
-from odoo import _, api, fields, models
+from odoo import models
 from odoo.osv import expression
 
 
@@ -21,7 +20,6 @@ class GibUblTr12(models.AbstractModel):
         element = xml_element.xpath(xpath, namespaces=namespaces)
         return element[0].text if element else None
 
-    # flake8: noqa: C901
     def _retrieve_partner(
         self, name=None, phone=None, mail=None, vat=None, domain=None
     ):
@@ -46,7 +44,6 @@ class GibUblTr12(models.AbstractModel):
                 extra_domain + [("vat", "in", (normalized_vat, vat))], limit=1
             )
 
-            # Try to remove the country code prefix from the vat.
             if not partner and country_prefix:
                 partner = self.env["res.partner"].search(
                     extra_domain
@@ -57,7 +54,6 @@ class GibUblTr12(models.AbstractModel):
                     limit=1,
                 )
 
-                # The country could be not specified on the partner.
                 if not partner:
                     partner = self.env["res.partner"].search(
                         extra_domain
@@ -68,8 +64,6 @@ class GibUblTr12(models.AbstractModel):
                         limit=1,
                     )
 
-            # The vat could be a string of alphanumeric values without country code but with missing zeros at the
-            # beginning.
             if not partner:
                 try:
                     vat_only_numeric = str(

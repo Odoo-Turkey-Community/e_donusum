@@ -13,19 +13,19 @@
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
+    "license": "Other proprietary",
     "sequence": 1453,
     "category": "account",
     "depends": [
         "account",
     ],
     "data": [
-        "data/res_bank.xml", 
-        "views/partner_views.xml", 
-        "views/res_bank_views.xml"
+        "data/res_bank.xml",
+        "views/partner_views.xml",
+        "views/res_bank_views.xml",
     ],
     "installable": True,
     "application": False,
     "auto_install": False,
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }
