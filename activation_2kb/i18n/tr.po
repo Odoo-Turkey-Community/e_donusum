@@ -76,12 +76,12 @@ msgstr "Lütfen destek ekibiyle iletişime geçin. Hata Kodu: 404"
 #. module: activation_2kb
 #: model:ir.model.fields,field_description:activation_2kb.field_res_company__priv_key_2kb
 msgid "Private Key"
-msgstr "Özel anahtar"
+msgstr "Özel Anahtar"
 
 #. module: activation_2kb
 #: model_terms:ir.ui.view,arch_db:activation_2kb.view_company_form
 msgid "Test Message"
-msgstr "Deneme mesajı"
+msgstr "Kontrol Et"
 
 #. module: activation_2kb
 #. odoo-python
