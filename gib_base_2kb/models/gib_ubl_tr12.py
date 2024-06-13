@@ -103,18 +103,20 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_partner_party_identification_vals_list(self, partner):
         # TODO diğerleride eklencek
+        vat = partner.vat or "1111111111"
         return [
             {
-                "id": self.get_vat_number(partner.vat),
-                "id_attrs": {"schemeID": self.get_vat_number_type(partner.vat)},
+                "id": self.get_vat_number(vat),
+                "id_attrs": {"schemeID": self.get_vat_number_type(vat)},
             }
         ]
 
     def _get_partner_address_vals(self, partner):
+        postal_zone = partner.zip or (partner.state_id.code + "000")
         return {
             "street_name": " ".join(filter(None, (partner.street, partner.street2))),
             "city_subdivision_name": partner.city,
-            "postal_zone": partner.zip,
+            "postal_zone": postal_zone,
             "city_name": partner.state_id.name,
             "country_name": partner.country_id.name or "Türkiye",
         }
