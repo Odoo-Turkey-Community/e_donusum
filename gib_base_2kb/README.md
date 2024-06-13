@@ -186,8 +186,9 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
 
 <img src="images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
 
+> [!IMPORTANT]
+> Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
 
-Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
