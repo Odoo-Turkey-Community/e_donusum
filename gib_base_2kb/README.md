@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="-images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
 <h3 align="center">E-Dönüşüm Altyapısı</h3>
@@ -85,7 +85,7 @@
 
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="-images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
  </div>
 
@@ -110,7 +110,7 @@ Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dön
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://kitayazilim.com/web/image/website/1/logo/K…%C4%B1m%20%C3%87%C3%B6z%C3%BCmleri?unique=0cdc28f" alt="Logo" height="40">
+    <img src="https://kitayazilim.com/web/image/website/1/logo/K%25C4%25B1ta%2520Yaz%25C4%25B1l%25C4%25B1m%2520%25C3%2587%25C3%25B6z%25C3%25BCmleri%3Funique=0cdc28f" alt="Logo" height="40">
   </a>
 </li>
 <li style="padding:5px">
