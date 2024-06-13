@@ -100,42 +100,42 @@ Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dön
 <ul style="list-style:none">
 <li style="padding:5px">
 <a href="https://odoo.com">
-    <img src="https://odoocdn.com/openerp_website/static/src/img/2016/logos/odoo_logo.svg" alt="Logo" height="40">
+    <img src="https://odoocdn.com/openerp_website/static/src/img/2016/logos/odoo_logo.svg" alt="Odoo" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://2kb.com.tr">
-    <img src="https://2kb.com.tr/web/image/website/1/logo/Odoo%20T%C3%BCrkiye%20Yerelle%C5%9Ftirmesi%20%28e-Fatura%2C%20e-%C4%B0rsaliye%2C%20e-Defter%29?unique=5ee0121" alt="Logo" height="40">
+    <img src="https://2kb.com.tr/web/image/website/1/logo/Odoo%20T%C3%BCrkiye%20Yerelle%C5%9Ftirmesi%20%28e-Fatura%2C%20e-%C4%B0rsaliye%2C%20e-Defter%29?unique=5ee0121" alt="2KB Lokalizasyon Ekibi" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://kitayazilim.com/web/image/website/1/logo/K%25C4%25B1ta%2520Yaz%25C4%25B1l%25C4%25B1m%2520%25C3%2587%25C3%25B6z%25C3%25BCmleri%3Funique=0cdc28f" alt="Logo" height="40">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="https://www.quanimo.com/web/image/website/1/logo/Quanimo?unique=12264f8" alt="Logo" height="40">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="https://broadmax.com.tr/web/image/website/2/logo/Broadmax?unique=da0dc83" alt="Logo" height="40">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://izibiz.com.tr">
-    <img src="https://izibiz.com.tr/wp-content/uploads/2022/11/400dpiLogo_trns.webp" alt="Logo" height="40">
+    <img src="https://izibiz.com.tr/wp-content/uploads/2022/11/400dpiLogo_trns.webp" alt="İzibiz" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://nes.com.tr">
-    <img src="https://nes.com.tr/wp-content/themes/nes/dist/svg/NES-Logo-Red-2.svg" alt="Logo" height="40">
+    <img src="https://nes.com.tr/wp-content/themes/nes/dist/svg/NES-Logo-Red-2.svg" alt="Nes Bilgi" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://www.vomsis.com">
-    <img src="https://www.vomsis.com/templates/assets/logo.svg" alt="Logo" height="40">
+    <img src="https://www.vomsis.com/templates/assets/logo.svg" alt="Vomsis" height="40">
   </a>
 </li>
 </ul>
@@ -183,7 +183,9 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
    ```
 5. "2KB Etkinleştirme" Butonununa Tıklayınız "2KB dünyasına hoş geldiniz." mesajını gördüğünüzde etkinleştirme talebiniz tarafımıza ulaşacaktır. "Kontrol Et" butonundan talebinizi tekrar sorgulayabilirsiniz
 
-[![Ürün Aktivasyon Görüntüsü][product-activitation]](https://2kb.com.tr)
+
+<img src="images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
+
 
 Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
 
@@ -265,5 +267,3 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/activitation.png
-[product-activitation]: images/activitation.png
