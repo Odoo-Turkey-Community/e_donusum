@@ -45,6 +45,14 @@ class GibUblTR12(models.AbstractModel):
                 }
             )
 
+        res.append(
+            {
+                "id": invoice.name,
+                "issue_date": self.format_date(invoice.invoice_date),
+                "document_type_code": "odoo",
+            }
+        )
+
         if invoice.gib_profile_id == self.env.ref(
             "gib_invoice_2kb.profile_id-EARSIVFATURA"
         ):
