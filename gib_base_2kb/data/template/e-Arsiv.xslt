@@ -570,6 +570,16 @@
                                                     <xsl:value-of select="n1:Invoice/cbc:ID" />
                                                 </td>
                                             </tr>
+                                            <xsl:if test="//n1:Invoice/cac:AdditionalDocumentReference[cbc:DocumentTypeCode = 'odoo']">
+                                                <tr>
+                                                    <td>Odoo Belge No</td>
+                                                    <td>
+                                                        <xsl:for-each select="//n1:Invoice/cac:AdditionalDocumentReference[cbc:DocumentTypeCode = 'odoo']">
+                                                            <xsl:value-of select="cbc:ID" />
+                                                        </xsl:for-each>
+                                                    </td>
+                                                </tr>
+                                            </xsl:if>
                                             <tr>
                                                 <td>Fatura Tarihi</td>
                                                 <td>
