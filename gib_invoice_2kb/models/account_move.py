@@ -713,9 +713,6 @@ class AccountMove(models.Model):
                         f"Ödeyici {move.commercial_partner_id}, için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
                     )
 
-            if supplier.vat == customer.vat:
-                error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
-
         # endregion
         # region #! ------------------ Move Master GİB Profil ID Doğrulamaları ------------------
         req_fields = ["gib_provider_id", "gib_sequence_id", "gib_invoice_type_id"]
@@ -731,6 +728,11 @@ class AccountMove(models.Model):
         move_error = self._check_required_fields(move, req_fields)
         if move_error:
             error.append(move_error)
+
+        if move.gib_provider_id.prod_environment \
+            and "vat" in customer_mandatory \
+                and supplier.vat == customer.vat:
+            error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
 
         customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-arsv" and error.append(
             "E-Fatura mükellefine E-Arşiv faturası kesilemez!"
