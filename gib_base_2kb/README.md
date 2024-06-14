@@ -39,14 +39,14 @@
   <p align="center">
     Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://demo.2kb.com.tr/">Test Ortamı</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=bug&template=bug-report.md">Hata Bildir</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=enhancement&template=feature-request.md">Yeni Özellik Talebi</a>
   </p>
 </div>
 
@@ -89,7 +89,7 @@
   </a>
  </div>
 
-Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir: `github_username`, `e_donusum`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `Türkiye Lokalizasyonu`, `project_description`
+Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `project_description`
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
@@ -207,17 +207,33 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- CONTRIBUTING -->
 ## Katkılar
+Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu üründe temel amaç Odoo nun türkiye lokalizasyonunda ve yerel tüm çözümlerinde sürekliliği sağlamaktır.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+<a href="https://2kb.com.tr">
+    <img src="https://2kb.com.tr/web/image/website/1/logo/Odoo%20T%C3%BCrkiye%20Yerelle%C5%9Ftirmesi%20%28e-Fatura%2C%20e-%C4%B0rsaliye%2C%20e-Defter%29?unique=5ee0121" alt="2KB Lokalizasyon Ekibi" height="30">
+  </a>
+</li> tarafından hizmetinize sürülen bu ürün <a href="https://2kb.com.tr">
+    <img src="https://2kb.com.tr/web/image/website/1/logo/Odoo%20T%C3%BCrkiye%20Yerelle%C5%9Ftirmesi%20%28e-Fatura%2C%20e-%C4%B0rsaliye%2C%20e-Defter%29?unique=5ee0121" alt="2KB Lokalizasyon Ekibi" height="30">
+  </a>
+</li> yi oluşturan konsorsiyum üyeleri;
+<ul style="list-style:none">
+<li style="padding:5px">
+<a href="https://kitayazilim.com">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+  </a>
+</li>
+<li style="padding:5px">
+<a href="https://quanimo.com">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
+  </a>
+  </li>
+<li style="padding:5px">
+<a href="https://broadmax.com.tr/">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
+  </a>
+</li>
+</ul>
+tarafından geliştirilmiş ve bundan sonraki süreçlerde ise geliştirmeye devam edilecek, desteklenecek ve versiyon yükseltmelerinde gerekli çalışmalar yapılacaktır.
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
@@ -256,15 +272,15 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[contributors-url]: https://github.com/Odoo-Turkey-Community/e_donusum/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[forks-url]: https://github.com/Odoo-Turkey-Community/e_donusum/network/members
+[stars-shield]: https://img.shields.io/github/stars/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[stars-url]: https://github.com/Odoo-Turkey-Community/e_donusum/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[issues-url]: https://github.com/Odoo-Turkey-Community/e_donusum/issues
+[license-shield]: https://img.shields.io/github/license/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[license-url]: https://github.com/Odoo-Turkey-Community/e_donusum/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
