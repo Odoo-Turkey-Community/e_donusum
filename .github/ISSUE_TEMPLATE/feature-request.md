@@ -1,5 +1,5 @@
 ---
-name: Özellik Talebi
+name: Feature Request
 about: Bu proje için bir fikrim ya da önerim var
 title: ''
 labels: ''
