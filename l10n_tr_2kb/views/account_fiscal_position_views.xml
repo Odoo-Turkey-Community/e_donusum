@@ -9,6 +9,7 @@
             <xpath expr="//field[@name='chart_template_id']" position="after">
                 <field name="exception_code"/>
                 <field name="exemption_rate"/>
+                <field name="invoice_type"/>
             </xpath>
         </field>
     </record>
@@ -23,6 +24,7 @@
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="exemption_rate"/>
+                <field name="invoice_type"/>
             </xpath>
         </field>
     </record>
@@ -34,6 +36,7 @@
     <field name="arch" type="xml">
         <field name="name" position="after">
             <field name="exception_code"/>
+            <field name="invoice_type"/>
         </field>
     </field>
     </record>
@@ -46,6 +49,7 @@
             <xpath expr="//field[@name='country_id']" position="after">
                 <field name="exception_code"/>
                 <field name="exemption_rate"/>
+                <field name="invoice_type"/>
             </xpath>
         </field>
     </record>
@@ -57,10 +61,12 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="before">
                 <field name="exception_code"/>
+                <field name="invoice_type"/>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="invoice_type"/>
                 <field name="exemption_rate"/>
+                <field name="invoice_type"/>
             </xpath>
         </field>
     </record>
@@ -72,6 +78,7 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="exception_code"/>
+                <field name="invoice_type"/>
             </field>
         </field>
     </record>
