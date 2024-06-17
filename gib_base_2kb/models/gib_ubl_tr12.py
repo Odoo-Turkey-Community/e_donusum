@@ -182,6 +182,9 @@ class GibUblTR12(models.AbstractModel):
         }
         company = provider.company_id
 
+        if not company.priv_key_2kb or not company.pub_key_2kb:
+            raise UserError("Şirketinizi aktive ediniz! (2kb.com.tr)")
+
         try:
             data = json.dumps(data)
             if company.is_encrypted_messaging:
