@@ -27,8 +27,8 @@
         'data/account.account.template-common.csv',
         'data/account_tax_group_data.xml',
         'data/account_tax_template_base_data.xml',
-        'data/accoun_fiscal_position_template_data_3xx.xml',
-        'data/account_fiscal_position_tax_template.xml',
+        'data/accoun_fiscal_position_template_data.xml',
+        'data/account_fiscal_position_tax_template_data.xml',
 
         'views/account_fiscal_position_views.xml',
         'views/account_tax_group_views.xml'

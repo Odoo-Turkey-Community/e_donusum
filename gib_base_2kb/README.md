@@ -70,9 +70,9 @@
       </ul>
     </li>
     <li><a href="#usage">Kullanımı</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contributing">Katkılar</a></li>
+    <li><a href="#license">Lisans</a></li>
+    <li><a href="#contact">İletişim</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -206,7 +206,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- CONTRIBUTING -->
+<a name="contributing"></a>
 ## Katkılar
+
 Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu üründe temel amaç Odoo nun türkiye lokalizasyonunda ve yerel tüm çözümlerinde sürekliliği sağlamaktır.
 
 <a href="https://2kb.com.tr">
@@ -238,9 +240,9 @@ tarafından geliştirilmiş ve bundan sonraki süreçlerde ise geliştirmeye dev
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
-
 <!-- LICENSE -->
-## License
+<a name="license"></a>
+## Lisans
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
@@ -249,11 +251,30 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+<a name="contact"></a>
+## İletişim
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+2KB - [2KB Ekibi](https://2kb.com.tr/contactus) - info@2kb.com.tr
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+2KB - [Kullanıcı Kaydı](https://2kb.com.tr/end_user_registration) - Başvurusu
+
+2KB - [İş Ortağı Kaydı](https://2kb.com.tr/partnership_request) - Başvurusu
+
+Kıta  - [Kıta Yazılım](https://kitayazilim.com/contactus) - info@kitayazilim.com
+
+Kıta  - Metin GÜLSOY - metin.gulsoy@kitayazilim.com
+
+Quanimo  - [Quanimo](https://quanimo.com/contactus) - info@quanimo.com
+
+Quanimo  - Fatih ÖZKAN - mfozkan@quanimo.com
+
+Broadmax  - [Broadmax](https://broadmax.com.tr/contactus) - advisors@broadmax.com.tr
+
+Broadmax  - M.Kamal HABBABA - habbaba@broadmax.com.tr
+
+Broadmax  - Mahmut ŞAKAR - mahmutsakarmail@gmail.com
+
+Proje Linki: [https://github.com/Odoo-Turkey-Community/e_donusum.git](https://github.com/Odoo-Turkey-Community/e_donusum.git)
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 

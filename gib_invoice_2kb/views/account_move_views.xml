@@ -51,7 +51,7 @@
                         <button name="cancel_rejected_invoice" type="object" class="oe_link text-danger" icon="fa-ban" string="Faturayı İptal Et" />
                     </div>
                 </div>
-                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('gib_status_code_id_value2', '=', False)]}">
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('gib_status_code_id_value2', '!=', 'error')]}">
                     <div class="o_row">
                         <label for="gib_status_code_id" string="Hata Özeti"/>
                         <field name="gib_status_code_id" readonly="1"/>
