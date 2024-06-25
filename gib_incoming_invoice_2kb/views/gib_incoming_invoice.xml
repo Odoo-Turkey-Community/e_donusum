@@ -39,18 +39,15 @@
                         <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
                     </group>
                 </group>
-                <group>
-                    <group>
+                <group name="sender_info_group">
+                    <group name="sender_info_group_left">
                         <field name="sender"/>
                         <field name="sender_vat"/>
                         <field name="is_importable"/>
                     </group>
-                    <group>
-                    </group>
                 </group>
                 <group name="financial_info_div">
-                    <group>
-                    </group>
+                    <group name="note_group"/>
                     <group class="oe_subtotal_footer">
                         <field name="tax_exclude" readonly="1"/>
                         <field name="tax_amount" readonly="1"/>
