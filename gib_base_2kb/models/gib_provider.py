@@ -94,6 +94,7 @@ class GibUBLProvider(models.Model):
                     "datas": base64.b64encode(xml),
                     "mimetype": "application/xslt+xml",
                     "name": template_name,
+                    "use_for_electronic": True,
                 }
             )
             result.append("Şablonu düzenlendi!")
@@ -104,6 +105,7 @@ class GibUBLProvider(models.Model):
                     "datas": base64.b64encode(xml),
                     "type": "binary",
                     "mimetype": "application/xslt+xml",
+                    "use_for_electronic": True,
                     "gib_profile_id": [
                         Command.link(profile) for profile in profile_ids
                     ],
