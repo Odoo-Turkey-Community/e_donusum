@@ -5,9 +5,10 @@
 import logging
 import os
 import base64
-import datetime
 import zipfile
 import io
+import json
+from datetime import datetime, timezone
 
 from lxml import etree
 from odoo.exceptions import UserError
@@ -70,30 +71,32 @@ class IzibizService:
         if not self.provider.izibiz_jwt:
             self.auth()
         else:
-            if self.is_jwt_exp(self.provider.izibiz_jwt):
+            if self.is_token_expired(self.provider.izibiz_jwt):
                 self.auth()
 
-    @staticmethod
-    def is_jwt_exp(input):
-        if isinstance(input, str):
-            input = input.encode("ascii")
+    staticmethod
+    def decode_jwt(token):
+        header, payload, signature = token.split('.')
 
-        rem = len(input) % 4
+        def fix_padding(base64_string):
+            return base64_string + '=' * (4 - len(base64_string) % 4)
 
-        if rem > 0:
-            input += b"=" * (4 - rem)
+        header = base64.urlsafe_b64decode(fix_padding(header))
+        payload = base64.urlsafe_b64decode(fix_padding(payload))
+        return header, payload
 
-        try:
-            jwt_str = base64.urlsafe_b64decode(input).decode(errors="ignore")
-            exp_index = jwt_str.find('"exp":')
-            exp_str = jwt_str[exp_index + 6 : exp_index + 16]
+    def is_token_expired(self, token):
+        _, payload_str = IzibizService.decode_jwt(token)
+        payload = json.loads(payload_str)
+        exp = payload.get('exp')
 
-            if datetime.datetime.fromtimestamp(int(exp_str)) < datetime.datetime.now():
-                return True
-        except Exception as ex:
-            _logger.error("is_jwt_exp: " + str(ex))
+        if exp is None:
+            raise ValueError("Token has no expiration date (exp field)")
 
-        return False
+        expiration_time = datetime.fromtimestamp(exp, timezone.utc)
+        current_time = datetime.now(timezone.utc)
+
+        return current_time >= expiration_time
 
     # -------------------------------------------------------------------------
     # Helper
@@ -153,7 +156,7 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004):
                 # login zaman aşımı
                 self.auth()
                 return self.check_user(vkn)

@@ -184,9 +184,7 @@ class GibProvider(models.Model):
                 else "urn:mail:defaultpk@izibiz.com.tr"
             )
 
-            if move.gib_profile_id == self.env.ref(
-                "gib_base_2kb.profile_id-IHRACAT", False
-            ):
+            if move.gib_profile_id.value == "IHRACAT":
                 pk = "urn:mail:ihracatpk@gtb.gov.tr"
 
             attachment = move._get_edi_attachment()
