@@ -26,45 +26,37 @@ class IzibizService:
 
     def __init__(self, provider):
         self.provider = provider
-        wsdl_path = os.path.join(
+        self.wsdl_path = os.path.join(
             get_resource_path("izibiz_2kb"),
             "data",
             "wsdl",
             "prod" if provider.prod_environment else "demo",
         )
-        transport = Transport(timeout=10)
+        self.transport = Transport(timeout=10)
         self.history = HistoryPlugin()
-        setting = Settings(
+        self.setting = Settings(
             strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True
         )
 
-        auth_wsdl_path = os.path.join(wsdl_path, "auth.wsdl")
+        auth_wsdl_path = os.path.join(self.wsdl_path, "auth.wsdl")
         self.auth_client = Client(
             f"file://{auth_wsdl_path}",
-            settings=setting,
-            transport=transport,
+            settings=self.setting,
+            transport=self.transport,
         )
-        fatura_wsdl_path = os.path.join(wsdl_path, "e-fatura.wsdl")
+        fatura_wsdl_path = os.path.join(self.wsdl_path, "e-fatura.wsdl")
         self.fatura_client = Client(
             f"file://{fatura_wsdl_path}",
-            settings=setting,
-            transport=transport,
+            settings=self.setting,
+            transport=self.transport,
             plugins=[self.history],
         )
 
-        arsiv_wsdl_path = os.path.join(wsdl_path, "e-arsiv.wsdl")
+        arsiv_wsdl_path = os.path.join(self.wsdl_path, "e-arsiv.wsdl")
         self.arsiv_client = Client(
             f"file://{arsiv_wsdl_path}",
-            settings=setting,
-            transport=transport,
-            plugins=[self.history],
-        )
-
-        irs_wsdl_path = os.path.join(wsdl_path, "e-irs.wsdl")
-        self.irs_client = Client(
-            f"file://{irs_wsdl_path}",
-            settings=setting,
-            transport=transport,
+            settings=self.setting,
+            transport=self.transport,
             plugins=[self.history],
         )
 
