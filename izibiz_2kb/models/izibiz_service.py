@@ -21,44 +21,69 @@ from zeep.plugins import HistoryPlugin
 
 _logger = logging.getLogger(__name__)
 
+transport = Transport(timeout=10)
+history = HistoryPlugin()
+setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
+
+wsdl_path = os.path.join(get_resource_path("izibiz_2kb"), "data", "wsdl")
+
+auth_wsdl_path = os.path.join(wsdl_path, "demo", "auth.wsdl")
+auth_client_demo = Client(
+    f"file://{auth_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
+auth_wsdl_path = os.path.join(wsdl_path, "prod", "auth.wsdl")
+auth_client_prod = Client(
+    f"file://{auth_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
+fatura_wsdl_path = os.path.join(wsdl_path, "demo", "e-fatura.wsdl")
+fatura_client_demo = Client(
+    f"file://{fatura_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
+fatura_wsdl_path = os.path.join(wsdl_path, "prod", "e-fatura.wsdl")
+fatura_client_prod = Client(
+    f"file://{fatura_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
+arsiv_wsdl_path = os.path.join(wsdl_path, "demo", "e-arsiv.wsdl")
+arsiv_client_demo = Client(
+    f"file://{arsiv_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
+arsiv_wsdl_path = os.path.join(wsdl_path, "prod", "e-arsiv.wsdl")
+arsiv_client_prod = Client(
+    f"file://{arsiv_wsdl_path}",
+    settings=setting,
+    transport=transport,
+    plugins=[history],
+)
+
 
 class IzibizService:
 
     def __init__(self, provider):
         self.provider = provider
-        self.wsdl_path = os.path.join(
-            get_resource_path("izibiz_2kb"),
-            "data",
-            "wsdl",
-            "prod" if provider.prod_environment else "demo",
-        )
-        self.transport = Transport(timeout=10)
-        self.history = HistoryPlugin()
-        self.setting = Settings(
-            strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True
-        )
 
-        auth_wsdl_path = os.path.join(self.wsdl_path, "auth.wsdl")
-        self.auth_client = Client(
-            f"file://{auth_wsdl_path}",
-            settings=self.setting,
-            transport=self.transport,
-        )
-        fatura_wsdl_path = os.path.join(self.wsdl_path, "e-fatura.wsdl")
-        self.fatura_client = Client(
-            f"file://{fatura_wsdl_path}",
-            settings=self.setting,
-            transport=self.transport,
-            plugins=[self.history],
-        )
-
-        arsiv_wsdl_path = os.path.join(self.wsdl_path, "e-arsiv.wsdl")
-        self.arsiv_client = Client(
-            f"file://{arsiv_wsdl_path}",
-            settings=self.setting,
-            transport=self.transport,
-            plugins=[self.history],
-        )
+        self.auth_client = auth_client_prod if provider.prod_environment else auth_client_demo
+        self.fatura_client = fatura_client_prod if provider.prod_environment else fatura_client_demo
+        self.arsiv_client = arsiv_client_prod if provider.prod_environment else arsiv_client_demo
 
         if not self.provider.izibiz_jwt:
             self.auth()
