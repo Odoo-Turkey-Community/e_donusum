@@ -175,12 +175,12 @@ class GibProvider(models.Model):
 
         for move in moves:
             gb = (
-                move.gib_provider_id.alias_inv_gb
+                move.gib_provider_id.alias_inv_gb.alias
                 if self.prod_environment
                 else "urn:mail:defaultgb@izibiz.com.tr"
             )
             pk = (
-                move.gib_provider_id.alias_inv_gb
+                move.gib_alias_pk.alias
                 if self.prod_environment
                 else "urn:mail:defaultpk@izibiz.com.tr"
             )
