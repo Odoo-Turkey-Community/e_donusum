@@ -344,8 +344,8 @@ class GibProvider(models.Model):
             return res
 
         state_mapping = {
-            "REJECT": "Rejected",
-            "ACCEPT": "Accepted",
+            "REJECTED": "Rejected",
+            "ACCEPTED": "Accepted",
         }
         service = self._get_izibiz_service()
         sdate = startDate.isoformat() if startDate else None
@@ -876,8 +876,8 @@ class GibProvider(models.Model):
             return False
 
         response_code_mapping = {
-            "ACCEPT": "accept",
-            "REJECT": "reject",
+            "ACCEPTED": "accept",
+            "REJECTED": "reject",
         }
         resp_mapping = {
             res.UUID: response_code_mapping.get(res.HEADER.RESPONSE_CODE)
@@ -968,8 +968,8 @@ class GibProvider(models.Model):
             icp_key, (fields.Date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         )
         response_code_mapping = {
-            "ACCEPT": "Accepted",
-            "REJECT": "Rejected",
+            "ACCEPTED": "Accepted",
+            "REJECTED": "Rejected",
         }
 
         service = self._get_izibiz_service()
