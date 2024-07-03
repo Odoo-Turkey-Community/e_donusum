@@ -48,7 +48,7 @@
                         <button name="action_retry_edi_documents_error" type="object" class="oe_link" string="Tekrar Dene" />
                     </div>
                 </div>
-                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': ['|', '|', ('gib_profile_id', '!=', %(gib_invoice_2kb.profile_id-TICARIFATURA)d), ('gib_response_code', '!=', 'reject'), ('state', 'not in', ['draft', 'cancel']), ]}">
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': ['|', '|', ('gib_profile_id', '!=', %(gib_invoice_2kb.profile_id-TICARIFATURA)d), ('gib_response_code', '!=', 'reject'), ('state', 'in', ['draft', 'cancel']), ]}">
                     <div class="o_row">
                             Fatura müşteriniz tarafından REDDEDİLMİŞ! Bu fatura için yapılabilecek tek işlem faturanın iptal edilmesidir.
                         <button name="cancel_rejected_invoice" type="object" class="oe_link text-danger" icon="fa-ban" string="Faturayı İptal Et" />
