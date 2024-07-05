@@ -17,6 +17,9 @@
                     <filter string="Reddedilmiş İşlem Bekleyen" name="rejected_and_waiting" domain="[('gib_response_code', '=', 'reject'), ('state', 'not in', ['cancel'])]"/>
                     <filter string="Ulaştırılamayanlar" name="undelivered_count" domain="[('gib_status_code_id_value2', 'in', ['error']), ('state', 'not in', ['cancel'])]"/>
                     <filter string="Harici İptaller" name="external_cancellation" domain="[('invoice_date', '&gt;',  (context_today() - relativedelta(days=60))), ('external_cancellation', '!=', False), ('state', 'in', ['cancel'])]"/>
+                    <separator/>
+                    <filter string="Ticari Kabul Edilen" name="gib_response_filter_accept" domain="[('gib_response_code', '=','accept')]"/>
+                    <filter string="Ticari Red Edilen" name="gib_response_filter_reject"   domain="[('gib_response_code', '=','reject')]"/>
                 </xpath>
             </field>
         </record>
@@ -45,7 +48,7 @@
                         <button name="action_retry_edi_documents_error" type="object" class="oe_link" string="Tekrar Dene" />
                     </div>
                 </div>
-                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': ['|', '|', ('gib_profile_id', '!=', %(gib_invoice_2kb.profile_id-TICARIFATURA)d), ('gib_response_code', '!=', 'reject'), ('state', 'not in', ['draft', 'cancel']), ]}">
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" attrs="{'invisible': ['|', '|', ('gib_profile_id', '!=', %(gib_invoice_2kb.profile_id-TICARIFATURA)d), ('gib_response_code', '!=', 'reject'), ('state', 'in', ['draft', 'cancel']), ]}">
                     <div class="o_row">
                             Fatura müşteriniz tarafından REDDEDİLMİŞ! Bu fatura için yapılabilecek tek işlem faturanın iptal edilmesidir.
                         <button name="cancel_rejected_invoice" type="object" class="oe_link text-danger" icon="fa-ban" string="Faturayı İptal Et" />
@@ -131,6 +134,7 @@
                         </span>
                     </button>
                 </div>
+                <field name="gib_response_code" attrs="{'invisible': [('gib_response_code', '=',False)]}"/>
             </group>
         </xpath>
     </field>
