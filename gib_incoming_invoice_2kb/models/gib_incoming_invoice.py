@@ -69,8 +69,14 @@ class GibIncomingInvoice(models.Model):
         if success:
             if answer == "KABUL":
                 self.state = "Accepted"
+                self.message_post(
+                    body="<span style='color:limegreen'>Ticari Fatura Kabul Edildi.</span>",
+                )
             elif answer == "RED":
                 self.state = "Rejected"
+                self.message_post(
+                    body="<span style='color:indianred'>Ticari Fatura Reddedildi.</span>",
+                )
         else:
             raise UserError(error)
 
