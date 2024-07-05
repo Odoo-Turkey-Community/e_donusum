@@ -11,13 +11,14 @@ from odoo.addons.http_routing.models.ir_http import slug
 class GibIncomingInvoice(models.Model):
 
     _name = "gib.incoming.invoice"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Gelen Fatura"
     _order = "issue_date DESC,id"
 
     name = fields.Char("Fatura No")
     ETTN = fields.Char("ETTN")
     issue_date = fields.Date("Fatura Tarihi")
-    is_importable = fields.Boolean("İşlendi", detault=False)
+    is_importable = fields.Boolean("İşlendi", default=False)
 
     sender = fields.Char("Faturayı Kesen")
     sender_vat = fields.Char("Vergi No")
