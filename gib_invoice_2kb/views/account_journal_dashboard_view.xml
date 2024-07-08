@@ -12,7 +12,7 @@
                 <t t-if="dashboard.gib_to_process">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" context="{'search_default_gib_to_process': '1'}" type="object" class="text-warning">
+                            <a name="open_action" title="Gönderilmeyi ya da İptal edilmeyi bekleyen faturalarınız" context="{'search_default_gib_to_process': '1'}" type="object" class="text-warning">
                                 <t t-esc="dashboard.gib_to_process"/>
                                 GİB İşlemi Bekliyor
                             </a>
@@ -28,7 +28,7 @@
                 <t t-if="dashboard.rejected_and_waiting_to_action">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" context="{'search_default_rejected_and_waiting': '1', 'action_to': 'to_rejected_and_waiting'}" type="object" class="text-danger">
+                            <a name="open_action" title="İş Orağınız tarafından reddedilmiş ve işlem yapılmayı (İptal Edilme) bekleyen faturalarınız" context="{'search_default_rejected_and_waiting': '1', 'action_to': 'to_rejected_and_waiting'}" type="object" class="text-danger">
                                 <t t-esc="dashboard.rejected_and_waiting_to_action"/>
                                 Reddedilmiş Fatura
                             </a>
@@ -44,7 +44,7 @@
                 <t t-if="dashboard.undelivered_count">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" context="{'search_default_undelivered_count': '1', 'action_to': 'to_undelivered_count'}" type="object" class="text-danger">
+                            <a name="open_action" title="Gibe gönderilmesi sırasında hata oluşan faturalarınız" context="{'search_default_undelivered_count': '1', 'action_to': 'to_undelivered_count'}" type="object" class="text-danger">
                                 <t t-esc="dashboard.undelivered_count"/>
                                 Ulaştırılamayan Fatura
                             </a>
@@ -59,7 +59,7 @@
                 <t t-if="dashboard.external_cancellation">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" context="{'search_default_external_cancellation': '1', 'action_to': 'to_external_cancellation'}" type="object" class="text-danger">
+                            <a name="open_action" title="İş Ortağınız tarafından iptal edilmiş faturalarınız. Bu listede son 60 günlük harici olarak iptal edilmiş faturalarınız gösterilir" context="{'search_default_external_cancellation': '1', 'action_to': 'to_external_cancellation'}" type="object" class="text-danger">
                                 <t t-esc="dashboard.external_cancellation"/>
                                 Harici İptal Fatura
                             </a>
