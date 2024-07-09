@@ -97,6 +97,14 @@ class GibUBLProvider(models.Model):
                     "use_for_electronic": True,
                 }
             )
+            if not einv_temp.gib_profile_id:
+                einv_temp.write(
+                    {
+                        "gib_profile_id": [
+                            Command.link(profile) for profile in profile_ids
+                        ],
+                    }
+                )
             result.append("Şablonu düzenlendi!")
         else:
             ir.with_context({}).create(

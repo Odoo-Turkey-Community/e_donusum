@@ -10,7 +10,8 @@
             <form create="false">
                 <header>
                     <button title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
-                    <button string="Aktif/Pasif" name="toggle_is_importable" type="object"/>
+                    <button string="İşlendi" class="toggle_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '!=', True)]}"/>
+                    <button string="İşlenmedi" class="toggle_not_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '=', True)]}"/>
                 </header>
                 <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
                     <p>
@@ -19,7 +20,7 @@
                 </p>
             </div>
             <sheet>
-
+                <widget name="web_ribbon" title="Reddedildi" bg_color="bg-danger" attrs="{'invisible': [('state', 'not in', ['Rejected'])]}"/>
                 <span class="o_form_label">Gelen E-Fatura</span>
                 <h1 class="mt0">
                     <field name="name" readonly="True"/>
@@ -55,6 +56,11 @@
                     </group>
                 </group>
             </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
         </form>
     </field>
 </record>
@@ -84,7 +90,7 @@
     <field name="name">gib.incoming.invoice.tree (in gib_incoming_invoice_2kb)</field>
     <field name="model">gib.incoming.invoice</field>
     <field name="arch" type="xml">
-        <tree create="false" decoration-warning="is_importable==True">
+        <tree create="false" decoration-success="is_importable==True">
             <header>
                 <button string="Aktif/Pasif" name="toggle_is_importable" type="object" icon="fa-edit" title="Edit"/>
             </header>
@@ -92,7 +98,7 @@
             <field name="is_importable" invisible="1"/>
             <field name="issue_date"/>
             <field name="name"/>
-            <field name="sender"/>
+            <field name="sender" optional="show"/>
             <field name="total_amount" string="Fatura Tutarı"/>
             <field name="currency_code" />
             <field name="sender_alias" optional="show"/>
