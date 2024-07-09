@@ -987,8 +987,8 @@ class GibProvider(models.Model):
         )
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.HEADER.CDATE.isoformat() > ldata_str:
-                ldata_str = incoming.HEADER.CDATE.isoformat()
+            if incoming.HEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
+                ldata_str = incoming.HEADER.CDATE.strftime("%Y-%m-%d")
 
             if GII.search([("ETTN", "=", incoming.UUID)]):
                 continue
@@ -1044,8 +1044,8 @@ class GibProvider(models.Model):
 
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.DESPATCHADVICEHEADER.CDATE.isoformat() > ldata_str:
-                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.isoformat()
+            if incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")> ldata_str:
+                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")
 
             if GID.search([("ETTN", "=", incoming.UUID)]):
                 continue
