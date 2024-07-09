@@ -28,7 +28,7 @@
                 <t t-if="dashboard.rejected_and_waiting_to_action">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" title="İş Orağınız tarafından reddedilmiş ve işlem yapılmayı (İptal Edilme) bekleyen faturalarınız" context="{'search_default_rejected_and_waiting': '1', 'action_to': 'to_rejected_and_waiting'}" type="object" class="text-danger">
+                            <a name="open_action" title="İş Ortağınız tarafından reddedilmiş ve işlem yapılmayı (İptal Edilme) bekleyen faturalarınız" context="{'search_default_rejected_and_waiting': '1', 'action_to': 'to_rejected_and_waiting'}" type="object" class="text-danger">
                                 <t t-esc="dashboard.rejected_and_waiting_to_action"/>
                                 Reddedilmiş Fatura
                             </a>
@@ -44,7 +44,7 @@
                 <t t-if="dashboard.undelivered_count">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
-                            <a name="open_action" title="Gibe gönderilmesi sırasında hata oluşan faturalarınız" context="{'search_default_undelivered_count': '1', 'action_to': 'to_undelivered_count'}" type="object" class="text-danger">
+                            <a name="open_action" title="GİB' e gönderilmesi sırasında hata oluşan faturalarınız" context="{'search_default_undelivered_count': '1', 'action_to': 'to_undelivered_count'}" type="object" class="text-danger">
                                 <t t-esc="dashboard.undelivered_count"/>
                                 Ulaştırılamayan Fatura
                             </a>

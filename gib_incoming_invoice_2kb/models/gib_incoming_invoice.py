@@ -23,8 +23,6 @@ class GibIncomingInvoice(models.Model):
     sender = fields.Char("Faturayı Kesen")
     sender_vat = fields.Char("Vergi No")
     sender_alias = fields.Char("Gönderen PK")
-    reciever = fields.Char("Alıcı")
-    reciever_vat = fields.Char("Alıcı Vergi No")
     reciever_alias = fields.Char("Alıcı PK")
 
     invoice_type = fields.Char(string="Fatura Tipi")
