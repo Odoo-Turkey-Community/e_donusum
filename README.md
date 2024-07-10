@@ -62,6 +62,9 @@
   </ol>
 </details>
 
+
+
+
 <!-- ABOUT THE PROJECT -->
 <a name="about-the-project"></a>
 ## Proje Hakkında
@@ -75,6 +78,9 @@
 Türkiye Odoo Lokalizasyon geliştirmeleri. Odoo için Türkiye muhasebe altyapısını hesap planı, mali koşullar, vergiler, vergi daireleri, bankalar ve daha fazlası için hazırlar ve E-Dönüşüm süreçlerini Odoo ya entegre eder.: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+
+
 
 <a name="addons"></a>
 ## Geliştirilen Addonlar
@@ -100,7 +106,10 @@ Addon | Version | Maintainers | Summary
 
 [//]: # (end addons)
 
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
 <!-- prettier-ignore-end -->
+
+
 
 
 <a name="built-with"></a>
@@ -151,6 +160,8 @@ Addon | Version | Maintainers | Summary
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
+
+
 <!-- GETTING STARTED -->
 <a name="getting-started"></a>
 ## Başlarken 
@@ -158,6 +169,9 @@ Addon | Version | Maintainers | Summary
 2KB Konsorsiyumu tarafından geliştirilen Türkiye Muhasebe altyapısı ve E-Dönüşüm süreçleri ile ilgili geliştrimeler tüm kullanıcıların kullanmına ücretsiz olarak sunulmuştur. İster Enterprise ister Community versiyonunda konforlu bi şekilde kullanabilir ve muhasebe süreçlerinizi yönetebilirsiniz.
 
 E-Dönüşüm için başvurunuzu Partner iseniz [İş Ortağı Kaydı](https://2kb.com.tr/tr/partnership_request) son kullanıcısı iseniz [Kullanıcı Kaydı](https://2kb.com.tr/tr/end_user_registration) linklerinden geçerli bilgilerinizle formu doldurarak yapabilirsiniz.
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
 
 
 
@@ -173,8 +187,13 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
   ```sh
   Odoo v16, v17
   ```
-  
-  
+
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+
+
+
+
 <a name="installation"></a>
 ### Kurulum
 
@@ -220,8 +239,9 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
 > [!IMPORTANT]
 > Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
 
-
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+
 
 
 <!-- USAGE EXAMPLES -->
@@ -244,6 +264,8 @@ Döküman İmzası: E-Arşiv faturalarında imza kısmına görüntülenecek imz
 _Daha fazla detay için, lütfen takipte kalın ve iletişime geçin [2KB Ekibi](https://2kb.com.tr)_
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+
 
 
 <!-- CONTRIBUTING -->
@@ -280,6 +302,9 @@ tarafından geliştirilmiş ve bundan sonraki süreçlerde ise geliştirmeye dev
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
+
+
+
 <!-- LICENSE -->
 <a name="license"></a>
 ## Lisanslar
@@ -290,6 +315,8 @@ Her ne kadar, her modülün farklı lisanslama türü olsa da, modüller Kıta Q
 Her modülün lisanslanması ile ilili bilgileri kendi `__manifest__.py` dosyalarında bulunmaktadır.
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
+
+
 
 
 <!-- CONTACT -->
