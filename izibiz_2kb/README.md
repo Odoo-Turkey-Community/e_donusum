@@ -34,10 +34,10 @@
     <img src="static/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
-<h3 align="center">E-Dönüşüm Altyapısı</h3>
+<h3 align="center">İZİBİZ E-Dönüşüm Sağlayıcısı</h3>
 
   <p align="center">
-    Hızla dijitalleşen Türkiye Muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile Odoo nuz da dijitalleşmeye hazır hale gelir
+    E-Dönüşüm işlemlerinizi İZİBİZ Entegratörü üzerinden yapmanızı sağlayacak bu uygulama ile gönderim ve alım methodlarını etkin bir şekilde kullanabilirsiniz
     <br />
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
@@ -179,7 +179,7 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
 ### Kurulum
 
 1. Ücretsiz APi Anahtarı alın. Api anahtarı almak için uygulama üzerinden istekte bulunabilirsiniz
-2. Repo yu klonlayın ya da odoo apps üzerinden [E-Dönüşüm Altyapısı](https://apps.odoo.com/apps/modules/16.0/gib_base_2kb) addonunu indirin.
+2. Repo yu klonlayın ya da odoo apps üzerinden [İZİBİZ E-Dönüşüm Sağlayıcısı](https://apps.odoo.com/apps/modules/16.0/izibiz_2kb) addonunu indirin.
 Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler için oluşturduğumuz 2 repo üzerinden şu şekilde de uygulamalara erişebilirsiniz.
 
    1. Yol 2KB tarafından geliştirilen ve e-dönüşüm süreçlerini yürütebileceğiniz temel uygulamalara erişim:
