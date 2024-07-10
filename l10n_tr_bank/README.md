@@ -191,7 +191,6 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
       ```
       git clone https://github.com/Odoo-Turkey-Community/edonusum_paket_community.git
       ```
-      > [!WARNING]
       > komut tamamlandıktan sonra ilgili klasörde dizin yapısı dizinler "BOŞ" halde gelecektir, dizinlerin bulunduğu ana dizine gidelim ve uygulama dosyalarını da almak için komut satırında      
       ```
       git submodule update --init --recursive
