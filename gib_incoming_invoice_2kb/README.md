@@ -34,10 +34,10 @@
     <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
-<h3 align="center">E-Fatura ve E-Arşiv Konnektörü</h3>
+<h3 align="center">Gelen E-Faturaların Alınması</h3>
 
   <p align="center">
-    E-Fatura ve E-Arşiv için ihtiyaç duyulan tüm düzenlemler eklentiler ve altyapı bu geliştirme ile sisteminize eklenir.
+    2KB Türkiye lokalizasyon ekibi tarafından geliştirilmiştir. Gelen E-Faturaların Alınması ve incelenmesine olanak verir
     <br />
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
@@ -178,7 +178,7 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
 ### Kurulum
 
 1. Ücretsiz APi Anahtarı alın. Api anahtarı almak için uygulama üzerinden istekte bulunabilirsiniz
-2. Repo yu klonlayın ya da odoo apps üzerinden [E-Fatura ve E-Arşiv Konnektörü](https://apps.odoo.com/apps/modules/16.0/gib_invoice_2kb) addonunu indirin.
+2. Repo yu klonlayın ya da odoo apps üzerinden [Gelen E-Faturaların Alınması](https://apps.odoo.com/apps/modules/16.0/gib_incoming_invoice_2kb) addonunu indirin.
 Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler için oluşturduğumuz 2 repo üzerinden şu şekilde de uygulamalara erişebilirsiniz.
 
    1. Yol 2KB tarafından geliştirilen ve e-dönüşüm süreçlerini yürütebileceğiniz temel uygulamalara erişim:

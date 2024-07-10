@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="static/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
 <h3 align="center">E-Dönüşüm Altyapısı</h3>
@@ -80,7 +80,6 @@
     <li><a href="#contributing">Katkılar</a></li>
     <li><a href="#license">Lisans</a></li>
     <li><a href="#contact">İletişim</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -92,7 +91,7 @@
 
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="static/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
  </div>
 
@@ -117,17 +116,17 @@ Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dön
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="static/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="static/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 <li style="padding:5px">
@@ -217,7 +216,7 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
 5. "2KB Etkinleştirme" Butonununa Tıklayınız "2KB dünyasına hoş geldiniz." mesajını gördüğünüzde etkinleştirme talebiniz tarafımıza ulaşacaktır. "Kontrol Et" butonundan talebinizi tekrar sorgulayabilirsiniz
 
 
-<img src="static/images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
+<img src="images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
 
 > [!IMPORTANT]
 > Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
@@ -265,17 +264,17 @@ Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu
 <ul style="list-style:none">
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="static/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="static/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 </ul>
