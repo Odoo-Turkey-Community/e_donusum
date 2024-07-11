@@ -7,6 +7,9 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+![Last commit](https://img.shields.io/github/last-commit/MarketingPipeline/Awesome-Repo-Template.svg "Last commit")](https://github.com/MarketingPipeline/Awesome-Repo-Template/commits/master)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/MarketingPipeline/Awesome-Repo-Template.svg "Commit activity")](https://github.com/MarketingPipeline/Awesome-Repo-Template/graphs/commit-activity)
+![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum)
 
 # Türkiye Lokalizasyonu
 

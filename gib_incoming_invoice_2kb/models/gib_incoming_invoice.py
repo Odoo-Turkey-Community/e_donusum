@@ -89,3 +89,8 @@ class GibIncomingInvoice(models.Model):
     def toggle_is_importable(self):
         for rec in self:
             rec.is_importable = not rec.is_importable
+
+    def get_incoming_invoice_detail(self):
+        self.gib_provider_id.get_incoming_invoice_xml(self.ETTN)
+
+        return True
