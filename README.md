@@ -8,7 +8,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 ![Last commit](https://img.shields.io/github/last-commit/Odoo-Turkey-Community/e_donusum.svg "Last commit")](https://github.com//Odoo-Turkey-Community/e_donusum/commits/master)
-[![Commit activity](https://img.shields.io/github/commit-activity/m//Odoo-Turkey-Community/e_donusum.svg "Commit activity")](https://github.com//Odoo-Turkey-Community/e_donusum/graphs/commit-activity)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/Odoo-Turkey-Community/e_donusum.svg "Commit activity")](https://github.com//Odoo-Turkey-Community/e_donusum/graphs/commit-activity)
 ![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum)
 
 # Türkiye Lokalizasyonu
