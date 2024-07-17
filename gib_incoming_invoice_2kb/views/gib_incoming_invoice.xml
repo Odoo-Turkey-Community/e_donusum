@@ -9,9 +9,10 @@
         <field name="arch" type="xml">
             <form create="false">
                 <header>
-                    <button title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
+                    <button title="PDF Görüntüle" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
                     <button string="İşlendi" class="toggle_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '!=', True)]}"/>
                     <button string="İşlenmedi" class="toggle_not_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '=', True)]}"/>
+                    <button string="Satırları Al" name="get_incoming_invoice_detail" icon="fa-cloud-download" type="object"/>
                 </header>
                 <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
                     <p>

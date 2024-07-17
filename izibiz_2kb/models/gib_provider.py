@@ -11,6 +11,7 @@ from collections import namedtuple
 from odoo import fields, models, api, Command
 from odoo.modules.module import get_resource_path
 from textwrap import dedent
+
 # from models import izibiz_service
 
 from .izibiz_service import IzibizService
@@ -394,6 +395,25 @@ class GibProvider(models.Model):
         service = self._get_izibiz_service()
         api = service.send_invoice_response_with_server_sign(ettn, answer, text)
         return api["success"], api["error"]
+
+    def _get_incoming_invoice_xml(self, ettn):
+        res = super()._get_incoming_invoice_xml(ettn)
+        if self.provider != "izibiz":
+            return res
+
+        service = self._get_izibiz_service()
+        invoice_xmls = service.get_invoice(
+            header_only="N",
+            DIRECTION="IN",
+            UUID=ettn,
+            READ_INCLUDED=True,
+            # LIMIT=100,
+        )
+        return invoice_xmls["success"], (
+            invoice_xmls["result"][0].CONTENT._value_1
+            if invoice_xmls["success"]
+            else invoice_xmls["error"]
+        )
 
     ####################################################
     # Cron Api
@@ -1044,7 +1064,7 @@ class GibProvider(models.Model):
 
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")> ldata_str:
+            if incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
                 ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")
 
             if GID.search([("ETTN", "=", incoming.UUID)]):
