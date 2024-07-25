@@ -76,7 +76,7 @@ class ResPartner(models.Model):
                     and item.get("document_type") == alias_id.document_type
                 ]
                 if not faund:
-                    alias_to_update[alias.id] = {"active": False}
+                    alias_to_update[alias_id.id] = {"active": False}
 
             for alias_id, values in alias_to_update.items():
                 alias_model.browse(alias_id).write(values)

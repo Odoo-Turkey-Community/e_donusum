@@ -156,7 +156,10 @@ class GibUblTR12(models.AbstractModel):
             lines = invoice.line_ids.filtered(lambda x: x.amount_currency > 0)
             amount_currency_positive = sum(lines.mapped("amount_currency"))
             total_debit = sum(invoice.line_ids.mapped("debit"))
-            currency_rate_amount = float_repr(total_debit / amount_currency_positive, 6)
+            if "custom_currency_rate" in invoice._fields:
+                currency_rate_amount = invoice.custom_currency_rate
+            else:
+                currency_rate_amount = float_repr(total_debit / amount_currency_positive, 6)
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
