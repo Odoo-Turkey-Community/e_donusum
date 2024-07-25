@@ -31,6 +31,7 @@
                 </style>
                 <group>
                     <group>
+                        <field name="is_importable" invisible="1"/>
                         <field name="name" readonly="1"/>
                         <field name="issue_date" readonly="1"/>
                     </group>
@@ -41,14 +42,13 @@
                         <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
                     </group>
                 </group>
-                <group name="sender_info_group">
+                <group string="İş Ortağı Bilgileri" name="sender_info_group">
                     <group name="sender_info_group_left">
                         <field name="sender"/>
                         <field name="sender_vat"/>
-                        <field name="is_importable"/>
                     </group>
                 </group>
-                <group name="financial_info_div">
+                <group string="Alt Bilgi" name="financial_info_div">
                     <group name="note_group"/>
                     <group class="oe_subtotal_footer">
                         <field name="tax_exclude" readonly="1"/>

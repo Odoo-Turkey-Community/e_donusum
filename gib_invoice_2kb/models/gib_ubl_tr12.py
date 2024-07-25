@@ -201,7 +201,6 @@ class GibUblTR12(models.AbstractModel):
         }
 
     def _get_document_allowance_charge_vals_list(self, invoice):
-
         invoice_lines = invoice.invoice_line_ids.filtered(
             lambda line: line.display_type not in ("line_note", "line_section")
         )
