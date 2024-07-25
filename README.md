@@ -10,8 +10,7 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![Last commit][lcommit-shield]][lcommit-url]
-[![Commit activity][cactivty-shield]][cactivty-url]
-[![GitHub language count][lcount-shield]][lcount-url]
+[![Commit activity][cactivity-shield]][cactivty-url]
 ![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum?style=for-the-badge)
 
 # Türkiye Lokalizasyonu
