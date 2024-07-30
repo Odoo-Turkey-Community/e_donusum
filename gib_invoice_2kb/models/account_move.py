@@ -425,7 +425,7 @@ class AccountMove(models.Model):
             "update_state"
         )
         if move_applicability_func:
-            res = move_applicability_func(self) and move_applicability_func(self).get(self, {}) or {}
+            res = move_applicability_func(self).get(self, {})
             if res.get("success"):
                 self.write(
                     {
