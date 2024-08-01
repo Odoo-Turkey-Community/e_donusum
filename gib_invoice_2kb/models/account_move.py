@@ -398,7 +398,6 @@ class AccountMove(models.Model):
                     # set move default data
                     move._set_default()
                     errors = move._check_move_configuration(move)
-                    # errors = provider._check_move_configuration(move)
                     if errors:
                         raise UserError(
                             _("Hatalı Fatura Yapılandırmas(lar)ı:\n\n%s")
@@ -729,9 +728,11 @@ class AccountMove(models.Model):
         if move_error:
             error.append(move_error)
 
-        if move.gib_provider_id.prod_environment \
-            and "vat" in customer_mandatory \
-                and supplier.vat == customer.vat:
+        if (
+            move.gib_provider_id.prod_environment
+            and "vat" in customer_mandatory
+            and supplier.vat == customer.vat
+        ):
             error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
 
         customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-arsv" and error.append(

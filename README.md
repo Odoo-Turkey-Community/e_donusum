@@ -4,12 +4,14 @@
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
+![GitHub watchers](https://img.shields.io/github/watchers/Odoo-Turkey-Community/e_donusum?style=for-the-badge)
+![GitHub followers](https://img.shields.io/github/followers/Odoo-Turkey-Community?style=for-the-badge&color=brown)
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Last commit](https://img.shields.io/github/last-commit/Odoo-Turkey-Community/e_donusum.svg "Last commit")](https://github.com/Odoo-Turkey-Community/e_donusum/commits/master)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/Odoo-Turkey-Community/e_donusum.svg "Commit activity")](https://github.com//Odoo-Turkey-Community/e_donusum/graphs/commit-activity)
-![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum)
+[![Last commit][lcommit-shield]][lcommit-url]
+[![Commit activity][cactivity-shield]][cactivty-url]
+![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum?style=for-the-badge)
 
 # Türkiye Lokalizasyonu
 
@@ -31,7 +33,7 @@
     <a href="https://demop.2kb.com.tr/">Pro Test Ortamı</a>
     ·
     <a href="https://demos.2kb.com.tr/">Enterprise Test Ortamı</a><br/>
-    <span style="color:red">**Login Bilgileri; Mail: admin, Şifre: admin**</span>
+    <span style="color:red">Login Bilgileri; Mail: admin, Şifre: admin</span>
     <br/>
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=bug&template=bug-report.md">Hata Bildir</a>
@@ -368,5 +370,13 @@ Türkiyedeki yarınları için katkıda bulunmayı hedefler.
 [issues-url]: https://github.com/Odoo-Turkey-Community/e_donusum/issues
 [license-shield]: https://img.shields.io/github/license/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
 [license-url]: https://github.com/Odoo-Turkey-Community/e_donusum/blob/master/LICENSE
+[lcommit-shield]: https://img.shields.io/github/last-commit/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[lcommit-url]: https://github.com/Odoo-Turkey-Community/e_donusum/commits/master
+[cactivity-shield]: https://img.shields.io/github/commit-activity/m/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
+[cactivity-url]: https://github.com//Odoo-Turkey-Community/e_donusum/graphs/commit-activity
+
+
+
+
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username

@@ -48,7 +48,7 @@
     <a href="https://demop.2kb.com.tr/">Pro Test Ortamı</a>
     ·
     <a href="https://demos.2kb.com.tr/">Enterprise Test Ortamı</a><br/>
-    <span style="color:red">**Login Bilgileri; Mail: admin, Şifre: admin**</span>
+    <span style="color:red">Login Bilgileri; Mail: admin, Şifre: admin</span>
     <br/>
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=bug&template=bug-report.md">Hata Bildir</a>
