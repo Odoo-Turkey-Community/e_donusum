@@ -766,9 +766,9 @@ class GibProvider(models.Model):
         return cron_id
 
     def configure_cron(self):
-        """
-        Bu servis provider bazlı değildi.
-        """
+        res = super().configure_cron()
+        if self.provider != "izibiz":
+            return res
 
         # cron_get_gib_user_list
         cron_required = self.active

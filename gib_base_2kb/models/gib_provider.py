@@ -197,3 +197,6 @@ class GibUBLProvider(models.Model):
 
         """
         return False
+
+    def configure_cron(self):
+        return True
