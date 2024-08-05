@@ -431,11 +431,16 @@ class AccountMove(models.Model):
                     {
                         "gib_status_code_id": res["result"].get("gib_status_code_id"),
                         "gib_response_code": res["result"].get("gib_response_code_id"),
-                        "gtb_refno": res["result"].get("gtb_refno"),
-                        "gtb_tescilno": res["result"].get("gtb_tescilno"),
-                        "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
                     }
                 )
+                if "gtb_refno" in self._fields:
+                    self.write(
+                        {
+                            "gtb_refno": res["result"].get("gtb_refno"),
+                            "gtb_tescilno": res["result"].get("gtb_tescilno"),
+                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
+                        }
+                    )
 
     def _set_default(self):
         """Onaylanacak Digital Faturaya bazi değerleri ve ön tanımlı değerleri atar"""
