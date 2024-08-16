@@ -5,4 +5,3 @@
 from . import gib_provider
 from . import gib_ubl_tr12
 from . import izibiz_api_log
-from . import izibiz_service

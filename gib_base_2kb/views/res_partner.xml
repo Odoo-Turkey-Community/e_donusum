@@ -15,7 +15,7 @@
                 </header>
             </xpath>
             <notebook position="inside">
-                <page string="e-Dönüşüm" id="digital_transform" attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}">
+                <page string="e-Dönüşüm" id="digital_transform"  invisible="not is_company and parent_id">
                     <group name="container_row_2" id="gib_group">
 
                     </group>
@@ -23,7 +23,7 @@
                         <field name="last_gib_check" readonly="1"/>
                     </group>
                 </page>
-                <page string="e-Dönüşüm" name="digital_transform_disabled" attrs="{'invisible': ['|',('is_company','=',True),('parent_id','=',False)]}">
+                <page string="e-Dönüşüm" name="digital_transform_disabled" invisible="not is_company and parent_id">
                     <div>
                         <p>e-Dönüşüm ile ilgili ayarlar
                             <button name="open_commercial_entity" type="object" string="ana şirkette" class="oe_link"/>

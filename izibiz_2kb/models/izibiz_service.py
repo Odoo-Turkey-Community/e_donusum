@@ -5,10 +5,9 @@
 import logging
 import os
 import base64
+import datetime
 import zipfile
 import io
-import json
-from datetime import datetime, timezone
 
 from lxml import etree
 from odoo.exceptions import UserError
@@ -21,99 +20,80 @@ from zeep.plugins import HistoryPlugin
 
 _logger = logging.getLogger(__name__)
 
-transport = Transport(timeout=10)
-history = HistoryPlugin()
-setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
-
-wsdl_path = os.path.join(get_resource_path("izibiz_2kb"), "data", "wsdl")
-
-auth_wsdl_path = os.path.join(wsdl_path, "demo", "auth.wsdl")
-auth_client_demo = Client(
-    f"file://{auth_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
-auth_wsdl_path = os.path.join(wsdl_path, "prod", "auth.wsdl")
-auth_client_prod = Client(
-    f"file://{auth_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
-fatura_wsdl_path = os.path.join(wsdl_path, "demo", "e-fatura.wsdl")
-fatura_client_demo = Client(
-    f"file://{fatura_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
-fatura_wsdl_path = os.path.join(wsdl_path, "prod", "e-fatura.wsdl")
-fatura_client_prod = Client(
-    f"file://{fatura_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
-arsiv_wsdl_path = os.path.join(wsdl_path, "demo", "e-arsiv.wsdl")
-arsiv_client_demo = Client(
-    f"file://{arsiv_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
-arsiv_wsdl_path = os.path.join(wsdl_path, "prod", "e-arsiv.wsdl")
-arsiv_client_prod = Client(
-    f"file://{arsiv_wsdl_path}",
-    settings=setting,
-    transport=transport,
-    plugins=[history],
-)
-
 
 class IzibizService:
 
     def __init__(self, provider):
         self.provider = provider
+        wsdl_path = os.path.join(
+            get_resource_path("izibiz_2kb"),
+            "data",
+            "wsdl",
+            "prod" if provider.prod_environment else "demo",
+        )
+        transport = Transport(timeout=10)
+        self.history = HistoryPlugin()
+        setting = Settings(
+            strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True
+        )
 
-        self.auth_client = auth_client_prod if provider.prod_environment else auth_client_demo
-        self.fatura_client = fatura_client_prod if provider.prod_environment else fatura_client_demo
-        self.arsiv_client = arsiv_client_prod if provider.prod_environment else arsiv_client_demo
+        auth_wsdl_path = os.path.join(wsdl_path, "auth.wsdl")
+        self.auth_client = Client(
+            f"file://{auth_wsdl_path}",
+            settings=setting,
+            transport=transport,
+        )
+        fatura_wsdl_path = os.path.join(wsdl_path, "e-fatura.wsdl")
+        self.fatura_client = Client(
+            f"file://{fatura_wsdl_path}",
+            settings=setting,
+            transport=transport,
+            plugins=[self.history],
+        )
+
+        arsiv_wsdl_path = os.path.join(wsdl_path, "e-arsiv.wsdl")
+        self.arsiv_client = Client(
+            f"file://{arsiv_wsdl_path}",
+            settings=setting,
+            transport=transport,
+            plugins=[self.history],
+        )
+
+        irs_wsdl_path = os.path.join(wsdl_path, "e-irs.wsdl")
+        self.irs_client = Client(
+            f"file://{irs_wsdl_path}",
+            settings=setting,
+            transport=transport,
+            plugins=[self.history],
+        )
 
         if not self.provider.izibiz_jwt:
             self.auth()
         else:
-            if self.is_token_expired(self.provider.izibiz_jwt):
+            if self.is_jwt_exp(self.provider.izibiz_jwt):
                 self.auth()
 
-    staticmethod
-    def decode_jwt(token):
-        header, payload, signature = token.split('.')
+    @staticmethod
+    def is_jwt_exp(input):
+        if isinstance(input, str):
+            input = input.encode("ascii")
 
-        def fix_padding(base64_string):
-            return base64_string + '=' * (4 - len(base64_string) % 4)
+        rem = len(input) % 4
 
-        header = base64.urlsafe_b64decode(fix_padding(header))
-        payload = base64.urlsafe_b64decode(fix_padding(payload))
-        return header, payload
+        if rem > 0:
+            input += b"=" * (4 - rem)
 
-    def is_token_expired(self, token):
-        _, payload_str = IzibizService.decode_jwt(token)
-        payload = json.loads(payload_str)
-        exp = payload.get('exp')
+        try:
+            jwt_str = base64.urlsafe_b64decode(input).decode(errors="ignore")
+            exp_index = jwt_str.find('"exp":')
+            exp_str = jwt_str[exp_index + 6 : exp_index + 16]
 
-        if exp is None:
-            raise ValueError("Token has no expiration date (exp field)")
+            if datetime.datetime.fromtimestamp(int(exp_str)) < datetime.datetime.now():
+                return True
+        except Exception as ex:
+            _logger.error("is_jwt_exp: " + str(ex))
 
-        expiration_time = datetime.fromtimestamp(exp, timezone.utc)
-        current_time = datetime.now(timezone.utc)
-
-        return current_time >= expiration_time
+        return False
 
     # -------------------------------------------------------------------------
     # Helper
@@ -173,7 +153,7 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
-            if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004):
+            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.check_user(vkn)

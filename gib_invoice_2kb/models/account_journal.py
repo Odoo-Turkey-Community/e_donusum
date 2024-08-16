@@ -11,13 +11,13 @@ class AccountJournal(models.Model):
 
     def _compute_to_entries_count(self):
         res = [
-            (r["journal_id"][0], r["journal_id_count"], r["amount_total"])
-            for r in self.env["account.move"]._read_group(
+            (journal, count, total)
+            for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
                     ("journal_id", "in", self.ids),
                     ("gib_state", "in", ["to_send", "to_cancel"]),
                 ],
-                fields=["journal_id", "amount_total"],
+                aggregates=["__count", "amount_total:sum"],
                 groupby=["journal_id"],
             )
         ]
@@ -25,14 +25,14 @@ class AccountJournal(models.Model):
 
     def _compute_rejected_and_waiting_count(self):
         res = [
-            (r["journal_id"][0], r["journal_id_count"], r["amount_total"])
-            for r in self.env["account.move"]._read_group(
+            (journal, count, total)
+            for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
                     ("journal_id", "in", self.ids),
                     ("gib_response_code", "=", "reject"),
                     ("state", "not in", ["cancel"]),
                 ],
-                fields=["journal_id", "amount_total"],
+                aggregates=["__count", "amount_total:sum"],
                 groupby=["journal_id"],
             )
         ]
@@ -40,8 +40,8 @@ class AccountJournal(models.Model):
 
     def _compute_undelivered_count(self):
         res = [
-            (r["journal_id"][0], r["journal_id_count"], r["amount_total"])
-            for r in self.env["account.move"]._read_group(
+            (journal, count, total)
+            for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
                     ("journal_id", "in", self.ids),
                     (
@@ -51,7 +51,7 @@ class AccountJournal(models.Model):
                     ),
                     ("state", "not in", ["cancel"]),
                 ],
-                fields=["journal_id", "amount_total"],
+                aggregates=["__count", "amount_total:sum"],
                 groupby=["journal_id"],
             )
         ]
@@ -59,8 +59,8 @@ class AccountJournal(models.Model):
 
     def _compute_external_cancellation(self):
         res = [
-            (r["journal_id"][0], r["journal_id_count"], r["amount_total"])
-            for r in self.env["account.move"]._read_group(
+            (journal, count, amount)
+            for journal, count, amount in self.env["account.move"]._read_group(
                 domain=[
                     (
                         "invoice_date",
@@ -71,7 +71,7 @@ class AccountJournal(models.Model):
                     ("external_cancellation", "!=", False),
                     ("state", "in", ["cancel"]),
                 ],
-                fields=["journal_id", "amount_total"],
+                aggregates=["__count", "amount_total:sum"],
                 groupby=["journal_id"],
             )
         ]
@@ -84,63 +84,46 @@ class AccountJournal(models.Model):
         )
         if not sale_purchase_journals:
             return
+
         sale_purchase_journals_vals = sale_purchase_journals._compute_to_entries_count()
-        for journal_id in sale_purchase_journals:
-            vals = filter(
-                lambda item: item[0] == journal_id.id, sale_purchase_journals_vals
-            )
-            for val in vals:
-                currency_id = journal_id.currency_id or self.company_id.currency_id
-                if sale_purchase_journals_vals:
-                    dashboard_data[journal_id.id].update(
-                        {
-                            "gib_to_process": val[1],
-                            "amount": currency_id.format(val[2]),
-                        }
-                    )
+        for journal_id, count, total in sale_purchase_journals_vals:
+            currency_id = journal_id.currency_id or self.company_id.currency_id
+            if total:
+                dashboard_data[journal_id.id].update({
+                    "gib_to_process": count,
+                    "amount": currency_id.format(total),
+                })
 
         rejected_and_waiting_count = (
             sale_purchase_journals._compute_rejected_and_waiting_count()
         )
-        for journal_id in sale_purchase_journals:
-            vals = filter(
-                lambda item: item[0] == journal_id.id, rejected_and_waiting_count
-            )
-            for val in vals:
-                currency_id = journal_id.currency_id or self.company_id.currency_id
-                if rejected_and_waiting_count:
-                    dashboard_data[journal_id.id].update(
-                        {
-                            "rejected_and_waiting_to_action": val[1],
-                            "amount_rejected_and_waiting": currency_id.format(val[2]),
-                        }
-                    )
+        for journal_id, count, total in rejected_and_waiting_count:
+            currency_id = journal_id.currency_id or self.company_id.currency_id
+            if total:
+                dashboard_data[journal_id.id].update({
+                    "rejected_and_waiting_to_action": count,
+                    "amount_rejected_and_waiting": currency_id.format(total),
+                })
 
         undelivered_count = sale_purchase_journals._compute_undelivered_count()
-        for journal_id in sale_purchase_journals:
-            vals = filter(lambda item: item[0] == journal_id.id, undelivered_count)
-            for val in vals:
-                currency_id = journal_id.currency_id or self.company_id.currency_id
-                if undelivered_count:
-                    dashboard_data[journal_id.id].update(
-                        {
-                            "undelivered_count": val[1],
-                            "amount_undelivered_count": currency_id.format(val[2]),
-                        }
-                    )
+        for journal_id, count, total in undelivered_count:
+            currency_id = journal_id.currency_id or self.company_id.currency_id
+            if total:
+                dashboard_data[journal_id.id].update(
+                    {
+                        "undelivered_count": count,
+                        "amount_undelivered_count": currency_id.format(total),
+                    }
+                )
 
         external_cancellation = sale_purchase_journals._compute_external_cancellation()
-        for journal_id in sale_purchase_journals:
-            vals = filter(lambda item: item[0] == journal_id.id, external_cancellation)
-            for val in vals:
-                currency_id = journal_id.currency_id or self.company_id.currency_id
-                if external_cancellation:
-                    dashboard_data[journal_id.id].update(
-                        {
-                            "external_cancellation": val[1],
-                            "amount_external_cancellation": currency_id.format(val[2]),
-                        }
-                    )
+        for journal_id, count, total in external_cancellation:
+            currency_id = journal_id.currency_id or self.company_id.currency_id
+            if total:
+                dashboard_data[journal_id.id].update({
+                    "external_cancellation": count,
+                    "amount_external_cancellation": currency_id.format(total),
+                })
 
     def open_action(self):
         res = super().open_action()

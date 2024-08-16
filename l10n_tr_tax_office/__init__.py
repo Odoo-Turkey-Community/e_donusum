@@ -5,15 +5,12 @@
 import os
 import urllib
 from lxml import etree
-from odoo.api import Environment, SUPERUSER_ID
 
 from . import models
 from . import wizard
 
 
-def post_init_hook(cr, registry):
-    env = Environment(cr, SUPERUSER_ID, {})
-
+def post_init_hook(env):
     file_path = os.path.dirname(os.path.realpath(__file__))
     file = urllib.parse.urljoin('file:', os.path.join(file_path, 'data', 'Kodlar.xml'))
     root = etree.parse(file).getroot()

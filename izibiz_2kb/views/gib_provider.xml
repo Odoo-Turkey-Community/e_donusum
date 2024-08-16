@@ -14,11 +14,11 @@
                 <button name="configure_cron" type="object" string="Zamanlanmış Görevleri Yapılandır"/>
             </xpath>
             <xpath expr="//notebook" position='inside'>
-                <page string="İZİBİZ Bilişim" attrs="{'invisible': [('provider', '!=', 'izibiz')]}">
+                <page string="İZİBİZ Bilişim"  invisible="provider != 'izibiz'">
                     <group>
                         <group string="API Bilgileri">
-                            <field name="izibiz_username" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
-                            <field name="izibiz_password" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
+                            <field name="izibiz_username" invisible="provider != 'izibiz'" />
+                            <field name="izibiz_password" invisible="provider != 'izibiz'" />
                             <field name="izibiz_jwt" invisible="1"/>
                             <field name="izibiz_keep_log"/>
                         </group>
@@ -27,7 +27,7 @@
             </xpath>
 
             <xpath expr="//notebook" position='inside'>
-                <page string="İZİBİZ Zamanlanmiş Görevler" attrs="{'invisible': [('provider', '!=', 'izibiz')]}">
+                <page string="İZİBİZ Zamanlanmiş Görevler" invisible="provider != 'izibiz'">
                     <group>
                         <field colspan="2" name="izibiz_cron_ids" nolabel="1" readonly="1"/>
                     </group>

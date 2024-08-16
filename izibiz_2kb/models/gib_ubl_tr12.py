@@ -33,3 +33,29 @@ class GibUblTR12(models.AbstractModel):
                 }
             )
         return result
+
+    def _export_despatch_vals(self, picking):
+        result = super()._export_despatch_vals(picking)
+        if picking.gib_provider_id.provider == "izibiz":
+            result["vals"].update(
+                {
+                    "signature_vals": {
+                        "id_attrs": {"schemeID": "VKN_TCKN"},
+                        "id": "4840847211",
+                        "digital_signature_uri": "#Signature_" + picking.gib_seq,
+                        "party_vals": {
+                            "party_identification_vals": [
+                                {"id": "4840847211", "id_attrs": {"schemeID": "VKN"}}
+                            ],
+                            "postal_address_vals": {
+                                "street_name": "Altayçeşme Mh. Çamlı Sk. DAP Royal Center A Blok Kat15",
+                                "city_subdivision_name": "MALTEPE",
+                                "postal_zone": "34843",
+                                "city_name": "ISTANBUL",
+                                "country_name": "TR",
+                            },
+                        },
+                    },
+                }
+            )
+        return result

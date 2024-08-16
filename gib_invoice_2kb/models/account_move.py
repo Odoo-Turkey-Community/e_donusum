@@ -10,6 +10,7 @@ from odoo.exceptions import UserError
 from odoo.addons.http_routing.models.ir_http import slug
 
 from lxml import etree
+from markupsafe import Markup
 
 GIB_INVOICE_DEFAULT_NAME = "TASLAK"
 
@@ -398,6 +399,7 @@ class AccountMove(models.Model):
                     # set move default data
                     move._set_default()
                     errors = move._check_move_configuration(move)
+                    # errors = provider._check_move_configuration(move)
                     if errors:
                         raise UserError(
                             _("Hatalı Fatura Yapılandırmas(lar)ı:\n\n%s")
@@ -431,16 +433,11 @@ class AccountMove(models.Model):
                     {
                         "gib_status_code_id": res["result"].get("gib_status_code_id"),
                         "gib_response_code": res["result"].get("gib_response_code_id"),
+                        "gtb_refno": res["result"].get("gtb_refno"),
+                        "gtb_tescilno": res["result"].get("gtb_tescilno"),
+                        "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
                     }
                 )
-                if "gtb_refno" in self._fields:
-                    self.write(
-                        {
-                            "gtb_refno": res["result"].get("gtb_refno"),
-                            "gtb_tescilno": res["result"].get("gtb_tescilno"),
-                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
-                        }
-                    )
 
     def _set_default(self):
         """Onaylanacak Digital Faturaya bazi değerleri ve ön tanımlı değerleri atar"""
@@ -733,11 +730,9 @@ class AccountMove(models.Model):
         if move_error:
             error.append(move_error)
 
-        if (
-            move.gib_provider_id.prod_environment
-            and "vat" in customer_mandatory
-            and supplier.vat == customer.vat
-        ):
+        if move.gib_provider_id.prod_environment \
+            and "vat" in customer_mandatory \
+                and supplier.vat == customer.vat:
             error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
 
         customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-arsv" and error.append(
@@ -774,7 +769,7 @@ class AccountMove(models.Model):
             lambda line: line.display_type not in ("line_note", "line_section")
         )
         for line in move_lines:
-            line_error = self._check_required_fields(line, ["tax_ids"])
+            line_error = self._check_required_fields(line, ["tax_ids", "name"])
             if line.discount < 0:
                 error.append(
                     f"GİB faturalarında negatif(sıfırdan küçük) indirim desteklenmemektedir.{line.display_name}"
@@ -829,7 +824,7 @@ class AccountMove(models.Model):
         """
 
         self.message_post(
-            body=message_body,
+            body=Markup(message_body),
             subject=None,
             message_type="notification",
             subtype_id=None,
@@ -857,7 +852,7 @@ class AccountMove(models.Model):
         """
 
         self.message_post(
-            body=message_body,
+            body=Markup(message_body),
             subject=None,
             message_type="notification",
             subtype_id=None,

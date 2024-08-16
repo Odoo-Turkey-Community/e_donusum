@@ -12,8 +12,6 @@ from odoo import fields, models, api, Command
 from odoo.modules.module import get_resource_path
 from textwrap import dedent
 
-# from models import izibiz_service
-
 from .izibiz_service import IzibizService
 
 e_arsiv_report_mapping = {
@@ -176,17 +174,19 @@ class GibProvider(models.Model):
 
         for move in moves:
             gb = (
-                move.gib_provider_id.alias_inv_gb.alias
+                move.gib_provider_id.alias_inv_gb
                 if self.prod_environment
                 else "urn:mail:defaultgb@izibiz.com.tr"
             )
             pk = (
-                move.gib_alias_pk.alias
+                move.gib_provider_id.alias_inv_gb
                 if self.prod_environment
                 else "urn:mail:defaultpk@izibiz.com.tr"
             )
 
-            if move.gib_profile_id.value == "IHRACAT":
+            if move.gib_profile_id == self.env.ref(
+                "gib_base_2kb.profile_id-IHRACAT", False
+            ):
                 pk = "urn:mail:ihracatpk@gtb.gov.tr"
 
             attachment = move._get_edi_attachment()
@@ -335,6 +335,149 @@ class GibProvider(models.Model):
     # Picking API
     ####################################################
 
+    def _picking_post(self, pickings):
+        res = super()._picking_post(pickings)
+        if self.provider != "izibiz":
+            return res
+
+        service = self._get_izibiz_service()
+        for picking in pickings:
+            gb = (
+                picking.picking_type_id.gib_sender_alias.alias
+                if self.prod_environment
+                else None
+            )
+            pk = (
+                picking.gib_receiver_alias.alias
+                if self.prod_environment
+                else "urn:mail:irsaliyepk@gib.gov.tr"
+            )
+            attachment = picking.sudo().gib_attachment_id
+            data = base64.decodebytes(attachment.with_context(bin_size=False).datas)
+
+            try:
+                if not self.send_as_draft:
+                    result = service.send_despatch_advice(gb, pk, data)
+                else:
+                    result = service.load_despatch_advice(data)
+            except requests.exceptions.RequestException as e:
+                res[picking].update(
+                    {
+                        "success": False,
+                        "blocking_level": "warning",
+                        "error": "Hata oluştu!\n" + str(e),
+                    }
+                )
+                break
+
+            res[picking].update(result)
+        return res
+
+    def _picking_pdf(self, pickings):
+        res = super()._picking_pdf(pickings)
+        if self.provider != "izibiz":
+            return res
+
+        service = self._get_izibiz_service()
+        for picking in pickings:
+            try:
+                result = service.get_despatch_advice(
+                    header_only="N",
+                    UUID=picking.gib_uuid,
+                    DIRECTION="OUT",
+                    READ_INCLUDED="Y",
+                    CONTENT_TYPE="PDF",
+                )
+            except requests.exceptions.RequestException as e:
+                res[picking].update(
+                    {
+                        "success": False,
+                        "blocking_level": "warning",
+                        "error": "Hata oluştu!\n" + str(e),
+                    }
+                )
+                break
+            result["content"] = result["result"][0].CONTENT._value_1
+            res[picking].update(result)
+
+        return res
+
+    def _picking_update_state(self, pickings):
+        res = super()._picking_pdf(pickings)
+        if self.provider != "izibiz":
+            return res
+
+        gib_status_code_ids = self.env["gib_base_2kb.code"].search(
+            domain=[("type", "=", "gib_status_code")]
+        )
+        state_mapping = {
+            "REJECT": "Rejected",
+            "ACCEPT": "Accepted",
+        }
+        service = self._get_izibiz_service()
+        for picking in pickings:
+            try:
+                result = service.get_despatch_advice_status(uuids=[picking.gib_uuid])
+            except requests.exceptions.RequestException as e:
+                res[picking].update(
+                    {
+                        "success": False,
+                        "blocking_level": "warning",
+                        "error": "Hata oluştu!\n" + str(e),
+                    }
+                )
+                break
+            if result["success"]:
+                status_id = fields.first(
+                    gib_status_code_ids.filtered(
+                        lambda line: line.value
+                        == str(result["result"][0].GIB_STATUS_CODE)
+                    )
+                )
+                picking.write(
+                    {
+                        "gib_status_code_id": status_id.id,
+                        "gib_response_code": state_mapping.get(
+                            result["result"][0].RESPONSE_CODE
+                        ),
+                    }
+                )
+            res[picking].update(
+                {
+                    "success": result.get("success"),
+                    "error": result.get("error"),
+                }
+            )
+        return res
+
+    def _gid_pdf(self, gids):
+        res = super()._gid_pdf(gids)
+        if self.provider != "izibiz":
+            return res
+
+        service = self._get_izibiz_service()
+        for gid in gids:
+            try:
+                result = service.get_despatch_advice(
+                    header_only="N",
+                    UUID=gid.ETTN,
+                    DIRECTION="IN",
+                    READ_INCLUDED="Y",
+                    CONTENT_TYPE="PDF",
+                )
+            except requests.exceptions.RequestException as e:
+                res[gid].update(
+                    {
+                        "success": False,
+                        "blocking_level": "warning",
+                        "error": "Hata oluştu!\n" + str(e),
+                    }
+                )
+                break
+            result["content"] = result["result"][0].CONTENT._value_1
+            res[gid].update(result)
+        return res
+
     ####################################################
     # İncoming e-İnvoice API
     ####################################################
@@ -345,8 +488,8 @@ class GibProvider(models.Model):
             return res
 
         state_mapping = {
-            "REJECTED": "Rejected",
-            "ACCEPTED": "Accepted",
+            "REJECT": "Rejected",
+            "ACCEPT": "Accepted",
         }
         service = self._get_izibiz_service()
         sdate = startDate.isoformat() if startDate else None
@@ -395,25 +538,6 @@ class GibProvider(models.Model):
         service = self._get_izibiz_service()
         api = service.send_invoice_response_with_server_sign(ettn, answer, text)
         return api["success"], api["error"]
-
-    def _get_incoming_invoice_xml(self, ettn):
-        res = super()._get_incoming_invoice_xml(ettn)
-        if self.provider != "izibiz":
-            return res
-
-        service = self._get_izibiz_service()
-        invoice_xmls = service.get_invoice(
-            header_only="N",
-            DIRECTION="IN",
-            UUID=ettn,
-            READ_INCLUDED=True,
-            # LIMIT=100,
-        )
-        return invoice_xmls["success"], (
-            invoice_xmls["result"][0].CONTENT._value_1
-            if invoice_xmls["success"]
-            else invoice_xmls["error"]
-        )
 
     ####################################################
     # Cron Api
@@ -766,9 +890,9 @@ class GibProvider(models.Model):
         return cron_id
 
     def configure_cron(self):
-        res = super().configure_cron()
-        if self.provider != "izibiz":
-            return res
+        """
+        Bu servis provider bazlı değildi.
+        """
 
         # cron_get_gib_user_list
         cron_required = self.active
@@ -896,8 +1020,8 @@ class GibProvider(models.Model):
             return False
 
         response_code_mapping = {
-            "ACCEPTED": "accept",
-            "REJECTED": "reject",
+            "ACCEPT": "accept",
+            "REJECT": "reject",
         }
         resp_mapping = {
             res.UUID: response_code_mapping.get(res.HEADER.RESPONSE_CODE)
@@ -988,8 +1112,8 @@ class GibProvider(models.Model):
             icp_key, (fields.Date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         )
         response_code_mapping = {
-            "ACCEPTED": "Accepted",
-            "REJECTED": "Rejected",
+            "ACCEPT": "Accepted",
+            "REJECT": "Rejected",
         }
 
         service = self._get_izibiz_service()
@@ -1007,8 +1131,8 @@ class GibProvider(models.Model):
         )
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.HEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
-                ldata_str = incoming.HEADER.CDATE.strftime("%Y-%m-%d")
+            if incoming.HEADER.CDATE.isoformat() > ldata_str:
+                ldata_str = incoming.HEADER.CDATE.isoformat()
 
             if GII.search([("ETTN", "=", incoming.UUID)]):
                 continue
@@ -1020,7 +1144,9 @@ class GibProvider(models.Model):
                     "name": incoming.ID,
                     "gib_profile": incoming.HEADER.PROFILEID,
                     "invoice_type": incoming.HEADER.INVOICE_TYPE_CODE,
+                    "reciever": incoming.HEADER.CUSTOMER,
                     "reciever_alias": incoming.HEADER.TO,
+                    "reciever_vat": incoming.HEADER.RECEIVER,
                     "sender": incoming.HEADER.SUPPLIER,
                     "sender_vat": incoming.HEADER.SENDER,
                     "sender_alias": incoming.HEADER.FROM,
@@ -1062,8 +1188,8 @@ class GibProvider(models.Model):
 
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
-                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")
+            if incoming.DESPATCHADVICEHEADER.CDATE.isoformat() > ldata_str:
+                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.isoformat()
 
             if GID.search([("ETTN", "=", incoming.UUID)]):
                 continue

@@ -191,6 +191,7 @@ class GibUblTR12(models.AbstractModel):
                 db_uuid = (
                     self.env["ir.config_parameter"].sudo().get_param("database.uuid")
                 )
+
                 crypter = CryptEncrypteMessage(
                     company.priv_key_2kb, company.pub_key_2kb, db_uuid
                 )
@@ -212,17 +213,6 @@ class GibUblTR12(models.AbstractModel):
                 self._get_url(app), json=payload, headers=headers, timeout=15
             )
             r.raise_for_status()
-
-            response_data = r.json()
-            error = response_data.get('error')
-            if error:
-                message = ''
-                if error.get('data'):
-                    message = error.get('data').get('message')
-                else:
-                    message = error.get('message')
-                raise UserError("Error : %s" % message)
-
         except requests.exceptions.HTTPError as error:
             if error.response.status_code == 500:
                 _logger.exception(error)
@@ -236,6 +226,7 @@ class GibUblTR12(models.AbstractModel):
             _logger.exception(e)
             raise UserError(e)
 
+        response_data = r.json()
         if response_data.get("result"):
             result = response_data.get("result")
             if result.get("ubl", False):

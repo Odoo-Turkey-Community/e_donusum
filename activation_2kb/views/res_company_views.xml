@@ -10,13 +10,13 @@
             <xpath expr="//sheet" position="before">
                 <header>
                     <button name="action_activation"
-                        attrs="{'invisible': ['|', ('priv_key_2kb', '!=', False), ('auth_key_2kb', '=', False)]}"
+                        invisible="priv_key_2kb != False or auth_key_2kb == False"
                         type="object" string="2KB Activation"/>
                     <button name="action_deactivation"
-                        attrs="{'invisible': [('priv_key_2kb', '=', False)]}"
+                        invisible="priv_key_2kb == False"
                         type="object" string="DeActivation"/>
                     <button name="action_test_message"
-                        attrs="{'invisible': [('priv_key_2kb', '=', False)]}"
+                        invisible="priv_key_2kb == False"
                         type="object" string="Test Message"/>
                 </header>
             </xpath>

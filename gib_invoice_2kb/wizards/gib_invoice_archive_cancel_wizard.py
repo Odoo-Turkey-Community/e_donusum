@@ -4,6 +4,7 @@
 
 from odoo import _, api, fields, models
 
+from markupsafe import Markup
 
 class GibInvoiceArchiveCancelWizard(models.TransientModel):
 
@@ -47,7 +48,7 @@ class GibInvoiceArchiveCancelWizard(models.TransientModel):
             """
 
             wizard.invoice_id.message_post(
-                body=message_body,
+                body=Markup(message_body),
                 subject=None,
                 message_type="notification",
                 subtype_id=None,

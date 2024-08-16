@@ -3,11 +3,11 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    'name': 'Turkey Localization Extension',
+    'name': 'Turkey Localization Extension 2KB',
     "version": "1.0",
-    'summary': 'Turkey Localization Extension',
+    'summary': 'Turkey Localization Extension 2KB',
     'description': """
-        Turkey Localization Extension
+        Turkey Localization Extension 2KB
     """,
 
     'maintainer': 'Quanimo',
@@ -19,17 +19,10 @@
     'category': 'Accounting/Localizations/Account Charts',
 
     'depends': [
-        'l10n_tr'
+        'account'
     ],
 
     'data': [
-        'data/account_chart_template_data.xml',
-        'data/account.account.template-common.csv',
-        'data/account_tax_group_data.xml',
-        'data/account_tax_template_base_data.xml',
-        'data/accoun_fiscal_position_template_data.xml',
-        'data/account_fiscal_position_tax_template_data.xml',
-
         'views/account_fiscal_position_views.xml',
         'views/account_tax_group_views.xml'
     ],
@@ -37,8 +30,6 @@
     "installable": True,
     'application': False,
     'auto_install': True,
-
-    'post_init_hook': 'post_init_hook',
 
     'external_dependencies': {
         'python': [],

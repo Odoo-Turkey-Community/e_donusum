@@ -12,8 +12,8 @@
             <field name="implementation" position="after">
                 <field name="use_for_electronic" invisible="1"/>
                 <field name="locked_sequence" invisible="1"/>
-                <field name="gib_profile_type" attrs="{'required': [('use_for_electronic', '=', True)], 'readonly': [('locked_sequence', '=', True)]}"/>
-                <field name="gib_profile_id" attrs="{'required': [('use_for_electronic', '=', True)]}" widget="many2many_tags"/>
+                <field name="gib_profile_type" required="use_for_electronic"  readonly="locked_sequence" />
+                <field name="gib_profile_id" required="use_for_electronic" widget="many2many_tags"/>
             </field>
         </field>
     </record>

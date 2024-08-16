@@ -3,68 +3,58 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 
 <odoo>
+<!-- # TODO view_account_payment_form -->
     <record model="ir.ui.view" id="gib_incoming_invoice_form_view">
         <field name="name">gib.incoming.invoice.form (in gib_incoming_invoice_2kb)</field>
         <field name="model">gib.incoming.invoice</field>
         <field name="arch" type="xml">
             <form create="false">
                 <header>
-                    <button title="PDF Görüntüle" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
-                    <button string="İşlendi" class="toggle_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '!=', True)]}"/>
-                    <button string="İşlenmedi" class="toggle_not_importable" name="toggle_is_importable" type="object" attrs="{'invisible': [('is_importable', '=', True)]}"/>
-                    <button string="Satırları Al" name="get_incoming_invoice_detail" icon="fa-cloud-download" type="object"/>
+                    <button string="PDF" class="btn-secondary" icon="fa-file-pdf-o" name="get_incoming_e_inv_pdf" type="object"/>
+                    <button string="Aktif/Pasif" name="toggle_is_importable" type="object"/>
                 </header>
-                <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
-                    <p>
-                        <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile gelen faturaları satırlarıyla içer aktarabilir satın alma faturaları oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
-                    <a href="https://2kb.com.tr" target="_blank">2kb.com.tr yi ziyaret edin!</a>
-                </p>
-            </div>
-            <sheet>
-                <widget name="web_ribbon" title="Reddedildi" bg_color="bg-danger" attrs="{'invisible': [('state', 'not in', ['Rejected'])]}"/>
-                <span class="o_form_label">Gelen E-Fatura</span>
-                <h1 class="mt0">
-                    <field name="name" readonly="True"/>
-                </h1>
-                <style>
-                        .purchase_inv_style span{color: #eb1a4a !important}
-                </style>
-                <group>
+                <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="background-color:#dee2e6">
+                        <p>
+                            <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile gelen faturaları satırlarıyla içer aktarabilir satın alma faturaları oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
+                        <a href="https://2kb.com.tr" target="_blank">2kb.com.tr yi ziyaret edin!</a>
+                    </p>
+                </div>
+                <sheet>
+                    <span class="o_form_label">Gelen E-Fatura</span>
+                    <h1 class="mt0">
+                        <field name="name" readonly="True"/>
+                    </h1>
+                    <style>
+                            .purchase_inv_style span{color: #eb1a4a !important}
+                    </style>
                     <group>
-                        <field name="is_importable" invisible="1"/>
-                        <field name="name" readonly="1"/>
-                        <field name="issue_date" readonly="1"/>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="sender"/>
+                            <field name="sender_vat"/>
+                            <field name="is_importable"/>
+                        </group>
+                        <group>
+                            <field name="issue_date" readonly="1"/>
+                            <field name="gib_provider_id" readonly="1"/>
+                            <field name="gib_profile"/>
+                            <field name="invoice_type"/>
+                            <field name="state" invisible="state == 'None' or gib_profile != 'TICARIFATURA'" />
+                        </group>
                     </group>
-                    <group>
-                        <field name="gib_provider_id" readonly="1"/>
-                        <field name="gib_profile"/>
-                        <field name="invoice_type"/>
-                        <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
+                    <group name="financial_info_div">
+                        <group>
+                        </group>
+                        <group class="oe_subtotal_footer">
+                            <field name="tax_exclude" readonly="1"/>
+                            <field name="tax_amount" readonly="1"/>
+                            <field name="total_amount" class="oe_subtotal_footer_separator" readonly="1"/>
+                        </group>
                     </group>
-                </group>
-                <group string="İş Ortağı Bilgileri" name="sender_info_group">
-                    <group name="sender_info_group_left">
-                        <field name="sender"/>
-                        <field name="sender_vat"/>
-                    </group>
-                </group>
-                <group string="Alt Bilgi" name="financial_info_div">
-                    <group name="note_group"/>
-                    <group class="oe_subtotal_footer">
-                        <field name="tax_exclude" readonly="1"/>
-                        <field name="tax_amount" readonly="1"/>
-                        <field name="total_amount" class="oe_subtotal_footer_separator" readonly="1"/>
-                    </group>
-                </group>
-            </sheet>
-            <div class="oe_chatter">
-                <field name="message_follower_ids" widget="mail_followers"/>
-                <field name="activity_ids"/>
-                <field name="message_ids" widget="mail_thread"/>
-            </div>
-        </form>
-    </field>
-</record>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
 <record model="ir.ui.view" id="gib_incoming_invoice_search_view">
     <field name="name">gib.incoming.invoice.search (in gib_incoming_invoice_2kb)</field>
@@ -91,15 +81,15 @@
     <field name="name">gib.incoming.invoice.tree (in gib_incoming_invoice_2kb)</field>
     <field name="model">gib.incoming.invoice</field>
     <field name="arch" type="xml">
-        <tree create="false" decoration-success="is_importable==True">
+        <tree create="false" decoration-warning="is_importable==True">
             <header>
                 <button string="Aktif/Pasif" name="toggle_is_importable" type="object" icon="fa-edit" title="Edit"/>
             </header>
-            <field name="is_approvable" invisible="1"/>
-            <field name="is_importable" invisible="1"/>
+            <field name="is_approvable" column_invisible="True"/>
+            <field name="is_importable" column_invisible="True"/>
             <field name="issue_date"/>
             <field name="name"/>
-            <field name="sender" optional="show"/>
+            <field name="sender"/>
             <field name="total_amount" string="Fatura Tutarı"/>
             <field name="currency_code" />
             <field name="sender_alias" optional="show"/>
@@ -107,10 +97,10 @@
             <field name="gib_profile" optional="hide"/>
             <field name="invoice_type" optional="show"/>
             <field name="gib_provider_id" optional="hide"/>
-            <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}" optional="show"/>
-            <button help="PDF" title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
-            <button help="Kabul Et" title="Kabul Et" class="fa fa-check btn-success" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
-            <button help="Reddet" title="Reddet" class="fa fa-times btn-danger" name="approve_or_deny" type="object" context="{'answer':'RED'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
+            <field name="state" invisible="state == 'None' or gib_profile != 'TICARIFATURA'"  optional="show"/>
+            <button title="PDF" class="btn-secondary" icon="fa-file-pdf-o" name="get_incoming_e_inv_pdf" type="object"/>
+            <button title="Kabul Et" class="btn-success" icon="fa-check" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" invisible="not is_approvable"/>
+            <button title="Reddet" class="btn-danger" icon="fa-times" name="approve_or_deny" type="object" context="{'answer':'RED'}" invisible="not is_approvable"/>
         </tree>
     </field>
 </record>

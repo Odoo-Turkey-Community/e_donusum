@@ -94,17 +94,8 @@ class GibUBLProvider(models.Model):
                     "datas": base64.b64encode(xml),
                     "mimetype": "application/xslt+xml",
                     "name": template_name,
-                    "use_for_electronic": True,
                 }
             )
-            if not einv_temp.gib_profile_id:
-                einv_temp.write(
-                    {
-                        "gib_profile_id": [
-                            Command.link(profile) for profile in profile_ids
-                        ],
-                    }
-                )
             result.append("Şablonu düzenlendi!")
         else:
             ir.with_context({}).create(
@@ -113,7 +104,6 @@ class GibUBLProvider(models.Model):
                     "datas": base64.b64encode(xml),
                     "type": "binary",
                     "mimetype": "application/xslt+xml",
-                    "use_for_electronic": True,
                     "gib_profile_id": [
                         Command.link(profile) for profile in profile_ids
                     ],
@@ -197,6 +187,3 @@ class GibUBLProvider(models.Model):
 
         """
         return False
-
-    def configure_cron(self):
-        return True
