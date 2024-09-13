@@ -381,6 +381,7 @@ class AccountMove(models.Model):
                     )
                     % move.display_name
                 )
+            move.gib_state = False
 
         res = super().button_draft()
         return res
