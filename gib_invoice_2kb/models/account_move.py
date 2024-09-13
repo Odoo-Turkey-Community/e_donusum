@@ -674,6 +674,11 @@ class AccountMove(models.Model):
                 "Geçersiz Fatura id elemanı değeri. Fatura id ABC2024123456789 formatında olmalı!"
             )
 
+            if move.gib_invoice_name and move.gib_invoice_name[:3] != next_sequence_number[:3]:
+                error.append(
+                    "Fatura Seri No uyuşmazliği! Lüften Fatura No ile Fatura Seri bilgilerini kontrol ediniz!"
+                )
+
         # region ----------------- Move Master Doğrulamaları -----------------
         # region #! ------------------ Move Master Supplier ve Customer Doğrulamaları ------------------
         supplier = move.company_id.partner_id.commercial_partner_id
