@@ -1,0 +1,6 @@
+{
+    "extraPaths": [
+        "../odoo",
+        "../oca/queue/"
+    ]
+}
