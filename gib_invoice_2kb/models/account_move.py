@@ -381,7 +381,6 @@ class AccountMove(models.Model):
                     )
                     % move.display_name
                 )
-            # TODO gib state sıfırlanacak, daha önce gib faturası olarak ayarlanan faturalar açık faturaya çekildiğinde hala gib işlem bekliyorda görünüyor
             move.gib_state = False
 
         res = super().button_draft()
@@ -433,11 +432,16 @@ class AccountMove(models.Model):
                     {
                         "gib_status_code_id": res["result"].get("gib_status_code_id"),
                         "gib_response_code": res["result"].get("gib_response_code_id"),
-                        "gtb_refno": res["result"].get("gtb_refno"),
-                        "gtb_tescilno": res["result"].get("gtb_tescilno"),
-                        "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
                     }
                 )
+                if "gtb_refno" in self._fields:
+                    self.write(
+                        {
+                            "gtb_refno": res["result"].get("gtb_refno"),
+                            "gtb_tescilno": res["result"].get("gtb_tescilno"),
+                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
+                        }
+                    )
 
     def _set_default(self):
         """Onaylanacak Digital Faturaya bazi değerleri ve ön tanımlı değerleri atar"""
@@ -658,7 +662,7 @@ class AccountMove(models.Model):
             "Fatura tarihi bugünden ileri bir tarih olamaz!"
         )
 
-        move.invoice_date.year < 2024 and error.append(
+        move.invoice_date.year < 2005 and error.append(
             "Fatura tarihi 2005 öncesi bir tarih olamaz!"
         )
 
@@ -672,6 +676,14 @@ class AccountMove(models.Model):
             ) and error.append(
                 "Geçersiz Fatura id elemanı değeri. Fatura id ABC2024123456789 formatında olmalı!"
             )
+
+            if (
+                move.gib_invoice_name
+                and move.gib_invoice_name[:3] != next_sequence_number[:3]
+            ):
+                error.append(
+                    "Fatura Seri No uyuşmazliği! Lüften Fatura No ile Fatura Seri bilgilerini kontrol ediniz!"
+                )
 
         # region ----------------- Move Master Doğrulamaları -----------------
         # region #! ------------------ Move Master Supplier ve Customer Doğrulamaları ------------------
