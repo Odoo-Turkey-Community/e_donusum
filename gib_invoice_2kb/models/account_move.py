@@ -381,6 +381,8 @@ class AccountMove(models.Model):
                     )
                     % move.display_name
                 )
+            # TODO gib state sıfırlanacak, daha önce gib faturası olarak ayarlanan faturalar açık faturaya çekildiğinde hala gib işlem bekliyorda görünüyor
+            move.gib_state = False
 
         res = super().button_draft()
         return res
