@@ -3,6 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 from odoo import api, models
+from odoo.exceptions import UserError
 
 
 class GibProvider(models.Model):
@@ -29,3 +30,27 @@ class GibProvider(models.Model):
     def approve_or_deny(self, ettn, answer, text):
         self.ensure_one()
         return True
+
+    def get_incoming_invoice_xml(self, ettn):
+        """_summary_
+            entegratördem gelen faturanın UBL'i alır ve döner
+
+        Args:
+            ettn (string): Faturanın ettn numarası
+
+        Returns:
+            _type_: byte: ubl'in xml byte karşılığı
+        """
+        raise UserError("Bu özellik yalnızca pro versiyon için kullanılabilir!")
+
+    def _get_incoming_invoice_xml(self, ettn):
+        """_summary_
+            entegratördem gelen faturanın UBL'i alır ve döner
+
+        Args:
+            ettn (string): Faturanın ettn numarası
+
+        Returns:
+            _type_: byte: ubl'in xml byte karşılığı
+        """
+        return True, b""

@@ -16,20 +16,20 @@
 <xsd:import namespace="http://schemas.i2i.com/ei/common" schemaLocation="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye?xsd=4"/>
 </xsd:schema>
 </types>
-<message name="GetReceiptAdviceStatus">
-<part name="request" element="tns:GetReceiptAdviceStatusRequest"/>
+<message name="MarkDespatchAdvice">
+<part name="request" element="tns:MarkDespatchAdviceRequest"/>
 </message>
-<message name="GetReceiptAdviceStatusResponse">
-<part name="response" element="tns:GetReceiptAdviceStatusResponse"/>
+<message name="MarkDespatchAdviceResponse">
+<part name="response" element="tns:MarkDespatchAdviceResponse"/>
 </message>
 <message name="RequestFaultMessage">
 <part name="fault" element="tns:RequestFault"/>
 </message>
-<message name="MarkReceiptAdvice">
-<part name="request" element="tns:MarkReceiptAdviceRequest"/>
+<message name="LoadReceiptAdvice">
+<part name="request" element="tns:LoadReceiptAdviceRequest"/>
 </message>
-<message name="MarkReceiptAdviceResponse">
-<part name="response" element="tns:MarkReceiptAdviceResponse"/>
+<message name="LoadReceiptAdviceResponse">
+<part name="response" element="tns:LoadReceiptAdviceResponse"/>
 </message>
 <message name="SendDespatchResponse">
 <part name="request" element="tns:SendDespatchResponseRequest"/>
@@ -43,41 +43,11 @@
 <message name="GetDespatchAdviceWithStatusResponse">
 <part name="response" element="tns:GetDespatchAdviceWithStatusResponse"/>
 </message>
-<message name="LoadDespatchAdvice">
-<part name="request" element="tns:LoadDespatchAdviceRequest"/>
-</message>
-<message name="LoadDespatchAdviceResponse">
-<part name="response" element="tns:LoadDespatchAdviceResponse"/>
-</message>
-<message name="SendDespatchAdvice">
-<part name="request" element="tns:SendDespatchAdviceRequest"/>
-</message>
-<message name="SendDespatchAdviceResponse">
-<part name="response" element="tns:SendDespatchAdviceResponse"/>
-</message>
-<message name="GetDespatchAdvice">
-<part name="request" element="tns:GetDespatchAdviceRequest"/>
-</message>
-<message name="GetDespatchAdviceResponse">
-<part name="response" element="tns:GetDespatchAdviceResponse"/>
-</message>
 <message name="GetDespatchAdviceStatus">
 <part name="request" element="tns:GetDespatchAdviceStatusRequest"/>
 </message>
 <message name="GetDespatchAdviceStatusResponse">
 <part name="response" element="tns:GetDespatchAdviceStatusResponse"/>
-</message>
-<message name="MarkDespatchAdvice">
-<part name="request" element="tns:MarkDespatchAdviceRequest"/>
-</message>
-<message name="MarkDespatchAdviceResponse">
-<part name="response" element="tns:MarkDespatchAdviceResponse"/>
-</message>
-<message name="LoadReceiptAdvice">
-<part name="request" element="tns:LoadReceiptAdviceRequest"/>
-</message>
-<message name="LoadReceiptAdviceResponse">
-<part name="response" element="tns:LoadReceiptAdviceResponse"/>
 </message>
 <message name="SendReceiptAdvice">
 <part name="request" element="tns:SendReceiptAdviceRequest"/>
@@ -91,16 +61,46 @@
 <message name="GetReceiptAdviceResponse">
 <part name="response" element="tns:GetReceiptAdviceResponse"/>
 </message>
+<message name="MarkReceiptAdvice">
+<part name="request" element="tns:MarkReceiptAdviceRequest"/>
+</message>
+<message name="MarkReceiptAdviceResponse">
+<part name="response" element="tns:MarkReceiptAdviceResponse"/>
+</message>
+<message name="LoadDespatchAdvice">
+<part name="request" element="tns:LoadDespatchAdviceRequest"/>
+</message>
+<message name="LoadDespatchAdviceResponse">
+<part name="response" element="tns:LoadDespatchAdviceResponse"/>
+</message>
+<message name="GetReceiptAdviceStatus">
+<part name="request" element="tns:GetReceiptAdviceStatusRequest"/>
+</message>
+<message name="GetReceiptAdviceStatusResponse">
+<part name="response" element="tns:GetReceiptAdviceStatusResponse"/>
+</message>
+<message name="SendDespatchAdvice">
+<part name="request" element="tns:SendDespatchAdviceRequest"/>
+</message>
+<message name="SendDespatchAdviceResponse">
+<part name="response" element="tns:SendDespatchAdviceResponse"/>
+</message>
+<message name="GetDespatchAdvice">
+<part name="request" element="tns:GetDespatchAdviceRequest"/>
+</message>
+<message name="GetDespatchAdviceResponse">
+<part name="response" element="tns:GetDespatchAdviceResponse"/>
+</message>
 <portType name="EIrsaliyeServicePort">
-<operation name="GetReceiptAdviceStatus">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatusRequest" message="tns:GetReceiptAdviceStatus"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatusResponse" message="tns:GetReceiptAdviceStatusResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatus/Fault/RequestFaultMessage"/>
+<operation name="MarkDespatchAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdviceRequest" message="tns:MarkDespatchAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdviceResponse" message="tns:MarkDespatchAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdvice/Fault/RequestFaultMessage"/>
 </operation>
-<operation name="MarkReceiptAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdviceRequest" message="tns:MarkReceiptAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdviceResponse" message="tns:MarkReceiptAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdvice/Fault/RequestFaultMessage"/>
+<operation name="LoadReceiptAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdviceRequest" message="tns:LoadReceiptAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdviceResponse" message="tns:LoadReceiptAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdvice/Fault/RequestFaultMessage"/>
 </operation>
 <operation name="SendDespatchResponse">
 <input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchResponseRequest" message="tns:SendDespatchResponse"/>
@@ -112,35 +112,10 @@
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceWithStatusResponse" message="tns:GetDespatchAdviceWithStatusResponse"/>
 <fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceWithStatus/Fault/RequestFaultMessage"/>
 </operation>
-<operation name="LoadDespatchAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdviceRequest" message="tns:LoadDespatchAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdviceResponse" message="tns:LoadDespatchAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdvice/Fault/RequestFaultMessage"/>
-</operation>
-<operation name="SendDespatchAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdviceRequest" message="tns:SendDespatchAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdviceResponse" message="tns:SendDespatchAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdvice/Fault/RequestFaultMessage"/>
-</operation>
-<operation name="GetDespatchAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceRequest" message="tns:GetDespatchAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceResponse" message="tns:GetDespatchAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdvice/Fault/RequestFaultMessage"/>
-</operation>
 <operation name="GetDespatchAdviceStatus">
 <input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceStatusRequest" message="tns:GetDespatchAdviceStatus"/>
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceStatusResponse" message="tns:GetDespatchAdviceStatusResponse"/>
 <fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceStatus/Fault/RequestFaultMessage"/>
-</operation>
-<operation name="MarkDespatchAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdviceRequest" message="tns:MarkDespatchAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdviceResponse" message="tns:MarkDespatchAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkDespatchAdvice/Fault/RequestFaultMessage"/>
-</operation>
-<operation name="LoadReceiptAdvice">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdviceRequest" message="tns:LoadReceiptAdvice"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdviceResponse" message="tns:LoadReceiptAdviceResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadReceiptAdvice/Fault/RequestFaultMessage"/>
 </operation>
 <operation name="SendReceiptAdvice">
 <input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendReceiptAdviceRequest" message="tns:SendReceiptAdvice"/>
@@ -152,11 +127,36 @@
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceResponse" message="tns:GetReceiptAdviceResponse"/>
 <fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdvice/Fault/RequestFaultMessage"/>
 </operation>
+<operation name="MarkReceiptAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdviceRequest" message="tns:MarkReceiptAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdviceResponse" message="tns:MarkReceiptAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/MarkReceiptAdvice/Fault/RequestFaultMessage"/>
+</operation>
+<operation name="LoadDespatchAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdviceRequest" message="tns:LoadDespatchAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdviceResponse" message="tns:LoadDespatchAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/LoadDespatchAdvice/Fault/RequestFaultMessage"/>
+</operation>
+<operation name="GetReceiptAdviceStatus">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatusRequest" message="tns:GetReceiptAdviceStatus"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatusResponse" message="tns:GetReceiptAdviceStatusResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetReceiptAdviceStatus/Fault/RequestFaultMessage"/>
+</operation>
+<operation name="SendDespatchAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdviceRequest" message="tns:SendDespatchAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdviceResponse" message="tns:SendDespatchAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/SendDespatchAdvice/Fault/RequestFaultMessage"/>
+</operation>
+<operation name="GetDespatchAdvice">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceRequest" message="tns:GetDespatchAdvice"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdviceResponse" message="tns:GetDespatchAdviceResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/EIrsaliyeServicePort/GetDespatchAdvice/Fault/RequestFaultMessage"/>
+</operation>
 </portType>
 <binding name="EIrsaliyeServicePortBinding" type="tns:EIrsaliyeServicePort">
 <wsp:PolicyReference URI="#EIrsaliyeServicePortBinding_MTOM_Policy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="GetReceiptAdviceStatus">
+<operation name="MarkDespatchAdvice">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -168,7 +168,7 @@
 <soap:fault name="RequestFaultMessage" use="literal"/>
 </fault>
 </operation>
-<operation name="MarkReceiptAdvice">
+<operation name="LoadReceiptAdvice">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -204,67 +204,7 @@
 <soap:fault name="RequestFaultMessage" use="literal"/>
 </fault>
 </operation>
-<operation name="LoadDespatchAdvice">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="SendDespatchAdvice">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="GetDespatchAdvice">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
 <operation name="GetDespatchAdviceStatus">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="MarkDespatchAdvice">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="LoadReceiptAdvice">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -289,6 +229,66 @@
 </fault>
 </operation>
 <operation name="GetReceiptAdvice">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="MarkReceiptAdvice">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="LoadDespatchAdvice">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="GetReceiptAdviceStatus">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="SendDespatchAdvice">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="GetDespatchAdvice">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -539,6 +539,25 @@ class GibProvider(models.Model):
         api = service.send_invoice_response_with_server_sign(ettn, answer, text)
         return api["success"], api["error"]
 
+    def _get_incoming_invoice_xml(self, ettn):
+        res = super()._get_incoming_invoice_xml(ettn)
+        if self.provider != "izibiz":
+            return res
+
+        service = self._get_izibiz_service()
+        invoice_xmls = service.get_invoice(
+            header_only="N",
+            DIRECTION="IN",
+            UUID=ettn,
+            READ_INCLUDED=True,
+            # LIMIT=100,
+        )
+        return invoice_xmls["success"], (
+            invoice_xmls["result"][0].CONTENT._value_1
+            if invoice_xmls["success"]
+            else invoice_xmls["error"]
+        )
+
     ####################################################
     # Cron Api
     ####################################################
@@ -1144,9 +1163,7 @@ class GibProvider(models.Model):
                     "name": incoming.ID,
                     "gib_profile": incoming.HEADER.PROFILEID,
                     "invoice_type": incoming.HEADER.INVOICE_TYPE_CODE,
-                    "reciever": incoming.HEADER.CUSTOMER,
                     "reciever_alias": incoming.HEADER.TO,
-                    "reciever_vat": incoming.HEADER.RECEIVER,
                     "sender": incoming.HEADER.SUPPLIER,
                     "sender_vat": incoming.HEADER.SENDER,
                     "sender_alias": incoming.HEADER.FROM,

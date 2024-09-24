@@ -6,11 +6,13 @@ from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from odoo.addons.http_routing.models.ir_http import slug
+from markupsafe import Markup
 
 
 class GibIncomingInvoice(models.Model):
 
     _name = "gib.incoming.invoice"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Gelen Fatura"
     _order = "issue_date DESC,id"
 
@@ -22,8 +24,6 @@ class GibIncomingInvoice(models.Model):
     sender = fields.Char("Faturayı Kesen")
     sender_vat = fields.Char("Vergi No")
     sender_alias = fields.Char("Gönderen PK")
-    reciever = fields.Char("Alıcı")
-    reciever_vat = fields.Char("Alıcı Vergi No")
     reciever_alias = fields.Char("Alıcı PK")
 
     invoice_type = fields.Char(string="Fatura Tipi")
@@ -68,8 +68,18 @@ class GibIncomingInvoice(models.Model):
         if success:
             if answer == "KABUL":
                 self.state = "Accepted"
+                self.message_post(
+                    body=Markup(
+                        "<span style='color:limegreen'>Ticari Fatura Kabul Edildi.</span>"
+                    ),
+                )
             elif answer == "RED":
                 self.state = "Rejected"
+                self.message_post(
+                    body=Markup(
+                        "<span style='color:indianred'>Ticari Fatura Reddedildi.</span>"
+                    ),
+                )
         else:
             raise UserError(error)
 
@@ -84,3 +94,8 @@ class GibIncomingInvoice(models.Model):
     def toggle_is_importable(self):
         for rec in self:
             rec.is_importable = not rec.is_importable
+
+    def get_incoming_invoice_detail(self):
+        self.gib_provider_id.get_incoming_invoice_xml(self.ETTN)
+
+        return True

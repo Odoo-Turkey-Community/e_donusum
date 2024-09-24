@@ -16,14 +16,20 @@
 <xsd:import namespace="http://schemas.i2i.com/ei/common" schemaLocation="https://efaturatest.izibiz.com.tr/AuthenticationWS?xsd=4"/>
 </xsd:schema>
 </types>
+<message name="Login">
+<part name="request" element="tns:LoginRequest"/>
+</message>
+<message name="LoginResponse">
+<part name="response" element="tns:LoginResponse"/>
+</message>
+<message name="RequestFaultMessage">
+<part name="fault" element="tns:RequestFault"/>
+</message>
 <message name="GetGibUserList">
 <part name="request" element="tns:GetGibUserListRequest"/>
 </message>
 <message name="GetGibUserListResponse">
 <part name="response" element="tns:GetGibUserListResponse"/>
-</message>
-<message name="RequestFaultMessage">
-<part name="fault" element="tns:RequestFault"/>
 </message>
 <message name="CheckUser">
 <part name="request" element="tns:CheckUserRequest"/>
@@ -37,25 +43,24 @@
 <message name="GetUserAuthorizationResponse">
 <part name="response" element="tns:GetUserAuthorizationResponse"/>
 </message>
-<message name="Logout">
-<part name="request" element="tns:LogoutRequest"/>
-</message>
-<message name="LogoutResponse">
-<part name="response" element="tns:LogoutResponse"/>
-</message>
-<message name="Login">
-<part name="request" element="tns:LoginRequest"/>
-</message>
-<message name="LoginResponse">
-<part name="response" element="tns:LoginResponse"/>
-</message>
 <message name="GetAccount">
 <part name="request" element="tns:GetAccountRequest"/>
 </message>
 <message name="GetAccountResponse">
 <part name="response" element="tns:GetAccountResponse"/>
 </message>
+<message name="Logout">
+<part name="request" element="tns:LogoutRequest"/>
+</message>
+<message name="LogoutResponse">
+<part name="response" element="tns:LogoutResponse"/>
+</message>
 <portType name="AuthenticationServicePort">
+<operation name="Login">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LoginRequest" message="tns:Login"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LoginResponse" message="tns:LoginResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/Login/Fault/RequestFaultMessage"/>
+</operation>
 <operation name="GetGibUserList">
 <input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetGibUserListRequest" message="tns:GetGibUserList"/>
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetGibUserListResponse" message="tns:GetGibUserListResponse"/>
@@ -71,25 +76,32 @@
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetUserAuthorizationResponse" message="tns:GetUserAuthorizationResponse"/>
 <fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetUserAuthorization/Fault/RequestFaultMessage"/>
 </operation>
-<operation name="Logout">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LogoutRequest" message="tns:Logout"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LogoutResponse" message="tns:LogoutResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/Logout/Fault/RequestFaultMessage"/>
-</operation>
-<operation name="Login">
-<input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LoginRequest" message="tns:Login"/>
-<output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LoginResponse" message="tns:LoginResponse"/>
-<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/Login/Fault/RequestFaultMessage"/>
-</operation>
 <operation name="GetAccount">
 <input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetAccountRequest" message="tns:GetAccount"/>
 <output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetAccountResponse" message="tns:GetAccountResponse"/>
 <fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/GetAccount/Fault/RequestFaultMessage"/>
 </operation>
+<operation name="Logout">
+<input wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LogoutRequest" message="tns:Logout"/>
+<output wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/LogoutResponse" message="tns:LogoutResponse"/>
+<fault message="tns:RequestFaultMessage" name="RequestFaultMessage" wsam:Action="http://schemas.i2i.com/ei/wsdl/AuthenticationServicePort/Logout/Fault/RequestFaultMessage"/>
+</operation>
 </portType>
 <binding name="AuthenticationPortBinding" type="tns:AuthenticationServicePort">
 <wsp:PolicyReference URI="#AuthenticationPortBinding_MTOM_Policy"/>
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="Login">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
 <operation name="GetGibUserList">
 <soap:operation soapAction=""/>
 <input>
@@ -126,31 +138,19 @@
 <soap:fault name="RequestFaultMessage" use="literal"/>
 </fault>
 </operation>
-<operation name="Logout">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
-<operation name="Login">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="RequestFaultMessage">
-<soap:fault name="RequestFaultMessage" use="literal"/>
-</fault>
-</operation>
 <operation name="GetAccount">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="RequestFaultMessage">
+<soap:fault name="RequestFaultMessage" use="literal"/>
+</fault>
+</operation>
+<operation name="Logout">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

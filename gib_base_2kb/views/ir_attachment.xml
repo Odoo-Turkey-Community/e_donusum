@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <field name="mimetype" position="after">
                 <field name="use_for_electronic" invisible="1"/>
-                <field name="gib_profile_id" attrs="{'invisible': [('use_for_electronic', '=', False)], 'required': [('use_for_electronic', '=', True)]}" widget="many2many_tags"/>
+                <field name="gib_profile_id" invisible="not use_for_electronic" required="use_for_electronic" widget="many2many_tags"/>
             </field>
         </field>
     </record>

@@ -183,7 +183,9 @@ class GibUblTR12(models.AbstractModel):
         company = provider.company_id
 
         if not company.priv_key_2kb or not company.pub_key_2kb:
-            raise UserError("Şirketinizi aktive ediniz! (2kb.com.tr)")
+            raise UserError(
+                "2KB dünyasına henüz girişiniz yapılmamış görünüyor. 2KB ile iletişime geçip aktivasyon sürecini tamalayabilirsiniz! (2kb.com.tr)"
+            )
 
         try:
             data = json.dumps(data)

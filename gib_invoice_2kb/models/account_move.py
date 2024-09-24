@@ -272,7 +272,7 @@ class AccountMove(models.Model):
                         "gib_invoice_2kb.type_code-IADE"
                     )
 
-    @api.depends("state")
+    @api.depends("state", "gib_state")
     def _compute_gib_content(self):
         for move in self:
             res = b""
@@ -674,7 +674,11 @@ class AccountMove(models.Model):
                 "Geçersiz Fatura id elemanı değeri. Fatura id ABC2024123456789 formatında olmalı!"
             )
 
-            if move.gib_invoice_name and move.gib_invoice_name[:3] != next_sequence_number[:3]:
+            if (
+                move.gib_invoice_name
+                and move.gib_invoice_name != GIB_INVOICE_DEFAULT_NAME
+                and move.gib_invoice_name[:3] != next_sequence_number[:3]
+            ):
                 error.append(
                     "Fatura Seri No uyuşmazliği! Lüften Fatura No ile Fatura Seri bilgilerini kontrol ediniz!"
                 )
@@ -736,9 +740,11 @@ class AccountMove(models.Model):
         if move_error:
             error.append(move_error)
 
-        if move.gib_provider_id.prod_environment \
-            and "vat" in customer_mandatory \
-                and supplier.vat == customer.vat:
+        if (
+            move.gib_provider_id.prod_environment
+            and "vat" in customer_mandatory
+            and supplier.vat == customer.vat
+        ):
             error.append("Alıcı ve Satıcının Vergi No'ları farklı olmalı!")
 
         customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-arsv" and error.append(
