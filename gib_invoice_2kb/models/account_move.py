@@ -271,7 +271,7 @@ class AccountMove(models.Model):
                         "gib_invoice_2kb.type_code-IADE"
                     )
 
-    @api.depends("state")
+    @api.depends("state", "gib_state")
     def _compute_gib_content(self):
         for move in self:
             res = b""
@@ -679,6 +679,7 @@ class AccountMove(models.Model):
 
             if (
                 move.gib_invoice_name
+                and move.gib_invoice_name != GIB_INVOICE_DEFAULT_NAME
                 and move.gib_invoice_name[:3] != next_sequence_number[:3]
             ):
                 error.append(

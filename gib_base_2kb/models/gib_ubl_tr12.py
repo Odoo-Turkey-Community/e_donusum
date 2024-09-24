@@ -183,7 +183,9 @@ class GibUblTR12(models.AbstractModel):
         company = provider.company_id
 
         if not company.priv_key_2kb or not company.pub_key_2kb:
-            raise UserError("Şirketinizi aktive ediniz! (2kb.com.tr)")
+            raise UserError(
+                "2KB dünyasına henüz girişiniz yapılmamış görünüyor. 2KB ile iletişime geçip aktivasyon sürecini tamalayabilirsiniz! (2kb.com.tr)"
+            )
 
         try:
             data = json.dumps(data)
@@ -214,13 +216,13 @@ class GibUblTR12(models.AbstractModel):
             r.raise_for_status()
 
             response_data = r.json()
-            error = response_data.get('error')
+            error = response_data.get("error")
             if error:
-                message = ''
-                if error.get('data'):
-                    message = error.get('data').get('message')
+                message = ""
+                if error.get("data"):
+                    message = error.get("data").get("message")
                 else:
-                    message = error.get('message')
+                    message = error.get("message")
                 raise UserError("Error : %s" % message)
 
         except requests.exceptions.HTTPError as error:
