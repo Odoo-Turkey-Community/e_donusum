@@ -941,6 +941,7 @@ class GibProvider(models.Model):
 
         return True
 
+    # TODO bu metho buradan kaldırılıp export modülüne taşınacak
     def cron_get_export_invoice_info(self):
         """
         gib_response_code accept,reject değerlerini alabilir

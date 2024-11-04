@@ -19,7 +19,7 @@
                     <filter string="Harici İptaller" name="external_cancellation" domain="[('invoice_date', '&gt;',  (context_today() - relativedelta(days=60))), ('external_cancellation', '!=', False), ('state', 'in', ['cancel'])]"/>
                     <separator/>
                     <filter string="Ticari Kabul Edilen" name="gib_response_filter_accept" domain="[('gib_response_code', '=','accept')]"/>
-                    <filter string="Ticari Red Edilen" name="gib_response_filter_reject"   domain="[('gib_response_code', '=','reject')]"/>
+                    <filter string="Ticari Red Edilen" name="gib_response_filter_reject" domain="[('gib_response_code', '=','reject')]"/>
                 </xpath>
             </field>
         </record>
@@ -84,7 +84,7 @@
                     </h1>
                 </div>
 
-                <div class="col-6">                    <!-- attrs="{'invisible':[('gib_profile_id', '=', False), ('posted_before', '=', False), ('quick_edit_mode', '=', False)]}"-->
+                <div class="col-6" attrs="{'invisible':[('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]}">
                     <span class="o_form_label">                        <!-- attrs="{'invisible':[('gib_profile_id', '=', False), ('posted_before', '=', False), ('quick_edit_mode', '=', False)]}"-->
                         <div name="move_type" class="o_field_widget o_readonly_modifier o_required_modifier o_field_selection">
                             <label for="gib_invoice_name" class="fw-bold" string="Fatura No"/>

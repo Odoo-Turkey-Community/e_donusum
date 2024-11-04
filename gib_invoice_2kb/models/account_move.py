@@ -271,7 +271,7 @@ class AccountMove(models.Model):
                         "gib_invoice_2kb.type_code-IADE"
                     )
 
-    @api.depends("state")
+    @api.depends("state", "gib_state")
     def _compute_gib_content(self):
         for move in self:
             res = b""
@@ -662,7 +662,7 @@ class AccountMove(models.Model):
             "Fatura tarihi bugünden ileri bir tarih olamaz!"
         )
 
-        move.invoice_date.year < 2024 and error.append(
+        move.invoice_date.year < 2005 and error.append(
             "Fatura tarihi 2005 öncesi bir tarih olamaz!"
         )
 
@@ -677,11 +677,14 @@ class AccountMove(models.Model):
                 "Geçersiz Fatura id elemanı değeri. Fatura id ABC2024123456789 formatında olmalı!"
             )
 
-            if move.gib_invoice_name and move.gib_invoice_name[:3] != next_sequence_number[:3]:
+            if (
+                move.gib_invoice_name
+                and move.gib_invoice_name != GIB_INVOICE_DEFAULT_NAME
+                and move.gib_invoice_name[:3] != next_sequence_number[:3]
+            ):
                 error.append(
                     "Fatura Seri No uyuşmazliği! Lüften Fatura No ile Fatura Seri bilgilerini kontrol ediniz!"
                 )
-
 
         # region ----------------- Move Master Doğrulamaları -----------------
         # region #! ------------------ Move Master Supplier ve Customer Doğrulamaları ------------------

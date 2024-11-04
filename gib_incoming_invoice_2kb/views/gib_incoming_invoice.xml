@@ -16,7 +16,7 @@
                 </header>
                 <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6">
                     <p>
-                        <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile gelen faturaları satırlarıyla içer aktarabilir satın alma faturaları oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
+                        <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile "Gelen Faturaları" <u>satırlarıyla</u> içeri aktarabilir <u>Satın Alma Faturaları</u> oluşturabilirsiniz ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
                     <a href="https://2kb.com.tr" target="_blank">2kb.com.tr yi ziyaret edin!</a>
                 </p>
             </div>
@@ -26,9 +26,6 @@
                 <h1 class="mt0">
                     <field name="name" readonly="True"/>
                 </h1>
-                <style>
-                        .purchase_inv_style span{color: #eb1a4a !important}
-                </style>
                 <group>
                     <group>
                         <field name="is_importable" invisible="1"/>
