@@ -3,45 +3,35 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    'name': 'Turkey Localization Extension',
+    "name": "Türkiye Lokalizasyonu Genişletmesi",
     "version": "1.0",
-    'summary': 'Turkey Localization Extension',
-    'description': """
-        Turkey Localization Extension
+    "summary": "Türkiye Lokalizasyonu Genişletmesi",
+    "description": """
+        Türkiye Lokalizasyonu Genişletmesi
     """,
-
-    'maintainer': 'Quanimo',
+    "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
-    'sequence': 1453,
-
-    'category': 'Accounting/Localizations/Account Charts',
-
-    'depends': [
-        'l10n_tr'
+    "license": "Other proprietary",
+    "sequence": 1453,
+    "category": "Accounting/Localizations/Account Charts",
+    "depends": ["l10n_tr"],
+    "data": [
+        "data/account_chart_template_data.xml",
+        "data/account.account.template-common.csv",
+        "data/account_tax_group_data.xml",
+        "data/account_tax_template_base_data.xml",
+        "data/accoun_fiscal_position_template_data.xml",
+        "data/account_fiscal_position_tax_template_data.xml",
+        "views/account_fiscal_position_views.xml",
+        "views/account_tax_group_views.xml",
     ],
-
-    'data': [
-        'data/account_chart_template_data.xml',
-        'data/account.account.template-common.csv',
-        'data/account_tax_group_data.xml',
-        'data/account_tax_template_base_data.xml',
-        'data/accoun_fiscal_position_template_data.xml',
-        'data/account_fiscal_position_tax_template_data.xml',
-
-        'views/account_fiscal_position_views.xml',
-        'views/account_tax_group_views.xml'
-    ],
-
     "installable": True,
-    'application': False,
-    'auto_install': True,
-
-    'post_init_hook': 'post_init_hook',
-
-    'external_dependencies': {
-        'python': [],
+    "application": False,
+    "auto_install": True,
+    "post_init_hook": "post_init_hook",
+    "external_dependencies": {
+        "python": [],
     },
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }
