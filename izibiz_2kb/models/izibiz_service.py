@@ -21,7 +21,7 @@ from zeep.plugins import HistoryPlugin
 
 _logger = logging.getLogger(__name__)
 
-transport = Transport(timeout=10)
+transport = Transport(timeout=30)
 history = HistoryPlugin()
 setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
 
