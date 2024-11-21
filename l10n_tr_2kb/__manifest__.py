@@ -3,36 +3,28 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    'name': 'Turkey Localization Extension 2KB',
+    "name": "Türkiye Lokalizasyonu Genişletmesi 2KB",
     "version": "1.0",
-    'summary': 'Turkey Localization Extension 2KB',
-    'description': """
-        Turkey Localization Extension 2KB
+    "summary": "Türkiye Lokalizasyonu Genişletmesi 2KB",
+    "description": """
+        Türkiye Lokalizasyonu Genişletmesi 2KB
     """,
-
-    'maintainer': 'Quanimo',
+    "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
-    'sequence': 1453,
-
-    'category': 'Accounting/Localizations/Account Charts',
-
-    'depends': [
-        'account'
+    "license": "Other proprietary",
+    "sequence": 1453,
+    "category": "Accounting/Localizations/Account Charts",
+    "depends": ["account"],
+    "data": [
+        "views/account_fiscal_position_views.xml",
+        "views/account_tax_group_views.xml",
     ],
-
-    'data': [
-        'views/account_fiscal_position_views.xml',
-        'views/account_tax_group_views.xml'
-    ],
-
     "installable": True,
-    'application': False,
-    'auto_install': True,
-
-    'external_dependencies': {
-        'python': [],
+    "application": False,
+    "auto_install": True,
+    "external_dependencies": {
+        "python": [],
     },
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }

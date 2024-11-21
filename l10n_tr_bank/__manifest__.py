@@ -3,7 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    "name": "Türkiye Bankaları",
+    "name": "Türkiye Bankaları 2KB",
     "version": "1.0",
     "summary": """
         Türkiye Bankaları""",

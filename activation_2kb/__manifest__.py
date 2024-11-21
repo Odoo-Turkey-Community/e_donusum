@@ -3,30 +3,23 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    'name': '2KB Activation',
+    "name": "2KB Aktivasyon",
     "version": "1.0",
-    'description': """ 2KB Activation """,
-    'summary': """ 2KB Activation """,
-
-    'maintainer': 'Quanimo, Kıta',
+    "description": """ 2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz """,
+    "summary": """ 2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz """,
+    "maintainer": "Quanimo, Kıta",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
-    'sequence': 1453,
-
-    'category': 'Hidden/Tools',
-    'depends': ['base'],
-    "data": [
-        "views/res_company_views.xml"
-    ],
-    'application': False,
-    'installable': True,
-    'auto_install': False,
-    'external_dependencies': {
-        'python': [
-            'cryptography',
-            'pycryptodome==3.20.0'
-        ],
+    "license": "Other proprietary",
+    "sequence": 1453,
+    "category": "Hidden/Tools",
+    "depends": ["base"],
+    "data": ["views/res_company_views.xml"],
+    "application": False,
+    "installable": True,
+    "auto_install": False,
+    "external_dependencies": {
+        "python": ["cryptography", "pycryptodome==3.20.0"],
     },
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }

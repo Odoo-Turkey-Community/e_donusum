@@ -37,13 +37,20 @@
 <h3 align="center">E-Dönüşüm Altyapısı</h3>
 
   <p align="center">
-    Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir
+    Hızla dijitalleşen Türkiye Muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile Odoo nuz da dijitalleşmeye hazır hale gelir
     <br />
+    <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
     <br />
-    <br />
-    <a href="https://demo.2kb.com.tr/">Test Ortamı</a>
+    <h4 align="center">Test Ortamları</h4>
+    <a href="https://demo.2kb.com.tr/">Temel Test Ortamı</a>
     ·
+    <a href="https://demop.2kb.com.tr/">Pro Test Ortamı</a>
+    ·
+    <a href="https://demos.2kb.com.tr/">Enterprise Test Ortamı</a><br/>
+    <span style="color:red">Login Bilgileri; Mail: admin, Şifre: admin</span>
+    <br/>
+    <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=bug&template=bug-report.md">Hata Bildir</a>
     ·
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/issues/new?labels=enhancement&template=feature-request.md">Yeni Özellik Talebi</a>
@@ -70,10 +77,9 @@
       </ul>
     </li>
     <li><a href="#usage">Kullanımı</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#contributing">Katkılar</a></li>
+    <li><a href="#license">Lisans</a></li>
+    <li><a href="#contact">İletişim</a></li>
   </ol>
 </details>
 
@@ -172,10 +178,35 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
 ### Kurulum
 
 1. Ücretsiz APi Anahtarı alın. Api anahtarı almak için uygulama üzerinden istekte bulunabilirsiniz
-2. Repo yu klonlayın ya da odoo apps üzerinden [E-Dönüşüm Altyapısı](https://apps.odoo.com/apps/modules/16.0/gib_base_2kb) addonunu indirin
-   ```sh
-   git clone https://github.com/Odoo-Turkey-Community/e_donusum.git
-   ```
+2. Repo yu klonlayın ya da odoo apps üzerinden [E-Dönüşüm Altyapısı](https://apps.odoo.com/apps/modules/16.0/gib_base_2kb) addonunu indirin.
+Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler için oluşturduğumuz 2 repo üzerinden şu şekilde de uygulamalara erişebilirsiniz.
+
+   1. Yol 2KB tarafından geliştirilen ve e-dönüşüm süreçlerini yürütebileceğiniz temel uygulamalara erişim:
+      ```sh
+      git clone https://github.com/Odoo-Turkey-Community/e_donusum.git
+      ```
+
+   2. Yol 2KB uygulamaları yanı sıra Uygulama bağımlılıklarını ya da ihtiyaç duyabileceğiniz uygulamaları da içeren Submodül yapısı ile hazırlanmış repo:
+   öncelikle aşağıdaki kodu çalıştıralım
+      ```
+      git clone https://github.com/Odoo-Turkey-Community/edonusum_paket_community.git
+      ```
+      > komut tamamlandıktan sonra ilgili klasörde dizin yapısı dizinler "BOŞ" halde gelecektir, dizinlerin bulunduğu ana dizine gidelim ve uygulama dosyalarını da almak için komut satırında      
+      ```
+      git submodule update --init --recursive
+      ```
+      komutunu çalıştıralım. Bu komut dizesi recursive olarak submodüllerden içerikleri alıp kendi dizinlerine ekleyecektir.
+      Branchların ayarlanması; submodülleri istenilen branchlara checkout yapmak için
+      ```
+      git submodule foreach 'git checkout 16.0 || :'
+      ```
+      komut satırını çalıştırmanız yeterli olacaktır. örneğin bu komut satırında bütün submodüller 16.0 branchına checkout edilecektir.
+      Kaynak kodlarınızı yenilemek yani bütün submodüllerden son commitleri almak için ise
+      ```
+      git submodule update --remote --recursive
+      ```
+      komut satırını çalıştırmanız yeterli olacaktır böylece son commitleri almış olacaksınız
+
 3. İçerisindeki addonları Odoo ekosisteminize kurun
 4. Aldığınız api anahtarınızı uygulamanızda Company Detayındaki Auth Key kısma yazınız
    ```js
@@ -198,15 +229,28 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
 <a name="usage"></a>
 ## Kullanımı
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Kurulum süreçlerini tamaladıktan sonra Entegratör API bilgilerini Yapılandırma > Entegratörler > Kullanacağınız entegratör ayarlarından giriniz.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- Döküman Logosu: faturalarda görüntülenecek logonuz
+Döküman İmzası: E-Arşiv faturalarında imza kısmına görüntülenecek imza görseli bu iki görseli ekledikten sonra "Şablonları Yapılandır" butonuyla şablonları oluşturun.
+
+- GİB Veri butonundan alıcı ve gönderi PK ve GB lerini alabilirsiniz. Veri alamadığınız durumda şirket VKN bilgisini kontrol ediniz.
+
+- Kontaklar Uygulamasından İş Ortaklarınızın E-Dönüşüm bilgilerini "GİB Veri Güncelle" butonuyla tek sefere mahsus çekebilirsiniz.
+
+- İş Ortağı kartından varsayılan değerleri ayarlayabilirsiniz. Burada set edilen değerler iş ortağına fatura kesilirken varsayılan olarak kulanılır
+
+- Siparişten ya da doğrudan oluşturulan faturalarınız İş Ortağınızın E-Dönüşüm parametrelerine göre fatura onaylandıktan sonra GİB e gönderilir
+
+_Daha fazla detay için, lütfen takipte kalın ve iletişime geçin [2KB Ekibi](https://2kb.com.tr)_
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
 <!-- CONTRIBUTING -->
+<a name="contributing"></a>
 ## Katkılar
+
 Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu üründe temel amaç Odoo nun türkiye lokalizasyonunda ve yerel tüm çözümlerinde sürekliliği sağlamaktır.
 
 <a href="https://2kb.com.tr">
@@ -238,9 +282,9 @@ tarafından geliştirilmiş ve bundan sonraki süreçlerde ise geliştirmeye dev
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
-
 <!-- LICENSE -->
-## License
+<a name="license"></a>
+## Lisans
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
@@ -249,25 +293,32 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+<a name="contact"></a>
+## İletişim
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+2KB - [2KB Ekibi](https://2kb.com.tr/contactus) - info@2kb.com.tr
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+2KB - [Kullanıcı Kaydı](https://2kb.com.tr/end_user_registration) - Başvurusu
+
+2KB - [İş Ortağı Kaydı](https://2kb.com.tr/partnership_request) - Başvurusu
+
+Kıta  - [Kıta Yazılım](https://kitayazilim.com/contactus) - info@kitayazilim.com
+
+Kıta  - Metin GÜLSOY - metin.gulsoy@kitayazilim.com
+
+Quanimo  - [Quanimo](https://quanimo.com/contactus) - info@quanimo.com
+
+Quanimo  - Fatih ÖZKAN - mfozkan@quanimo.com
+
+Broadmax  - [Broadmax](https://broadmax.com.tr/contactus) - advisors@broadmax.com.tr
+
+Broadmax  - M.Kamal HABBABA - habbaba@broadmax.com.tr
+
+Broadmax  - Mahmut ŞAKAR - mahmutsakarmail@gmail.com
+
+Proje Linki: [https://github.com/Odoo-Turkey-Community/e_donusum.git](https://github.com/Odoo-Turkey-Community/e_donusum.git)
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
