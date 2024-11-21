@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
-    "name": "Türkiye Vergi Daireleri",
+    "name": "Türkiye Vergi Daireleri 2KB",
     "version": "1.0",
     "summary": "Partner detayında kullanabileceğiniz Türkiyenin güncel vergi daireleri listesini ekler",
     "description": """

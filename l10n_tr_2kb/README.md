@@ -34,7 +34,7 @@
     <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
-<h3 align="center">Turkey Localization Extension</h3>
+<h3 align="center">Türkiye Lokalizasyonu Genişletmesi</h3>
 
   <p align="center">
     Türkiye muhasebesine özel genişletmeler bu uygulama ile gelir vergilerin mali koşulların yapılandırılması gibi
@@ -95,7 +95,7 @@
   </a>
  </div>
 
-Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
+Türkiye muhasebesine özel genişletmeler bu uygulama ile gelir vergilerin mali koşulların yapılandırılması gibi: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
