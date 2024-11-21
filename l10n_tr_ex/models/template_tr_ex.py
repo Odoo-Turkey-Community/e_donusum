@@ -18,8 +18,8 @@ class AccountChartTemplate(models.AbstractModel):
             'property_account_income_categ_id': 'tr600',
         }
 
-    @template('tr_ex', 'res.company')
-    def _get_tr_ex_res_company(self):
+    @template('tr', 'res.company')
+    def _get_tr_res_company(self):
         return {
             self.env.company.id: {
                 'account_fiscal_country_id': 'base.tr',
