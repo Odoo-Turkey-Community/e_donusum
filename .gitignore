@@ -81,3 +81,4 @@ docs/_build/
 
 # OCA rules
 !static/lib/
+pyrightconfig.json
