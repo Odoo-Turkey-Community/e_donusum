@@ -1,28 +1,43 @@
-
-
+<!-- Improved compatibility of başa dön link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
-![GitHub watchers](https://img.shields.io/github/watchers/Odoo-Turkey-Community/e_donusum?style=for-the-badge)
-![GitHub followers](https://img.shields.io/github/followers/Odoo-Turkey-Community?style=for-the-badge&color=brown)
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Last commit][lcommit-shield]][lcommit-url]
-[![Commit activity][cactivity-shield]][cactivity-url]
-![GitHub language count](https://img.shields.io/github/languages/count/Odoo-Turkey-Community/e_donusum?style=for-the-badge)
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-# Türkiye Lokalizasyonu
 
+
+<!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
-<p align="center">
-    Türkiye Odoo Lokalizasyon geliştirmeleri. Odoo için Türkiye muhasebe altyapısını hesap planı, mali koşullar, vergiler, vergi daireleri, bankalar ve daha fazlası için hazırlar ve E-Dönüşüm süreçlerini Odoo ya entegre eder.
+<h3 align="center">2KB Aktivasyon</h3>
+
+  <p align="center">
+    2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz
     <br />
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
@@ -42,6 +57,8 @@
   </p>
 </div>
 
+
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>İçerik Tablosu</summary>
@@ -49,7 +66,6 @@
     <li>
       <a href="#about-the-project">Proje Hakkında</a>
       <ul>
-        <li><a href="#addons">Uygulamalar</a></li>
         <li><a href="#built-with">Bileşenler</a></li>
       </ul>
     </li>
@@ -69,51 +85,19 @@
 
 
 
-
 <!-- ABOUT THE PROJECT -->
 <a name="about-the-project"></a>
 ## Proje Hakkında
 
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
  </div>
 
-Türkiye Odoo Lokalizasyon geliştirmeleri. Odoo için Türkiye muhasebe altyapısını hesap planı, mali koşullar, vergiler, vergi daireleri, bankalar ve daha fazlası için hazırlar ve E-Dönüşüm süreçlerini Odoo ya entegre eder.: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
+2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
-
-
-
-<a name="addons"></a>
-## Geliştirilen Addonlar
-<!-- /!\ do not modify below this line -->
-
-<!-- prettier-ignore-start -->
-
-[//]: # (addons)
-
-----------------
-Addon | Version | Maintainers | Summary
---- | --- | --- | ---
-[account_chart_update_l10n_tr](account_chart_update_l10n_tr/) | 1.0 |  | Account Chart Update TR
-[account_patch](account_patch/) | 1.0 |  | Türkiye Lokalizasyonu Genişletme Paketi
-[activation_2kb](activation_2kb/) | 1.0 |  | 2KB Aktivasyon
-[gib_base_2kb](gib_base_2kb/) | 1.0 |  | E-Dönüşüm Altyapısı
-[gib_invoice_2kb](gib_invoice_2kb/) | 1.0 |  | E-Fatura ve E-Arşiv Konnektörü
-[gib_incoming_invoice_2kb](gib_incoming_invoice_2kb/) | 1.0 |  | Gelen E-Faturaların Alınması
-[l10n_tr_2kb](l10n_tr_2kb/) | 1.0 |  | Türkiye Lokalizasyonu Genişletmesi
-[l10n_tr_bank](l10n_tr_bank/) | 1.0 |  | Türkiye Bankaları
-[l10n_tr_tax_office](l10n_tr_tax_office/) | 1.0 |  | Türkiye Vergi Daireleri
-[izibiz_2kb](izibiz_2kb/) | 1.0 |  | İZİBİZ E-Dönüşüm Sağlayıcısı
-
-[//]: # (end addons)
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-<!-- prettier-ignore-end -->
-
 
 
 
@@ -132,17 +116,17 @@ Addon | Version | Maintainers | Summary
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 <li style="padding:5px">
@@ -166,7 +150,6 @@ Addon | Version | Maintainers | Summary
 
 
 
-
 <!-- GETTING STARTED -->
 <a name="getting-started"></a>
 ## Başlarken 
@@ -174,9 +157,6 @@ Addon | Version | Maintainers | Summary
 2KB Konsorsiyumu tarafından geliştirilen Türkiye Muhasebe altyapısı ve E-Dönüşüm süreçleri ile ilgili geliştrimeler tüm kullanıcıların kullanmına ücretsiz olarak sunulmuştur. İster Enterprise ister Community versiyonunda konforlu bi şekilde kullanabilir ve muhasebe süreçlerinizi yönetebilirsiniz.
 
 E-Dönüşüm için başvurunuzu Partner iseniz [İş Ortağı Kaydı](https://2kb.com.tr/tr/partnership_request) son kullanıcısı iseniz [Kullanıcı Kaydı](https://2kb.com.tr/tr/end_user_registration) linklerinden geçerli bilgilerinizle formu doldurarak yapabilirsiniz.
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
 
 
 
@@ -192,18 +172,13 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
   ```sh
   Odoo v16, v17
   ```
-
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
-
-
-
-
+  
+  
 <a name="installation"></a>
 ### Kurulum
 
-1. Ücretsiz APi Anahtarı alın. Api lisans anahtarı almak için 2KB ile iletişime geçmeniz gerekmektedir tarafınıza benzersiz api aktivasyon anahtarı verilecektir.
-2. Repo yu klonlayın ya da odoo apps üzerinden 2KB addonlarından ihiyacınız olanını indirin.
+1. Ücretsiz APi Anahtarı alın. Api anahtarı almak için uygulama üzerinden istekte bulunabilirsiniz
+2. Repo yu klonlayın ya da odoo apps üzerinden [E-Dönüşüm Altyapısı](https://apps.odoo.com/apps/modules/16.0/gib_base_2kb) addonunu indirin.
 Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler için oluşturduğumuz 2 repo üzerinden şu şekilde de uygulamalara erişebilirsiniz.
 
    1. Yol 2KB tarafından geliştirilen ve e-dönüşüm süreçlerini yürütebileceğiniz temel uygulamalara erişim:
@@ -233,19 +208,20 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
       komut satırını çalıştırmanız yeterli olacaktır böylece son commitleri almış olacaksınız
 
 3. İçerisindeki addonları Odoo ekosisteminize kurun
-4. 2KB den Aldığınız benzersiz api lisans anahtarınızı uygulamanızda Company Detayındaki Auth Key kısma yazınız
+4. Aldığınız api anahtarınızı uygulamanızda Company Detayındaki Auth Key kısma yazınız
    ```js
    Auth Key = '2KB Lisans Anahtarınızı Girin'
    ```
 5. "2KB Etkinleştirme" Butonununa Tıklayınız "2KB dünyasına hoş geldiniz." mesajını gördüğünüzde etkinleştirme talebiniz tarafımıza ulaşacaktır. "Kontrol Et" butonundan talebinizi tekrar sorgulayabilirsiniz
 
-<img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
+
+<img src="images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
 
 > [!IMPORTANT]
 > Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
 
-<p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
+<p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
 
@@ -253,7 +229,7 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
 <a name="usage"></a>
 ## Kullanımı
 
-- Kurulum süreçlerini tamamladıktan sonra Entegratör API bilgilerini Yapılandırma > Entegratörler > Kullanacağınız entegratör ayarlarından giriniz.
+- Kurulum süreçlerini tamaladıktan sonra Entegratör API bilgilerini Yapılandırma > Entegratörler > Kullanacağınız entegratör ayarlarından giriniz.
 
 - Döküman Logosu: faturalarda görüntülenecek logonuz
 Döküman İmzası: E-Arşiv faturalarında imza kısmına görüntülenecek imza görseli bu iki görseli ekledikten sonra "Şablonları Yapılandır" butonuyla şablonları oluşturun.
@@ -271,13 +247,11 @@ _Daha fazla detay için, lütfen takipte kalın ve iletişime geçin [2KB Ekibi]
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
-
-
 <!-- CONTRIBUTING -->
 <a name="contributing"></a>
 ## Katkılar
 
-Odoo Türkiye lokalizasyonu sorununa çözüm olarak ortaya çıkarılan bu üründe temel amaç Odoo nun Türkiye lokalizasyonunda ve yerel tüm çözümlerinde sürekliliği sağlamaktır.
+Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu üründe temel amaç Odoo nun türkiye lokalizasyonunda ve yerel tüm çözümlerinde sürekliliği sağlamaktır.
 
 <a href="https://2kb.com.tr">
     <img src="https://2kb.com.tr/web/image/website/1/logo/Odoo%20T%C3%BCrkiye%20Yerelle%C5%9Ftirmesi%20%28e-Fatura%2C%20e-%C4%B0rsaliye%2C%20e-Defter%29?unique=5ee0121" alt="2KB Lokalizasyon Ekibi" height="30">
@@ -289,17 +263,17 @@ Odoo Türkiye lokalizasyonu sorununa çözüm olarak ortaya çıkarılan bu ür�
 <ul style="list-style:none">
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 </ul>
@@ -308,19 +282,13 @@ tarafından geliştirilmiş ve bundan sonraki süreçlerde ise geliştirmeye dev
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
 
-
-
 <!-- LICENSE -->
 <a name="license"></a>
-## Lisanslar
+## Lisans
 
-Bu repository [Other proprietary](LICENSE) lisansı ile lisanlanmıştır.
-
-Her ne kadar, her modülün farklı lisanslama türü olsa da, modüller Kıta Quanimo Broadmax (2KB) mülkiyetinde bulunmaktadır.
-Her modülün lisanslanması ile ilili bilgileri kendi `__manifest__.py` dosyalarında bulunmaktadır.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
-
 
 
 
@@ -352,11 +320,6 @@ Proje Linki: [https://github.com/Odoo-Turkey-Community/e_donusum.git](https://gi
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 
-----
-2KB, ya da [Kıta Quanimo Broadmax](https://2kb.com.tr),
-mütevazi ve bir o kadarda çalışkan ve istekli bir geliştirme ekibi olup Odoo nun
-Türkiyedeki yarınları için katkıda bulunmayı hedefler.
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -370,13 +333,5 @@ Türkiyedeki yarınları için katkıda bulunmayı hedefler.
 [issues-url]: https://github.com/Odoo-Turkey-Community/e_donusum/issues
 [license-shield]: https://img.shields.io/github/license/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
 [license-url]: https://github.com/Odoo-Turkey-Community/e_donusum/blob/master/LICENSE
-[lcommit-shield]: https://img.shields.io/github/last-commit/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
-[lcommit-url]: https://github.com/Odoo-Turkey-Community/e_donusum/commits/master
-[cactivity-shield]: https://img.shields.io/github/commit-activity/m/Odoo-Turkey-Community/e_donusum.svg?style=for-the-badge
-[cactivity-url]: https://github.com//Odoo-Turkey-Community/e_donusum/graphs/commit-activity
-
-
-
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username

@@ -34,10 +34,10 @@
     <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
-<h3 align="center">Turkey Tax Offices</h3>
+<h3 align="center">Türkiye Vergi Daireleri</h3>
 
   <p align="center">
-    Türkiyedeki Vergi Dairelerini odoo da oluşturur istenildiğinde güncellenmesini de sağlar
+    Partner detayında kullanabileceğiniz Türkiyenin güncel vergi daireleri listesini ekler
     <br />
     <br/>
     <a href="https://github.com/Odoo-Turkey-Community/e_donusum/"><strong>Lokalizasyonu Keşfet »</strong></a>
@@ -95,7 +95,7 @@
   </a>
  </div>
 
-Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
+Partner detayında kullanabileceğiniz Türkiyenin güncel vergi daireleri listesini ekler: `Odoo-Turkey-Community`, `e_donusum`, `kitayazilim.com`, `quanimo.com`, `broadmax.com.tr`, `info@2kb.com.tr`, `Türkiye Lokalizasyonu`, `Odoo Türkiye lokalizasyonu 2kb konsorsiyumu`
 
 <p align="right">(<a href="#readme-top">başa dön</a>)</p>
 

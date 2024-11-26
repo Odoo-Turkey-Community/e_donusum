@@ -3,29 +3,22 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    'name': 'Turkey Localization Extension Patch',
+    "name": "Türkiye Lokalizasyonu Genişletme Paketi 2KB",
     "version": "1.0",
-    'summary': 'Turkey Localization Extension Patch',
-    'description': """
-        Turkey Localization Extension Patch
+    "summary": "Türkiye Lokalizasyonu Genişletme Paketi 2KB",
+    "description": """
+        Türkiye Lokalizasyonu Genişletme Paketi 2KB
     """,
-
-    'maintainer': 'Quanimo',
+    "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
-    'sequence': 1453,
-
-    'category': 'Accounting/Localizations/Account Charts',
-
-    'depends': [
-        'account'
-    ],
-
-    'data': [],
-
+    "license": "Other proprietary",
+    "sequence": 1453,
+    "category": "Accounting/Localizations/Account Charts",
+    "depends": ["account"],
+    "data": [],
     "installable": True,
-    'application': False,
-    'auto_install': True,
-    'images': ['images/main_screenshot.png']
+    "application": False,
+    "auto_install": True,
+    "images": ["images/main_screenshot.png"],
 }
