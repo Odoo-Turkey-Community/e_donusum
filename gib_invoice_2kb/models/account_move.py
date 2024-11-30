@@ -239,15 +239,16 @@ class AccountMove(models.Model):
             else:
                 record.gib_alias_pk = record.commercial_partner_id.alias_pk.id
 
-    @api.depends("move_is_invoice", "partner_id", "gib_profile_id")
+    @api.depends("move_is_invoice", "gib_profile_id", "company_id")
     def _compute_gib_provider_id(self):
         for record in self:
-            if not record.move_is_invoice:
+            if not record.move_is_invoice or not record.gib_profile_id:
                 record.gib_provider_id = False
             else:
-                record.gib_provider_id = (
-                    record.gib_provider_id.get_default_provider().id
-                )
+                if not record.gib_provider_id or record.company_id != record.gib_provider_id.company_id:
+                    record.gib_provider_id = (
+                        record.gib_provider_id.get_default_provider(record.company_id).id
+                    )
 
     @api.depends("move_type", "partner_id")
     def _compute_gib_profile_id(self):

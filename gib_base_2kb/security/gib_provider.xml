@@ -9,13 +9,12 @@
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
     </record>
 
-    <!-- Shareable Records -->
     <record model="ir.rule" id="gib_provider_shared_company_rule">
         <field name="name">GİB Provider: multi-company</field>
         <field name="model_id" ref="model_gib_base_2kb_provider"/>
         <field name="global" eval="True"/>
         <field name="domain_force">
-            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_id)]
         </field>
     </record>
 
