@@ -14,7 +14,7 @@
         <field name="model_id" ref="model_gib_base_2kb_provider"/>
         <field name="global" eval="True"/>
         <field name="domain_force">
-            ['|', ('company_id', '=', False), ('company_id', 'in', company_id)]
+            ['|', ('company_id', '=', False), ('company_id', '=', company_id)]
         </field>
     </record>
 
