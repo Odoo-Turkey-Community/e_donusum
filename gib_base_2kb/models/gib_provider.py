@@ -154,7 +154,7 @@ class GibUBLProvider(models.Model):
             },
         }
 
-    def get_default_provider(self, company_id):
+    def get_default_provider(self, company_id=None):
         company = company_id or self.env.company
         return self.search([('company_id', '=', company.id)], limit=1)
 
