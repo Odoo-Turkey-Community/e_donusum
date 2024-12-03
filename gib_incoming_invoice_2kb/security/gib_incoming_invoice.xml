@@ -12,4 +12,15 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_unlink" eval="1"/>
     </record>
+
+    <!-- Shareable Records -->
+    <record model="ir.rule" id="gib_incoming_invoice_shared_company_rule">
+        <field name="name">GİB Incoming Invoice: multi-company</field>
+        <field name="model_id" ref="model_gib_base_2kb_provider"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">
+            ['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]
+        </field>
+    </record>
+
 </odoo>

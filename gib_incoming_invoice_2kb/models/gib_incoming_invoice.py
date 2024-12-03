@@ -28,7 +28,7 @@ class GibIncomingInvoice(models.Model):
     invoice_type = fields.Char(string="Fatura Tipi")
     gib_profile = fields.Char(string="Fatura Türü")
     gib_provider_id = fields.Many2one(
-        comodel_name="gib_base_2kb.provider", string="Entegratör"
+        comodel_name="gib_base_2kb.provider", string="Entegratör", required=True
     )
     state = fields.Selection(
         selection=[
@@ -47,6 +47,7 @@ class GibIncomingInvoice(models.Model):
     tax_exclude = fields.Float("Vergi Hariç Tutar")
     total_amount = fields.Float("Vergi Dahil Tutar")
     is_approvable = fields.Boolean(compute="_compute_is_approvable", store=True)
+    company_id = fields.Many2one('res.company', related="gib_provider_id.company_id", store=True)
 
     @api.depends("gib_profile", "issue_date", "state")
     def _compute_is_approvable(self):
