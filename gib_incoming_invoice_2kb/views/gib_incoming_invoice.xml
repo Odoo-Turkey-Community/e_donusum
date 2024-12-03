@@ -37,6 +37,7 @@
                         <field name="gib_profile"/>
                         <field name="invoice_type"/>
                         <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
+                        <field name="company_id"/>
                     </group>
                 </group>
                 <group string="İş Ortağı Bilgileri" name="sender_info_group">
@@ -105,6 +106,7 @@
             <field name="invoice_type" optional="show"/>
             <field name="gib_provider_id" optional="hide"/>
             <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}" optional="show"/>
+            <field name="company_id" optional="show"/>
             <button help="PDF" title="PDF" class="fa fa-file-pdf-o btn-secondary" name="get_incoming_e_inv_pdf" type="object"/>
             <button help="Kabul Et" title="Kabul Et" class="fa fa-check btn-success" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
             <button help="Reddet" title="Reddet" class="fa fa-times btn-danger" name="approve_or_deny" type="object" context="{'answer':'RED'}" attrs="{'invisible': [('is_approvable', '=', False)]}"/>
