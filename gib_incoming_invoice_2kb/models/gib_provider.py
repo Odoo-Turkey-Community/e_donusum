@@ -33,7 +33,7 @@ class GibProvider(models.Model):
 
     def get_incoming_invoice_xml(self, ettn):
         """_summary_
-            entegratördem gelen faturanın UBL'i alır ve döner
+            entegratörden gelen faturanın UBL'i alır ve döner
 
         Args:
             ettn (string): Faturanın ettn numarası
@@ -45,7 +45,7 @@ class GibProvider(models.Model):
 
     def _get_incoming_invoice_xml(self, ettn):
         """_summary_
-            entegratördem gelen faturanın UBL'i alır ve döner
+            entegratörden gelen faturanın UBL'i alır ve döner
 
         Args:
             ettn (string): Faturanın ettn numarası
