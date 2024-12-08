@@ -12,7 +12,7 @@
             <field name="implementation" position="after">
                 <field name="use_for_electronic" invisible="1"/>
                 <field name="locked_sequence" invisible="1"/>
-                <field name="gib_profile_type" required="use_for_electronic"  readonly="locked_sequence" />
+                <field name="gib_profile_type" required="use_for_electronic" readonly="locked_sequence" />
                 <field name="gib_profile_id" required="use_for_electronic" widget="many2many_tags"/>
             </field>
         </field>
@@ -34,7 +34,7 @@
         <field name="name">Fatura Serileri</field>
         <field name="res_model">ir.sequence</field>
         <field name="view_mode">tree,form</field>
-        <field name="domain">[('gib_profile_id', '!=', False)]</field>
+        <field name="domain">[('gib_profile_id', '!=', False), ('company_id', 'in', allowed_company_ids)]</field>
         <field name="context">{'default_use_date_range': 1, 'default_padding': 9, 'default_implementation': 'no_gap', 'default_prefix': 'ABC%(range_year)s', 'default_use_for_electronic': True}</field>
     </record>
 
