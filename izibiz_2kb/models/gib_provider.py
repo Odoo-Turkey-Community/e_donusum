@@ -12,8 +12,6 @@ from odoo import fields, models, api, Command
 from odoo.modules.module import get_resource_path
 from textwrap import dedent
 
-# from models import izibiz_service
-
 from .izibiz_service import IzibizService
 
 e_arsiv_report_mapping = {
@@ -330,10 +328,6 @@ class GibProvider(models.Model):
                     break
 
         return res
-
-    ####################################################
-    # Picking API
-    ####################################################
 
     ####################################################
     # İncoming e-İnvoice API

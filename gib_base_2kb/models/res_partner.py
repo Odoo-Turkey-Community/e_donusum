@@ -69,7 +69,7 @@ class ResPartner(models.Model):
                 elif not elias_exists.active:
                     alias_to_update[elias_exists.id] = {"active": True}
             for alias_id in partner_alias.filtered(lambda alias: alias.active):
-                faund = [
+                found = [
                     item
                     for item in alias
                     if item.get("alias") == alias_id.alias
