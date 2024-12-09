@@ -11,7 +11,7 @@
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    "depends": ["account", "account_edi", "activation_2kb", "l10n_tr_2kb"],
+    "depends": ["account", "account_edi", "l10n_tr_2kb", "activation_2kb"],
     "data": [
         "security/ir.model.access.csv",
         "security/gib_provider.xml",

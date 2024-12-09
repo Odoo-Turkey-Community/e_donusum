@@ -54,7 +54,7 @@ class GibIncomingInvoice(models.Model):
 
     @api.depends("gib_profile", "issue_date", "state")
     def _compute_is_approvable(self):
-        for record in self:
+        for record in self.filtered(lambda inv: inv.issue_date):
             record.is_approvable = False
             if (
                 record.gib_profile == "TICARIFATURA"
@@ -62,6 +62,7 @@ class GibIncomingInvoice(models.Model):
                 and ((fields.date.today() - record.issue_date).days < 15)
             ):
                 record.is_approvable = True
+        self.filtered(lambda inv: not inv.issue_date).is_approvable = True
 
     def approve_or_deny(self, answer=None, text=""):
         if not answer:

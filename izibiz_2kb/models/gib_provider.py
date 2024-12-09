@@ -174,19 +174,17 @@ class GibProvider(models.Model):
 
         for move in moves:
             gb = (
-                move.gib_provider_id.alias_inv_gb
+                move.gib_provider_id.alias_inv_gb.alias
                 if self.prod_environment
                 else "urn:mail:defaultgb@izibiz.com.tr"
             )
             pk = (
-                move.gib_provider_id.alias_inv_gb
+                move.gib_alias_pk.alias
                 if self.prod_environment
                 else "urn:mail:defaultpk@izibiz.com.tr"
             )
 
-            if move.gib_profile_id == self.env.ref(
-                "gib_base_2kb.profile_id-IHRACAT", False
-            ):
+            if move.gib_profile_id.value == "IHRACAT":
                 pk = "urn:mail:ihracatpk@gtb.gov.tr"
 
             attachment = move._get_edi_attachment()
@@ -341,8 +339,8 @@ class GibProvider(models.Model):
             return res
 
         state_mapping = {
-            "REJECT": "Rejected",
-            "ACCEPT": "Accepted",
+            "REJECTED": "Rejected",
+            "ACCEPTED": "Accepted",
         }
         service = self._get_izibiz_service()
         sdate = startDate.isoformat() if startDate else None
@@ -762,9 +760,9 @@ class GibProvider(models.Model):
         return cron_id
 
     def configure_cron(self):
-        """
-        Bu servis provider bazlı değildi.
-        """
+        res = super().configure_cron()
+        if self.provider != "izibiz":
+            return res
 
         # cron_get_gib_user_list
         cron_required = self.active
@@ -861,11 +859,14 @@ class GibProvider(models.Model):
         )
 
         for move_id in filter_move_ids:
+            status_id = gib_status_code_map.get(api_state_map[move_id.gib_uuid])
+            if not status_id:
+                code = api_state_map[move_id.gib_uuid]
+                _logger.warning(f"cron_get_invoice_state_info: Bilinmeyen durum kodu: {code} uuid: {move_id.gib_uuid}")
             move_id.write(
                 {
-                    "gib_status_code_id": gib_status_code_map[
-                        api_state_map[move_id.gib_uuid]
-                    ]
+                    "gib_status_code_id": status_id
+
                 }
             )
         return True
@@ -892,8 +893,8 @@ class GibProvider(models.Model):
             return False
 
         response_code_mapping = {
-            "ACCEPT": "accept",
-            "REJECT": "reject",
+            "ACCEPTED": "accept",
+            "REJECTED": "reject",
         }
         resp_mapping = {
             res.UUID: response_code_mapping.get(res.HEADER.RESPONSE_CODE)
@@ -934,6 +935,7 @@ class GibProvider(models.Model):
 
         return True
 
+    # TODO bu metho buradan kaldırılıp export modülüne taşınacak
     def cron_get_export_invoice_info(self):
         """
         gib_response_code accept,reject değerlerini alabilir
@@ -984,8 +986,8 @@ class GibProvider(models.Model):
             icp_key, (fields.Date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         )
         response_code_mapping = {
-            "ACCEPT": "Accepted",
-            "REJECT": "Rejected",
+            "ACCEPTED": "Accepted",
+            "REJECTED": "Rejected",
         }
 
         service = self._get_izibiz_service()
@@ -1003,8 +1005,8 @@ class GibProvider(models.Model):
         )
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.HEADER.CDATE.isoformat() > ldata_str:
-                ldata_str = incoming.HEADER.CDATE.isoformat()
+            if incoming.HEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
+                ldata_str = incoming.HEADER.CDATE.strftime("%Y-%m-%d")
 
             if GII.search([("ETTN", "=", incoming.UUID)]):
                 continue
@@ -1058,8 +1060,8 @@ class GibProvider(models.Model):
 
         gid_to_create = []
         for incoming in result["result"]:
-            if incoming.DESPATCHADVICEHEADER.CDATE.isoformat() > ldata_str:
-                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.isoformat()
+            if incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
+                ldata_str = incoming.DESPATCHADVICEHEADER.CDATE.strftime("%Y-%m-%d")
 
             if GID.search([("ETTN", "=", incoming.UUID)]):
                 continue

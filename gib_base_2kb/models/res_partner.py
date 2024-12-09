@@ -69,14 +69,14 @@ class ResPartner(models.Model):
                 elif not elias_exists.active:
                     alias_to_update[elias_exists.id] = {"active": True}
             for alias_id in partner_alias.filtered(lambda alias: alias.active):
-                faund = [
+                found = [
                     item
                     for item in alias
                     if item.get("alias") == alias_id.alias
                     and item.get("document_type") == alias_id.document_type
                 ]
                 if not faund:
-                    alias_to_update[alias.id] = {"active": False}
+                    alias_to_update[alias_id.id] = {"active": False}
 
             for alias_id, values in alias_to_update.items():
                 alias_model.browse(alias_id).write(values)
