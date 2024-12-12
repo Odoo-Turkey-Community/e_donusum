@@ -36,3 +36,21 @@ class AccountChartTemplate(models.AbstractModel):
                 'account_purchase_tax_id': 'tr_kdv_purchase_20'
             },
         }
+
+    @template('tr_ex', 'account.account')
+    def _get_tr_ex_account_account(self):
+        tr_val = self._parse_csv('tr', 'account.account', module='l10n_tr')
+        tr_ex_val = self._parse_csv('tr_ex', 'account.account', module='l10n_tr_ex')
+        return {**tr_val, **tr_ex_val}
+
+    @template('tr_ex', 'account.tax.group')
+    def _get_tr_ex_account_tax_group(self):
+        return self._parse_csv('tr_ex', 'account.tax.group', module='l10n_tr_ex')
+
+    @template('tr_ex', 'account.tax')
+    def _get_tr_ex_account_tax(self):
+        return self._parse_csv('tr_ex', 'account.tax', module='l10n_tr_ex')
+
+    @template('tr_ex', 'account.fiscal.position')
+    def _get_tr_ex_account_fiscal_position(self):
+        return self._parse_csv('tr_ex', 'account.fiscal.position', module='l10n_tr_ex')
