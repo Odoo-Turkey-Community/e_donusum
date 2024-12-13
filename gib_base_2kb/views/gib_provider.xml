@@ -4,12 +4,12 @@
         <field name="name">gib_base_2kb.provider.tree</field>
         <field name="model">gib_base_2kb.provider</field>
         <field name="arch" type="xml">
-            <tree string="Özel Entegratör">
+            <list string="Özel Entegratör">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="provider"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -63,7 +63,7 @@
     <record model="ir.actions.act_window" id="gib_provider_act_window">
         <field name="name">Entegratörler</field>
         <field name="res_model">gib_base_2kb.provider</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>

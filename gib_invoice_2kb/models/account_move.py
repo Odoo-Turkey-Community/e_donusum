@@ -7,7 +7,7 @@ import base64
 import re
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.addons.http_routing.models.ir_http import slug
+from odoo.addons.http_routing.models.ir_http import IrHttp
 
 from lxml import etree
 from markupsafe import Markup
@@ -527,7 +527,7 @@ class AccountMove(models.Model):
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf2/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf2/%s" % (IrHttp._slug(self),),
         }
 
     def button_process_gib_web_services(self):

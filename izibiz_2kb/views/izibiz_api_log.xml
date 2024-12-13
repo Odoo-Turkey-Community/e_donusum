@@ -43,20 +43,20 @@
         <field name="name">izibiz.api.log.tree (in izibiz_2kb)</field>
         <field name="model">izibiz.api.log</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="desc"/>
                 <field name="inovice_id"/>
                 <field name="operation"/>
                 <field name="blocking_level"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="izibiz_api_log_act_window">
         <field name="name">Izibiz Api Log</field>
         <field name="res_model">izibiz.api.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>

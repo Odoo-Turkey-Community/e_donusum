@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
-from odoo.addons.http_routing.models.ir_http import slug
+from odoo.addons.http_routing.models.ir_http import IrHttp
 from markupsafe import Markup
 
 
@@ -92,7 +92,7 @@ class GibIncomingInvoice(models.Model):
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf/incoming/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf/incoming/%s" % (IrHttp._slug(self),),
         }
 
     def toggle_is_importable(self):

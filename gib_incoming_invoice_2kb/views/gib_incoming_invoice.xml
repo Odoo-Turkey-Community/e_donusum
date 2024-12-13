@@ -90,7 +90,7 @@
     <field name="name">gib.incoming.invoice.tree (in gib_incoming_invoice_2kb)</field>
     <field name="model">gib.incoming.invoice</field>
     <field name="arch" type="xml">
-        <tree create="false" decoration-success="is_importable">
+        <list create="false" decoration-success="is_importable">
             <header>
                 <button string="Aktif/Pasif" name="toggle_is_importable" type="object" icon="fa-edit" title="Edit"/>
             </header>
@@ -111,14 +111,14 @@
             <button title="PDF" class="btn-secondary" icon="fa-file-pdf-o" name="get_incoming_e_inv_pdf" type="object"/>
             <button title="Kabul Et" class="btn-success" icon="fa-check" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" invisible="not is_approvable"/>
             <button title="Reddet" class="btn-danger" icon="fa-times" name="approve_or_deny" type="object" context="{'answer':'RED'}" invisible="not is_approvable"/>
-        </tree>
+        </list>
     </field>
 </record>
 
 <record model="ir.actions.act_window" id="gib_incoming_invoice_act_window">
     <field name="name">Gelen Faturalar</field>
     <field name="res_model">gib.incoming.invoice</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
     <field name="domain">[]</field>
     <field name="context">{}</field>
 </record>

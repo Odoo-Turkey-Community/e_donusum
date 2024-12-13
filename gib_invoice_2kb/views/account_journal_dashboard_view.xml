@@ -8,7 +8,7 @@
         <field name="model">account.journal</field>
         <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//t[@id='account.JournalBodySalePurchase']//div[hasclass('o_kanban_primary_right')]" position="inside">
+            <xpath expr="//t[@id='account.JournalBodySalePurchase']//div[@name='kanban_primary_left']" position="inside">
                 <t t-if="dashboard.gib_to_process">
                     <div class="row">
                         <div class="col overflow-hidden text-start">
