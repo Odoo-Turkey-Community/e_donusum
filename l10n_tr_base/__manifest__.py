@@ -3,10 +3,9 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    "name": "Türkiye Bankaları 2KB",
+    "name": "Türkiye Lokalizasyonu Temel 2KB",
     "version": "1.0",
-    "summary": """
-        Türkiye Bankaları""",
+    "summary": "Türkiye Lokalizasyonu Temel 2KB",
     "description": """
 Türkiye Lokalizasyonu Temel 2KB
 ===============================
@@ -32,17 +31,17 @@ Not: Bu modül, Türkiye'deki yasal gereksinimler için gerekli olan temel lokal
     "website": "https://2kb.com.tr",
     "license": "Other proprietary",
     "sequence": 1453,
-    "category": "account",
+    "category": "Accounting/Localizations/Account Charts",
     "depends": [
-        "account",
-    ],
-    "data": [
-        "data/res_bank.xml",
-        "views/partner_views.xml",
-        "views/res_bank_views.xml",
+        "l10n_tr",
+        "l10n_tr_witholding",
+        "l10n_tr_bank",
+        "l10n_tr_tax_office"
     ],
     "installable": True,
     "application": False,
-    "auto_install": False,
-    "images": ["images/main_screenshot.png"],
+    "auto_install": True,
+    "images": [
+        "images/main_screenshot.png"
+    ],
 }

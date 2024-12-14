@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) 2024 Odoo Turkey Community (https://github.com/orgs/Odoo-Turkey-Community/dashboard)
+# License Other proprietary. Please see the license file in the Addon folder.
 
 from odoo import models, _
 from odoo.addons.account.models.chart_template import template
@@ -6,10 +9,10 @@ from odoo.addons.account.models.chart_template import template
 class AccountChartTemplate(models.AbstractModel):
     _inherit = 'account.chart.template'
 
-    @template('tr_ex')
-    def _get_tr_ex_template_data(self):
+    @template('tr_witholding')
+    def _get_tr_witholding_template_data(self):
         return {
-            'name': _('Turkey Extended Accounting - 2KB Team)'),
+            'name': _('Turkey Tax Witholding - 2KB Team)'),
             'parent': 'tr',
             'code_digits': '9',
             'property_account_receivable_id': 'tr120',
@@ -37,20 +40,20 @@ class AccountChartTemplate(models.AbstractModel):
             },
         }
 
-    @template('tr_ex', 'account.account')
-    def _get_tr_ex_account_account(self):
+    @template('tr_witholding', 'account.account')
+    def _get_tr_witholding_account_account(self):
         tr_val = self._parse_csv('tr', 'account.account', module='l10n_tr')
-        tr_ex_val = self._parse_csv('tr', 'account.account', module='l10n_tr_ex')
+        tr_ex_val = self._parse_csv('tr_witholding', 'account.account', module='l10n_tr_witholding')
         return {**tr_val, **tr_ex_val}
 
-    @template('tr_ex', 'account.tax.group')
-    def _get_tr_ex_account_tax_group(self):
-        return self._parse_csv('tr', 'account.tax.group', module='l10n_tr_ex')
+    @template('tr_witholding', 'account.tax.group')
+    def _get_tr_witholding_account_tax_group(self):
+        return self._parse_csv('tr_witholding', 'account.tax.group', module='l10n_tr_witholding')
 
-    @template('tr_ex', 'account.tax')
-    def _get_tr_ex_account_tax(self):
-        return self._parse_csv('tr', 'account.tax', module='l10n_tr_ex')
+    @template('tr_witholding', 'account.tax')
+    def _get_tr_witholding_account_tax(self):
+        return self._parse_csv('tr_witholding', 'account.tax', module='l10n_tr_witholding')
 
-    @template('tr_ex', 'account.fiscal.position')
-    def _get_tr_ex_account_fiscal_position(self):
-        return self._parse_csv('tr', 'account.fiscal.position', module='l10n_tr_ex')
+    @template('tr_witholding', 'account.fiscal.position')
+    def _get_tr_witholding_account_fiscal_position(self):
+        return self._parse_csv('tr_witholding', 'account.fiscal.position', module='l10n_tr_witholding')

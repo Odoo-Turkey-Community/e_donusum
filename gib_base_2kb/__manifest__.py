@@ -4,8 +4,17 @@
 
 {
     "name": "E-Dönüşüm Altyapısı",
-    "summary": """Kıta yazılım tarafından geliştirilen bu uygulama ile odoo eskosisteminiz e-dönüşüme hazırlanır""",
-    "description": """Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir""",
+    "description": """
+        E-Dönüşüm süreçleri için temel altyapı modülüdür.
+        Özellikler:
+        * GİB (Gelir İdaresi Başkanlığı) entegrasyonu için temel yapılandırmalar
+        * E-Belge süreçleri için ortak kullanılan fonksiyonlar
+        * Entegratör bağlantıları için altyapı
+        * Belge numaralama ve sıralama sistemleri
+        * GİB servisleri ile iletişim için güvenlik protokolleri
+        * Çoklu entegratör desteği
+    """,
+    "summary": """Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir""",
     "version": "1.0",
     "license": "Other proprietary",
     "maintainer": "Quanimo",
