@@ -5,7 +5,14 @@
 {
     "name": "2KB Aktivasyon",
     "version": "1.0",
-    "description": """ 2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz """,
+    "description": """
+        2KB E-Dönüşüm ürün ailesi için lisans aktivasyon modülüdür.
+        Özellikler:
+        * Şirket bazlı lisans yönetimi
+        * Otomatik lisans doğrulama
+        * Güvenli şifreleme algoritmaları ile lisans kontrolü
+        * Modül bazlı lisanslama desteği
+    """,
     "summary": """ 2KB Aktivasyon uygulaması ile 2kb ürünlerinizin lisans akivasyon süreçlerini tamamlayabilirsiniz """,
     "maintainer": "Quanimo, Kıta",
     "author": "Kıta, Quanimo, Broadmax",

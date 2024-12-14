@@ -5,7 +5,18 @@
 {
     "name": "E-Fatura ve E-Arşiv Konnektörü",
     "summary": """E-Fatura ve E-Arşiv için uygun ortamı uygulamanız için hazırlar""",
-    "description": """E-Fatura ve E-Arşiv için ihtiyaç duyulan altyapı bu geliştirme ile sisteminize eklenir.""",
+    "description": """
+        E-Fatura ve E-Arşiv fatura oluşturma ve gönderme süreçlerini yöneten ana modüldür.
+        Özellikler:
+        * UBL-TR standardına uygun E-Fatura oluşturma
+        * E-Arşiv fatura oluşturma ve raporlama
+        * Toplu fatura gönderimi
+        * Otomatik fatura numaralama
+        * Fatura durumu takibi ve raporlama
+        * E-Fatura ve E-Arşiv fatura şablonları
+        * GİB'e uyumlu fatura senaryoları (Temel/Ticari)
+        * Çoklu para birimi desteği
+    """,
     "version": "1.0",
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
