@@ -10,4 +10,3 @@ from . import res_partner
 from . import res_partner_bank
 from . import ir_sequence
 from . import ir_attachment
-from . import update
