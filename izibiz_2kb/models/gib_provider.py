@@ -12,8 +12,6 @@ from odoo import fields, models, api, Command
 from odoo.modules.module import get_resource_path
 from textwrap import dedent
 
-# from models import izibiz_service
-
 from .izibiz_service import IzibizService
 
 e_arsiv_report_mapping = {
@@ -330,10 +328,6 @@ class GibProvider(models.Model):
                     break
 
         return res
-
-    ####################################################
-    # Picking API
-    ####################################################
 
     ####################################################
     # İncoming e-İnvoice API
@@ -987,7 +981,7 @@ class GibProvider(models.Model):
         """
         ICP = self.env["ir.config_parameter"].sudo()
         GII = self.env["gib.incoming.invoice"].sudo()
-        icp_key = f"izibiz.{self.name}.cron_daily_get_invoice_ldate"
+        icp_key = f"izibiz.{self.name}.cron_daily_get_invoice_ldate_{self.id}"
         ldata_str = ICP.get_param(
             icp_key, (fields.Date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         )
@@ -1050,7 +1044,7 @@ class GibProvider(models.Model):
         """
         ICP = self.env["ir.config_parameter"].sudo()
         GID = self.env["gib.incoming.despatch"].sudo()
-        icp_key = f"izibiz.{self.name}.cron_daily_get_despatch_advice_ldate"
+        icp_key = f"izibiz.{self.name}.cron_daily_get_despatch_advice_ldate_{self.id}"
         ldata_str = ICP.get_param(
             icp_key, (fields.Date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
         )

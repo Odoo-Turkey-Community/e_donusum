@@ -68,7 +68,7 @@ class AccountMove(models.Model):
         "ir.sequence",
         string="Fatura Seri",
         help="Bu alan e-Dökümanlarda takip edilebilecek sıra numarasını belirtir",
-        domain="[('gib_profile_id', 'in', [gib_profile_id])]",
+        domain="[('gib_profile_id', 'in', [gib_profile_id]), ('company_id', '=', company_id)]",
         compute="_compute_gib_sequence_id",
         store=True,
         readonly=False,
@@ -99,7 +99,7 @@ class AccountMove(models.Model):
 
     gib_template_id = fields.Many2one(
         "ir.attachment",
-        domain="[('mimetype', '=', 'application/xslt+xml'), ('gib_profile_id', '=', gib_profile_id)]",
+        domain="[('mimetype', '=', 'application/xslt+xml'), ('gib_profile_id', '=', gib_profile_id), ('company_id', '=', company_id)]",
         compute="_compute_gib_template_id",
         string="Fatura Şablonu",
         store=True,
@@ -193,7 +193,7 @@ class AccountMove(models.Model):
                 "in_refund",
             )
 
-    @api.depends("gib_profile_id", "partner_id", "move_is_invoice")
+    @api.depends("gib_profile_id", "partner_id", "move_is_invoice", "company_id")
     def _compute_gib_sequence_id(self):
         for record in self:
             if not record.move_is_invoice:
@@ -203,16 +203,17 @@ class AccountMove(models.Model):
                 if (
                     record.gib_profile_id.id
                     not in record.gib_sequence_id.gib_profile_id.ids
+                    or record.gib_sequence_id.company_id != record.company_id
                 ):
                     suitable_sequences = record.gib_sequence_id.search(
-                        [("gib_profile_id", "in", record.gib_profile_id.id)]
+                        [("gib_profile_id", "in", record.gib_profile_id.id), ('company_id', '=', record.company_id.id)]
                     )
                     if len(suitable_sequences) == 1:
                         record.gib_sequence_id = suitable_sequences[:1]
                     else:
                         record.gib_sequence_id = False
 
-    @api.depends("gib_profile_id", "move_is_invoice", "partner_id")
+    @api.depends("gib_profile_id", "move_is_invoice", "partner_id", "company_id")
     def _compute_gib_template_id(self):
         for record in self:
             if not record.move_is_invoice:
@@ -221,7 +222,8 @@ class AccountMove(models.Model):
                 default_template = self.env["ir.attachment"].search(
                     [
                         ("mimetype", "=", "application/xslt+xml"),
-                        ("gib_profile_id", "=", self.gib_profile_id.id),
+                        ("gib_profile_id", "=", record.gib_profile_id.id),
+                        ("company_id", "=", record.company_id),
                     ],
                     limit=1,
                     order="id DESC",
