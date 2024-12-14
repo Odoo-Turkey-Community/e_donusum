@@ -23,7 +23,7 @@ Bu modül, Türkiye'deki işletmeler için gerekli mali koşulları ve mali koş
 Teknik Detaylar:
 ---------------
 * Vergi grupları için özel görünümler
-* Mali kouşşlar için özelleştirilmiş formlar
+* Mali koşullar için özelleştirilmiş formlar
 * Otomatik vergi hesaplamaları ve maplemeler
 
 Not: Bu modül Türkiye'deki yasal vergi gereksinimlerine uygun olarak tasarlanmıştır ve 
