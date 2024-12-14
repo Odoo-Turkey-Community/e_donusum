@@ -3,7 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    "name": "Türkiye - Vergi, Vergi Grupları ve Mali Koşulları",
+    "name": "Türkiye - Vergi, Vergi Grupları ve Mali Koşulları 2KB",
     "version": "1.0",
     "category": "Accounting/Localizations/Account Charts",
     'description': """
@@ -44,4 +44,5 @@ resmi Türk muhasebe planı (l10n_tr) ile entegre çalışır.
     "installable": True,
     "application": False,
     "auto_install": True,
+    "images": ["images/main_screenshot.png"],
 }
