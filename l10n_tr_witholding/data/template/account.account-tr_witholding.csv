@@ -1,0 +1,46 @@
+id,name,code,account_type,tag_ids,reconcile
+tr191010801,%1 İndirilecek KDV (Yurtiçi Tevkifatsız Alımlar için Ödenen),191010801,asset_current,,0
+tr191010808,%8 İndirilecek KDV (Yurtiçi Tevkifatsız Alımlar için Ödenen),191010808,asset_current,,0
+tr191010810,%10 İndirilecek KDV (Yurtiçi Tevkifatsız Alımlar için Ödenen),191010810,asset_current,,0
+tr191010818,%18 İndirilecek KDV (Yurtiçi Tevkifatsız Alımlar için Ödenen),191010818,asset_current,,0
+tr191010820,%20 İndirilecek KDV (Yurtiçi Tevkifatsız Alımlar için Ödenen),191010820,asset_current,,0
+tr191010901,%1 İndirilecek KDV (Sorumlu Sıfatıyla Alımlar İçin),191010901,asset_current,,0
+tr191010908,%8 İndirilecek KDV (Sorumlu Sıfatıyla Alımlar İçin),191010908,asset_current,,0
+tr191010910,%10 İndirilecek KDV (Sorumlu Sıfatıyla Alımlar İçin),191010910,asset_current,,0
+tr191010918,%18 İndirilecek KDV (Sorumlu Sıfatıyla Alımlar İçin),191010918,asset_current,,0
+tr191010920,%20 İndirilecek KDV (Sorumlu Sıfatıyla Alımlar İçin),191010920,asset_current,,0
+tr191011001,%1 İndirilecek KDV (İthalde Ödenen),191011001,asset_current,,0
+tr191011008,%8 İndirilecek KDV (İthalde Ödenen),191011008,asset_current,,0
+tr191011010,%10 İndirilecek KDV (İthalde Ödenen),191011010,asset_current,,0
+tr191011018,%18 İndirilecek KDV (İthalde Ödenen),191011018,asset_current,,0
+tr191011020,%20 İndirilecek KDV (İthalde Ödenen),191011020,asset_current,,0
+tr191020101,%1 Satış İade İndirilecek KDV,191020101,asset_current,,0
+tr191020108,%8 Satış İade İndirilecek KDV,191020108,asset_current,,0
+tr191020110,%10 Satış İade İndirilecek KDV,191020110,asset_current,,0
+tr191020118,%18 Satış İade İndirilecek KDV,191020118,asset_current,,0
+tr191020120,%20 Satış İade İndirilecek KDV,191020120,asset_current,,0
+tr391000001,%1 Hesaplanan KDV,391000001,liability_current,,0
+tr391000008,%8 Hesaplanan KDV,391000008,liability_current,,0
+tr391000010,%10 Hesaplanan KDV,391000010,liability_current,,0
+tr391000018,%18 Hesaplanan KDV,391000018,liability_current,,0
+tr391000020,%20 Hesaplanan KDV,391000020,liability_current,,0
+tr391000101,%1 Tevkifatlı Hesaplanan KDV,391000101,liability_current,,0
+tr391000108,%8 Tevkifatlı Hesaplanan KDV,391000108,liability_current,,0
+tr391000110,%10 Tevkifatlı Hesaplanan KDV,391000110,liability_current,,0
+tr391000118,%18 Tevkifatlı Hesaplanan KDV,391000118,liability_current,,0
+tr391000120,%20 Tevkifatlı Hesaplanan KDV,391000120,liability_current,,0
+tr391000201,%1 Alım İade İndirilecek KDV,391000201,liability_current,,0
+tr391000208,%8 Alım İade İndirilecek KDV,391000208,liability_current,,0
+tr391000210,%10 Alım İade İndirilecek KDV,391000210,liability_current,,0
+tr391000218,%18 Alım İade İndirilecek KDV,391000218,liability_current,,0
+tr391000220,%20 Alım İade İndirilecek KDV,391000220,liability_current,,0
+tr360000001,Ücretli-Vergi Stopajı,360000001,liability_current,,0
+tr360000002,Asgari Geçim İndirimi (Mahsup),360000002,liability_current,,0
+tr360000003,Ücretli-Damga Vergileri,360000003,liability_current,,0
+tr360000004,Sözleşme-Damga Vergileri,360000004,liability_current,,0
+tr360000005,Kira Stopajı (%20),360000005,liability_current,,0
+tr360000006,Serbest Meslek M. Stopajı (%20),360000006,liability_current,,0
+tr360000007,Ödenecek KDV,360000007,liability_current,,0
+tr360000008,Ödenecek KDV Kesintileri (KDV2),360000008,liability_current,,0
+tr360000009,Ödenecek Geçici Vergi,360000009,liability_current,,0
+tr360000010,Ödenecek Kurumlar / Gelir Vergisi,360000010,liability_current,,0

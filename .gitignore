@@ -80,3 +80,6 @@ docs/_build/
 
 # OCA rules
 !static/lib/
+
+# Ignore PyRight configuration file
+pyrightconfig.json
