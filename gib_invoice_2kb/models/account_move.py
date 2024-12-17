@@ -223,7 +223,7 @@ class AccountMove(models.Model):
                     [
                         ("mimetype", "=", "application/xslt+xml"),
                         ("gib_profile_id", "=", record.gib_profile_id.id),
-                        ("company_id", "=", record.company_id),
+                        ("company_id", "=", record.company_id.id),
                     ],
                     limit=1,
                     order="id DESC",
@@ -234,7 +234,7 @@ class AccountMove(models.Model):
     def _compute_gib_alias_pk(self):
         for record in self:
             if not record.move_is_invoice or record.gib_profile_id == self.env.ref(
-                "gib_invoice_2kb.profile_id-EARSIVFATURA"
+                "gib_invoice_2kb.profile_id-EARSIVFATURA", False
             ):
                 record.gib_alias_pk = False
             else:
@@ -267,11 +267,11 @@ class AccountMove(models.Model):
             else:
                 if record.move_type == "out_invoice":
                     record.gib_invoice_type_id = self.env.ref(
-                        "gib_invoice_2kb.type_code-SATIS"
+                        "gib_invoice_2kb.type_code-SATIS", False
                     )
                 else:
                     record.gib_invoice_type_id = self.env.ref(
-                        "gib_invoice_2kb.type_code-IADE"
+                        "gib_invoice_2kb.type_code-IADE", False
                     )
 
     @api.depends("state", "gib_state")
