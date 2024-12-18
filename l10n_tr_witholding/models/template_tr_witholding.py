@@ -9,6 +9,13 @@ from odoo.addons.account.models.chart_template import template
 class AccountChartTemplate(models.AbstractModel):
     _inherit = 'account.chart.template'
 
+    def _get_chart_template_data(self, template_code):
+        data = super()._get_chart_template_data(template_code)
+        if template_code in ['tr', 'tr_witholding']:
+            if 'template_data' in data:
+                data['template_data'].update({'code_digits': '9'})
+        return data
+
     @template('tr_witholding')
     def _get_tr_witholding_template_data(self):
         return {
@@ -21,8 +28,8 @@ class AccountChartTemplate(models.AbstractModel):
             'property_account_income_categ_id': 'tr600',
         }
 
-    @template('tr', 'res.company')
-    def _get_tr_res_company(self):
+    @template('tr_witholding', 'res.company')
+    def _get_tr_witholding_res_company(self):
         return {
             self.env.company.id: {
                 'account_fiscal_country_id': 'base.tr',
