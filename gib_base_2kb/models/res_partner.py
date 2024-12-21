@@ -75,7 +75,7 @@ class ResPartner(models.Model):
                     if item.get("alias") == alias_id.alias
                     and item.get("document_type") == alias_id.document_type
                 ]
-                if not faund:
+                if not found:
                     alias_to_update[alias_id.id] = {"active": False}
 
             for alias_id, values in alias_to_update.items():
