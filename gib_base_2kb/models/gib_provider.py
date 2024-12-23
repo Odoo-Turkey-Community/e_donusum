@@ -94,6 +94,7 @@ class GibUBLProvider(models.Model):
                     "datas": base64.b64encode(xml),
                     "mimetype": "application/xslt+xml",
                     "name": template_name,
+                    "company_id": self.company_id.id,
                     "use_for_electronic": True,
                 }
             )
@@ -114,6 +115,7 @@ class GibUBLProvider(models.Model):
                     "type": "binary",
                     "mimetype": "application/xslt+xml",
                     "use_for_electronic": True,
+                    "company_id": self.company_id.id,
                     "gib_profile_id": [
                         Command.link(profile) for profile in profile_ids
                     ],
@@ -133,14 +135,14 @@ class GibUBLProvider(models.Model):
         )
         if earchive_template:
             profile_ids = [self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA").id]
-            self._save_template(earchive_template, "E-Arsiv Tasarım", profile_ids)
+            self._save_template(earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids)
 
         if einvoice_template:
             profile_ids = [
                 self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA").id,
                 self.env.ref("gib_invoice_2kb.profile_id-TICARIFATURA").id,
             ]
-            self._save_template(einvoice_template, "E-Fatura Tasarım", profile_ids)
+            self._save_template(einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids)
 
         message = "<br/>".join(result_text)
         return {
