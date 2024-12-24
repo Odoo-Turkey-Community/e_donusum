@@ -9,7 +9,7 @@ import requests
 from datetime import timedelta
 from collections import namedtuple
 from odoo import fields, models, api, Command
-from odoo.modules.module import get_resource_path
+from odoo.tools.misc import file_path
 from textwrap import dedent
 
 from .izibiz_service import IzibizService
@@ -81,7 +81,7 @@ class GibProvider(models.Model):
 
     def dowload_wsdl(self):
         """Servis için gerekli olan WDSL dökümanları locale indirir"""
-        modelu_path = get_resource_path("izibiz_2kb")
+        modelu_path = file_path("izibiz_2kb")
         demo_link = {
             "auth": "https://efaturatest.izibiz.com.tr/AuthenticationWS?wsdl",
             "e-fatura": "https://efaturatest.izibiz.com.tr/EInvoiceWS?wsdl",
