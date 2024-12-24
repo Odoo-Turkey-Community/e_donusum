@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 
 from lxml import etree
 from odoo.exceptions import UserError
-from odoo.modules.module import get_resource_path
+from odoo.tools.misc import file_path
 import requests
 
 from zeep import Client, Settings
@@ -25,7 +25,7 @@ transport = Transport(timeout=30)
 history = HistoryPlugin()
 setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
 
-wsdl_path = os.path.join(get_resource_path("izibiz_2kb"), "data", "wsdl")
+wsdl_path = os.path.join(file_path("izibiz_2kb"), "data", "wsdl")
 
 auth_wsdl_path = os.path.join(wsdl_path, "demo", "auth.wsdl")
 auth_client_demo = Client(
