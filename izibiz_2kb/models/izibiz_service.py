@@ -266,7 +266,6 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
-            log_model = self.provider.env["izibiz.api.log"]
             if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
@@ -279,35 +278,9 @@ class IzibizService:
                 # bilinmeyen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ),
-                        }
-                    )
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "error"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ),
-                        }
-                    )
         return {
             "success": success,
             "error": error,
@@ -330,7 +303,6 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
-            log_model = self.provider.env["izibiz.api.log"]
             if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
@@ -343,19 +315,6 @@ class IzibizService:
                 # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ),
-                        }
-                    )
             else:
                 error = (
                     responce.ERROR_TYPE.ERROR_SHORT_DES
@@ -363,20 +322,6 @@ class IzibizService:
                     + str(responce.ERROR_TYPE.ERROR_CODE)
                 )
                 blocking_level = "error"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ),
-                        }
-                    )
-
         return {
             "success": success,
             "error": error,
@@ -713,7 +658,6 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
-            log_model = self.provider.env["izibiz.api.log"]
             if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
@@ -728,19 +672,6 @@ class IzibizService:
                 # bilinmryen hata
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ).decode(),
-                        }
-                    )
             else:
                 error = (
                     responce.ERROR_TYPE.ERROR_SHORT_DES
@@ -748,20 +679,6 @@ class IzibizService:
                     + str(responce.ERROR_TYPE.ERROR_CODE)
                 )
                 blocking_level = "error"
-                if self.provider.izibiz_keep_log:
-                    log_model.create(
-                        {
-                            "name": responce.ERROR_TYPE.ERROR_CODE,
-                            "desc": responce.ERROR_TYPE.ERROR_SHORT_DES,
-                            "operation": "write_to_archive_extended",
-                            "blocking_level": blocking_level,
-                            "long_desc": etree.tostring(
-                                self.history.last_sent.get("envelope"),
-                                pretty_print=True,
-                            ).decode(),
-                        }
-                    )
-
         return {
             "success": success,
             "error": error,
