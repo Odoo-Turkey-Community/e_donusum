@@ -84,7 +84,6 @@ class AccountJournal(models.Model):
         )
         if not sale_purchase_journals:
             return
-
         sale_purchase_journals_vals = sale_purchase_journals._compute_to_entries_count()
         for journal_id, count, total in sale_purchase_journals_vals:
             currency_id = journal_id.currency_id or self.company_id.currency_id

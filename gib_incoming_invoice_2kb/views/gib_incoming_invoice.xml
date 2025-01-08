@@ -3,7 +3,6 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 
 <odoo>
-    <!-- # TODO view_account_payment_form -->
     <record model="ir.ui.view" id="gib_incoming_invoice_form_view">
         <field name="name">gib.incoming.invoice.form (in gib_incoming_invoice_2kb)</field>
         <field name="model">gib.incoming.invoice</field>
@@ -37,7 +36,7 @@
                         <field name="gib_provider_id" readonly="1"/>
                         <field name="gib_profile"/>
                         <field name="invoice_type"/>
-                        <field name="state" invisible="state in ('None') or gib_profile != 'TICARIFATURA'" />
+                        <field name="state" invisible="state in ['None'] or gib_profile != 'TICARIFATURA'" />
                         <field name="company_id"/>
                     </group>
                 </group>

@@ -862,13 +862,10 @@ class GibProvider(models.Model):
             status_id = gib_status_code_map.get(api_state_map[move_id.gib_uuid])
             if not status_id:
                 code = api_state_map[move_id.gib_uuid]
-                _logger.warning(f"cron_get_invoice_state_info: Bilinmeyen durum kodu: {code} uuid: {move_id.gib_uuid}")
-            move_id.write(
-                {
-                    "gib_status_code_id": status_id
-
-                }
-            )
+                _logger.warning(
+                    f"cron_get_invoice_state_info: Bilinmeyen durum kodu: {code} uuid: {move_id.gib_uuid}"
+                )
+            move_id.write({"gib_status_code_id": status_id})
         return True
 
     def cron_get_invoice_responce_info(self):
@@ -1069,6 +1066,7 @@ class GibProvider(models.Model):
             gid_to_create.append(
                 {
                     "gib_provider_id": self.id,
+                    "company_id": self.company_id.id,
                     "ETTN": incoming.UUID,
                     "name": incoming.ID,
                     "gib_profile": incoming.DESPATCHADVICEHEADER.PROFILEID,

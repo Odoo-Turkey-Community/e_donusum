@@ -17,6 +17,9 @@
                     <filter string="Reddedilmiş İşlem Bekleyen" name="rejected_and_waiting" domain="[('gib_response_code', '=', 'reject'), ('state', 'not in', ['cancel'])]"/>
                     <filter string="Ulaştırılamayanlar" name="undelivered_count" domain="[('gib_status_code_id_value2', 'in', ['error']), ('state', 'not in', ['cancel'])]"/>
                     <filter string="Harici İptaller" name="external_cancellation" domain="[('invoice_date', '&gt;',  (context_today() - relativedelta(days=60))), ('external_cancellation', '!=', False), ('state', 'in', ['cancel'])]"/>
+                    <separator/>
+                    <filter string="Ticari Kabul Edilen" name="gib_response_filter_accept" domain="[('gib_response_code', '=','accept')]"/>
+                    <filter string="Ticari Red Edilen" name="gib_response_filter_reject" domain="[('gib_response_code', '=','reject')]"/>
                 </xpath>
             </field>
         </record>
@@ -111,19 +114,19 @@
             <field name="gib_state" invisible="not gib_state or state == 'draft'"/>
             <label for="gib_profile_id" invisible="move_type not in ['out_invoice', 'in_refund']" />
             <div name="gib_profile_div" class="d-flex" invisible="move_type not in ['out_invoice', 'in_refund']" >
-                <field name="gib_profile_id" invisible="move_type not in ('out_invoice', 'in_refund')" readonly="state in ('posted', 'cancel')" options="{'no_create': True, 'no_open': True}"/>
+                <field name="gib_profile_id" invisible="move_type not in ('out_invoice', 'in_refund')" readonly="gib_state == 'sent' and gib_error_message != 'error'" options="{'no_create': True, 'no_open': True}"/>
                 <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" invisible="not gib_profile_id"/>
-                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" invisible="not gib_profile_id"/>
+                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" invisible="not gib_profile_id" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
             </div>
-            <field name="gib_alias_pk" force_save="1" invisible="not move_is_invoice or gib_profile_id_value in ('EARSIVFATURA', '', False)" readonly="state in ['posted', 'cancel']"/>
+            <field name="gib_alias_pk" force_save="1" invisible="not move_is_invoice or gib_profile_id_value in ('EARSIVFATURA', '', False)" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
             <field name="gib_sequence_id" options="{'no_create': True}" invisible="not move_is_invoice" readonly="state in ['posted', 'cancel']"/>
         </xpath>
         <xpath expr="//group[@id='other_tab_group']" position="inside">
             <group string="Elektronik Fatura Bilgileri" name="gib_info_group" invisible="not move_is_invoice">
                 <field name="gib_uuid" invisible="not gib_state"/>
                 <field name="gib_invoice_name" invisible="not gib_state"/>
-                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" readonly="state in ['posted', 'cancel']"/>
-                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" readonly="state in ['posted', 'cancel']"/>
+                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
+                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
                 <label for="gib_status_code_id" style="font-weight:bold" invisible="gib_invoice_name in ['TASLAK', '', False]"/>
                 <div class="o_row gib_status_code_id_div" invisible="gib_invoice_name in ['TASLAK', '', False]">
                     <field name="gib_status_code_id" readonly="1"/>
@@ -133,6 +136,7 @@
                         </span>
                     </button>
                 </div>
+                <field name="gib_response_code" invisible="not gib_response_code"/>
             </group>
         </xpath>
     </field>
