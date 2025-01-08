@@ -85,6 +85,7 @@ class AccountMove(models.Model):
         comodel_name="gib_base_2kb.provider",
         string="Entegratör",
         compute="_compute_gib_provider_id",
+        domain="[('company_id', '=', company_id)]",
         store=True,
         readonly=False,
     )
