@@ -170,7 +170,7 @@ Uygulamayı üzerinde çalıştıracağınız hazır [Odoo](https://www.odoo.com
   ```
 * Sürüm versiyonları
   ```sh
-  Odoo v16, v17
+  Odoo v16, v17, v18
   ```
   
   
