@@ -35,6 +35,7 @@
                     <field name="gib_profile_id_value" invisible="1" />
                     <field name="partner_profile_type" invisible="1" />
                     <field name="gib_status_code_id_value2" invisible="1" />
+
                     <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="margin-bottom:0px; background-color:#dee2e6" attrs="{'invisible': ['|', '|', ('state', '!=', 'posted'), ('gib_error_message', '!=', False), ('gib_state', 'not in', ['to_send', 'to_cancel'])]}">
                         <p>
                             <i class="fa fa-3x fa-bullhorn me-3"></i> Pro paket ile e-dönüşümün çok daha gelişmiş ve detaylı özelliklerinden yararlanabilirsiniz. Daha fazla bilgi için <i title="arrow" class="fa fa-sm fa-arrow-right mx-3"/>
@@ -112,19 +113,19 @@
             <field name="gib_state" attrs="{'invisible': ['|', ('gib_state', '=', False), ('state', '=', 'draft')]}" />
             <label for="gib_profile_id" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}"/>
             <div name="gib_profile_div" class="d-flex" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}">
-                <field name="gib_profile_id" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])], 'readonly': [('state', 'in', ['posted', 'cancel'])]}" options="{'no_create': True, 'no_open': True}"/>
-                <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" attrs="{'invisible': [('gib_profile_id', '=',False)]}"/>
+                <field name="gib_profile_id" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}" options="{'no_create': True, 'no_open': True}"/>
+                <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" attrs="{'invisible': [('gib_profile_id', '=',False)], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
                 <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('gib_profile_id', '=',False)]}"/>
             </div>
-            <field name="gib_alias_pk" force_save="1" attrs="{'invisible': ['|', ('gib_profile_id_value', 'in', ['EARSIVFATURA', '', False]), ('move_is_invoice', '=', False)], 'readonly': [('state', 'in', ['posted', 'cancel'])]}"/>
+            <field name="gib_alias_pk" force_save="1" attrs="{'invisible': ['|', ('gib_profile_id_value', 'in', ['EARSIVFATURA', '', False]), ('move_is_invoice', '=', False)], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
             <field name="gib_sequence_id" options="{'no_create': True}" attrs="{'invisible': [('move_is_invoice', '=', False)], 'readonly': [('state', 'in', ['posted', 'cancel'])]}" />
         </xpath>
         <xpath expr="//group[@id='other_tab_group']" position="inside">
             <group string="Elektronik Fatura Bilgileri" name="gib_info_group" attrs="{'invisible': [ ('move_is_invoice', '=', False)]}">
                 <field name="gib_uuid" attrs="{'invisible': [('gib_state', '=',False)]}"/>
                 <field name="gib_invoice_name" attrs="{'invisible': [('gib_state', '=',False)]}"/>
-                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('state', 'in', ['posted', 'cancel'])]}"/>
-                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('state', 'in', ['posted', 'cancel'])]}"/>
+                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
+                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
                 <label for="gib_status_code_id" style="font-weight:bold" attrs="{'invisible': [('gib_invoice_name', 'in', ['TASLAK', '', False])]}"/>
                 <div class="o_row gib_status_code_id_div" attrs="{'invisible': [('gib_invoice_name', 'in', ['TASLAK', '', False])]}">
                     <field name="gib_status_code_id" readonly="1"/>
