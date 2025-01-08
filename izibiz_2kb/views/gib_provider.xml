@@ -20,7 +20,6 @@
                             <field name="izibiz_username" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
                             <field name="izibiz_password" attrs="{'required': [('provider', '=', 'izibiz')]}"/>
                             <field name="izibiz_jwt" invisible="1"/>
-                            <field name="izibiz_keep_log"/>
                         </group>
                     </group>
                 </page>

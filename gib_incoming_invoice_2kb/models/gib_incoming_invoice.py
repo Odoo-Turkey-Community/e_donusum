@@ -26,7 +26,7 @@ class GibIncomingInvoice(models.Model):
     reciever_alias = fields.Char("Alıcı PK")
 
     invoice_type = fields.Char(string="Fatura Tipi")
-    gib_profile = fields.Char(string="Fatura Türü")
+    gib_profile = fields.Char(string="Fatura Profili")
     gib_provider_id = fields.Many2one(
         comodel_name="gib_base_2kb.provider", string="Entegratör", required=True
     )
@@ -40,7 +40,7 @@ class GibIncomingInvoice(models.Model):
         string="Durumu",
     )
 
-    currency_code = fields.Char("Para Birimi")
+    currency_code = fields.Char("Para Birimi Kodu")
     tax_group = fields.Char("Vergi Grubu")
     tax_code = fields.Char("Vergi Kodu")
     tax_amount = fields.Float("Vergi Tutarı")

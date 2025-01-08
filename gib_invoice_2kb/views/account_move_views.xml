@@ -93,7 +93,6 @@
                     </span>
                     <h3>
                         <field name="gib_invoice_name" readonly="1"/>
-                        <!-- attrs="{'invisible':[('gib_profile_id', '=', False), ('posted_before', '=', False), ('quick_edit_mode', '=', False)]}"-->
                     </h3>
                 </div>
             </div>
@@ -114,8 +113,8 @@
             <label for="gib_profile_id" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}"/>
             <div name="gib_profile_div" class="d-flex" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])]}">
                 <field name="gib_profile_id" attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'in_refund'])], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}" options="{'no_create': True, 'no_open': True}"/>
-                <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" attrs="{'invisible': [('gib_profile_id', '=',False)], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
-                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('gib_profile_id', '=',False)]}"/>
+                <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" attrs="{'invisible': [('gib_profile_id', '=',False)]}"/>
+                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" attrs="{'invisible': [('gib_profile_id', '=',False)], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
             </div>
             <field name="gib_alias_pk" force_save="1" attrs="{'invisible': ['|', ('gib_profile_id_value', 'in', ['EARSIVFATURA', '', False]), ('move_is_invoice', '=', False)], 'readonly': [('gib_state','=', 'sent'), ('gib_error_message','!=', 'error')]}"/>
             <field name="gib_sequence_id" options="{'no_create': True}" attrs="{'invisible': [('move_is_invoice', '=', False)], 'readonly': [('state', 'in', ['posted', 'cancel'])]}" />
