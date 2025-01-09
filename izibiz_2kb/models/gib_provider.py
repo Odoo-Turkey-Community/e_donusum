@@ -128,7 +128,6 @@ class GibProvider(models.Model):
 
         alias = []
         result = self._get_izibiz_service().check_user(vat, role)
-        result = self._get_izibiz_service().check_user(vat, role)
         if result.get("error"):
             _logger.error("izibiz'den etiket alınamadı: " + result.get('error', ''))
         if result.get("success"):
