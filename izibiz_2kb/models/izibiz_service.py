@@ -24,7 +24,7 @@ from odoo.tools.misc import file_path
 _logger = logging.getLogger(__name__)
 
 session = Session()
-session.verify = True
+session.verify = False
 retries = Retry(
     total=10,
     backoff_factor=0.1,
