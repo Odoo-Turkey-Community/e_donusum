@@ -52,6 +52,11 @@ class GibProvider(models.Model):
         super().write(values)
         if not CRON_DEPENDS.isdisjoint(values):
             self._sync_cron()
+        if self.izibiz_jwt and ('izibiz_username' in values or 'izibiz_password' in values):
+            super().write({
+                'izibiz_jwt': False
+            })
+
 
     def unlink(self):
         crons = self.izibiz_cron_ids.sudo()
