@@ -3,7 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 from odoo import models, _
-from odoo.tools import float_repr
+from odoo.tools import float_repr, float_round
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
 
@@ -153,17 +153,12 @@ class GibUblTR12(models.AbstractModel):
         if self.env.ref("base.TRY") == invoice.currency_id:
             return {}
         else:
-            lines = invoice.line_ids.filtered(lambda x: x.amount_currency > 0)
-            amount_currency_positive = sum(lines.mapped("amount_currency"))
-            total_debit = sum(invoice.line_ids.mapped("debit"))
-            if "custom_currency_rate" in invoice._fields:
-                currency_rate_amount = invoice.custom_currency_rate
-            else:
-                currency_rate_amount = float_repr(total_debit / amount_currency_positive, 6)
+            rate = invoice.line_ids.filtered(lambda ln: ln.display_type not in ['line_section', 'line_note']).mapped('currency_rate')[0]
+            inverse_rate = float_round(1/rate, 4)
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
-                "calculation_rate": currency_rate_amount,
+                "calculation_rate": inverse_rate,
                 "pricing_exchange_rate_vals": False,
             }
 

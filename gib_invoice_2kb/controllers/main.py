@@ -3,13 +3,9 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 import json
-import base64
-from lxml import etree
 from werkzeug.exceptions import InternalServerError
 from odoo import http
 from odoo.http import request
-from odoo.exceptions import UserError
-from odoo.modules.module import get_module_resource
 from odoo.tools.misc import html_escape
 
 
@@ -20,44 +16,7 @@ class Controller(http.Controller):
     )
     def gib_invoice_out_pdf_(self, move):
         try:
-            gib_attachment = move._get_edi_attachment()
-            if not gib_attachment:
-                raise UserError("Ek bulunamadı")
-
-            tree = etree.fromstring(
-                base64.b64decode(gib_attachment.with_context(bin_size=False).datas)
-            )
-            ns = {
-                "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
-                "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
-            }
-            r = tree.xpath(
-                "//cac:AdditionalDocumentReference[cbc:DocumentType[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
-                namespaces=ns,
-            )
-            if len(r) != 1:
-                f_xslt = (
-                    "e-Arsiv.xslt"
-                    if move.gib_profile_id
-                    == request.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
-                    else "e-Fatura.xslt"
-                )
-                xslt = etree.parse(
-                    get_module_resource("gib_base_2kb", "data", "template", f_xslt)
-                )
-            else:
-                xslt = etree.fromstring(base64.b64decode(r[0].text))
-
-            transform = etree.XSLT(xslt)
-            print(transform.error_log)
-            newdom = transform(tree)
-            content = request.env["ir.actions.report"]._run_wkhtmltopdf(
-                [str(newdom)],
-                specific_paperformat_args={
-                    "data-report-margin-top": 8,
-                    "data-report-header-spacing": 8,
-                },
-            )
+            content = move.get_2kb_pdf()
             headers = [
                 ("Content-Type", "application/pdf"),
                 (
