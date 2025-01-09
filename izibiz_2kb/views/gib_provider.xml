@@ -19,7 +19,7 @@
                         <group string="API Bilgileri">
                             <field name="izibiz_username" required="provider == 'izibiz'" />
                             <field name="izibiz_password" required="provider == 'izibiz'" />
-                            <field name="izibiz_jwt" invisible="1"/>
+                            <field name="izibiz_jwt" invisible="0"/>
                         </group>
                     </group>
                 </page>

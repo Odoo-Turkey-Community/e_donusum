@@ -12,10 +12,10 @@ from odoo.exceptions import UserError
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.tools.misc import file_path
 from markupsafe import Markup
+_logger = logging.getLogger(__name__)
 
 GIB_INVOICE_DEFAULT_NAME = "TASLAK"
 
-_logger = logging.getLogger(__name__)
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -538,7 +538,7 @@ class AccountMove(models.Model):
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf2/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf2/%s" % self.id,
         }
 
     def button_process_gib_web_services(self):
