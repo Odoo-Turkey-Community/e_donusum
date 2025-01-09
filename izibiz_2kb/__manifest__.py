@@ -6,7 +6,15 @@
     "name": "İZİBİZ E-Dönüşüm Sağlayıcısı",
     "summary": "İZİBİZ E-Dönüşüm Sağlayıcısı",
     "description": """
-        İZİBİZ E-Dönüşüm Sağlayıcısı
+        İZİBİZ entegratörü üzerinden e-dönüşüm süreçlerini yöneten entegrasyon modülüdür.
+        Özellikler:
+        * İZİBİZ web servisleri ile tam entegrasyon
+        * Otomatik oturum yönetimi
+        * Güvenli veri iletişimi
+        * E-Fatura, E-Arşiv, E-İrsaliye süreçleri
+        * Gerçek zamanlı durum sorgulama
+        * Hata yönetimi ve loglama
+        * Performans optimizasyonu
     """,
     "version": "1.0",
     'maintainer': 'Quanimo',
