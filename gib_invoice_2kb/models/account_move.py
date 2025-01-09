@@ -2,14 +2,17 @@
 # Copyright (C) 2024 Odoo Turkey Community (https://github.com/orgs/Odoo-Turkey-Community/dashboard)
 # License Other proprietary. Please see the license file in the Addon folder.
 
+import logging
 import uuid
 import base64
 import re
+from lxml import etree
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.addons.http_routing.models.ir_http import slug
+from odoo.tools.misc import file_path
 
-from lxml import etree
+_logger = logging.getLogger(__name__)
 
 GIB_INVOICE_DEFAULT_NAME = "TASLAK"
 
@@ -887,3 +890,44 @@ class AccountMove(models.Model):
             )
         self.gib_uuid = str(uuid.uuid4())
         self.action_retry_edi_documents_error()
+
+    def get_2kb_pdf(self):
+        self.ensure_one()
+        gib_attachment = self._get_edi_attachment()
+        if not gib_attachment:
+            raise UserError("Ek bulunamadı")
+
+        tree = etree.fromstring(
+            base64.b64decode(gib_attachment.with_context(bin_size=False).datas)
+        )
+        ns = {
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        }
+        r = tree.xpath(
+            "//cac:AdditionalDocumentReference[cbc:DocumentType[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
+            namespaces=ns,
+        )
+        if len(r) != 1:
+            f_xslt = (
+                "e-Arsiv.xslt"
+                if self.gib_profile_id
+                == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
+                else "e-Fatura.xslt"
+            )
+            xslt = etree.parse(
+                file_path("gib_base_2kb", "data", "template", f_xslt)
+            )
+        else:
+            xslt = etree.fromstring(base64.b64decode(r[0].text))
+
+        transform = etree.XSLT(xslt)
+        _logger.info(f"get_2kb_pdf transform log: {transform.error_log}")
+        newdom = transform(tree)
+        return self.env["ir.actions.report"]._run_wkhtmltopdf(
+            [str(newdom)],
+            specific_paperformat_args={
+                "data-report-margin-top": 8,
+                "data-report-header-spacing": 8,
+            },
+        )

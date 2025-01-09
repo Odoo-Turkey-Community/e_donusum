@@ -303,7 +303,7 @@
 </binding>
 <service name="EIrsaliyeWS">
 <port name="EIrsaliyeServicePort" binding="tns:EIrsaliyeServicePortBinding">
-<soap:address location="http://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye"/>
+<soap:address location="https://efaturatest.izibiz.com.tr/EIrsaliyeWS/EIrsaliye"/>
 </port>
 </service>
 </definitions>
