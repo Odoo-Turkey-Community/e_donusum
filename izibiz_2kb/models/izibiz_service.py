@@ -8,7 +8,8 @@ import base64
 import zipfile
 import io
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from dateutil.relativedelta import relativedelta
 from urllib3.util import Retry
 from requests import Session
 from requests.adapters import HTTPAdapter
@@ -125,7 +126,7 @@ class IzibizService:
         expiration_time = datetime.fromtimestamp(exp, timezone.utc)
         current_time = datetime.now(timezone.utc)
 
-        return current_time >= expiration_time
+        return current_time >= (expiration_time - relativedelta(hours=4))
 
     # -------------------------------------------------------------------------
     # Helper
