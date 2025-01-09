@@ -385,7 +385,7 @@ class AccountMove(models.Model):
         )
         return res
 
-    #def button_draft(self):
+    def button_draft(self):
         # OVERRIDE
         res = super().button_draft()
         return res
