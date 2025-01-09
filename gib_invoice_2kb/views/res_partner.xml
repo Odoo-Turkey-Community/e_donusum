@@ -13,7 +13,7 @@
                 <group string="e-Fatura" priority="2" id="gib_group_einv">
                     <field name="is_e_inv" widget="boolean_toggle"/>
                     <field name="profile_id" options="{'no_create': True}" required="is_e_inv"/>
-                    <field name="alias_pk" required="is_e_inv" invisible="not is_e_inv"/>
+                    <field name="alias_pk" invisible="not is_e_inv"/>
                     <field name="sequence_id" options="{'no_create': True}"/>
                 </group>
             </xpath>

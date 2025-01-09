@@ -208,7 +208,10 @@ class AccountMove(models.Model):
                     or record.gib_sequence_id.company_id != record.company_id
                 ):
                     suitable_sequences = record.gib_sequence_id.search(
-                        [("gib_profile_id", "in", record.gib_profile_id.id), ('company_id', '=', record.company_id.id)]
+                        [
+                            ("gib_profile_id", "in", record.gib_profile_id.id),
+                            ("company_id", "=", record.company_id.id),
+                        ]
                     )
                     if len(suitable_sequences) == 1:
                         record.gib_sequence_id = suitable_sequences[:1]
@@ -248,9 +251,14 @@ class AccountMove(models.Model):
             if not record.move_is_invoice or not record.gib_profile_id:
                 record.gib_provider_id = False
             else:
-                if not record.gib_provider_id or record.company_id != record.gib_provider_id.company_id:
+                if (
+                    not record.gib_provider_id
+                    or record.company_id != record.gib_provider_id.company_id
+                ):
                     record.gib_provider_id = (
-                        record.gib_provider_id.get_default_provider(record.company_id).id
+                        record.gib_provider_id.get_default_provider(
+                            record.company_id
+                        ).id
                     )
 
     @api.depends("move_type", "partner_id")
@@ -741,7 +749,7 @@ class AccountMove(models.Model):
             move.gib_alias_pk and error.append(
                 "E-Arşiv faturasında Gönderici Posta Kutusu Olamaz!"
             )
-        else:
+        elif move.gib_profile_id.value != "IHRACAT":
             req_fields.extend(["gib_alias_pk", "gib_profile_id"])
 
         move_error = self._check_required_fields(move, req_fields)
