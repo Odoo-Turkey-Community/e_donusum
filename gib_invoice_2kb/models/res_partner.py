@@ -55,6 +55,8 @@ class ResPartner(models.Model):
 
             if not self.alias_pk:
                 self.alias_pk = pk_id
+        elif self.profile_id.value == "IHRACAT":
+            self.alias_pk = False
         else:
             self.is_e_inv = False
             self.alias_pk = False
