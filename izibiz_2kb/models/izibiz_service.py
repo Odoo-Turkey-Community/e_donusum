@@ -9,24 +9,36 @@ import zipfile
 import io
 import json
 from datetime import datetime, timezone
-
-from lxml import etree
-from odoo.exceptions import UserError
-from odoo.tools.misc import file_path
-import requests
+from urllib3.util import Retry
+from requests import Session
+from requests.adapters import HTTPAdapter
 
 from zeep import Client, Settings
 from zeep.transports import Transport
 from zeep.plugins import HistoryPlugin
 
+from lxml import etree
+from odoo.exceptions import UserError
+from odoo.tools.misc import file_path
+
 _logger = logging.getLogger(__name__)
 
-transport = Transport(timeout=30)
+session = Session()
+session.verify = True
+retries = Retry(
+    total=10,
+    backoff_factor=0.1,
+    status_forcelist=[500, 502, 503, 504],
+    allowed_methods={'POST', 'GET'},
+)
+session.mount('https://', HTTPAdapter(max_retries=retries))
+session.mount('http://', HTTPAdapter(max_retries=retries))
+transport = Transport(session=session, operation_timeout=(10, 30))
 history = HistoryPlugin()
-setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True, force_https=False)
+setting = Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
+
 
 wsdl_path = os.path.join(file_path("izibiz_2kb"), "data", "wsdl")
-
 auth_wsdl_path = os.path.join(wsdl_path, "demo", "auth.wsdl")
 auth_client_demo = Client(
     f"file://{auth_wsdl_path}",
