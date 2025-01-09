@@ -530,7 +530,7 @@ class AccountMove(models.Model):
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf2/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf2/%s" % self.id,
         }
 
     def button_process_gib_web_services(self):
