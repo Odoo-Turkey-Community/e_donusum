@@ -386,9 +386,7 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        # OVERRIDE
-        res = super().button_draft()
-        return res
+        # OVERRIDE 
         for move in self:
             if move.gib_show_cancel_button:
                 raise UserError(
@@ -406,8 +404,6 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         # OVERRIDE
         # Set the electronic document to be posted and post immediately for synchronous formats.
-        posted = super()._post(soft=soft)
-        return posted
         for move in posted:
             provider = move._get_gib_provider()
             if provider:
