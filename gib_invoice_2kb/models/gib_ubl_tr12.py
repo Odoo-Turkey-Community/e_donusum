@@ -158,7 +158,7 @@ class GibUblTR12(models.AbstractModel):
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
-                "calculation_rate": inverse_rate,
+                "calculation_rate": float_repr(inverse_rate, 6),
                 "pricing_exchange_rate_vals": False,
             }
 
