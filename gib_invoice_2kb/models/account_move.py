@@ -12,6 +12,7 @@ from odoo.exceptions import UserError
 from odoo.addons.http_routing.models.ir_http import slug
 from odoo.tools.misc import file_path
 from markupsafe import Markup
+
 _logger = logging.getLogger(__name__)
 
 GIB_INVOICE_DEFAULT_NAME = "TASLAK"
@@ -386,7 +387,7 @@ class AccountMove(models.Model):
         return res
 
     def button_draft(self):
-        # OVERRIDE 
+        # OVERRIDE
         for move in self:
             if move.gib_show_cancel_button:
                 raise UserError(
@@ -404,6 +405,7 @@ class AccountMove(models.Model):
     def _post(self, soft=True):
         # OVERRIDE
         # Set the electronic document to be posted and post immediately for synchronous formats.
+        posted = super()._post(soft=soft)
         for move in posted:
             provider = move._get_gib_provider()
             if provider:
@@ -921,9 +923,7 @@ class AccountMove(models.Model):
                 == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
                 else "e-Fatura.xslt"
             )
-            xslt = etree.parse(
-                file_path("gib_base_2kb", "data", "template", f_xslt)
-            )
+            xslt = etree.parse(file_path("gib_base_2kb", "data", "template", f_xslt))
         else:
             xslt = etree.fromstring(base64.b64decode(r[0].text))
 
