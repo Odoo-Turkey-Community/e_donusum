@@ -92,7 +92,7 @@ class GibIncomingInvoice(models.Model):
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf/incoming/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf/incoming/%s" % self.id,
         }
 
     def toggle_is_importable(self):
