@@ -163,6 +163,7 @@ class AccountMove(models.Model):
     )
 
     partner_profile_type = fields.Char(compute="_compute_partner_profile_type")
+    esudo = fields.Boolean()
 
     @api.depends("commercial_partner_id")
     def _compute_partner_profile_type(self):
@@ -325,9 +326,8 @@ class AccountMove(models.Model):
 
         for move in self:
             provider = move._get_gib_provider()
-            if provider and move.gib_state in ("sent", "to_cancel", "cancel"):
+            if provider and move.gib_state in ("sent", "to_cancel", "cancel") and not move.esudo:
                 move.show_reset_to_draft_button = False
-                break
 
     @api.depends("gib_state")
     def _compute_gib_show_cancel_button(self):
@@ -388,6 +388,9 @@ class AccountMove(models.Model):
     def button_draft(self):
         # OVERRIDE
         for move in self:
+            if move.esudo:
+                continue
+
             if move.gib_show_cancel_button:
                 raise UserError(
                     _(
@@ -407,6 +410,9 @@ class AccountMove(models.Model):
         posted = super()._post(soft=soft)
 
         for move in posted:
+            if move.esudo:
+                move.esudo = False
+                continue
             provider = move._get_gib_provider()
             if provider:
                 move_applicability = provider._get_move_applicability(move)

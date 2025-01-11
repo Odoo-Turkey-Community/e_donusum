@@ -70,3 +70,9 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
                 attachments=None,
                 **kwargs,
             )
+
+    def force_to_draft_gib_invoice(self):
+        if not self.user_has_groups("base.group_system"):
+            raise UserError("Bu işlem için yetkili değilsiniz! Sadece yöneticiiler!")
+        for wizard in self:
+            wizard.invoice_id.esudo = True
