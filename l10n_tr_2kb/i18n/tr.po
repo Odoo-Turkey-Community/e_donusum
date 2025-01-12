@@ -1,0 +1,1067 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_tr_2kb
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0-20250111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-12 15:28+0000\n"
+"PO-Revision-Date: 2025-01-12 18:37+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_302
+msgid "11/1-a Hizmet İhracatı"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_301
+msgid "11/1-a Mal İhracatı"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_303
+msgid "11/1-a Roaming Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_316
+msgid "11/1-a Serbest Bölgelerdeki Müşteriler İçin Yapılan Fason Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_322
+msgid ""
+"11/1-a Türkiye'de İkamet Etmeyenlere Özel Fatura ile Yapılan Teslimler "
+"(Bavul Ticareti)"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_304
+msgid ""
+"13/a Deniz Hava ve Demiryolu Taşıma Araçlarının Teslimi İle İnşa, Tadil, "
+"Bakım ve Onarımları"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_305
+msgid ""
+"13/b Deniz ve Hava Taşıma Araçları İçin Liman Ve Hava Meydanlarında Yapılan "
+"Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_307
+msgid ""
+"13/c Maden Arama, Altın, Gümüş, ve Platin Madenleri İçin İşletme,"
+"Zenginleştirme Ve Rafinaj Faaliyetlerine İlişkin Teslim Ve Hizmetler[KDVGUT-"
+"(II/8-4)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_306
+msgid ""
+"13/c Petrol Aramaları ve Petrol Boru Hatlarının İnşa ve Modernizasyonuna "
+"İlişkin Yapılan Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_308
+msgid "13/d Teşvikli Yatırım Mallarının Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_309
+msgid "13/e Liman Ve Hava Meydanlarının İnşası, Yenilenmesi Ve Genişletilmesi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_310
+msgid "13/f Ulusal Güvenlik Amaçlı Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_319
+msgid "13/g Başbakanlık Merkez Teşkilatına Yapılan Araç Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_324
+msgid ""
+"13/h Türkiye Kızılay Derneğine Yapılan Teslim ve Hizmetler ile Türkiye "
+"Kızılay Derneğinin Teslim ve Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_331
+msgid ""
+"13/m Ar-Ge, Yenilik ve Tasarım Faaliyetlerinde Kullanılmak Üzere Yapılan "
+"Yeni Makina ve Teçhizat Teslimlerinde İstisna"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_323
+msgid ""
+"13/ğ 5300 Sayılı Kanuna Göre Düzenlenen Ürün Senetlerinin İhtisas/Ticaret "
+"Borsaları Aracılığıyla İlk Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_326
+msgid ""
+"13/ı Gıda, Tarım ve Hayvancılık Bakanlığı Tarafından Tescil Edilmiş "
+"Gübrelerin Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_327
+msgid ""
+"13/ı Gıda, Tarım ve Hayvancılık Bakanlığı Tarafından Tescil Edilmiş "
+"Gübrelerin İçeriğinde Bulunan Hammaddelerin Gübre Üreticilerine Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_325
+msgid "13/ı Yem Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_311
+msgid "14/1 Uluslararası Taşımacılık"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_315
+msgid ""
+"14/3 İhraç Konusu Eşyayı Taşıyan Kamyon, Çekici ve Yarı Romorklara Yapılan "
+"Motorin Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_312
+msgid "15/a Diplomatik Organ Ve Misyonlara Yapılan Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_313
+msgid "15/b Uluslararası Kuruluşlara Yapılan Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_235
+msgid ""
+"16/1-c Transit ve Gümrük Antrepo Rejimleri İle Geçici Depolama ve Serbest "
+"Bölge Hükümlerinin Uygulandığiı Malların Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_201
+msgid "17/1 Kültür ve Eğitim Amacı Taşıyan İşlemler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_202
+msgid "17/2-a Sağlık, Çevre Ve Sosyal Yardım Amaçlı İşlemler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_229
+msgid ""
+"17/2-b Gıda Bankacılığı Faaliyetinde Bulunan Dernek ve Vakıflara Bağışlanan "
+"Gıda, Temizlik, Giyecek ve Yakacak Maddeleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_227
+msgid ""
+"17/2-b Kanunların Gösterdiği Gerek Üzerine Bedelsiz Olarak Yapılan Teslim "
+"ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_228
+msgid ""
+"17/2-b Kanunun (17/1) Maddesinde Sayılan Kurum ve Kuruluşlara Bedelsiz "
+"Olarak Yapılan Teslimler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_226
+msgid ""
+"17/2-b Özel Okulları, Üniversite ve Yüksekokullar Tarafından Verilen "
+"Bedelsiz Eğitim Ve Öğretim Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_204
+msgid ""
+"17/2-c Yabancı Diplomatik Organ Ve Hayır Kurumlarının Yapacakları "
+"Bağışlarla İlgili Mal Ve Hizmet Alışları"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_205
+msgid ""
+"17/2-d Taşınmaz Kültür Varlıklarına İlişkin Teslimler ve Mimarlık Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_206
+msgid "17/2-e Mesleki Kuruluşların İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_207
+msgid "17/3 Askeri Fabrika, Tersane ve Atölyelerin İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_208
+msgid "17/4-c Birleşme, Devir, Dönüşüm ve Bölünme İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_209
+msgid "17/4-e Banka ve Sigorta Muameleleri Vergisi Kapsamına Giren İşlemler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_232
+msgid ""
+"17/4-g Döviz, Para, Damga Pulu, Değerli Kağıtlar, Hisse Senedi ve Tahvil "
+"Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_230
+msgid "17/4-g Külçe Altın, Külçe Gümüş Ve Kiymetli Taşlarin Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_231
+msgid ""
+"17/4-g Metal Plastik, Lastik, Kauçuk, Kağit, Cam Hurda Ve Atıkların Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_211
+msgid ""
+"17/4-h Zirai Amaçlı Su Teslimleri İle Köy Tüzel Kişiliklerince Yapılan İçme "
+"Suyu teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_213
+msgid "17/4-j Boru Hattı İle Yapılan Petrol Ve Gaz Taşımacılığı"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_214
+msgid ""
+"17/4-k Organize Sanayi Bölgelerindeki Arsa ve İşyeri Teslimleri İle Konut "
+"Yapı Kooperatiflerinin Üyelerine Konut Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_215
+msgid "17/4-l Varlık Yönetim Şirketlerinin İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_216
+msgid "17/4-m Tasarruf Mevduatı Sigorta Fonunun İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_217
+msgid ""
+"17/4-n Basın-Yayın ve Enformasyon Genel Müdürlüğüne Verilen Haber Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_218
+msgid ""
+"17/4-o Gümrük Antrepoları, Geçici Depolama Yerleri, Gümrüklü Sahalar ve "
+"Vergisiz Satış Yapılan Mağazalarla İlgili Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_219
+msgid "17/4-p Hazine ve Arsa Ofisi Genel Müdürlüğünün işlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_220
+msgid ""
+"17/4-r İki Tam Yıl Süreyle Sahip Olunan Taşınmaz ve İştirak Hisseleri "
+"Satışları"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_317
+msgid ""
+"17/4-s Engellilerin Eğitimleri, Meslekleri ve Günlük Yaşamlarına İlişkin "
+"AraçGereç ve Bilgisayar Programları"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_237
+msgid ""
+"17/4-t 5300 Sayılı Kanuna Göre Düzenlenen Ürün Senetlerinin İhtisas/Ticaret "
+"Borsaları Aracılığıyla İlk Teslimlerinden Sonraki Teslim"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_238
+msgid ""
+"17/4-u Varlıkların Varlık Kiralama Şirketlerine Devri İle Bu Varlıkların "
+"Varlık Kiralama Şirketlerince Kiralanması ve Devralınan Kuruma Devri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_239
+msgid ""
+"17/4-y Taşınmazların Finansal Kiralama Şirketlerine Devri, Finansal "
+"Kiralama Şirketi Tarafından Devredene Kiralanması ve Devri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_240
+msgid ""
+"17/4-z Patentli Veya Faydalı Model Belgeli Buluşa İlişkin Gayri Maddi "
+"Hakların Kiralanması, Devri ve Satışı"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_242
+msgid ""
+"17/4-ö md. Gümrük Antrepoları, Geçici Depolama Yerleri ile Gümrüklü "
+"Sahalarda, İthalat ve İhracat İşlemlerine konu mallar ile transit rejim "
+"kapsamında işlem gören mallar için verilen ardiye, depolama ve terminal "
+"hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_212
+msgid "17/4-ı Serbest Bölgelerde Verilen Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_234
+msgid ""
+"17/4-ş Konut Finansmanı Amacıyla Teminat Gösterilen ve İpotek Konulan "
+"Konutların Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_314
+msgid ""
+"19/2 Usulüne Göre Yürürlüğe Girmiş Uluslar Arası Anlaşmalar Kapsamındaki "
+"İstisnalar"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_236
+msgid ""
+"19/2 Usulüne Göre Yürürlüğe Girmiş Uluslararası Anlaşmalar Kapsamındaki "
+"İstisnalar (İade Hakkı Tanınmayan)"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_701
+msgid "3065 s. KDV Kanununun 11/1-c md. Kapsamındaki İhraç Kayıtlı Satış"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_703
+msgid "4760 s. ÖTV Kanununun 8/2 Md. Kapsamındaki İhraç Kayıtlı Satış"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_9021
+msgid "4961 BANKA SMV"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_1048
+msgid "5035 SK DAMGAV"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_4081
+msgid "5035 ÖZ İLET V."
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_107
+msgid "7/a Maddesi Kapsamında Yapılan Teslimler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model,name:l10n_tr_2kb.model_account_chart_template
+msgid "Account Chart Template"
+msgstr "Hesap Planı Şablonu"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_103
+msgid "Askeri Amaçlı İstisna"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_623
+msgid "Ağaç Ve Orman Ürünleri Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_822
+msgid "Ağaç ve Orman Ürünleri Teslimi[KDVGUT-(I/C-2.1.3.3.6)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_9944
+msgid "BEL.ÖD.HAL RÜSUM"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0021
+msgid "BMV"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8001
+msgid "BORSA TES.ÜC."
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_619
+msgid "Bakir, Çinko Ve Alüminyum Ürünlerinin Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_818
+msgid ""
+"Bakır, Çinko, Alüminyum ve Kurşun Ürünlerinin Teslimi[KDVGUT-(I/"
+"C-2.1.3.3.2)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_335
+msgid "Basılı Kitap ve Süreli Yayınların Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_tax_group__code
+msgid "Code"
+msgstr "Kod"
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_1047
+msgid "DAMGA V"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_825
+msgid "Demir-Çelik Ürünlerinin Teslimi [KDVGUT-(I/C-2.1.3.3.8)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_627
+msgid "Demir-Çelik Ürünlerinin Teslimi [Kdvgut-(I/C-2.1.3.3.8)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_001
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_102
+msgid "Diplomatik İstisna"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_616
+msgid "Diğer Hizmetler [Kdvgut-(I/C-2.1.3.2.13)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_626
+msgid "Diğer Teslimler [Kdvgut-(I/C-2.1.3.3.7.)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_106
+msgid "Diğer İstisnalar"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_250
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_350
+msgid "Diğerleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_702
+msgid "DİİB ve Geçici Kabul Rejimi Kapsamındaki Satışlar"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_4071
+msgid "ELK.HAVAGAZ.TÜK.VER."
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8005
+msgid "ELK.TÜK.VER."
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8002
+msgid "ENERJİ FONU"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_602
+msgid "Etüt, Plan-Proje, Danişmanlik, Denetim Ve Benzeri Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_802
+msgid ""
+"Etüt, Plan-Proje, Danışmanlık, Denetim ve Benzeri Hizmetler[KDVGUT-(I/"
+"C-2.1.3.2.2)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position__invoice_type__exception
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position_template__invoice_type__exception
+msgid "Exception"
+msgstr "İstisna"
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position__exception_code
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position_template__exception_code
+msgid "Exception Code"
+msgstr "İstisna Kodu"
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position__exemption_rate
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position_template__exemption_rate
+msgid "Exemption Rate"
+msgstr "İstisna Oranı"
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position__invoice_type__export_registered
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position_template__invoice_type__export_registered
+msgid "Export Registered"
+msgstr "İhracat Kayıtlı"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_609
+msgid ""
+"Fason Olarak Yaptirilan Tekstil Ve Konfeksiyon İşleri, Çanta Ve Ayakkabi "
+"Dikim İşleri Ve Bu İşlere Aracilik Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_809
+msgid ""
+"Fason Olarak Yaptırılan Tekstil ve Konfeksiyon İşleri, Çanta ve Ayakkabı "
+"Dikim İşleri ve Bu İşlere Aracılık Hizmetleri[KDVGUT-(I/C-2.1.3.2.7)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model,name:l10n_tr_2kb.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Mali Koşul"
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0003
+msgid "GV STOPAJI"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_221
+msgid ""
+"Geçici 15 Konut Yapı Kooperatifleri, Belediyeler ve Sosyal Güvenlik "
+"Kuruluşlarına Verilen İnşaat Taahhüt Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_320
+msgid ""
+"Geçici 16 (6111 sayılı K.) İSMEP Kapsamında İstanbul İl Özel İdaresi'ne "
+"Bağlı Olarak Faaliyet Gösteren \"İstanbul Proje Koordinasyon Birimi\"ne "
+"Yapılacak Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_223
+msgid "Geçici 20/1 Teknoloji Geliştirme Bölgelerinde Yapılan İşlemler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_225
+msgid ""
+"Geçici 23 Milli Eğitim Bakanlığına Yapılan Bilgisayar Bağışları İle İlgili "
+"Teslimler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_321
+msgid ""
+"Geçici 26 Birleşmiş Milletler (BM) ile Kuzey Atlantik Antlaşması Teşkilatı "
+"(NATO) Temsilcilikleri ve Bu Teşkilatlara Bağlı Program, Fon ve Özel "
+"İhtisas Kuruluşları ile İktisadi İşbirliği ve Kalkınma Teşkilatına (OECD) "
+"Resmi Kullanımları İçin Yapılacak Mal Teslimi ve Hizmet İfaları, Bunların "
+"Sosyal ve Ekonomik Yardım Amacıyla Bedelsiz Olarak Yapacakları Mal Teslimi "
+"ve Hizmet İfaları İle İlgili Bunlara Yapılan Mal Teslimi ve Hizmet İfaları"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_318
+msgid ""
+"Geçici 29 3996 Sayılı Kanuna Göre Yap-İşlet-Devret Modeli Çerçevesinde "
+"Gerçekleştirilecek Projeler, 3359 Sayılı Kanuna Göre Kiralama Karşılığı "
+"Yaptırılan Sağlık Tesislerine İlişkin Projeler ve 652 Sayılı Kanun Hükmünde "
+"Kararnameye Göre Kiralama Karşılığı Yaptırılan Eğitim Öğretim Tesislerine "
+"İlişkin Projelere İlişkin Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_108
+msgid "Geçici 5. Madde Kapsamında Yapılan Teslimler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_615
+msgid "Her Türlü Baski Ve Basim Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_815
+msgid "Her Türlü Baskı ve Basım Hizmetleri[KDVGUT-(I/C-2.1.3.2.12)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_617
+msgid "Hurda Metalden Elde Edilen Külçe Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_816
+msgid "Hurda Metalden Elde Edilen Külçe Teslimleri[KDVGUT-(I/C-2.1.3.3.1)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_618
+msgid ""
+"Hurda Metalden Elde Edilenler Dişindaki Bakir, Çinko Demir ; Çelik "
+"Alüminyum Ve Kurşun Külçe Teslimleri [Kdvgut-(I/C-2.1.3.3.1)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_817
+msgid ""
+"Hurda Metalden Elde Edilenler Dışındaki Bakır, Çinko, Demir Çelik, "
+"Alüminyum ve Kurşun Külçe Teslimi [KDVGUT-(I/C-2.1.3.3.1)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position__invoice_type
+#: model:ir.model.fields,field_description:l10n_tr_2kb.field_account_fiscal_position_template__invoice_type
+msgid "Invoice Type"
+msgstr "Fatura Tipi"
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_K0000
+msgid "KDV %0"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_K0001
+msgid "KDV %1"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_K0010
+msgid "KDV %10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_K0020
+msgid "KDV %20"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_351
+msgid "KDV - İstisna Olmayan Diğer"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_332
+msgid ""
+"KDV Gecici 39. Mad. İmalat Sanayisinde Kullanılmak Üzere Yeni Makine ve "
+"Teçhizat Teslimlerinde istisna"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0100
+msgid "KDV TEVKİFAT 10/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0020
+msgid "KDV TEVKİFAT 2/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0030
+msgid "KDV TEVKİFAT 3/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0040
+msgid "KDV TEVKİFAT 4/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0050
+msgid "KDV TEVKİFAT 5/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0070
+msgid "KDV TEVKİFAT 7/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_T0090
+msgid "KDV TEVKİFAT 9/10"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0061
+msgid "KKDF KESİNTİ"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0011
+msgid "KV STOPAJI"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_9040
+msgid "MERA FONU"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_603
+msgid ""
+"Makine, Teçhizat, Demirbaş Ve Taşitlara Ait Tadil, Bakim Ve Onarim "
+"Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_803
+msgid ""
+"Makine, Teçhizat, Demirbaş ve Taşıtlara Ait Tadil, Bakım ve Onarım "
+"Hizmetleri[KDVGUT- (I/C-2.1.3.2.3)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_621
+msgid ""
+"Metal, Plastik, Lastik, Kauçuk, Kâğit Ve Cam Hurda Ve Atiklardan Elde "
+"Edilen Hammadde Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_820
+msgid ""
+"Metal, Plastik, Lastik, Kauçuk, Kâğıt ve Cam Hurda ve Atıklardan Elde "
+"Edilen Hammadde Teslimi[KDVGUT-(I/C-2.1.3.3.4)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_605
+msgid "Organizasyon Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_805
+msgid "Organizasyon Hizmeti[KDVGUT-(I/C-2.1.3.2.4)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_4171
+msgid "PTR-DGZ ÖTV TEVKİFAT"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_622
+msgid "Pamuk, Tiftik, Yün Ve Yapaği İle Ham Post Ve Deri Teslimleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_821
+msgid ""
+"Pamuk, Tiftik, Yün ve Yapağı İle Ham Post ve Deri Teslimleri[KDVGUT-(I/"
+"C-2.1.3.3.5)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_104
+msgid "Petrol Arama Faaliyetlerinde Bulunanlara Yapılan Teslimler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0022
+msgid "SMV"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_614
+msgid "Servis Taşimaciliği Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_814
+msgid "Servis Taşımacılığı Hizmeti[KDVGUT-(I/C-2.1.3.2.11)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_611
+msgid ""
+"Spor Kulüplerinin Yayin, Reklâm Ve İsim Hakki Gelirlerine Konu İşlemleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_811
+msgid ""
+"Spor Kulüplerinin Yayın, Reklâm ve İsim Hakkı Gelirlerine Konu "
+"İşlemleri[KDVGUT-(I/C-2.1.3.2.9)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8006
+msgid "TK KULLANIM"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8007
+msgid "TK RUHSAT"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8004
+msgid "TRT PAYI"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model,name:l10n_tr_2kb.model_account_tax_group
+msgid "Tax Group"
+msgstr "Vergi Grubu"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_612
+msgid "Temizlik Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_812
+msgid "Temizlik Hizmeti[KDVGUT-(I/C-2.1.3.2.10)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model,name:l10n_tr_2kb.model_account_fiscal_position_template
+msgid "Template for Fiscal Position"
+msgstr "Mali Koşul Şablonu"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_824
+msgid "Ticari Reklam Hizmetleri [KDVGUT-(I/C-2.1.3.2.15)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_625
+msgid "Ticari Reklam Hizmetleri [Kdvgut-(I/C-2.1.3.2.15)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_610
+msgid "Turistik Mağazalara Verilen Müşteri Bulma / Götürme Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_810
+msgid ""
+"Turistik Mağazalara Verilen Müşteri Bulma/ Götürme Hizmetleri[KDVGUT-(I/"
+"C-2.1.3.2.8)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_105
+msgid "Uluslararası Anlaşmadan Doğan İstisna"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position__invoice_type__withholding
+#: model:ir.model.fields.selection,name:l10n_tr_2kb.selection__account_fiscal_position_template__invoice_type__withholding
+msgid "Withholding"
+msgstr "Tevkifat"
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_608
+msgid "Yapi Denetim Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_601
+msgid ""
+"Yapim İşleri İle Bu İşlerle Birlikte İfa Edilen Mühendislik-Mimarlik Ve "
+"Etüt-Proje Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_808
+msgid "Yapı Denetim Hizmetleri[KDVGUT-(I/C-2.1.3.2.6)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_801
+msgid ""
+"Yapım İşleri ile Bu İşlerle Birlikte İfa Edilen Mühendislik-Mimarlık ve "
+"Etüt-Proje Hizmetleri[KDVGUT-(I/C-2.1.3.2.1)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_604
+msgid "Yemek Servis Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_804
+msgid "Yemek Servis Hizmeti[KDVGUT-(I/C-2.1.3.2.4)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_624
+msgid "Yük Taşimaciliği Hizmeti [Kdvgut-(I/C-2.1.3.2.11)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_823
+msgid "Yük Taşımacılığı Hizmeti [KDVGUT-(I/C-2.1.3.2.11)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_8008
+msgid "ÇEV. TEM .VER."
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_613
+msgid "Çevre Ve Bahçe Bakim Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_813
+msgid "Çevre ve Bahçe Bakım Hizmetleri[KDVGUT-(I/C-2.1.3.2.10)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_4080
+msgid "Ö.İLETİŞİM V"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_151
+msgid "ÖTV - İstisna Olmayan Diğer"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0071
+msgid "ÖTV 1.LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_9077
+msgid "ÖTV 2.LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0073
+msgid "ÖTV 3.LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0075
+msgid "ÖTV 3A LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0076
+msgid "ÖTV 3B LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0077
+msgid "ÖTV 3C LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model:account.tax.group,name:l10n_tr_2kb.tr_tax_group_0074
+msgid "ÖTV 4.LİSTE"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_607
+msgid "Özel Güvenlik Hizmeti"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_807
+msgid "Özel Güvenlik Hizmeti[KDVGUT-(I/C-2.1.3.2.5)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_101
+msgid "İhracat İstisnası"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_339
+msgid ""
+"İmalat Sanayii ile Turizme Yönelik Yatırım Teşvik Belgesi Kapsamındaki "
+"İnşaat İşlerine İlişkin Teslim ve Hizmetler"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_338
+msgid "İmalatçıların Mal İhracatı"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_620
+msgid "İstisnadan Vazgeçenlerin Hurda Ve Atik Teslimi"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_819
+msgid "İstisnadan Vazgeçenlerin Hurda ve Atık Teslimi[KDVGUT-(I/C-2.1.3.3.3)]"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_606
+msgid "İşgücü Temin Hizmetleri"
+msgstr ""
+
+#. module: l10n_tr_2kb
+#: model_terms:account.fiscal.position,note:l10n_tr_2kb.1_tr_fp_806
+msgid "İşgücü Temin Hizmetleri[KDVGUT-(I/C-2.1.3.2.5)]"
+msgstr ""
