@@ -50,7 +50,7 @@ class IzibizService:
 
         session = Session()
         if self.provider.ssl_check != 'local':
-            session.verify = self.provider.ssl_check
+            session.verify = self.provider.ssl_check == 'true'
 
         retries = Retry(
             total=10,
