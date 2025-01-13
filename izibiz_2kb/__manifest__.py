@@ -17,15 +17,15 @@
         * Performans optimizasyonu
     """,
     "version": "1.0",
-    'maintainer': 'Quanimo',
+    "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
-    'license': 'Other proprietary',
+    "license": "Other proprietary",
     "sequence": 1453,
     "category": "Accounting/Localizations/Account Charts",
     "depends": ["gib_base_2kb", "gib_invoice_2kb"],
     "data": [
-        "security/izibiz_api_log.xml",
+        # "security/izibiz_api_log.xml",
         "data/gib_provider.xml",
         "views/gib_provider.xml",
     ],
@@ -33,5 +33,5 @@
     "installable": True,
     "application": True,
     "auto_install": False,
-    'images': ['images/main_screenshot.png']
+    "images": ["images/main_screenshot.png"],
 }
