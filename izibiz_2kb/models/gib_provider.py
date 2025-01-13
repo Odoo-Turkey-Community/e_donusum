@@ -695,7 +695,7 @@ class GibProvider(models.Model):
                             "interval_number": 4,
                             "numbercall": -1,
                             "doall": False,
-                            "name": "izibiz_2kb: GIB e-Irsaliye Bilgi Servisi - %s"
+                            "name": "izibiz_2kb: GIB Gelen e-Irsaliye Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
                             "state": "code",
