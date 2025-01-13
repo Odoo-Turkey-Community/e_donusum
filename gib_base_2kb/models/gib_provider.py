@@ -60,6 +60,11 @@ class GibUBLProvider(models.Model):
     conn_srv = fields.Char("Sunucu", default="https://api.kitayazilim.com.tr")
     conn_user = fields.Char("Kullanıcı Adı")
     conn_password = fields.Char("Şifre")
+    ssl_check = fields.Selection([
+        ('local', 'Local'),
+        ('false', 'False'),
+        ('true', 'True')
+    ], string="SSL Kontrol", default='false')
 
     def _save_template(self, template, template_name, profile_ids):
         result = []

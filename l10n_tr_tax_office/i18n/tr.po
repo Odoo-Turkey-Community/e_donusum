@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_tr_tax_office
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0-20250111\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-12 15:39+0000\n"
+"PO-Revision-Date: 2025-01-12 18:40+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.constraint,message:l10n_tr_tax_office.constraint_account_tax_office_account_tax_office_code_uniq
+#, fuzzy
+msgid "Account Tax Office Code must be unique."
+msgstr "Hesap Vergi Dairesi Kodu benzersiz olmalıdır."
+
+#. module: l10n_tr_tax_office
+#: model:ir.model,name:l10n_tr_tax_office.model_account_tax_office_import
+#, fuzzy
+msgid "Account Tax Office Import"
+msgstr "Hesap Vergi Dairesi İthalatı"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_import_view_form
+msgid "Cancel"
+msgstr "İptal"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model,name:l10n_tr_tax_office.model_res_company
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model,name:l10n_tr_tax_office.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.actions.act_window,help:l10n_tr_tax_office.account_tax_office_action
+#, fuzzy
+msgid "Create a new Tax Office"
+msgstr "Yeni bir Vergi Dairesi oluşturun"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.actions.act_window,help:l10n_tr_tax_office.account_tax_office_action
+#, fuzzy
+msgid "Create and manage the Tax Office that will be managed by Odoo from here."
+msgstr "Odoo tarafından yönetilecek Vergi Dairesini buradan oluşturun ve yönetin."
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__create_uid
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__create_date
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__create_date
+msgid "Created on"
+msgstr "Oluşturulma"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__display_name
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__display_name
+msgid "Display Name"
+msgstr "Ad"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_view_search
+msgid "Group By"
+msgstr "Grupla"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__id
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_import_view_form
+msgid "Import XML"
+msgstr "XML İçe Aktar"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office____last_update
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import____last_update
+msgid "Last Modified on"
+msgstr "Son Düzenleme Tarihi"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__write_uid
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleyen"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__write_date
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__state_id
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_view_search
+msgid "State"
+msgstr "Durum"
+
+#. module: l10n_tr_tax_office
+#: model:ir.actions.act_window,name:l10n_tr_tax_office.account_tax_office_action
+#: model:ir.model,name:l10n_tr_tax_office.model_account_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_res_company__tax_office_id
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_res_partner__tax_office_id
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_res_users__tax_office_id
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_view_search
+msgid "Tax Office"
+msgstr "Vergi Dairesi"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__code
+#, fuzzy
+msgid "Tax Office Code"
+msgstr "Vergi Dairesi Kodu"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office__name
+#, fuzzy
+msgid "Tax Office Name"
+msgstr "Vergi Dairesi Adı"
+
+#. module: l10n_tr_tax_office
+#: model:ir.model.fields,field_description:l10n_tr_tax_office.field_account_tax_office_import__xml_file
+#, fuzzy
+msgid "Tax Office XML"
+msgstr "Vergi Dairesi XML"
+
+#. module: l10n_tr_tax_office
+#: model:ir.actions.act_window,name:l10n_tr_tax_office.account_tax_office_import_action
+#, fuzzy
+msgid "Tax Office XML Import"
+msgstr "Vergi Dairesi XML İçe Aktarma"
+
+#. module: l10n_tr_tax_office
+#: model:ir.ui.menu,name:l10n_tr_tax_office.account_tax_office_menu_action
+#, fuzzy
+msgid "Tax Offices"
+msgstr "Vergi Daireleri"
+
+#. module: l10n_tr_tax_office
+#: model:ir.ui.menu,name:l10n_tr_tax_office.account_tax_office_import_menu_action
+#, fuzzy
+msgid "Tax Offices Import from (EBYN)"
+msgstr "Vergi Daireleri (EBYN)'den İthalat"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_import_view_form
+#, fuzzy
+msgid "XML Import"
+msgstr "XML İçe Aktarma"
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_import_view_form
+#, fuzzy
+msgid "You can import the EBYN xml file with this wizard."
+msgstr "EBYN xml dosyasını bu sihirbaz ile içe aktarabilirsiniz."
+
+#. module: l10n_tr_tax_office
+#: model_terms:ir.ui.view,arch_db:l10n_tr_tax_office.account_tax_office_import_view_form
+msgid "or"
+msgstr "veya"
