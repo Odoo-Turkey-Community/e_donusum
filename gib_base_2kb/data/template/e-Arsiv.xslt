@@ -590,7 +590,7 @@
                                                     </xsl:for-each>
                                                 </td>
                                             </tr>
-                                            <xsl:for-each select="//n1:Invoice/cac:PaymentMeans">
+                                            <xsl:for-each select="//n1:Invoice/cac:PaymentMeans[cbc:PaymentDueDate]">
                                                 <tr>
                                                     <td>Son Ödeme Tarihi</td>
                                                     <td>

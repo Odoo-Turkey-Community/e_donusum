@@ -49,7 +49,9 @@ class IzibizService:
             return ws_client
 
         session = Session()
-        session.verify = False
+        if self.provider.ssl_check != 'local':
+            session.verify = self.provider.ssl_check == 'true'
+
         retries = Retry(
             total=10,
             backoff_factor=0.1,
