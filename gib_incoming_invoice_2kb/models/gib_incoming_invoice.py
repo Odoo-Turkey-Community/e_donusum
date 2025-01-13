@@ -29,7 +29,7 @@ class GibIncomingInvoice(models.Model):
     invoice_type = fields.Char(string="Fatura Tipi")
     gib_profile = fields.Char(string="Fatura Profili")
     gib_provider_id = fields.Many2one(
-        comodel_name="gib_base_2kb.provider", string="Entegratör", required=True
+        comodel_name="gib_base_2kb.provider", string="Entegratör"
     )
     state = fields.Selection(
         selection=[
