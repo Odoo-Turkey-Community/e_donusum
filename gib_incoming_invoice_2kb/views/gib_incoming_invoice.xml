@@ -37,6 +37,7 @@
                         <field name="gib_profile"/>
                         <field name="invoice_type"/>
                         <field name="state" attrs="{'invisible': ['|', ('state', 'in', ['None']), ('gib_profile', '!=', 'TICARIFATURA')]}"/>
+                        <field name="currency_code" readonly="1"/>
                         <field name="company_id"/>
                     </group>
                 </group>
