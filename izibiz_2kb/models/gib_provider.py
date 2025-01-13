@@ -235,14 +235,14 @@ class GibProvider(models.Model):
             is_e_arsiv = move.gib_profile_id == self.env.ref(
                 "gib_invoice_2kb.profile_id-EARSIVFATURA"
             )
-
+            move_info = res[move]
             try:
                 if is_e_arsiv:
                     result = service.get_earchive_status(uuids=[move.gib_uuid])
                 else:
                     result = service.get_invoice_status(uuid=move.gib_uuid)
             except requests.exceptions.RequestException as e:
-                res[move].update(
+                move_info.update(
                     {
                         "success": False,
                         "blocking_level": "warning",
@@ -252,15 +252,17 @@ class GibProvider(models.Model):
                 break
 
             if result.get("success"):
+                move_info['success'] = True
+                move_info['result'] = {}
                 if is_e_arsiv:
                     gib_code = e_arsiv_report_mapping.get(
                         result["result"][0].HEADER.STATUS
                     )
-                    res[move].update(
+                    move_info['result'].update(
                         {"gib_report_code": gib_code if gib_code else False}
                     )
                 else:
-                    res[move].update(
+                    move_info['result'].update(
                         {
                             "gib_status_code_id": fields.first(
                                 gib_status_code_ids.filtered(
@@ -693,7 +695,7 @@ class GibProvider(models.Model):
                             "interval_number": 4,
                             "numbercall": -1,
                             "doall": False,
-                            "name": "izibiz_2kb: GIB e-Irsaliye Bilgi Servisi - %s"
+                            "name": "izibiz_2kb: GIB Gelen e-Irsaliye Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
                             "state": "code",
@@ -944,7 +946,7 @@ class GibProvider(models.Model):
         """
         gib_response_code accept,reject değerlerini alabilir
         """
-        gib_profile_id = self.env.ref("gib_base_2kb.profile_id-IHRACAT")
+        gib_profile_id = self.env.ref("gib_invoice_pro_export_2kb.profile_id-IHRACAT", False)
         domain = [
             ("gtb_refno", "=", False),
             ("gib_profile_id", "=", gib_profile_id.id),
