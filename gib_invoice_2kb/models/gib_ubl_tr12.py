@@ -104,6 +104,21 @@ class GibUblTR12(models.AbstractModel):
         else:
             return []
 
+    def _get_actual_package_vals(self, line):
+        return {
+            "id": False,
+            "quantity": False,
+            "returnable_material_indicator": False,
+            "package_level_code": False,
+            "packaging_type_code": False
+        }
+
+    def _get_transport_handling_unit_vals(self, line):
+        return {
+            "id": False,
+            "actual_package_vals": self._get_actual_package_vals(line)
+        }
+
     def _get_financial_institution_vals(self, bank):
         return {
             "name": bank.name,
@@ -273,6 +288,7 @@ class GibUblTR12(models.AbstractModel):
                         else False
                     ),
                 },
+                "transport_handling_unit_vals": self._get_transport_handling_unit_vals(line)
             },
         }
 
