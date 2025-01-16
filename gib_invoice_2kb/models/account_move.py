@@ -459,9 +459,9 @@ class AccountMove(models.Model):
                 if "gtb_refno" in self._fields:
                     self.write(
                         {
-                            "gtb_refno": res["result"].get("gtb_refno"),
-                            "gtb_tescilno": res["result"].get("gtb_tescilno"),
-                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
+                            "gtb_refno": res["result"].get("gtb_refno") or False,
+                            "gtb_tescilno": res["result"].get("gtb_tescilno") or False,
+                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi") or False,
                         }
                     )
 
