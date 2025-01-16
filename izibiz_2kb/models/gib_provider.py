@@ -271,19 +271,17 @@ class GibProvider(models.Model):
                                 )
                             ).id,
                             "gib_response_code": (
-                                result["result"].RESPONSE_CODE in ["REJECT", "ACCEPT"]
+                                result["result"].RESPONSE_CODE in ["REJECTED", "ACCEPTED"]
                                 and (
                                     "reject"
-                                    if result["result"].RESPONSE_CODE == "REJECT"
+                                    if result["result"].RESPONSE_CODE == "REJECTED"
                                     else "accept"
                                 )
                                 or False
                             ),
-                            "gtb_refno": result["result"].GTB_REFNO,
-                            "gtb_tescilno": result["result"].GTB_GCB_TESCILNO,
-                            "gtb_intac_tarihi": result[
-                                "result"
-                            ].GTB_FIILI_IHRACAT_TARIHI,
+                            "gtb_refno": (result["result"].GTB_REFNO or "").strip(),
+                            "gtb_tescilno": (result["result"].GTB_GCB_TESCILNO or "").strip(),
+                            "gtb_intac_tarihi": (result["result"].GTB_FIILI_IHRACAT_TARIHI or "").strip(),
                         }
                     )
         return res
@@ -1020,6 +1018,7 @@ class GibProvider(models.Model):
             gid_to_create.append(
                 {
                     "gib_provider_id": self.id,
+                    "company_id": self.company_id.id,
                     "ETTN": incoming.UUID,
                     "name": incoming.ID,
                     "gib_profile": incoming.HEADER.PROFILEID,
