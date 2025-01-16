@@ -944,11 +944,17 @@ class GibProvider(models.Model):
         """
         gib_response_code accept,reject değerlerini alabilir
         """
+
+        bdate = fields.Date.today() - timedelta(days=60)
         gib_profile_id = self.env.ref("gib_invoice_pro_export_2kb.profile_id-IHRACAT", False)
         domain = [
+            ('date', '>', bdate),
+            '|',
             ("gtb_refno", "=", False),
+            '|',
+            ("gtb_tescilno", "=", False),
+            ("gtb_intac_tarihi", "=", False),
             ("gib_profile_id", "=", gib_profile_id.id),
-            ("gib_provider_id.provider", "=", "izibiz"),
         ]
         move_ids = self.env["account.move"].search(domain, limit=1000)
         if not move_ids:
@@ -964,7 +970,7 @@ class GibProvider(models.Model):
         resp_mapping = {
             res.UUID: {
                 "gtb_refno": (res.HEADER.GTB_REFNO or "").strip() or False,
-                "gtb_tescilno": res.HEADER.GTB_GCB_TESCILNO or False,
+                "gtb_tescilno": (res.HEADER.GTB_GCB_TESCILNO or "").strip() or False,
                 "gtb_intac_tarihi": (
                     len(res.HEADER.GTB_FIILI_IHRACAT_TARIHI or "") == 10
                     and fields.date.fromisoformat(res.HEADER.GTB_FIILI_IHRACAT_TARIHI)
