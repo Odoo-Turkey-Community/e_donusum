@@ -815,6 +815,9 @@ class AccountMove(models.Model):
             if line_error:
                 error.append(line_error)
 
+            if not line.name:
+                error.append(f"Satır açıklması zorunlu! {line.display_name}")
+
             line_tax_error = self._check_tax_suitability(line)
             if line_tax_error:
                 error.append(line_tax_error)
