@@ -206,7 +206,7 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_invoice_line_item_vals(self, line):
         product = line.product_id
-        description = line.name and line.name.replace("\n", ", ")
+        description = line.display_name and line.display_name.replace("\n", ", ")
 
         return {
             "name": description,
