@@ -290,6 +290,8 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(send_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
@@ -310,7 +312,6 @@ class IzibizService:
                 )
                 blocking_level = "error"
 
-            _logger.warning(f"izibiz e-fatura(send_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
         return {
             "success": success,
             "error": error,
@@ -363,14 +364,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(get_invoice_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_status(id, uuid, retry=False)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(get_invoice_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -426,6 +427,8 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(get_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
@@ -433,7 +436,6 @@ class IzibizService:
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
 
-            _logger.warning(f"izibiz e-fatura(get_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -465,14 +467,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(mark_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.mark_invoice(uuids, value)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(mark_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -500,14 +502,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(get_invoice_status_all) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_status_all(uuids)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(get_invoice_status_all) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -549,14 +551,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(send_invoice_response_with_server_sign) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.send_invoice_response_with_server_sign(uuid, status, desc)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(send_invoice_response_with_server_sign) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -594,14 +596,14 @@ class IzibizService:
                 z = zipfile.ZipFile(io.BytesIO(responce.INVOICE[0].CONTENT._value_1))
                 content = z.read(z.infolist()[0])
         else:
+            _logger.warning(f"izibiz e-fatura(get_invoice_with_type) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_with_type(header_only, **kw)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(get_invoice_with_type) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -659,6 +661,8 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(write_to_archive_extended) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
@@ -681,7 +685,6 @@ class IzibizService:
                 )
                 blocking_level = "error"
 
-            _logger.warning(f"izibiz e-fatura(write_to_archive_extended) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
         return {
             "success": success,
             "error": error,
@@ -714,14 +717,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(read_from_archive) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.read_from_archive(uuid, format)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(read_from_archive) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -764,6 +767,8 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(get_earchive_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
@@ -771,7 +776,6 @@ class IzibizService:
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
 
-            _logger.warning(f"izibiz e-fatura(get_earchive_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -796,6 +800,8 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(cancel_earchive_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
@@ -809,8 +815,6 @@ class IzibizService:
                     + " Kod: "
                     + str(responce.ERROR_TYPE.ERROR_CODE)
                 )
-
-            _logger.warning(f"izibiz e-fatura(cancel_earchive_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -841,14 +845,14 @@ class IzibizService:
         if not responce.ERROR_TYPE:
             success = True
         else:
+            _logger.warning(f"izibiz e-fatura(get_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_earchive_report(period, flag)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(get_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {
             "success": success,
@@ -881,13 +885,13 @@ class IzibizService:
             z2 = zipfile.ZipFile(io.BytesIO(z.read(z.infolist()[0])))
             xml = z2.read(z2.infolist()[0])
         else:
+            _logger.warning(f"izibiz e-fatura(read_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+
             if responce.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.read_earchive_report(report_id)
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
-            _logger.warning(f"izibiz e-fatura(read_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
 
         return {"success": success, "error": error, "result": xml if success else False}
