@@ -79,7 +79,7 @@ class GibUblTR12(models.AbstractModel):
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
         if "picking_ids" in invoice._fields:
-            for picking_id in invoice.picking_ids:
+            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel'):
                 if "gib_seq" in picking_id._fields:
                     vals.append(
                         {
