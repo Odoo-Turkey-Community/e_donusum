@@ -94,11 +94,9 @@ class GibUblTR12(models.AbstractModel):
             return [
                 {
                     "actual_delivery_date": False,
-                    "delivery_location_vals": {
-                        "delivery_address_vals": self._get_partner_address_vals(
-                            invoice.partner_shipping_id
-                        ),
-                    },
+                    "delivery_address_vals": self._get_partner_address_vals(
+                        invoice.partner_shipping_id
+                    ),
                 }
             ]
         else:
@@ -264,7 +262,7 @@ class GibUblTR12(models.AbstractModel):
             "base_quantity_attrs": {"unitCode": uom},
         }
 
-    def _get_line_delivery_vals(self, line):
+    def _get_delivery_vals(self, line):
         return {
             "delivery_terms": line.move_id.invoice_incoterm_id.code,
             "delivery_terms_attrs": {"schemeID": "INCOTERMS"},
@@ -304,7 +302,7 @@ class GibUblTR12(models.AbstractModel):
             "invoiced_quantity": line.quantity,
             "invoiced_quantity_attrs": {"unitCode": uom},
             "line_extension_amount": line.price_subtotal,
-            "delivery_vals": self._get_line_delivery_vals(line),
+            "delivery_vals": self._get_delivery_vals(line),
             "allowance_charge_vals": allowance_charge_vals_list,
             "tax_total_vals": self._get_invoice_tax_totals_vals_list(
                 line.move_id, taxes_vals
