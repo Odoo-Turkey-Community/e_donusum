@@ -94,11 +94,9 @@ class GibUblTR12(models.AbstractModel):
             return [
                 {
                     "actual_delivery_date": False,
-                    "delivery_location_vals": {
-                        "delivery_address_vals": self._get_partner_address_vals(
-                            invoice.partner_shipping_id
-                        ),
-                    },
+                    "delivery_address_vals": self._get_partner_address_vals(
+                        invoice.partner_shipping_id
+                    ),
                 }
             ]
         else:
