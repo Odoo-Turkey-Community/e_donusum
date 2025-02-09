@@ -21,7 +21,7 @@ Bu modül, Türkiye'deki işletmeler için gerekli mali koşulları ve mali koş
 * Gelir ve kurumlar vergisi stopaj oranları
 
 Teknik Detaylar:
----------------
+----------------
 * Vergi grupları için özel görünümler
 * Mali koşullar için özelleştirilmiş formlar
 * Otomatik vergi hesaplamaları ve maplemeler
