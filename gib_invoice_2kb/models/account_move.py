@@ -21,6 +21,19 @@ GIB_INVOICE_DEFAULT_NAME = "TASLAK"
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    def _gib_profile_id_domain(self):
+        """
+        Returns a domain for the ``gib_profile_id`` field that filters
+        ``gib_base_2kb.code`` records by type and value2 equal to
+        ``partner_profile_type``.
+        """
+
+        if self.env.context.get('default_move_type') == 'in_refund':
+            ids = [self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False).id, self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False).id]
+            return str([('id', 'in', ids),])
+        else:
+            return "[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]"
+
     gib_state = fields.Selection(
         selection=[
             ("to_send", "Gönderilecek"),
@@ -62,7 +75,8 @@ class AccountMove(models.Model):
     gib_profile_id = fields.Many2one(
         comodel_name="gib_base_2kb.code",
         string="Fatura Senaryosu",
-        domain="[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]",
+        #domain="[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]",
+        domain=lambda self: self._gib_profile_id_domain(),
         compute="_compute_gib_profile_id",
         store=True,
         readonly=False,
@@ -271,7 +285,13 @@ class AccountMove(models.Model):
             if record.move_type not in ["out_invoice", "in_refund"]:
                 record.gib_profile_id = False
             else:
-                record.gib_profile_id = record.commercial_partner_id.profile_id.id
+                if record.move_type == "in_refund":
+                    if record.commercial_partner_id.is_e_inv:
+                        record.gib_profile_id = self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False)
+                    else:
+                        record.gib_profile_id = self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False)
+                else:
+                    record.gib_profile_id = record.commercial_partner_id.profile_id.id
 
     @api.depends("move_is_invoice", "gib_provider_id")
     def _compute_gib_invoice_type_id(self):

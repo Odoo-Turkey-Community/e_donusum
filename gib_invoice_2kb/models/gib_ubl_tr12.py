@@ -79,7 +79,7 @@ class GibUblTR12(models.AbstractModel):
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
         if "picking_ids" in invoice._fields:
-            for picking_id in invoice.picking_ids:
+            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel'):
                 if "gib_seq" in picking_id._fields:
                     vals.append(
                         {
@@ -101,6 +101,21 @@ class GibUblTR12(models.AbstractModel):
             ]
         else:
             return []
+
+    def _get_actual_package_vals(self, line):
+        return {
+            "id": False,
+            "quantity": False,
+            "returnable_material_indicator": False,
+            "package_level_code": False,
+            "packaging_type_code": False
+        }
+
+    def _get_transport_handling_unit_vals(self, line):
+        return {
+            "id": False,
+            "actual_package_vals": self._get_actual_package_vals(line)
+        }
 
     def _get_financial_institution_vals(self, bank):
         return {
@@ -189,7 +204,7 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_invoice_line_item_vals(self, line):
         product = line.product_id
-        description = line.display_name and line.display_name.replace("\n", ", ")
+        description = line.name and line.name.replace("\n", ", ")
 
         return {
             "name": description,
@@ -247,7 +262,7 @@ class GibUblTR12(models.AbstractModel):
             "base_quantity_attrs": {"unitCode": uom},
         }
 
-    def _get_line_delivery_vals(self, line):
+    def _get_delivery_vals(self, line):
         return {
             "delivery_terms": line.move_id.invoice_incoterm_id.code,
             "delivery_terms_attrs": {"schemeID": "INCOTERMS"},
@@ -271,6 +286,7 @@ class GibUblTR12(models.AbstractModel):
                         else False
                     ),
                 },
+                "transport_handling_unit_vals": self._get_transport_handling_unit_vals(line)
             },
         }
 
@@ -286,7 +302,7 @@ class GibUblTR12(models.AbstractModel):
             "invoiced_quantity": line.quantity,
             "invoiced_quantity_attrs": {"unitCode": uom},
             "line_extension_amount": line.price_subtotal,
-            "delivery_vals": self._get_line_delivery_vals(line),
+            "delivery_vals": self._get_delivery_vals(line),
             "allowance_charge_vals": allowance_charge_vals_list,
             "tax_total_vals": self._get_invoice_tax_totals_vals_list(
                 line.move_id, taxes_vals
