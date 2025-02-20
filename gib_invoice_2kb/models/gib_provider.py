@@ -111,6 +111,11 @@ class GibUBLProvider(models.Model):
             sequence_date=move.invoice_date
         )
 
+        if not move.ref:
+            move.ref = move.gib_invoice_name
+        else:
+            move.ref = f"{move.ref}/{move.gib_invoice_name}"
+
         if not re.search(
             "^[A-Z0-9]{3}20[0-9]{2}[0-9]{9}$", move.gib_invoice_name or ""
         ):
