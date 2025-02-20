@@ -162,6 +162,23 @@ class GibUblTR12(models.AbstractModel):
         else:
             return []
 
+    def _get_billing_reference_vals(self, invoice):
+        if invoice.move_type != 'in_refund':
+            return {}
+
+        id = invoice.ref
+        issue_date = self.format_date(invoice.date)
+        if invoice.reversed_entry_id:
+            id = invoice.reversed_entry_id.gib_invoice_name or invoice.ref
+            issue_date = self.format_date(invoice.reversed_entry_id.date)
+
+        return {
+            'id': id,
+            'issue_date': issue_date,
+            'document_type_code': 'IADE',
+            'document_type': 'İade Edilen Fatura'
+        }
+
     def _get_pricing_exchange_rate_vals(self, invoice):
         if self.env.ref("base.TRY") == invoice.currency_id:
             return {}
@@ -395,6 +412,9 @@ class GibUblTR12(models.AbstractModel):
                 "note_vals": notes,
                 "invoice_type_code": invoice.gib_invoice_type_id.value,
                 "line_count_numeric": len(invoice_lines),
+                "billing_reference_vals": self._get_billing_reference_vals(
+                    invoice
+                ),
                 "order_reference": order_reference_vals,
                 "sales_order_id": sales_order_id,
                 "despatch_document_reference_vals_list": self.get_despatch_document_reference_vals(
