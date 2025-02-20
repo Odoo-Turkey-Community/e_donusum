@@ -508,6 +508,12 @@ class AccountMove(models.Model):
         self.gib_invoice_name = self.env["ir.sequence"].next_by_code(
             self.gib_sequence_id.code, sequence_date=self.invoice_date
         )
+
+        if not self.ref:
+            self.ref = self.gib_invoice_name
+        else:
+            self.ref = f"{self.ref}/{self.gib_invoice_name}"
+
         old_xml = base64.b64decode(
             attachment.with_context(bin_size=False).datas, validate=True
         )
