@@ -105,7 +105,7 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_partner_party_identification_vals_list(self, partner):
         # TODO diğerleride eklencek
-        vat = partner.vat or "1111111111"
+        vat = partner.vat or "11111111111"
         return [
             {
                 "id": self.get_vat_number(vat),
