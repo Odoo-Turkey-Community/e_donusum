@@ -27,33 +27,46 @@ class IrSequence(models.Model):
 
     use_for_electronic = fields.Boolean("Elektronik")
 
+    def _validate_electronic_sequence(self):
+        """Elektronik fatura seri numarası için validasyon kontrolleri"""
+        self.ensure_one()
+        self.prefix = self.prefix or ""
+
+        if "ABC" in self.prefix:
+            raise UserError(
+                "Lütfen Önek kısmında ki YALNIZCA ABC ön ekini geçerli bir seri ile değiştiriniz!"
+            )
+
+        if len(self.prefix) == 3:
+            self.prefix += "%(range_year)s"
+        else:
+            if "%(range_year)s" not in self.prefix:
+                self.prefix = ""
+                if len(self.name) == 3:
+                    self.prefix = self.name.upper() + "%(range_year)s"
+                else:
+                    self.prefix += "%(range_year)s"
+            elif self.prefix == "%(range_year)s":
+                if len(self.name) == 3:
+                    self.prefix = self.name.upper() + "%(range_year)s"
+            elif len(self.prefix) != 17:
+                raise UserError(
+                    "Elektronik fatura serilerinde 3 alfanümerik karakter olmalı!"
+                )
+
+        if self.use_for_electronic:
+            self.locked_sequence = True
+
     @api.model_create_multi
     def create(self, vals_list):
         res_ids = super().create(vals_list)
-        for res_id in res_ids:
-            res_id.prefix = res_id.prefix or ""
-            if "ABC" in res_id.prefix:
-                raise UserError(
-                    "Lütfen Önek kısmında ki YALNIZCA ABC ön ekini geçerli bir seri ile değiştiriniz!"
-                )
-
-            if len(res_id.prefix) == 3:
-                res_id.prefix += "%(range_year)s"
-            else:
-                if "%(range_year)s" not in res_id.prefix:
-                    res_id.prefix = ""
-                    if len(res_id.name) == 3:
-                        res_id.prefix = res_id.name.upper() + "%(range_year)s"
-                    else:
-                        res_id.prefix += "%(range_year)s"
-                elif res_id.prefix == "%(range_year)s":
-                    if len(res_id.name) == 3:
-                        res_id.prefix = res_id.name.upper() + "%(range_year)s"
-                elif len(res_id.prefix) != 17:
-                    raise UserError(
-                        "Elektronik fatura serilerinde 3 alfanümerik karakter olmalı!"
-                    )
-
-            if res_id.use_for_electronic:
-                res_id.locked_sequence = True
+        for res_id in res_ids.filtered(lambda x: x.use_for_electronic):
+            res_id._validate_electronic_sequence()
         return res_ids
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'prefix' in vals or 'use_for_electronic' in vals:
+            for record in self.filtered(lambda x: x.use_for_electronic):
+                record._validate_electronic_sequence()
+        return res
