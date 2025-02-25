@@ -446,7 +446,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "days",
                             "interval_number": 1,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB etiket güncelle servisi  - %s"
                             % self.name,
@@ -494,7 +493,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB Durum Kodları Güncelle - %s"
                             % self.name,
@@ -542,7 +540,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB Ticari Cevap Servisi - %s"
                             % self.name,
@@ -588,7 +585,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB e-Arşiv Rapor Servisi - %s"
                             % self.name,
@@ -636,7 +632,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB e-Ihracaat Bilgi Servisi - %s"
                             % self.name,
@@ -684,7 +679,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB e-Irsaliye Bilgi Servisi - %s"
                             % self.name,
@@ -732,7 +726,6 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "numbercall": -1,
                             "doall": False,
                             "name": "izibiz_2kb: GIB Gelen e-Fatura Servisi - %s"
                             % self.name,
