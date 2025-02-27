@@ -7,6 +7,7 @@ import logging
 import requests
 import json
 import copy
+import pytz
 
 from odoo import models, fields, api, _
 from odoo.models import AbstractModel
@@ -98,6 +99,28 @@ class GibUblTR12(models.AbstractModel):
             ]
         except Exception:
             return list(UOM_TO_UNECE_CODE.keys())[0]
+
+    def _convert_utc_to_tr_timezone(self, utc_datetime):
+        """
+        Convert UTC datetime to Turkey timezone (Europe/Istanbul)
+
+        :param utc_datetime: UTC datetime
+        :return: datetime in Turkey timezone
+        """
+        if not utc_datetime:
+            return False
+
+        try:
+            # Make sure datetime is UTC and has tzinfo
+            if not utc_datetime.tzinfo:
+                utc_datetime = pytz.utc.localize(utc_datetime, is_dst=False)
+
+            # Convert to Turkey timezone
+            tr_timezone = pytz.timezone('Europe/Istanbul')
+            tr_datetime = utc_datetime.astimezone(tr_timezone)
+            return tr_datetime
+        except Exception:
+            return utc_datetime
 
     # -------------------------------------------------------------------------
     # EXPORT COMMON
