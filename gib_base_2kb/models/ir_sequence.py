@@ -30,8 +30,8 @@ class IrSequence(models.Model):
     def _validate_electronic_sequence(self):
         """Elektronik fatura seri numarası için validasyon kontrolleri"""
         self.ensure_one()
+        self = self.with_context(skip_recursion_sequence=True)
         self.prefix = self.prefix or ""
-
         if "ABC" in self.prefix:
             raise UserError(
                 "Lütfen Önek kısmında ki YALNIZCA ABC ön ekini geçerli bir seri ile değiştiriniz!"
@@ -66,7 +66,7 @@ class IrSequence(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if 'prefix' in vals or 'use_for_electronic' in vals:
+        if ('prefix' in vals or 'use_for_electronic' in vals) and not self.env.context.get('skip_recursion_sequence'):
             for record in self.filtered(lambda x: x.use_for_electronic):
                 record._validate_electronic_sequence()
         return res
