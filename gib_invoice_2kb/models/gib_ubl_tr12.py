@@ -225,9 +225,10 @@ class GibUblTR12(models.AbstractModel):
                 net_price_subtotal / (1.0 - (line.discount or 0.0) / 100.0)
             )
 
+        decimal_precision = self.env['decimal.precision'].precision_get('Discount')
         allowance_vals = {
             "currency_name": line.currency_id.name,
-            "currency_dp": line.currency_id.decimal_places,
+            "currency_dp": decimal_precision,
             "charge_indicator": "false",
             "amount": gross_price_subtotal - net_price_subtotal,
         }
@@ -246,9 +247,10 @@ class GibUblTR12(models.AbstractModel):
             (gross_price_subtotal / line.quantity) if line.quantity else 0.0
         )
         uom = self._get_uom_unece_code(line.product_uom_id)
+        decimal_precision = self.env['decimal.precision'].precision_get('Product Price')
         return {
             "currency_name": line.currency_id.name,
-            "currency_dp": line.currency_id.decimal_places,
+            "currency_dp": decimal_precision,
             "price_amount": line.price_unit,
             "base_quantity": False,
             "base_quantity_attrs": {"unitCode": uom},
