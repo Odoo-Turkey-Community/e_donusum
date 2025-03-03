@@ -584,8 +584,8 @@ class AccountMove(models.Model):
         attachment_to_unlink = self.env["ir.attachment"]
         for doc in self:
             if doc.gib_state == "to_send":
-                attachment_to_unlink |= doc.gib_attachment_id
-                doc.write({"gib_attachment_id": False})
+                attachment_to_unlink |= doc._get_edi_attachment()
+                doc.sudo().write({"gib_attachment_id": False})
 
             doc.write(
                 {
