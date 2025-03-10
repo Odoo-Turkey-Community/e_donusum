@@ -591,12 +591,16 @@
                                                 </td>
                                             </tr>
                                             <xsl:for-each select="//n1:Invoice/cac:PaymentMeans">
-                                                <tr>
-                                                    <td>Son Ödeme Tarihi</td>
-                                                    <td>
-                                                        <xsl:value-of select="./cbc:PaymentDueDate" />
-                                                    </td>
-                                                </tr>
+                                                <xsl:if test="./cbc:PaymentDueDate">
+                                                    <tr>
+                                                        <td>Son Ödeme Tarihi</td>
+                                                        <td>
+                                                        <xsl:for-each select="cbc:PaymentDueDate">
+                                                                <xsl:apply-templates select="."/>
+                                                            </xsl:for-each>
+                                                        </td>
+                                                    </tr>
+                                                </xsl:if>
                                             </xsl:for-each>
                                             <xsl:for-each select="n1:Invoice/cac:DespatchDocumentReference">
                                                 <tr>
@@ -1769,6 +1773,13 @@
         <xsl:value-of select="substring(.,6,2)" />
         -
         <xsl:value-of select="substring(.,1,4)" />
+    </xsl:template>
+    <xsl:template match="//cbc:PaymentDueDate">
+        <xsl:value-of select="substring(.,9,2)"/>
+        -
+        <xsl:value-of select="substring(.,6,2)"/>
+        -
+        <xsl:value-of select="substring(.,1,4)"/>
     </xsl:template>
     <xsl:template name="Party_Title">
         <xsl:param name="PartyType" />
