@@ -838,6 +838,11 @@ class AccountMove(models.Model):
                     f"GİB faturalarında negatif(sıfırdan küçük) indirim desteklenmemektedir.{line.display_name}"
                 )
 
+            if not line.name:
+                error.append(
+                    f"Satır açıklaması boş bırakılamaz.{line.display_name}"
+                )
+
             if line_error:
                 error.append(line_error)
 
