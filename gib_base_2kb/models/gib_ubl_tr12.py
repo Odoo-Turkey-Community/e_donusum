@@ -50,6 +50,7 @@ UOM_TO_UNECE_CODE = {
     "uom.product_uom_cubic_foot": "FTQ",
     "uom.product_uom_millimeter": "MTK",
     "uom.product_uom_yard": "YD",
+    "gib_base_2kb.product_uom_set": "SET",
 }
 
 _logger = logging.getLogger(__name__)
