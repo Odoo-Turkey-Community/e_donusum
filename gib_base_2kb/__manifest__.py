@@ -27,6 +27,7 @@
         "views/gib_local_menu.xml",
         "views/ir_sequence.xml",
         "views/res_partner.xml",
+        "data/uom_data.xml",
         "data/gib_base_2kb_code.xml",
         "data/gib_base_2kb_status_code.xml",
         "views/gib_provider.xml",
