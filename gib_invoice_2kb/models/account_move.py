@@ -667,6 +667,7 @@ class AccountMove(models.Model):
             if str(int(tax.amount)) in forbidden_rates:
                 return f"{tax.name} için %{int(tax.amount)}  oranı  %{', %'.join(forbidden_rates)}  oranlarından biri olamaz"
 
+    @api.model
     def _check_move_configuration(self, move):
         """Checks the move and relevant records for potential error (missing data, etc).
 
@@ -804,9 +805,11 @@ class AccountMove(models.Model):
         not customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-inv" and error.append(
             "E-Fatura mükellefi olmayana E-Fatura kesilemez!"
         )
-        move.move_type == "in_refund" and move.gib_profile_id == self.env.ref(
-            "gib_invoice_2kb.profile_id-TICARIFATURA"
-        ) and error.append("İade faturaları 'Ticari Fatura' olamaz!")
+        move.move_type == "in_refund" and move.gib_profile_id not in [self.env.ref(
+            "gib_invoice_2kb.profile_id-TEMELFATURA"
+        ), self.env.ref(
+            "gib_invoice_2kb.profile_id-EARSIVFATURA"
+        )] and error.append("İade faturaları 'Temel Fatura' veya 'E-Arşiv Fatura' olabilir!")
         # endregion
         # region #! ------------------ Move Master GİB Fatura Türü Doğrulamaları ------------------
         move.gib_invoice_type_id.value == "IADE" and move.gib_profile_id_value not in [
