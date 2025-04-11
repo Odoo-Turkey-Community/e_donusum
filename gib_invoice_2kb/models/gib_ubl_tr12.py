@@ -229,6 +229,7 @@ class GibUblTR12(models.AbstractModel):
         allowance_vals = {
             "currency_name": line.currency_id.name,
             "currency_dp": decimal_precision,
+            "multiplier_factor": line.discount / 100.0,
             "charge_indicator": "false",
             "amount": gross_price_subtotal - net_price_subtotal,
         }
