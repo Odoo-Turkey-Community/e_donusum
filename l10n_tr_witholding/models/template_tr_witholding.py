@@ -64,3 +64,9 @@ class AccountChartTemplate(models.AbstractModel):
     @template('tr_witholding', 'account.fiscal.position')
     def _get_tr_witholding_account_fiscal_position(self):
         return self._parse_csv('tr_witholding', 'account.fiscal.position', module='l10n_tr_witholding')
+
+    @template('tr_witholding', 'account.group')
+    def _get_account_group(self):
+        tr_val = self._parse_csv('tr', 'account.group', module='l10n_tr')
+        tr_ex_val = self._parse_csv('tr_witholding', 'account.group', module='l10n_tr_witholding')
+        return {**tr_val, **tr_ex_val}
