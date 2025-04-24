@@ -694,6 +694,7 @@ class AccountMove(models.Model):
                 ("move_is_invoice", "=", True),
                 ("gib_sequence_id", "=", invoice_sequence.id),
                 ("gib_invoice_name", "not in", [GIB_INVOICE_DEFAULT_NAME, "", False]),
+                ("company_id", "=", move.company_id.id),
             ],
             order="invoice_date DESC",
             limit=1,
