@@ -308,7 +308,7 @@ class GibUblTR12(models.AbstractModel):
     def _export_invoice_vals(self, invoice):
 
         def grouping_key_generator(base_line, tax_values):
-            tax = tax_values["tax_repartition_line"].tax_id
+            tax = tax_values["tax"]
 
             grouping_key = {
                 "tax_group": tax.tax_group_id.code,

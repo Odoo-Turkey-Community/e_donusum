@@ -522,12 +522,12 @@ class AccountMove(models.Model):
             move_applicability = provider and provider._get_move_applicability(self)
             if move_applicability and move_applicability.get("gib_content"):
                 move_applicability["gib_content"](self)
-
+        slug = self.env['ir.http']._slug
         return {
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf2/%s" % (IrHttp._slug(self),),
+            "url": "/gib_invoice_2kb/pdf2/%s" % (slug(self),),
         }
 
     def button_process_gib_web_services(self):
