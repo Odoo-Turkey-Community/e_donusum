@@ -56,5 +56,5 @@ bilgilerini içerir ve düzenli olarak güncellenir.
     "installable": True,
     "application": False,
     "auto_install": False,
-    "images": ["images/main_screenshot.png"],
+    "images": ["static/description/images/main_screenshot.png"],
 }

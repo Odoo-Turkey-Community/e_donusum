@@ -26,5 +26,5 @@
     "external_dependencies": {
         "python": [],
     },
-    "images": ["images/main_screenshot.png"],
+    "images": ["static/description/images/main_screenshot.png"],
 }

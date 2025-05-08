@@ -42,6 +42,6 @@ Not: Bu modül, Türkiye'deki yasal gereksinimler için gerekli olan temel lokal
     "application": False,
     "auto_install": True,
     "images": [
-        "images/main_screenshot.png"
+        "static/description/images/main_screenshot.png"
     ],
 }
