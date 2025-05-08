@@ -28,5 +28,5 @@
     "external_dependencies": {
         "python": ["cryptography", "pycryptodome==3.20.0"],
     },
-    "images": ["images/main_screenshot.png"],
+    "images": ["static/description/images/main_screenshot.png"],
 }
