@@ -36,5 +36,5 @@
         "wizards/gib_invoice_archive_cancel_wizard.xml",
     ],
     "demo": [],
-    "images": ["images/main_screenshot.png"],
+    "images": ["static/description/images/main_screenshot.png"],
 }
