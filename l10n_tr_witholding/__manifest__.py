@@ -40,7 +40,7 @@ resmi Türk muhasebe planı (l10n_tr) ile entegre çalışır.
         'views/account_fiscal_position_views.xml',
         'views/account_tax_group_views.xml'
     ],
-    'license': "LGPL-3",
+    'license': "Other proprietary",
     "installable": True,
     "application": False,
     "auto_install": True,
