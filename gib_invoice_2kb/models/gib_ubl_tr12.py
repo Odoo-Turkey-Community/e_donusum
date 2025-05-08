@@ -78,15 +78,14 @@ class GibUblTR12(models.AbstractModel):
 
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
-        if "picking_ids" in invoice._fields:
-            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.despatch_type):
-                if "gib_seq" in picking_id._fields:
-                    vals.append(
-                        {
-                            "id": picking_id.gib_seq or picking_id.name,
-                            "issue_date": self.format_date(picking_id.gib_create_date),
-                        }
-                    )
+        if "picking_ids" in invoice._fields and "gib_seq" in invoice._fields:
+            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.gib_response_code != 'reject'):
+                vals.append(
+                    {
+                        "id": picking_id.gib_seq,
+                        "issue_date": self.format_date(picking_id.gib_create_date),
+                    }
+                )
         return vals
 
     def _get_delivery_vals_list(self, invoice):
