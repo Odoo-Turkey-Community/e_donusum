@@ -26,5 +26,5 @@
         "views/gib_incoming_invoice.xml",
     ],
     "demo": [],
-    "images": ["images/main_screenshot.png"],
+    "images": ["static/description/images/main_screenshot.png"],
 }
