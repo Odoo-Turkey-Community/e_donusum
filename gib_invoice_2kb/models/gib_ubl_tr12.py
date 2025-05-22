@@ -78,8 +78,13 @@ class GibUblTR12(models.AbstractModel):
 
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
-        if "picking_ids" in invoice._fields and "gib_seq" in invoice._fields:
-            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.gib_response_code != 'reject'):
+        if "picking_ids" in invoice._fields and "gib_seq" in invoice.picking_ids[:1]._fields:
+            pickings = invoice.picking_ids.filtered(
+                lambda pic: (pic.state != 'cancel' and
+                             pic.gib_seq and
+                             pic.gib_response_code != 'reject')
+            )
+            for picking_id in pickings:
                 vals.append(
                     {
                         "id": picking_id.gib_seq,
