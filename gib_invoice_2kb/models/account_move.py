@@ -862,7 +862,7 @@ class AccountMove(models.Model):
         if (
             self.gib_profile_id
             == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
-            and customer.is_company
+            and not customer.is_company
         ):
             is_required = False
         return is_required
