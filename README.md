@@ -18,7 +18,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
 <p align="center">
@@ -76,7 +76,7 @@
 
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
  </div>
 
@@ -131,17 +131,17 @@ Addon | Version | Maintainers | Summary
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 <li style="padding:5px">
@@ -238,7 +238,7 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
    ```
 5. "2KB Etkinleştirme" Butonununa Tıklayınız "2KB dünyasına hoş geldiniz." mesajını gördüğünüzde etkinleştirme talebiniz tarafımıza ulaşacaktır. "Kontrol Et" butonundan talebinizi tekrar sorgulayabilirsiniz
 
-<img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
+<img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
 
 > [!IMPORTANT]
 > Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
@@ -288,17 +288,17 @@ Odoo Türkiye lokalizasyonu sorununa çözüm olarak ortaya çıkarılan bu ür�
 <ul style="list-style:none">
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/quanimo.png" alt="Quanimo" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/images/broadmax.png" alt="Broadmax" height="40">
+    <img src="https://github.com/Odoo-Turkey-Community/e_donusum/raw/16.0/gib_base_2kb/static/description/images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 </ul>
