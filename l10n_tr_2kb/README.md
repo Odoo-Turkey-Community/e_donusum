@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="static/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
 <h3 align="center">Türkiye Lokalizasyonu Genişletmesi</h3>
@@ -91,7 +91,7 @@
 
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="static/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
  </div>
 
@@ -116,17 +116,17 @@ Türkiye muhasebesine özel genişletmeler bu uygulama ile gelir vergilerin mali
 </li>
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="images/quanimo.png" alt="Quanimo" height="40">
+    <img src="static/images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="images/broadmax.png" alt="Broadmax" height="40">
+    <img src="static/images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 <li style="padding:5px">
@@ -215,7 +215,7 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
 5. "2KB Etkinleştirme" Butonununa Tıklayınız "2KB dünyasına hoş geldiniz." mesajını gördüğünüzde etkinleştirme talebiniz tarafımıza ulaşacaktır. "Kontrol Et" butonundan talebinizi tekrar sorgulayabilirsiniz
 
 
-<img src="images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
+<img src="static/images/activitation.png" alt="Ürün Aktivasyon Görüntüsü">
 
 > [!IMPORTANT]
 > Bundan sonraki süreçler sizinle irtibata geçen 2KB ekibi tarafından sizinle birlikte yürütülecektir. Entegratör aktivasyonu ve Talebinizin etkinleştirilmesi gibi...
@@ -263,17 +263,17 @@ Odoo Türkiye lokalizasyonuna çözüm alternatifi olarak ortaya çıkarılan bu
 <ul style="list-style:none">
 <li style="padding:5px">
 <a href="https://kitayazilim.com">
-    <img src="images/kitayazilim.png" alt="Kıta Yazılım" height="40">
+    <img src="static/images/kitayazilim.png" alt="Kıta Yazılım" height="40">
   </a>
 </li>
 <li style="padding:5px">
 <a href="https://quanimo.com">
-    <img src="images/quanimo.png" alt="Quanimo" height="40">
+    <img src="static/images/quanimo.png" alt="Quanimo" height="40">
   </a>
   </li>
 <li style="padding:5px">
 <a href="https://broadmax.com.tr/">
-    <img src="images/broadmax.png" alt="Broadmax" height="40">
+    <img src="static/images/broadmax.png" alt="Broadmax" height="40">
   </a>
 </li>
 </ul>
