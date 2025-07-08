@@ -11,7 +11,6 @@ class ResCompany(models.Model):
     tax_office_id = fields.Many2one(
         related="partner_id.tax_office_id",
         string="Tax Office",
-        required=True,
         store=True,
         readonly=False,
         ondelete="restrict"
