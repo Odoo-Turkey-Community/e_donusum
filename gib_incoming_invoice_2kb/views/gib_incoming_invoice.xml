@@ -125,7 +125,7 @@
 
 <record model="ir.ui.menu" id="gib_incoming_invoice_main_menu">
     <field name="name">Gelen Faturalar</field>
-    <field name="parent_id" ref="account.menu_finance_entries"/>
+    <field name="parent_id" ref="account.menu_finance_payables"/>
     <field name="sequence" eval="60"/>
 </record>
 
