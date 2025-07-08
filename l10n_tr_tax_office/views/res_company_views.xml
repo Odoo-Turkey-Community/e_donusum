@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="tax_office_id" required="country_code == 'TR'" invisible="country_code != 'TR'"/>
+                <field name="tax_office_id" attrs="{'required': [('country_code', '=', 'TR')], 'invisible': [('country_code', '!=', 'TR')] }"/>
             </xpath>
         </field>
     </record>
