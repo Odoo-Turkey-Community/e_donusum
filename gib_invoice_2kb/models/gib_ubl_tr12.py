@@ -36,7 +36,7 @@ class GibUblTR12(models.AbstractModel):
                     "document_type": "XSLT",
                     "external_reference_uri": False,
                     "binary_object_vals": {
-                        "filename": "%s.xslt" % template.store_fname,
+                        "filename": "%s.xslt" % template.checksum,
                         "mime_code": "application/xml",
                         "attachment": template.with_context(
                             bin_size=False
