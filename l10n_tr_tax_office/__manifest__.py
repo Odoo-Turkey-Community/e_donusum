@@ -10,7 +10,7 @@
 Türkiye Vergi Daireleri 2KB
 ===========================
 
-Bu modül, Odoo'ya Türkiye'deki tüm vergi dairelerinin güncel listesini ekler ve 
+Bu modül, Odoo'ya Türkiye'deki tüm vergi dairelerinin güncel listesini ekler ve
 iş ortakları (partner) için vergi dairesi yönetimini sağlar.
 
 Özellikler:
@@ -28,8 +28,8 @@ Teknik Özellikler:
 * Güvenlik erişim kuralları (ir.model.access)
 * İş ortağı (res.partner) ve şirket (res.company) formlarına entegrasyon
 
-Not: Bu modül, Türkiye'deki yasal gereksinimler için gerekli olan vergi dairesi 
-bilgilerini yönetmenizi sağlar ve e-Fatura, e-İrsaliye gibi e-Belge süreçlerinde 
+Not: Bu modül, Türkiye'deki yasal gereksinimler için gerekli olan vergi dairesi
+bilgilerini yönetmenizi sağlar ve e-Fatura, e-İrsaliye gibi e-Belge süreçlerinde
 kullanılabilir.
     """,
     "maintainer": "Quanimo",

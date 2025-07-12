@@ -111,6 +111,11 @@ class GibUBLProvider(models.Model):
             sequence_date=move.invoice_date
         )
 
+        if not move.ref:
+            move.ref = move.gib_invoice_name
+        else:
+            move.ref = f"{move.ref}/{move.gib_invoice_name}"
+
         if not re.search(
             "^[A-Z0-9]{3}20[0-9]{2}[0-9]{9}$", move.gib_invoice_name or ""
         ):
@@ -164,7 +169,7 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result
 
     def _move_post(self, moves):
@@ -175,7 +180,7 @@ class GibUBLProvider(models.Model):
         cache_validate = False
         result = {}
         for move in moves:
-            result = {move: {}}
+            result[move] = {}
             attachment = move._get_edi_attachment()
             if not attachment:
                 if move.gib_invoice_name == GIB_INVOICE_DEFAULT_NAME:
@@ -208,7 +213,7 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result
 
     def _move_update_state(self, moves):
@@ -218,5 +223,5 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result

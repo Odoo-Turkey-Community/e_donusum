@@ -52,6 +52,11 @@ class GibProvider(models.Model):
         super().write(values)
         if not CRON_DEPENDS.isdisjoint(values):
             self._sync_cron()
+        if self.izibiz_jwt and ('izibiz_username' in values or 'izibiz_password' in values):
+            super().write({
+                'izibiz_jwt': False
+            })
+
 
     def unlink(self):
         crons = self.izibiz_cron_ids.sudo()
@@ -128,6 +133,8 @@ class GibProvider(models.Model):
 
         alias = []
         result = self._get_izibiz_service().check_user(vat, role)
+        if result.get("error"):
+            _logger.error("izibiz'den etiket alınamadı: " + result.get('error', ''))
         if result.get("success"):
             result_filter = [
                 item for item in result.get("result") if item.DELETED == "N"
@@ -228,14 +235,14 @@ class GibProvider(models.Model):
             is_e_arsiv = move.gib_profile_id == self.env.ref(
                 "gib_invoice_2kb.profile_id-EARSIVFATURA"
             )
-
+            move_info = res[move]
             try:
                 if is_e_arsiv:
                     result = service.get_earchive_status(uuids=[move.gib_uuid])
                 else:
                     result = service.get_invoice_status(uuid=move.gib_uuid)
             except requests.exceptions.RequestException as e:
-                res[move].update(
+                move_info.update(
                     {
                         "success": False,
                         "blocking_level": "warning",
@@ -245,15 +252,17 @@ class GibProvider(models.Model):
                 break
 
             if result.get("success"):
+                move_info['success'] = True
+                move_info['result'] = {}
                 if is_e_arsiv:
                     gib_code = e_arsiv_report_mapping.get(
                         result["result"][0].HEADER.STATUS
                     )
-                    res[move].update(
+                    move_info['result'].update(
                         {"gib_report_code": gib_code if gib_code else False}
                     )
                 else:
-                    res[move].update(
+                    move_info['result'].update(
                         {
                             "gib_status_code_id": fields.first(
                                 gib_status_code_ids.filtered(
@@ -262,19 +271,17 @@ class GibProvider(models.Model):
                                 )
                             ).id,
                             "gib_response_code": (
-                                result["result"].RESPONSE_CODE in ["REJECT", "ACCEPT"]
+                                result["result"].RESPONSE_CODE in ["REJECTED", "ACCEPTED"]
                                 and (
                                     "reject"
-                                    if result["result"].RESPONSE_CODE == "REJECT"
+                                    if result["result"].RESPONSE_CODE == "REJECTED"
                                     else "accept"
                                 )
                                 or False
                             ),
-                            "gtb_refno": result["result"].GTB_REFNO,
-                            "gtb_tescilno": result["result"].GTB_GCB_TESCILNO,
-                            "gtb_intac_tarihi": result[
-                                "result"
-                            ].GTB_FIILI_IHRACAT_TARIHI,
+                            "gtb_refno": (result["result"].GTB_REFNO or "").strip(),
+                            "gtb_tescilno": (result["result"].GTB_GCB_TESCILNO or "").strip(),
+                            "gtb_intac_tarihi": (result["result"].GTB_FIILI_IHRACAT_TARIHI or "").strip(),
                         }
                     )
         return res
@@ -446,6 +453,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "days",
                             "interval_number": 1,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB etiket güncelle servisi  - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -492,6 +501,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB Durum Kodları Güncelle - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -538,6 +549,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB Ticari Cevap Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -582,6 +595,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB e-Arşiv Rapor Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -628,6 +643,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB e-Ihracaat Bilgi Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -674,7 +691,9 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
-                            "name": "izibiz_2kb: GIB e-Irsaliye Bilgi Servisi - %s"
+                            "numbercall": -1,
+                            "doall": False,
+                            "name": "izibiz_2kb: GIB Gelen e-Irsaliye Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
                             "state": "code",
@@ -720,6 +739,8 @@ class GibProvider(models.Model):
                             "active": cron_required,
                             "interval_type": "hours",
                             "interval_number": 4,
+                            "numbercall": -1,
+                            "doall": False,
                             "name": "izibiz_2kb: GIB Gelen e-Fatura Servisi - %s"
                             % self.name,
                             "model_id": self.env["ir.model"]._get_id(self._name),
@@ -848,13 +869,10 @@ class GibProvider(models.Model):
             status_id = gib_status_code_map.get(api_state_map[move_id.gib_uuid])
             if not status_id:
                 code = api_state_map[move_id.gib_uuid]
-                _logger.warning(f"cron_get_invoice_state_info: Bilinmeyen durum kodu: {code} uuid: {move_id.gib_uuid}")
-            move_id.write(
-                {
-                    "gib_status_code_id": status_id
-
-                }
-            )
+                _logger.warning(
+                    f"cron_get_invoice_state_info: Bilinmeyen durum kodu: {code} uuid: {move_id.gib_uuid}"
+                )
+            move_id.write({"gib_status_code_id": status_id})
         return True
 
     def cron_get_invoice_responce_info(self):
@@ -926,11 +944,17 @@ class GibProvider(models.Model):
         """
         gib_response_code accept,reject değerlerini alabilir
         """
-        gib_profile_id = self.env.ref("gib_base_2kb.profile_id-IHRACAT")
+
+        bdate = fields.Date.today() - timedelta(days=60)
+        gib_profile_id = self.env.ref("gib_invoice_pro_export_2kb.profile_id-IHRACAT", False)
         domain = [
+            ('date', '>', bdate),
+            '|',
             ("gtb_refno", "=", False),
+            '|',
+            ("gtb_tescilno", "=", False),
+            ("gtb_intac_tarihi", "=", False),
             ("gib_profile_id", "=", gib_profile_id.id),
-            ("gib_provider_id.provider", "=", "izibiz"),
         ]
         move_ids = self.env["account.move"].search(domain, limit=1000)
         if not move_ids:
@@ -946,7 +970,7 @@ class GibProvider(models.Model):
         resp_mapping = {
             res.UUID: {
                 "gtb_refno": (res.HEADER.GTB_REFNO or "").strip() or False,
-                "gtb_tescilno": res.HEADER.GTB_GCB_TESCILNO or False,
+                "gtb_tescilno": (res.HEADER.GTB_GCB_TESCILNO or "").strip() or False,
                 "gtb_intac_tarihi": (
                     len(res.HEADER.GTB_FIILI_IHRACAT_TARIHI or "") == 10
                     and fields.date.fromisoformat(res.HEADER.GTB_FIILI_IHRACAT_TARIHI)
@@ -1000,6 +1024,7 @@ class GibProvider(models.Model):
             gid_to_create.append(
                 {
                     "gib_provider_id": self.id,
+                    "company_id": self.company_id.id,
                     "ETTN": incoming.UUID,
                     "name": incoming.ID,
                     "gib_profile": incoming.HEADER.PROFILEID,
@@ -1055,6 +1080,7 @@ class GibProvider(models.Model):
             gid_to_create.append(
                 {
                     "gib_provider_id": self.id,
+                    "company_id": self.company_id.id,
                     "ETTN": incoming.UUID,
                     "name": incoming.ID,
                     "gib_profile": incoming.DESPATCHADVICEHEADER.PROFILEID,

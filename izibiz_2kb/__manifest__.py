@@ -25,7 +25,6 @@
     "category": "Accounting/Localizations/Account Charts",
     "depends": ["gib_base_2kb", "gib_invoice_2kb"],
     "data": [
-        "security/izibiz_api_log.xml",
         "data/gib_provider.xml",
         "views/gib_provider.xml",
     ],

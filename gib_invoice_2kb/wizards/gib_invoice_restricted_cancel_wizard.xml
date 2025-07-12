@@ -40,6 +40,9 @@ KEP üzerinden İptal / İade etmek, şeklindedir. Lütfen öncelikle bu işleml
 <footer>
     <button name="force_to_cancel_gib_invoice" string="İptal Et" class="btn-primary" type="object"/>
     <button string="Kapat" class="btn-default" special="cancel"/>
+    <div groups="base.group_no_one">
+        <button name="force_to_draft_gib_invoice" string="Taslak Yetksi Al" class="btn-danger" type="object"  groups="base.group_system,base.group_no_one"/>
+    </div>
 </footer>
 </form>
 </field>
