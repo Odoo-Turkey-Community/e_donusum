@@ -22,9 +22,7 @@
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
     "license": "Other proprietary",
-    "depends": [
-        "gib_base_2kb",
-    ],
+    "depends": ["gib_base_2kb", "sale"],
     "data": [
         "security/ir.model.access.csv",
         "data/gib_base_2kb_code.xml",

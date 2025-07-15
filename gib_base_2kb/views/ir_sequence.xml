@@ -18,7 +18,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="sequence_view_tree">
+    <record model="ir.ui.view" id="sequence_view_list">
         <field name="name">ir.sequence.form (in gib_base_2kb)</field>
         <field name="model">ir.sequence</field>
         <field name="inherit_id" ref="base.sequence_view_tree"/>

@@ -56,11 +56,7 @@
                     </group>
                 </group>
             </sheet>
-            <div class="oe_chatter">
-                <field name="message_follower_ids" widget="mail_followers"/>
-                <field name="activity_ids"/>
-                <field name="message_ids" widget="mail_thread"/>
-            </div>
+            <chatter/>
         </form>
     </field>
 </record>
@@ -86,8 +82,8 @@
     </field>
 </record>
 
-<record model="ir.ui.view" id="gib_incoming_invoice_tree_view">
-    <field name="name">gib.incoming.invoice.tree (in gib_incoming_invoice_2kb)</field>
+<record model="ir.ui.view" id="gib_incoming_invoice_list_view">
+    <field name="name">gib.incoming.invoice.list (in gib_incoming_invoice_2kb)</field>
     <field name="model">gib.incoming.invoice</field>
     <field name="arch" type="xml">
         <list create="false" decoration-success="is_importable">
