@@ -169,7 +169,7 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result
 
     def _move_post(self, moves):
@@ -180,7 +180,7 @@ class GibUBLProvider(models.Model):
         cache_validate = False
         result = {}
         for move in moves:
-            result = {move: {}}
+            result[move] = {}
             attachment = move._get_edi_attachment()
             if not attachment:
                 if move.gib_invoice_name == GIB_INVOICE_DEFAULT_NAME:
@@ -213,7 +213,7 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result
 
     def _move_update_state(self, moves):
@@ -223,5 +223,5 @@ class GibUBLProvider(models.Model):
         """
         result = {}
         for move in moves:
-            result.update({move: {}})
+            result[move] = {}
         return result

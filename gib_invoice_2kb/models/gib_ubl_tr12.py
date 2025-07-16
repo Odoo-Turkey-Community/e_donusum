@@ -36,7 +36,7 @@ class GibUblTR12(models.AbstractModel):
                     "document_type": "XSLT",
                     "external_reference_uri": False,
                     "binary_object_vals": {
-                        "filename": "%s.xslt" % template.store_fname,
+                        "filename": "%s.xslt" % template.checksum,
                         "mime_code": "application/xml",
                         "attachment": template.with_context(
                             bin_size=False
@@ -79,7 +79,7 @@ class GibUblTR12(models.AbstractModel):
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
         if "picking_ids" in invoice._fields and "gib_seq" in invoice._fields:
-            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.gib_response_code != 'reject'):
+            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.gib_response_code != 'reject' and pic.despatch_type):
                 vals.append(
                     {
                         "id": picking_id.gib_seq,
