@@ -48,7 +48,7 @@ class ResPartner(models.Model):
         )
 
         if pk_id:
-            self.alias_pk = pk_id.alias
+            self.alias_title = pk_id.title
             self.is_e_inv = True
             if not self.profile_id or self.profile_id.value2 == "e-arsv":
                 self.profile_id = self.env.ref(
