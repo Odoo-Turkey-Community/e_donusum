@@ -187,12 +187,12 @@ class GibUblTR12(models.AbstractModel):
         if self.env.ref("base.TRY") == invoice.currency_id:
             return {}
         else:
-            rate = invoice.line_ids.filtered(lambda ln: ln.display_type not in ['line_section', 'line_note']).mapped('currency_rate')[0]
-            inverse_rate = float_round(1/rate, 4)
+            rate = invoice.invoice_currency_rate
+            inverse_rate = float_round(1/rate, 8)
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
-                "calculation_rate": float_repr(inverse_rate, 6),
+                "calculation_rate": float_repr(inverse_rate, 8),
                 "pricing_exchange_rate_vals": False,
             }
 
