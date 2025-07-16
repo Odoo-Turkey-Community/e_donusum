@@ -68,6 +68,7 @@ class ResPartner(models.Model):
                     alias_to_create.append(item)
                 elif not elias_exists.active:
                     alias_to_update[elias_exists.id] = {"active": True}
+
             for alias_id in partner_alias.filtered(lambda alias: alias.active):
                 found = [
                     item
