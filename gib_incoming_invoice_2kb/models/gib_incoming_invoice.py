@@ -5,7 +5,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError
 
-from odoo.addons.http_routing.models.ir_http import slug
 from markupsafe import Markup
 
 

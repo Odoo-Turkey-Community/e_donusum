@@ -4,6 +4,7 @@
 
 {
     "name": "E-Dönüşüm Altyapısı",
+     "summary": """Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir""",
     "description": """
         E-Dönüşüm süreçleri için temel altyapı modülüdür.
         Özellikler:
@@ -14,7 +15,6 @@
         * GİB servisleri ile iletişim için güvenlik protokolleri
         * Çoklu entegratör desteği
     """,
-    "summary": """Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir""",
     "version": "1.0",
     "license": "Other proprietary",
     "maintainer": "Quanimo",
