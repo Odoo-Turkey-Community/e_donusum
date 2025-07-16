@@ -436,7 +436,6 @@ class IzibizService:
             else:
                 error = responce.ERROR_TYPE.ERROR_SHORT_DES
 
-
         return {
             "success": success,
             "error": error,

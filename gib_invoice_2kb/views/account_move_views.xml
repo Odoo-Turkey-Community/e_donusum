@@ -88,7 +88,7 @@
                     </h1>
                 </div>
 
-                <div class="col-6">
+                <div class="col-6" invisible="move_type not in ('out_invoice', 'in_refund')">
                     <span class="o_form_label">
                         <div name="move_type" class="o_field_widget o_readonly_modifier o_required_modifier o_field_selection">
                             <label for="gib_invoice_name" class="fw-bold" string="Fatura No"/>
