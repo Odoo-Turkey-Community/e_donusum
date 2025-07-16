@@ -8,6 +8,7 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    alias_title = fields.Char(string="Etiket Ünvan")
     alias_pk = fields.Many2one(
         "gib_base_2kb.alias",
         string="Alıcı Etiket",
@@ -47,6 +48,7 @@ class ResPartner(models.Model):
         )
 
         if pk_id:
+            self.alias_pk = pk_id.alias
             self.is_e_inv = True
             if not self.profile_id or self.profile_id.value2 == "e-arsv":
                 self.profile_id = self.env.ref(
