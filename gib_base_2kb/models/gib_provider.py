@@ -60,11 +60,11 @@ class GibUBLProvider(models.Model):
     conn_srv = fields.Char("Sunucu", default="https://api.kitayazilim.com.tr")
     conn_user = fields.Char("Kullanıcı Adı")
     conn_password = fields.Char("Şifre")
-    ssl_check = fields.Selection([
-        ('local', 'Local'),
-        ('false', 'False'),
-        ('true', 'True')
-    ], string="SSL Kontrol", default='false')
+    ssl_check = fields.Selection(
+        [("local", "Local"), ("false", "False"), ("true", "True")],
+        string="SSL Kontrol",
+        default="false",
+    )
 
     def _save_template(self, template, template_name, profile_ids):
         result = []
@@ -140,14 +140,18 @@ class GibUBLProvider(models.Model):
         )
         if earchive_template:
             profile_ids = [self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA").id]
-            self._save_template(earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids)
+            self._save_template(
+                earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids
+            )
 
         if einvoice_template:
             profile_ids = [
                 self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA").id,
                 self.env.ref("gib_invoice_2kb.profile_id-TICARIFATURA").id,
             ]
-            self._save_template(einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids)
+            self._save_template(
+                einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids
+            )
 
         message = "<br/>".join(result_text)
         return {
@@ -163,7 +167,7 @@ class GibUBLProvider(models.Model):
 
     def get_default_provider(self, company_id=None):
         company = company_id or self.env.company
-        return self.search([('company_id', '=', company.id)], limit=1)
+        return self.search([("company_id", "=", company.id)], limit=1)
 
     @api.model
     def _get_applicability(self, doc_id):
