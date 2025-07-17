@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Odoo-Turkey-Community/e_donusum">
-    <img src="images/main_screenshot.png" alt="Logo" width="250" height="125">
+    <img src="static/description/images/main_screenshot.png" alt="Logo" width="250" height="125">
   </a>
 
 <h3 align="center">E-Dönüşüm Altyapısı</h3>
