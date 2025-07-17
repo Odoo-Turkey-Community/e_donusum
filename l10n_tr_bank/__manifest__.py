@@ -20,12 +20,29 @@ Bu modül, Türkiye'deki işletmeler için temel lokalizasyon özelliklerini iç
 
 Özellikler:
 -----------
-* Türkiye'ye özgü vergi pozisyonları ve vergi grupları
-* Stopaj işlemleri için özel vergi hesaplamaları
-* Türk bankacılık sistemi entegrasyonu
-* Vergi dairesi işlemleri ve raporlamaları
+* Türkiye'deki tüm aktif bankaların listesi
+* Her banka için:
+  - Banka şube bilgileri
+  - SWIFT/BIC kodları
+  - İletişim bilgileri (telefon, faks, e-posta)
+  - Tam adres bilgileri
+  - EFT ve IBAN kodları
 
-Not: Bu modül, Türkiye'deki yasal gereksinimler için gerekli olan temel lokalizasyon özelliklerini sağlar.
+Teknik Özellikler:
+-----------------
+* Banka kayıtları için özelleştirilmiş görünümler
+* İş ortağı formlarında banka seçimi
+* Hazır yüklenmiş banka verileri (res_bank.xml)
+* Banka bilgileri için gelişmiş arama ve filtreleme
+
+Entegrasyon:
+-----------
+* Muhasebe modülü ile tam entegrasyon
+* Banka hesapları yönetimi
+* Ödeme işlemleri için hazır banka bilgileri
+
+Not: Bu modül, Türkiye'deki bankacılık işlemleriniz için gerekli olan tüm banka 
+bilgilerini içerir ve düzenli olarak güncellenir.
     """,
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
