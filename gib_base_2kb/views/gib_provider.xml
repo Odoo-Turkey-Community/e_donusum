@@ -39,6 +39,7 @@
                             <field name="partner_id" invisible="1"/>
                             <field name="prod_environment" widget="boolean_toggle" groups="base.group_no_one"/>
                             <field name="send_as_draft" widget="boolean_toggle"/>
+                            <field name="ssl_check"/>
                         </group>
                         <group>
                             <group>
