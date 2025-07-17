@@ -27,11 +27,20 @@ class AccountMove(models.Model):
         ``partner_profile_type``.
         """
 
-        if self.env.context.get('default_move_type') == 'in_refund':
-            ids = [self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False).id, self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False).id]
-            return str([('id', 'in', ids),])
+        if self.env.context.get("default_move_type") == "in_refund":
+            ids = [
+                self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False).id,
+                self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False).id,
+            ]
+            return str(
+                [
+                    ("id", "in", ids),
+                ]
+            )
         else:
-            return "[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]"
+            return (
+                "[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]"
+            )
 
     gib_state = fields.Selection(
         selection=[
@@ -285,9 +294,13 @@ class AccountMove(models.Model):
             else:
                 if record.move_type == "in_refund":
                     if record.commercial_partner_id.is_e_inv:
-                        record.gib_profile_id = self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False)
+                        record.gib_profile_id = self.env.ref(
+                            "gib_invoice_2kb.profile_id-TEMELFATURA", False
+                        )
                     else:
-                        record.gib_profile_id = self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False)
+                        record.gib_profile_id = self.env.ref(
+                            "gib_invoice_2kb.profile_id-EARSIVFATURA", False
+                        )
                 else:
                     record.gib_profile_id = record.commercial_partner_id.profile_id.id
 
@@ -345,7 +358,11 @@ class AccountMove(models.Model):
 
         for move in self:
             provider = move._get_gib_provider()
-            if provider and move.gib_state in ("sent", "to_cancel", "cancel") and not move.esudo:
+            if (
+                provider
+                and move.gib_state in ("sent", "to_cancel", "cancel")
+                and not move.esudo
+            ):
                 move.show_reset_to_draft_button = False
 
     @api.depends("gib_state")
@@ -479,7 +496,8 @@ class AccountMove(models.Model):
                         {
                             "gtb_refno": res["result"].get("gtb_refno") or False,
                             "gtb_tescilno": res["result"].get("gtb_tescilno") or False,
-                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi") or False,
+                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi")
+                            or False,
                         }
                     )
 
@@ -564,7 +582,7 @@ class AccountMove(models.Model):
             move_applicability = provider and provider._get_move_applicability(self)
             if move_applicability and move_applicability.get("gib_content"):
                 move_applicability["gib_content"](self)
-        slug = self.env['ir.http']._slug
+        slug = self.env["ir.http"]._slug
         return {
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
@@ -772,7 +790,7 @@ class AccountMove(models.Model):
                 customer_vat = re.sub(r"\D+", "", customer.vat or "").strip()
                 if not len(customer_vat) in [10, 11]:
                     error.append(
-                        f"Ödeyici {move.commercial_partner_id}, için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
+                        f"Müşteriniz {move.commercial_partner_id.display_name} için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
                     )
 
         # endregion
@@ -804,11 +822,12 @@ class AccountMove(models.Model):
         not customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-inv" and error.append(
             "E-Fatura mükellefi olmayana E-Fatura kesilemez!"
         )
-        move.move_type == "in_refund" and move.gib_profile_id not in [self.env.ref(
-            "gib_invoice_2kb.profile_id-TEMELFATURA"
-        ), self.env.ref(
-            "gib_invoice_2kb.profile_id-EARSIVFATURA"
-        )] and error.append("İade faturaları 'Temel Fatura' veya 'E-Arşiv Fatura' olabilir!")
+        move.move_type == "in_refund" and move.gib_profile_id not in [
+            self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA"),
+            self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA"),
+        ] and error.append(
+            "İade faturaları 'Temel Fatura' veya 'E-Arşiv Fatura' olabilir!"
+        )
         # endregion
         # region #! ------------------ Move Master GİB Fatura Türü Doğrulamaları ------------------
         move.gib_invoice_type_id.value == "IADE" and move.gib_profile_id_value not in [
@@ -841,9 +860,7 @@ class AccountMove(models.Model):
                 )
 
             if not line.name:
-                error.append(
-                    f"Satır açıklaması boş bırakılamaz.{line.display_name}"
-                )
+                error.append(f"Satır açıklaması boş bırakılamaz.{line.display_name}")
 
             if line_error:
                 error.append(line_error)
@@ -938,3 +955,61 @@ class AccountMove(models.Model):
             )
         self.gib_uuid = str(uuid.uuid4())
         self.action_retry_edi_documents_error()
+
+    def get_2kb_pdf(self):
+        self.ensure_one()
+        attachment_name = f"{self.gib_invoice_name}_{self.gib_uuid}.pdf"
+        attachment = self.attachment_ids.filtered(
+            lambda atch: atch.name == attachment_name
+        )[-1]
+        if self.gib_state == "sent" and attachment:
+            return base64.b64decode(attachment.datas)
+
+        gib_attachment = self._get_edi_attachment()
+        if not gib_attachment:
+            raise UserError("Ek bulunamadı")
+
+        tree = etree.fromstring(
+            base64.b64decode(gib_attachment.with_context(bin_size=False).datas)
+        )
+        ns = {
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        }
+        r = tree.xpath(
+            "//cac:AdditionalDocumentReference[cbc:DocumentType[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
+            namespaces=ns,
+        )
+        if len(r) != 1:
+            f_xslt = (
+                "e-Arsiv.xslt"
+                if self.gib_profile_id
+                == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
+                else "e-Fatura.xslt"
+            )
+            xslt = etree.parse(file_path("gib_base_2kb", "data", "template", f_xslt))
+        else:
+            xslt = etree.fromstring(base64.b64decode(r[0].text))
+
+        transform = etree.XSLT(xslt)
+        _logger.info(f"get_2kb_pdf transform log: {transform.error_log}")
+        newdom = transform(tree)
+        pdf_result = self.env["ir.actions.report"]._run_wkhtmltopdf(
+            [str(newdom)],
+            specific_paperformat_args={
+                "data-report-margin-top": 8,
+                "data-report-header-spacing": 8,
+            },
+        )
+
+        self.env["ir.attachment"].create(
+            {
+                "name": attachment_name,
+                "res_model": "account.move",
+                "res_id": self.id,
+                "type": "binary",
+                "mimetype": "application/pdf",
+                "datas": base64.b64encode(pdf_result),
+            }
+        )
+        return pdf_result
