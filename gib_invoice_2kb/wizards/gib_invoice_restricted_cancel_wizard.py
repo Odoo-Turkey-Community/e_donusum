@@ -27,6 +27,7 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
             ("noter", "Noter üzerinden resmi tebligat ile İptal"),
             ("ptt", "PTT İadeli Taahhütlü İle İptal"),
             ("kep", "Kep ile İptal"),
+            ("fix_invoice", "Fatura düzeltmesi için geçici iptal"),
         ],
         string="İptal Sebebi",
         required=True,
@@ -78,3 +79,20 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
             raise UserError("Bu işlem için yetkili değilsiniz! Sadece yöneticiiler!")
         for wizard in self:
             wizard.invoice_id.esudo = True
+            message_body = f"""
+                <ul class="o_mail_thread_message_tracking list-unstyled">
+                    <li>
+                        <p class="mb-1 text-warning">Özel Taslak Yetkisi Alındı</p>
+                    </li>
+                    <li class="ps-4">
+                        Bilgi:
+                        <span style="color:indianred"> Daha önce GIB e gönderilen bu fatura için özel taslak yetkisi alındı! </span>
+                    </li>
+                    <li class="ps-4">
+                        Sebep:
+                        <span> {dict(self.env[wizard._name].fields_get(allfields=["cancel_reason"])["cancel_reason"]['selection'])[wizard.cancel_reason]} </span>
+                    </li>
+                </ul>
+            """
+
+            wizard.invoice_id.message_post(body=Markup(message_body))
