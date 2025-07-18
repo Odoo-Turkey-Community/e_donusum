@@ -172,6 +172,7 @@ class AccountMove(models.Model):
             ("noter", "Noter üzerinden resmi tebligat ile İptal"),
             ("ptt", "PTT İadeli Taahhütlü İle İptal"),
             ("kep", "Kep ile İptal"),
+            ("fix_invoice", "Fatura düzeltmesi için geçici iptal"),
         ],
         string="Harici İptal Şekli",
         readonly=True,
@@ -961,7 +962,8 @@ class AccountMove(models.Model):
         attachment_name = f"{self.gib_invoice_name}_{self.gib_uuid}.pdf"
         attachment = self.attachment_ids.filtered(
             lambda atch: atch.name == attachment_name
-        ).sorted(lambda r: r.create_date, reverse=True)[:-1]
+        ).sorted(lambda r: r.create_date, reverse=True)
+        attachment = attachment and attachment[-1] or False
         if self.gib_state == "sent" and attachment:
             return base64.b64decode(attachment.datas)
 
