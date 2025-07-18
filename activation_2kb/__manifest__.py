@@ -3,7 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    "name": "2KB Aktivasyon",
+    "name": "2KB Aktivasyon ",
     "version": "1.0",
     "description": """
         2KB E-Dönüşüm ürün ailesi için lisans aktivasyon modülüdür.
@@ -26,10 +26,7 @@
     "installable": True,
     "auto_install": False,
     "external_dependencies": {
-        "python": [
-            "cryptography",
-            "pycryptodome"
-        ],
+        "python": ["cryptography", "pycryptodome"],
     },
     "images": ["static/description/images/main_screenshot.png"],
 }
