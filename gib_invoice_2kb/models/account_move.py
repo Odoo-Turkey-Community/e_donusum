@@ -1002,14 +1002,15 @@ class AccountMove(models.Model):
             },
         )
 
-        self.env["ir.attachment"].create(
-            {
-                "name": attachment_name,
-                "res_model": "account.move",
-                "res_id": self.id,
-                "type": "binary",
-                "mimetype": "application/pdf",
-                "datas": base64.b64encode(pdf_result),
-            }
-        )
+        if self.gib_state == "sent":
+            self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "res_model": "account.move",
+                    "res_id": self.id,
+                    "type": "binary",
+                    "mimetype": "application/pdf",
+                    "datas": base64.b64encode(pdf_result),
+                }
+            )
         return pdf_result
