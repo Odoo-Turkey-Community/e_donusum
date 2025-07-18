@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 from markupsafe import Markup
 
+
 class GibInvoiceRestrictedCancelWizard(models.TransientModel):
 
     _name = "gib.invoice.restricted.cancel.wizard"
@@ -49,7 +50,7 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
                 raise UserError(
                     "Bu fatura harici olarak iptal edilebilir durumda değil"
                 )
-            wizard.invoice_id._check_fiscalyear_lock_date()
+            wizard.invoice_id._check_fiscal_lock_dates()
             wizard.invoice_id.button_cancel()
             wizard.invoice_id.external_cancellation = wizard.cancel_reason
             message_body = f"""
@@ -73,7 +74,7 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
             )
 
     def force_to_draft_gib_invoice(self):
-        if not self.user_has_groups("base.group_system"):
+        if not self.env.user.has_group("base.group_system"):
             raise UserError("Bu işlem için yetkili değilsiniz! Sadece yöneticiiler!")
         for wizard in self:
             wizard.invoice_id.esudo = True

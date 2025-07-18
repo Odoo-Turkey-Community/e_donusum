@@ -391,7 +391,7 @@ class AccountMove(models.Model):
             if not move.gib_show_cancel_button:
                 raise UserError("Bu fatura iptal edilebilir durumda değil!")
             provider = move._get_gib_provider()
-            move._check_fiscalyear_lock_date()
+            move._check_fiscal_lock_dates()
 
             move_applicability = provider and provider._get_move_applicability(move)
             if (
@@ -897,7 +897,7 @@ class AccountMove(models.Model):
             raise UserError(
                 "Yalnızca Reddedilmiş faturalar için bu işlemi yapabilirsiniz!"
             )
-        self._check_fiscalyear_lock_date()
+        self._check_fiscal_lock_dates()
         self.button_cancel()
 
         message_body = """
@@ -925,7 +925,7 @@ class AccountMove(models.Model):
             raise UserError(
                 "Yalnızca GİB e iletilemeyen faturalar için bu işlemi yapabilirsiniz!"
             )
-        self._check_fiscalyear_lock_date()
+        self._check_fiscal_lock_dates()
         self.button_cancel()
 
         message_body = f"""
