@@ -962,7 +962,7 @@ class AccountMove(models.Model):
         attachment_name = f"{self.gib_invoice_name}_{self.gib_uuid}.pdf"
         attachment = self.attachment_ids.filtered(
             lambda atch: atch.name == attachment_name
-        )[-1]
+        ).sorted(lambda r: r.create_date, reverse=True)[:-1]
         if self.gib_state == "sent" and attachment:
             return base64.b64decode(attachment.datas)
 
