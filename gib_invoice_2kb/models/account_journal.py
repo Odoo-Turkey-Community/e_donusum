@@ -88,10 +88,12 @@ class AccountJournal(models.Model):
         for journal_id, count, total in sale_purchase_journals_vals:
             currency_id = journal_id.currency_id or self.company_id.currency_id
             if total:
-                dashboard_data[journal_id.id].update({
-                    "gib_to_process": count,
-                    "amount": currency_id.format(total),
-                })
+                dashboard_data[journal_id.id].update(
+                    {
+                        "gib_to_process": count,
+                        "amount": currency_id.format(total),
+                    }
+                )
 
         rejected_and_waiting_count = (
             sale_purchase_journals._compute_rejected_and_waiting_count()
@@ -99,10 +101,12 @@ class AccountJournal(models.Model):
         for journal_id, count, total in rejected_and_waiting_count:
             currency_id = journal_id.currency_id or self.company_id.currency_id
             if total:
-                dashboard_data[journal_id.id].update({
-                    "rejected_and_waiting_to_action": count,
-                    "amount_rejected_and_waiting": currency_id.format(total),
-                })
+                dashboard_data[journal_id.id].update(
+                    {
+                        "rejected_and_waiting_to_action": count,
+                        "amount_rejected_and_waiting": currency_id.format(total),
+                    }
+                )
 
         undelivered_count = sale_purchase_journals._compute_undelivered_count()
         for journal_id, count, total in undelivered_count:
@@ -119,10 +123,12 @@ class AccountJournal(models.Model):
         for journal_id, count, total in external_cancellation:
             currency_id = journal_id.currency_id or self.company_id.currency_id
             if total:
-                dashboard_data[journal_id.id].update({
-                    "external_cancellation": count,
-                    "amount_external_cancellation": currency_id.format(total),
-                })
+                dashboard_data[journal_id.id].update(
+                    {
+                        "external_cancellation": count,
+                        "amount_external_cancellation": currency_id.format(total),
+                    }
+                )
 
     def open_action(self):
         res = super().open_action()
@@ -139,20 +145,20 @@ class AccountJournal(models.Model):
                 self.env.ref(
                     "gib_invoice_2kb.view_out_invoice_rejected_and_waiting"
                 ).id,
-                "tree",
+                "list",
             )
 
         if to_redirect == "to_undelivered_count":
             res["views"][0] = (
                 self.env.ref("gib_invoice_2kb.view_out_invoice_undelivered_count").id,
-                "tree",
+                "list",
             )
         if to_redirect == "to_external_cancellation":
             res["views"][0] = (
                 self.env.ref(
                     "gib_invoice_2kb.view_out_invoice_external_cancellation"
                 ).id,
-                "tree",
+                "list",
             )
         return res
 
