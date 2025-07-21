@@ -962,7 +962,8 @@ class AccountMove(models.Model):
         attachment_name = f"{self.gib_invoice_name}_{self.gib_uuid}.pdf"
         attachment = self.attachment_ids.filtered(
             lambda atch: atch.name == attachment_name
-        ).sorted(lambda r: r.create_date, reverse=True)[:-1]
+        ).sorted(lambda r: r.create_date, reverse=True)
+        attachment = attachment and attachment[-1] or False
         if self.gib_state == "sent" and attachment:
             return base64.b64decode(attachment.datas)
 
@@ -1003,14 +1004,15 @@ class AccountMove(models.Model):
             },
         )
 
-        self.env["ir.attachment"].create(
-            {
-                "name": attachment_name,
-                "res_model": "account.move",
-                "res_id": self.id,
-                "type": "binary",
-                "mimetype": "application/pdf",
-                "datas": base64.b64encode(pdf_result),
-            }
-        )
+        if self.gib_state == "sent":
+            self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "res_model": "account.move",
+                    "res_id": self.id,
+                    "type": "binary",
+                    "mimetype": "application/pdf",
+                    "datas": base64.b64encode(pdf_result),
+                }
+            )
         return pdf_result
