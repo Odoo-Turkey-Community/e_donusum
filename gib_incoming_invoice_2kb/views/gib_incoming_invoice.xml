@@ -12,7 +12,7 @@
                     <button string="PDF" class="btn-secondary" icon="fa-file-pdf-o" name="get_incoming_e_inv_pdf" type="object"/>
                     <button string="İşlendi" class="toggle_importable" name="toggle_is_importable" type="object" invisible="not is_importable"/>
                     <button string="İşlenmedi" class="toggle_not_importable" name="toggle_is_importable" type="object" invisible="is_importable"/>
-                    <button string="Satırları Al" name="get_incoming_invoice_detail" icon="fa-cloud-download" type="object"/>
+                    <button string="Satırları Al" name="get_incoming_invoice_detail" icon="fa-cloud-download" type="object" groups="account.group_account_invoice"/>
                 </header>
                 <div class="alert alert-info" name="reminder_upgrade_div" role="alert" style="background-color:#dee2e6">
                     <p>
@@ -109,8 +109,8 @@
             <field name="state" invisible="state not in ('None') or gib_profile != 'TICARIFATURA'" optional="show"/>
             <field name="company_id" optional="show"/>
             <button title="PDF" class="btn-secondary" icon="fa-file-pdf-o" name="get_incoming_e_inv_pdf" type="object"/>
-            <button title="Kabul Et" class="btn-success" icon="fa-check" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" invisible="not is_approvable"/>
-            <button title="Reddet" class="btn-danger" icon="fa-times" name="approve_or_deny" type="object" context="{'answer':'RED'}" invisible="not is_approvable"/>
+            <button title="Kabul Et" class="btn-success" icon="fa-check" name="approve_or_deny" type="object" context="{'answer':'KABUL'}" invisible="not is_approvable" groups="account.group_account_invoice"/>
+            <button title="Reddet" class="btn-danger" icon="fa-times" name="approve_or_deny" type="object" context="{'answer':'RED'}" invisible="not is_approvable" groups="account.group_account_invoice"/>
         </tree>
     </field>
 </record>
@@ -126,7 +126,7 @@
 <record model="ir.ui.menu" id="gib_incoming_invoice_main_menu">
     <field name="name">Gelen Faturalar</field>
     <field name="parent_id" ref="account.menu_finance_payables"/>
-    <field name="sequence" eval="60"/>
+    <field name="sequence" eval="210"/>
 </record>
 
 <record model="ir.ui.menu" id="gib_incoming_invoice_menu">
