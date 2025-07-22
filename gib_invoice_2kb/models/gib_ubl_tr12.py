@@ -78,11 +78,16 @@ class GibUblTR12(models.AbstractModel):
 
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
-        if "picking_ids" in invoice._fields and "gib_seq" in invoice.picking_ids[:1]._fields:
+        if (
+            "picking_ids" in invoice._fields
+            and "gib_seq" in invoice.picking_ids[:1]._fields
+        ):
             pickings = invoice.picking_ids.filtered(
-                lambda pic: (pic.state != 'cancel' and
-                             pic.gib_seq and
-                             pic.gib_response_code != 'reject')
+                lambda pic: (
+                    pic.state != "cancel"
+                    and pic.gib_seq
+                    and pic.gib_response_code != "reject"
+                )
             )
             for picking_id in pickings:
                 vals.append(
@@ -112,14 +117,11 @@ class GibUblTR12(models.AbstractModel):
             "quantity": False,
             "returnable_material_indicator": False,
             "package_level_code": False,
-            "packaging_type_code": False
+            "packaging_type_code": False,
         }
 
     def _get_transport_handling_unit_vals(self, line):
-        return {
-            "id": False,
-            "actual_package_vals": self._get_actual_package_vals(line)
-        }
+        return {"id": False, "actual_package_vals": self._get_actual_package_vals(line)}
 
     def _get_financial_institution_vals(self, bank):
         return {
@@ -167,7 +169,7 @@ class GibUblTR12(models.AbstractModel):
             return []
 
     def _get_billing_reference_vals(self, invoice):
-        if invoice.move_type != 'in_refund':
+        if invoice.move_type != "in_refund":
             return {}
 
         id = invoice.ref
@@ -177,22 +179,23 @@ class GibUblTR12(models.AbstractModel):
             issue_date = self.format_date(invoice.reversed_entry_id.date)
 
         return {
-            'id': id,
-            'issue_date': issue_date,
-            'document_type_code': 'IADE',
-            'document_type': 'İade Edilen Fatura'
+            "id": id,
+            "issue_date": issue_date,
+            "document_type_code": "IADE",
+            "document_type": "İade Edilen Fatura",
         }
 
     def _get_pricing_exchange_rate_vals(self, invoice):
         if self.env.ref("base.TRY") == invoice.currency_id:
             return {}
         else:
-            rate = invoice.line_ids.filtered(lambda ln: ln.display_type not in ['line_section', 'line_note']).mapped('currency_rate')[0]
-            inverse_rate = float_round(1/rate, 4)
+            rate = invoice.line_ids.filtered(
+                lambda ln: ln.display_type not in ["line_section", "line_note"]
+            ).mapped("currency_rate")[0]
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
-                "calculation_rate": float_repr(inverse_rate, 6),
+                "calculation_rate": float_repr(1 / rate, 6),
                 "pricing_exchange_rate_vals": False,
             }
 
@@ -254,7 +257,7 @@ class GibUblTR12(models.AbstractModel):
                 net_price_subtotal / (1.0 - (line.discount or 0.0) / 100.0)
             )
 
-        decimal_precision = self.env['decimal.precision'].precision_get('Discount')
+        decimal_precision = self.env["decimal.precision"].precision_get("Discount")
         allowance_vals = {
             "currency_name": line.currency_id.name,
             "currency_dp": decimal_precision,
@@ -277,7 +280,7 @@ class GibUblTR12(models.AbstractModel):
             (gross_price_subtotal / line.quantity) if line.quantity else 0.0
         )
         uom = self._get_uom_unece_code(line.product_uom_id)
-        decimal_precision = self.env['decimal.precision'].precision_get('Product Price')
+        decimal_precision = self.env["decimal.precision"].precision_get("Product Price")
         return {
             "currency_name": line.currency_id.name,
             "currency_dp": decimal_precision,
@@ -310,7 +313,9 @@ class GibUblTR12(models.AbstractModel):
                         else False
                     ),
                 },
-                "transport_handling_unit_vals": self._get_transport_handling_unit_vals(line)
+                "transport_handling_unit_vals": self._get_transport_handling_unit_vals(
+                    line
+                ),
             },
         }
 
@@ -419,9 +424,7 @@ class GibUblTR12(models.AbstractModel):
                 "note_vals": notes,
                 "invoice_type_code": invoice.gib_invoice_type_id.value,
                 "line_count_numeric": len(invoice_lines),
-                "billing_reference_vals": self._get_billing_reference_vals(
-                    invoice
-                ),
+                "billing_reference_vals": self._get_billing_reference_vals(invoice),
                 "order_reference": order_reference_vals,
                 "sales_order_id": sales_order_id,
                 "despatch_document_reference_vals_list": self.get_despatch_document_reference_vals(
