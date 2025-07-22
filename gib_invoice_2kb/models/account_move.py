@@ -2,21 +2,45 @@
 # Copyright (C) 2024 Odoo Turkey Community (https://github.com/orgs/Odoo-Turkey-Community/dashboard)
 # License Other proprietary. Please see the license file in the Addon folder.
 
+import logging
 import uuid
 import base64
 import re
+from lxml import etree
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.addons.http_routing.models.ir_http import IrHttp
-
-from lxml import etree
+from odoo.tools.misc import file_path
 from markupsafe import Markup
+
+_logger = logging.getLogger(__name__)
 
 GIB_INVOICE_DEFAULT_NAME = "TASLAK"
 
 
 class AccountMove(models.Model):
     _inherit = "account.move"
+
+    def _gib_profile_id_domain(self):
+        """
+        Returns a domain for the ``gib_profile_id`` field that filters
+        ``gib_base_2kb.code`` records by type and value2 equal to
+        ``partner_profile_type``.
+        """
+
+        if self.env.context.get("default_move_type") == "in_refund":
+            ids = [
+                self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA", False).id,
+                self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA", False).id,
+            ]
+            return str(
+                [
+                    ("id", "in", ids),
+                ]
+            )
+        else:
+            return (
+                "[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]"
+            )
 
     gib_state = fields.Selection(
         selection=[
@@ -59,7 +83,7 @@ class AccountMove(models.Model):
     gib_profile_id = fields.Many2one(
         comodel_name="gib_base_2kb.code",
         string="Fatura Senaryosu",
-        domain="[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]",
+        domain=lambda self: self._gib_profile_id_domain(),
         compute="_compute_gib_profile_id",
         store=True,
         readonly=False,
@@ -85,6 +109,7 @@ class AccountMove(models.Model):
         comodel_name="gib_base_2kb.provider",
         string="Entegratör",
         compute="_compute_gib_provider_id",
+        domain="[('company_id', '=', company_id)]",
         store=True,
         readonly=False,
     )
@@ -147,6 +172,7 @@ class AccountMove(models.Model):
             ("noter", "Noter üzerinden resmi tebligat ile İptal"),
             ("ptt", "PTT İadeli Taahhütlü İle İptal"),
             ("kep", "Kep ile İptal"),
+            ("fix_invoice", "Fatura düzeltmesi için geçici iptal"),
         ],
         string="Harici İptal Şekli",
         readonly=True,
@@ -160,6 +186,7 @@ class AccountMove(models.Model):
     )
 
     partner_profile_type = fields.Char(compute="_compute_partner_profile_type")
+    esudo = fields.Boolean()
 
     @api.depends("commercial_partner_id")
     def _compute_partner_profile_type(self):
@@ -207,7 +234,10 @@ class AccountMove(models.Model):
                     or record.gib_sequence_id.company_id != record.company_id
                 ):
                     suitable_sequences = record.gib_sequence_id.search(
-                        [("gib_profile_id", "in", record.gib_profile_id.id), ('company_id', '=', record.company_id.id)]
+                        [
+                            ("gib_profile_id", "in", record.gib_profile_id.id),
+                            ("company_id", "=", record.company_id.id),
+                        ]
                     )
                     if len(suitable_sequences) == 1:
                         record.gib_sequence_id = suitable_sequences[:1]
@@ -247,9 +277,14 @@ class AccountMove(models.Model):
             if not record.move_is_invoice or not record.gib_profile_id:
                 record.gib_provider_id = False
             else:
-                if not record.gib_provider_id or record.company_id != record.gib_provider_id.company_id:
+                if (
+                    not record.gib_provider_id
+                    or record.company_id != record.gib_provider_id.company_id
+                ):
                     record.gib_provider_id = (
-                        record.gib_provider_id.get_default_provider(record.company_id).id
+                        record.gib_provider_id.get_default_provider(
+                            record.company_id
+                        ).id
                     )
 
     @api.depends("move_type", "partner_id")
@@ -258,7 +293,17 @@ class AccountMove(models.Model):
             if record.move_type not in ["out_invoice", "in_refund"]:
                 record.gib_profile_id = False
             else:
-                record.gib_profile_id = record.commercial_partner_id.profile_id.id
+                if record.move_type == "in_refund":
+                    if record.commercial_partner_id.is_e_inv:
+                        record.gib_profile_id = self.env.ref(
+                            "gib_invoice_2kb.profile_id-TEMELFATURA", False
+                        )
+                    else:
+                        record.gib_profile_id = self.env.ref(
+                            "gib_invoice_2kb.profile_id-EARSIVFATURA", False
+                        )
+                else:
+                    record.gib_profile_id = record.commercial_partner_id.profile_id.id
 
     @api.depends("move_is_invoice", "gib_provider_id")
     def _compute_gib_invoice_type_id(self):
@@ -314,9 +359,12 @@ class AccountMove(models.Model):
 
         for move in self:
             provider = move._get_gib_provider()
-            if provider and move.gib_state in ("sent", "to_cancel", "cancel"):
+            if (
+                provider
+                and move.gib_state in ("sent", "to_cancel", "cancel")
+                and not move.esudo
+            ):
                 move.show_reset_to_draft_button = False
-                break
 
     @api.depends("gib_state")
     def _compute_gib_show_cancel_button(self):
@@ -344,7 +392,7 @@ class AccountMove(models.Model):
             if not move.gib_show_cancel_button:
                 raise UserError("Bu fatura iptal edilebilir durumda değil!")
             provider = move._get_gib_provider()
-            move._check_fiscalyear_lock_date()
+            move._check_fiscal_lock_dates()
 
             move_applicability = provider and provider._get_move_applicability(move)
             if (
@@ -377,6 +425,9 @@ class AccountMove(models.Model):
     def button_draft(self):
         # OVERRIDE
         for move in self:
+            if move.esudo:
+                continue
+
             if move.gib_show_cancel_button:
                 raise UserError(
                     _(
@@ -396,6 +447,9 @@ class AccountMove(models.Model):
         posted = super()._post(soft=soft)
 
         for move in posted:
+            if move.esudo:
+                move.esudo = False
+                continue
             provider = move._get_gib_provider()
             if provider:
                 move_applicability = provider._get_move_applicability(move)
@@ -441,9 +495,10 @@ class AccountMove(models.Model):
                 if "gtb_refno" in self._fields:
                     self.write(
                         {
-                            "gtb_refno": res["result"].get("gtb_refno"),
-                            "gtb_tescilno": res["result"].get("gtb_tescilno"),
-                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi"),
+                            "gtb_refno": res["result"].get("gtb_refno") or False,
+                            "gtb_tescilno": res["result"].get("gtb_tescilno") or False,
+                            "gtb_intac_tarihi": res["result"].get("gtb_intac_tarihi")
+                            or False,
                         }
                     )
 
@@ -470,6 +525,12 @@ class AccountMove(models.Model):
         self.gib_invoice_name = self.env["ir.sequence"].next_by_code(
             self.gib_sequence_id.code, sequence_date=self.invoice_date
         )
+
+        if not self.ref:
+            self.ref = self.gib_invoice_name
+        else:
+            self.ref = f"{self.ref}/{self.gib_invoice_name}"
+
         old_xml = base64.b64decode(
             attachment.with_context(bin_size=False).datas, validate=True
         )
@@ -522,7 +583,7 @@ class AccountMove(models.Model):
             move_applicability = provider and provider._get_move_applicability(self)
             if move_applicability and move_applicability.get("gib_content"):
                 move_applicability["gib_content"](self)
-        slug = self.env['ir.http']._slug
+        slug = self.env["ir.http"]._slug
         return {
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
@@ -623,6 +684,7 @@ class AccountMove(models.Model):
             if str(int(tax.amount)) in forbidden_rates:
                 return f"{tax.name} için %{int(tax.amount)}  oranı  %{', %'.join(forbidden_rates)}  oranlarından biri olamaz"
 
+    @api.model
     def _check_move_configuration(self, move):
         """Checks the move and relevant records for potential error (missing data, etc).
 
@@ -649,6 +711,7 @@ class AccountMove(models.Model):
                 ("move_is_invoice", "=", True),
                 ("gib_sequence_id", "=", invoice_sequence.id),
                 ("gib_invoice_name", "not in", [GIB_INVOICE_DEFAULT_NAME, "", False]),
+                ("company_id", "=", move.company_id.id),
             ],
             order="invoice_date DESC",
             limit=1,
@@ -728,7 +791,7 @@ class AccountMove(models.Model):
                 customer_vat = re.sub(r"\D+", "", customer.vat or "").strip()
                 if not len(customer_vat) in [10, 11]:
                     error.append(
-                        f"Ödeyici {move.commercial_partner_id}, için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
+                        f"Müşteriniz {move.commercial_partner_id.display_name} için 10 basamaklı Vergi No ya da 11 basamaklı T.C. Kimlik no olmalı!"
                     )
 
         # endregion
@@ -740,7 +803,7 @@ class AccountMove(models.Model):
             move.gib_alias_pk and error.append(
                 "E-Arşiv faturasında Gönderici Posta Kutusu Olamaz!"
             )
-        else:
+        elif move.gib_profile_id.value != "IHRACAT":
             req_fields.extend(["gib_alias_pk", "gib_profile_id"])
 
         move_error = self._check_required_fields(move, req_fields)
@@ -760,9 +823,12 @@ class AccountMove(models.Model):
         not customer.commercial_partner_id.is_e_inv and move.gib_profile_id.value2 == "e-inv" and error.append(
             "E-Fatura mükellefi olmayana E-Fatura kesilemez!"
         )
-        move.move_type == "in_refund" and move.gib_profile_id == self.env.ref(
-            "gib_invoice_2kb.profile_id-TICARIFATURA"
-        ) and error.append("İade faturaları 'Ticari Fatura' olamaz!")
+        move.move_type == "in_refund" and move.gib_profile_id not in [
+            self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA"),
+            self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA"),
+        ] and error.append(
+            "İade faturaları 'Temel Fatura' veya 'E-Arşiv Fatura' olabilir!"
+        )
         # endregion
         # region #! ------------------ Move Master GİB Fatura Türü Doğrulamaları ------------------
         move.gib_invoice_type_id.value == "IADE" and move.gib_profile_id_value not in [
@@ -795,9 +861,7 @@ class AccountMove(models.Model):
                 )
 
             if not line.name:
-                error.append(
-                    f"Satır açıklaması boş bırakılamaz.{line.display_name}"
-                )
+                error.append(f"Satır açıklaması boş bırakılamaz.{line.display_name}")
 
             if line_error:
                 error.append(line_error)
@@ -814,7 +878,7 @@ class AccountMove(models.Model):
         if (
             self.gib_profile_id
             == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
-            and customer.is_company
+            and not customer.is_company
         ):
             is_required = False
         return is_required
@@ -834,7 +898,7 @@ class AccountMove(models.Model):
             raise UserError(
                 "Yalnızca Reddedilmiş faturalar için bu işlemi yapabilirsiniz!"
             )
-        self._check_fiscalyear_lock_date()
+        self._check_fiscal_lock_dates()
         self.button_cancel()
 
         message_body = """
@@ -862,7 +926,7 @@ class AccountMove(models.Model):
             raise UserError(
                 "Yalnızca GİB e iletilemeyen faturalar için bu işlemi yapabilirsiniz!"
             )
-        self._check_fiscalyear_lock_date()
+        self._check_fiscal_lock_dates()
         self.button_cancel()
 
         message_body = f"""
@@ -892,3 +956,63 @@ class AccountMove(models.Model):
             )
         self.gib_uuid = str(uuid.uuid4())
         self.action_retry_edi_documents_error()
+
+    def get_2kb_pdf(self):
+        self.ensure_one()
+        attachment_name = f"{self.gib_invoice_name}_{self.gib_uuid}.pdf"
+        attachment = self.attachment_ids.filtered(
+            lambda atch: atch.name == attachment_name
+        ).sorted(lambda r: r.create_date, reverse=True)
+        attachment = attachment and attachment[-1] or False
+        if self.gib_state == "sent" and attachment:
+            return base64.b64decode(attachment.datas)
+
+        gib_attachment = self._get_edi_attachment()
+        if not gib_attachment:
+            raise UserError("Ek bulunamadı")
+
+        tree = etree.fromstring(
+            base64.b64decode(gib_attachment.with_context(bin_size=False).datas)
+        )
+        ns = {
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        }
+        r = tree.xpath(
+            "//cac:AdditionalDocumentReference[cbc:DocumentType[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
+            namespaces=ns,
+        )
+        if len(r) != 1:
+            f_xslt = (
+                "e-Arsiv.xslt"
+                if self.gib_profile_id
+                == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
+                else "e-Fatura.xslt"
+            )
+            xslt = etree.parse(file_path("gib_base_2kb", "data", "template", f_xslt))
+        else:
+            xslt = etree.fromstring(base64.b64decode(r[0].text))
+
+        transform = etree.XSLT(xslt)
+        _logger.info(f"get_2kb_pdf transform log: {transform.error_log}")
+        newdom = transform(tree)
+        pdf_result = self.env["ir.actions.report"]._run_wkhtmltopdf(
+            [str(newdom)],
+            specific_paperformat_args={
+                "data-report-margin-top": 8,
+                "data-report-header-spacing": 8,
+            },
+        )
+
+        if self.gib_state == "sent":
+            self.env["ir.attachment"].create(
+                {
+                    "name": attachment_name,
+                    "res_model": "account.move",
+                    "res_id": self.id,
+                    "type": "binary",
+                    "mimetype": "application/pdf",
+                    "datas": base64.b64encode(pdf_result),
+                }
+            )
+        return pdf_result

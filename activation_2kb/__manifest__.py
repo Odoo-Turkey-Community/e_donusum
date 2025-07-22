@@ -26,10 +26,7 @@
     "installable": True,
     "auto_install": False,
     "external_dependencies": {
-        "python": [
-            "cryptography",
-            "pycryptodome"
-        ],
+        "python": ["cryptography", "pycryptodome"],
     },
     "images": ["static/description/images/main_screenshot.png"],
 }

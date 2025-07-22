@@ -8,10 +8,15 @@
     "summary": """
         Türkiye Bankaları""",
     "description": """
-Türkiye Bankaları 2KB
-====================
+Türkiye Lokalizasyonu Temel 2KB
+===============================
 
-Bu modül, Türkiye'de faaliyet gösteren tüm bankaların güncel bilgilerini Odoo sisteminize ekler.
+Bu modül, Türkiye'deki işletmeler için temel lokalizasyon özelliklerini içerir:
+
+* Resmi Türk muhasebe planı entegrasyonu (l10n_tr)
+* Stopaj ve vergi tevkifatı işlemleri (l10n_tr_witholding)
+* Türk bankaları entegrasyonu (l10n_tr_bank)
+* Türkiye vergi dairesi entegrasyonu (l10n_tr_tax_office)
 
 Özellikler:
 -----------

@@ -3,11 +3,11 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 {
-    "name": "Türkiye Lokalizasyonu Genişletmesi 2KB",
+    "name": "Türkiye Lokalizasyonu 2KB",
     "version": "1.0",
-    "summary": "Türkiye Lokalizasyonu Genişletmesi 2KB",
+    "summary": "Türkiye Lokalizasyonu 2KB",
     "description": """
-        Türkiye Lokalizasyonu Genişletmesi 2KB
+        Türkiye Lokalizasyonu 2KB
     """,
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",

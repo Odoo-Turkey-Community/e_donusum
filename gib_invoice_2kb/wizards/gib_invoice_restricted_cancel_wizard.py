@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 from markupsafe import Markup
 
+
 class GibInvoiceRestrictedCancelWizard(models.TransientModel):
 
     _name = "gib.invoice.restricted.cancel.wizard"
@@ -26,6 +27,7 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
             ("noter", "Noter üzerinden resmi tebligat ile İptal"),
             ("ptt", "PTT İadeli Taahhütlü İle İptal"),
             ("kep", "Kep ile İptal"),
+            ("fix_invoice", "Fatura düzeltmesi için geçici iptal"),
         ],
         string="İptal Sebebi",
         required=True,
@@ -49,7 +51,7 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
                 raise UserError(
                     "Bu fatura harici olarak iptal edilebilir durumda değil"
                 )
-            wizard.invoice_id._check_fiscalyear_lock_date()
+            wizard.invoice_id._check_fiscal_lock_dates()
             wizard.invoice_id.button_cancel()
             wizard.invoice_id.external_cancellation = wizard.cancel_reason
             message_body = f"""
@@ -71,3 +73,26 @@ class GibInvoiceRestrictedCancelWizard(models.TransientModel):
                 attachments=None,
                 **kwargs,
             )
+
+    def force_to_draft_gib_invoice(self):
+        if not self.env.user.has_group("base.group_system"):
+            raise UserError("Bu işlem için yetkili değilsiniz! Sadece yöneticiiler!")
+        for wizard in self:
+            wizard.invoice_id.esudo = True
+            message_body = f"""
+                <ul class="o_mail_thread_message_tracking list-unstyled">
+                    <li>
+                        <p class="mb-1 text-warning">Özel Taslak Yetkisi Alındı</p>
+                    </li>
+                    <li class="ps-4">
+                        Bilgi:
+                        <span style="color:indianred"> Daha önce GIB e gönderilen bu fatura için özel taslak yetkisi alındı! </span>
+                    </li>
+                    <li class="ps-4">
+                        Sebep:
+                        <span> {dict(self.env[wizard._name].fields_get(allfields=["cancel_reason"])["cancel_reason"]['selection'])[wizard.cancel_reason]} </span>
+                    </li>
+                </ul>
+            """
+
+            wizard.invoice_id.message_post(body=Markup(message_body))

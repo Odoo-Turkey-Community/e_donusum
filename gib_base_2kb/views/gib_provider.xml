@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_gib_provider_tree" model="ir.ui.view">
-        <field name="name">gib_base_2kb.provider.tree</field>
+    <record id="view_gib_provider_list" model="ir.ui.view">
+        <field name="name">gib_base_2kb.provider.list</field>
         <field name="model">gib_base_2kb.provider</field>
         <field name="arch" type="xml">
             <list string="Özel Entegratör">
@@ -39,6 +39,7 @@
                             <field name="partner_id" invisible="1"/>
                             <field name="prod_environment" widget="boolean_toggle" groups="base.group_no_one"/>
                             <field name="send_as_draft" widget="boolean_toggle"/>
+                            <field name="ssl_check"/>
                         </group>
                         <group>
                             <group>

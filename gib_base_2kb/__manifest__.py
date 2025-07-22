@@ -4,7 +4,7 @@
 
 {
     "name": "E-Dönüşüm Altyapısı",
-    "summary": """Kıta yazılım tarafından geliştirilen bu uygulama ile odoo eskosisteminiz e-dönüşüme hazırlanır""",
+     "summary": """Hızla dijitalleşen Türkiye muhasebesine entegre olmanızı sağlayacak E-Dönüşüm Altyapısı uygulaması ile odoo nuz da dijitalleşmeye hazır hale gelir""",
     "description": """
         E-Dönüşüm süreçleri için temel altyapı modülüdür.
         Özellikler:

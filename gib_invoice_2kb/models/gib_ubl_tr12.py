@@ -3,7 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 from odoo import models, _
-from odoo.tools import float_repr
+from odoo.tools import float_repr, float_round
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
 
@@ -36,7 +36,7 @@ class GibUblTR12(models.AbstractModel):
                     "document_type": "XSLT",
                     "external_reference_uri": False,
                     "binary_object_vals": {
-                        "filename": "%s.xslt" % template.store_fname,
+                        "filename": "%s.xslt" % template.checksum,
                         "mime_code": "application/xml",
                         "attachment": template.with_context(
                             bin_size=False
@@ -78,8 +78,18 @@ class GibUblTR12(models.AbstractModel):
 
     def get_despatch_document_reference_vals(self, invoice):
         vals = []
-        if "picking_ids" in invoice._fields and "gib_seq" in invoice._fields:
-            for picking_id in invoice.picking_ids.filtered(lambda pic: pic.state != 'cancel' and pic.gib_seq and pic.gib_response_code != 'reject'):
+        if (
+            "picking_ids" in invoice._fields
+            and "gib_seq" in invoice.picking_ids[:1]._fields
+        ):
+            pickings = invoice.picking_ids.filtered(
+                lambda pic: (
+                    pic.state != "cancel"
+                    and pic.gib_seq
+                    and pic.gib_response_code != "reject"
+                )
+            )
+            for picking_id in pickings:
                 vals.append(
                     {
                         "id": picking_id.gib_seq,
@@ -93,15 +103,25 @@ class GibUblTR12(models.AbstractModel):
             return [
                 {
                     "actual_delivery_date": False,
-                    "delivery_location_vals": {
-                        "delivery_address_vals": self._get_partner_address_vals(
-                            invoice.partner_shipping_id
-                        ),
-                    },
+                    "delivery_address_vals": self._get_partner_address_vals(
+                        invoice.partner_shipping_id
+                    ),
                 }
             ]
         else:
             return []
+
+    def _get_actual_package_vals(self, line):
+        return {
+            "id": False,
+            "quantity": False,
+            "returnable_material_indicator": False,
+            "package_level_code": False,
+            "packaging_type_code": False,
+        }
+
+    def _get_transport_handling_unit_vals(self, line):
+        return {"id": False, "actual_package_vals": self._get_actual_package_vals(line)}
 
     def _get_financial_institution_vals(self, bank):
         return {
@@ -148,21 +168,32 @@ class GibUblTR12(models.AbstractModel):
         else:
             return []
 
+    def _get_billing_reference_vals(self, invoice):
+        if invoice.move_type != "in_refund":
+            return {}
+
+        id = invoice.ref
+        issue_date = self.format_date(invoice.date)
+        if invoice.reversed_entry_id:
+            id = invoice.reversed_entry_id.gib_invoice_name or invoice.ref
+            issue_date = self.format_date(invoice.reversed_entry_id.date)
+
+        return {
+            "id": id,
+            "issue_date": issue_date,
+            "document_type_code": "IADE",
+            "document_type": "İade Edilen Fatura",
+        }
+
     def _get_pricing_exchange_rate_vals(self, invoice):
         if self.env.ref("base.TRY") == invoice.currency_id:
             return {}
         else:
-            lines = invoice.line_ids.filtered(lambda x: x.amount_currency > 0)
-            amount_currency_positive = sum(lines.mapped("amount_currency"))
-            total_debit = sum(invoice.line_ids.mapped("debit"))
-            if "custom_currency_rate" in invoice._fields:
-                currency_rate_amount = invoice.custom_currency_rate
-            else:
-                currency_rate_amount = float_repr(total_debit / amount_currency_positive, 6)
+            rate = invoice.invoice_currency_rate
             return {
                 "source_currency_code": invoice.currency_id.name,
                 "target_currency_code": invoice.company_id.currency_id.name,
-                "calculation_rate": currency_rate_amount,
+                "calculation_rate": float_repr(1 / rate, 6),
                 "pricing_exchange_rate_vals": False,
             }
 
@@ -224,7 +255,7 @@ class GibUblTR12(models.AbstractModel):
                 net_price_subtotal / (1.0 - (line.discount or 0.0) / 100.0)
             )
 
-        decimal_precision = self.env['decimal.precision'].precision_get('Discount')
+        decimal_precision = self.env["decimal.precision"].precision_get("Discount")
         allowance_vals = {
             "currency_name": line.currency_id.name,
             "currency_dp": decimal_precision,
@@ -247,7 +278,7 @@ class GibUblTR12(models.AbstractModel):
             (gross_price_subtotal / line.quantity) if line.quantity else 0.0
         )
         uom = self._get_uom_unece_code(line.product_uom_id)
-        decimal_precision = self.env['decimal.precision'].precision_get('Product Price')
+        decimal_precision = self.env["decimal.precision"].precision_get("Product Price")
         return {
             "currency_name": line.currency_id.name,
             "currency_dp": decimal_precision,
@@ -256,7 +287,7 @@ class GibUblTR12(models.AbstractModel):
             "base_quantity_attrs": {"unitCode": uom},
         }
 
-    def _get_line_delivery_vals(self, line):
+    def _get_delivery_vals(self, line):
         return {
             "delivery_terms": line.move_id.invoice_incoterm_id.code,
             "delivery_terms_attrs": {"schemeID": "INCOTERMS"},
@@ -280,6 +311,9 @@ class GibUblTR12(models.AbstractModel):
                         else False
                     ),
                 },
+                "transport_handling_unit_vals": self._get_transport_handling_unit_vals(
+                    line
+                ),
             },
         }
 
@@ -295,7 +329,7 @@ class GibUblTR12(models.AbstractModel):
             "invoiced_quantity": line.quantity,
             "invoiced_quantity_attrs": {"unitCode": uom},
             "line_extension_amount": line.price_subtotal,
-            "delivery_vals": self._get_line_delivery_vals(line),
+            "delivery_vals": self._get_delivery_vals(line),
             "allowance_charge_vals": allowance_charge_vals_list,
             "tax_total_vals": self._get_invoice_tax_totals_vals_list(
                 line.move_id, taxes_vals
@@ -388,6 +422,7 @@ class GibUblTR12(models.AbstractModel):
                 "note_vals": notes,
                 "invoice_type_code": invoice.gib_invoice_type_id.value,
                 "line_count_numeric": len(invoice_lines),
+                "billing_reference_vals": self._get_billing_reference_vals(invoice),
                 "order_reference": order_reference_vals,
                 "sales_order_id": sales_order_id,
                 "despatch_document_reference_vals_list": self.get_despatch_document_reference_vals(
