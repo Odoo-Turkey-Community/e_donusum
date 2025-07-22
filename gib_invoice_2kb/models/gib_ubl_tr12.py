@@ -86,6 +86,7 @@ class GibUblTR12(models.AbstractModel):
                 lambda pic: (
                     pic.state != "cancel"
                     and pic.gib_seq
+                    and pic.despatch_type
                     and pic.gib_response_code != "reject"
                 )
             )
