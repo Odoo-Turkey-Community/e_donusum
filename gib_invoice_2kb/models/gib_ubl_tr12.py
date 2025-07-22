@@ -83,18 +83,12 @@ class GibUblTR12(models.AbstractModel):
             and "gib_seq" in invoice.picking_ids[:1]._fields
         ):
             pickings = invoice.picking_ids.filtered(
-<<<<<<< HEAD
-                lambda pic: (pic.state != 'cancel' and
-                             pic.gib_seq and
-                             pic.despatch_type and
-                             pic.gib_response_code != 'reject')
-=======
                 lambda pic: (
                     pic.state != "cancel"
                     and pic.gib_seq
+                    and pic.despatch_type
                     and pic.gib_response_code != "reject"
                 )
->>>>>>> 3de7926b3aba640a3bc9fd6c891622f6a3158c04
             )
             for picking_id in pickings:
                 vals.append(
