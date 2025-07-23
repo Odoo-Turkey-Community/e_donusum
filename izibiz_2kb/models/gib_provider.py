@@ -1025,7 +1025,7 @@ class GibProvider(models.Model):
                     "sender": incoming.HEADER.SUPPLIER,
                     "sender_vat": incoming.HEADER.SENDER,
                     "sender_alias": incoming.HEADER.FROM,
-                    "issue_date": incoming.HEADER.ISSUE_DATE,
+                    "issue_date": incoming.HEADER.ISSUE_DATE or incoming.HEADER.CDATE,
                     "total_amount": incoming.HEADER.PAYABLE_AMOUNT._value_1,
                     "currency_code": incoming.HEADER.PAYABLE_AMOUNT.currencyID,
                     "state": response_code_mapping.get(incoming.HEADER.RESPONSE_CODE),
