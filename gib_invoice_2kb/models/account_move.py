@@ -1010,9 +1010,17 @@ class AccountMove(models.Model):
                     "name": attachment_name,
                     "res_model": "account.move",
                     "res_id": self.id,
+                    # "res_field": "invoice_pdf_report_file"
                     "type": "binary",
                     "mimetype": "application/pdf",
                     "datas": base64.b64encode(pdf_result),
                 }
             )
         return pdf_result
+
+    def _get_invoice_report_filename(self, extension="pdf"):
+        res = super()._get_invoice_report_filename(extension=extension)
+        if self.gib_profile_id and self.gib_invoice_name and self.gib_state == "sent":
+            # If the invoice name is the default, use the move name instead
+            return f"{self.gib_invoice_name}_{self.gib_uuid}.{extension}"
+        return res
