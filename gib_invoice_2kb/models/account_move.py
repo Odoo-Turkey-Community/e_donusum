@@ -934,7 +934,7 @@ class AccountMove(models.Model):
             <ul class="o_mail_thread_message_tracking">
                 <li>
                     İptal Sebebi:
-                    <span> Hata Özeti: {self.gib_status_code_id}.</span>
+                    <span> Hata Özeti: {self.gib_status_code_id.name}.</span>
                 </li>
             </ul>
         """
