@@ -4,3 +4,4 @@
 
 from . import gib_invoice_restricted_cancel_wizard
 from . import gib_invoice_archive_cancel_wizard
+from . import account_move_send
