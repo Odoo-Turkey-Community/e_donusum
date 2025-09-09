@@ -52,11 +52,10 @@ class GibProvider(models.Model):
         super().write(values)
         if not CRON_DEPENDS.isdisjoint(values):
             self._sync_cron()
-        if self.izibiz_jwt and ('izibiz_username' in values or 'izibiz_password' in values):
-            super().write({
-                'izibiz_jwt': False
-            })
-
+        if self.izibiz_jwt and (
+            "izibiz_username" in values or "izibiz_password" in values
+        ):
+            super().write({"izibiz_jwt": False})
 
     def unlink(self):
         crons = self.izibiz_cron_ids.sudo()
@@ -134,7 +133,7 @@ class GibProvider(models.Model):
         alias = []
         result = self._get_izibiz_service().check_user(vat, role)
         if result.get("error"):
-            _logger.error("izibiz'den etiket alınamadı: " + result.get('error', ''))
+            _logger.error("izibiz'den etiket alınamadı: " + result.get("error", ""))
         if result.get("success"):
             result_filter = [
                 item for item in result.get("result") if item.DELETED == "N"
@@ -255,17 +254,17 @@ class GibProvider(models.Model):
                 break
 
             if result.get("success"):
-                move_info['success'] = True
-                move_info['result'] = {}
+                move_info["success"] = True
+                move_info["result"] = {}
                 if is_e_arsiv:
                     gib_code = e_arsiv_report_mapping.get(
                         result["result"][0].HEADER.STATUS
                     )
-                    move_info['result'].update(
+                    move_info["result"].update(
                         {"gib_report_code": gib_code if gib_code else False}
                     )
                 else:
-                    move_info['result'].update(
+                    move_info["result"].update(
                         {
                             "gib_status_code_id": fields.first(
                                 gib_status_code_ids.filtered(
@@ -274,7 +273,8 @@ class GibProvider(models.Model):
                                 )
                             ).id,
                             "gib_response_code": (
-                                result["result"].RESPONSE_CODE in ["REJECTED", "ACCEPTED"]
+                                result["result"].RESPONSE_CODE
+                                in ["REJECTED", "ACCEPTED"]
                                 and (
                                     "reject"
                                     if result["result"].RESPONSE_CODE == "REJECTED"
@@ -283,8 +283,12 @@ class GibProvider(models.Model):
                                 or False
                             ),
                             "gtb_refno": (result["result"].GTB_REFNO or "").strip(),
-                            "gtb_tescilno": (result["result"].GTB_GCB_TESCILNO or "").strip(),
-                            "gtb_intac_tarihi": (result["result"].GTB_FIILI_IHRACAT_TARIHI or "").strip(),
+                            "gtb_tescilno": (
+                                result["result"].GTB_GCB_TESCILNO or ""
+                            ).strip(),
+                            "gtb_intac_tarihi": (
+                                result["result"].GTB_FIILI_IHRACAT_TARIHI or ""
+                            ).strip(),
                         }
                     )
         return res
@@ -949,12 +953,14 @@ class GibProvider(models.Model):
         """
 
         bdate = fields.Date.today() - timedelta(days=60)
-        gib_profile_id = self.env.ref("gib_invoice_pro_export_2kb.profile_id-IHRACAT", False)
+        gib_profile_id = self.env.ref(
+            "gib_invoice_pro_export_2kb.profile_id-IHRACAT", False
+        )
         domain = [
-            ('date', '>', bdate),
-            '|',
+            ("date", ">", bdate),
+            "|",
             ("gtb_refno", "=", False),
-            '|',
+            "|",
             ("gtb_tescilno", "=", False),
             ("gtb_intac_tarihi", "=", False),
             ("gib_profile_id", "=", gib_profile_id.id),
@@ -1036,7 +1042,7 @@ class GibProvider(models.Model):
                     "sender": incoming.HEADER.SUPPLIER,
                     "sender_vat": incoming.HEADER.SENDER,
                     "sender_alias": incoming.HEADER.FROM,
-                    "issue_date": incoming.HEADER.ISSUE_DATE,
+                    "issue_date": incoming.HEADER.ISSUE_DATE or incoming.HEADER.CDATE,
                     "total_amount": incoming.HEADER.PAYABLE_AMOUNT._value_1,
                     "currency_code": incoming.HEADER.PAYABLE_AMOUNT.currencyID,
                     "state": response_code_mapping.get(incoming.HEADER.RESPONSE_CODE),
