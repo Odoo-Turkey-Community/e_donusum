@@ -180,6 +180,9 @@ class GibProvider(models.Model):
             return res
 
         for move in moves:
+            if res[move].get("blocking_level") == "error":
+                continue
+
             gb = (
                 move.gib_provider_id.alias_inv_gb.alias
                 if self.prod_environment
