@@ -563,4 +563,37 @@
     <field name="eft_code">0121</field>
     <field name="bic">SCBLTRIS </field>
   </record>
+  <record id="tr_bank_0205" model="res.bank">
+    <field name="name">Kuveyt Türk Katılım Bankası A.Ş.</field>
+    <field name="street">Büyükdere Cad. NO:129/1 34394 Esentepe</field>
+    <field name="city">Şişli</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">444 01 23</field>
+    <field name="website">http://www.kuveytturk.com.tr</field>
+    <field name="eft_code">0205</field>
+    <field name="bic">KTEFTRIS</field>
+  </record>
+  <record id="tr_bank_0206" model="res.bank">
+    <field name="name">Türkiye Finans Katılım Bankası A.Ş.</field>
+    <field name="street">Saray Mahallesi Sokullu Caddesi No:6</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">0850 222 22 44</field>
+    <field name="website">http://www.turkiyefinans.com.tr</field>
+    <field name="eft_code">0206</field>
+    <field name="bic">AFKBTRIS</field>
+  </record>
+  <record id="tr_bank_0223" model="res.bank">
+    <field name="name">Albaraka Türk Katılım Bankası A.Ş.</field>
+    <field name="street">Saray Mah. Dr. Adnan Büyükdeniz Caddesi No:6</field>
+    <field name="city">Ümraniye</field>
+    <field name="state" ref="base.state_tr_34"/>
+    <field name="country" ref="base.tr"/>
+    <field name="phone">444 56 66</field>
+    <field name="website">http://www.albarakaturk.com.tr</field>
+    <field name="eft_code">0223</field>
+    <field name="bic">BTFHTRIS</field>
+  </record>
 </odoo>
