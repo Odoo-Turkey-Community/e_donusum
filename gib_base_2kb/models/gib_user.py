@@ -12,13 +12,18 @@ class GibUserAlias(models.Model):
     _rec_name = "alias"
 
     @api.model
-    def _name_search(self, name, domain=None, operator='ilike', limit=None, order=None):
+    def _name_search(self, name, domain=None, operator="ilike", limit=None, order=None):
         if name and name[:2].isalpha():
             name = name[2:]
 
         domain = domain or []
         for item in domain:
-            if isinstance(item, list) and item[0] == 'vkn_tckn' and item[2] and item[2][:2].isalpha():
+            if (
+                isinstance(item, list)
+                and item[0] == "vkn_tckn"
+                and item[2]
+                and item[2][:2].isalpha()
+            ):
                 item[2] = item[2][2:]
         return super()._name_search(name, domain, operator, limit, order)
 
