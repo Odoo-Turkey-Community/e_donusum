@@ -222,9 +222,9 @@ Addonlara erişimlerinizi farklı repolar üzerinden yapabilirsiniz. Sizler içi
       komutunu çalıştıralım. Bu komut dizesi recursive olarak submodüllerden içerikleri alıp kendi dizinlerine ekleyecektir.
       Branchların ayarlanması; submodülleri istenilen branchlara checkout yapmak için
       ```
-      git submodule foreach 'git checkout 16.0 || :'
+      git submodule foreach 'git checkout 18.0 || :'
       ```
-      komut satırını çalıştırmanız yeterli olacaktır. örneğin bu komut satırında bütün submodüller 16.0 branchına checkout edilecektir.
+      komut satırını çalıştırmanız yeterli olacaktır. örneğin bu komut satırında bütün submodüller 18.0 branchına checkout edilecektir.
       Kaynak kodlarınızı yenilemek yani bütün submodüllerden son commitleri almak için ise
       ```
       git submodule update --remote --recursive
