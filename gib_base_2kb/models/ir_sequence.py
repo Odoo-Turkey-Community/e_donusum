@@ -37,6 +37,11 @@ class IrSequence(models.Model):
                 "Lütfen Önek kısmında ki YALNIZCA ABC ön ekini geçerli bir seri ile değiştiriniz!"
             )
 
+        if "GIB" in self.prefix:
+            raise UserError(
+                "Lütfen Önek kısmında ki YALNIZCA GIB ön ekini geçerli bir seri ile değiştiriniz!"
+            )
+
         if len(self.prefix) == 3:
             self.prefix += "%(range_year)s"
         else:
