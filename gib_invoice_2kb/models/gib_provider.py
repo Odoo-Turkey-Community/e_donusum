@@ -191,7 +191,11 @@ class GibUBLProvider(models.Model):
                             {"blocking_level": "error", "error": str(e)}
                         )
                         continue
-                self.gib_invoice_content(move)
+                try:
+                    self.gib_invoice_content(move)
+                except UserError as e:
+                    result[move].update({"blocking_level": "error", "error": str(e)})
+                    continue
             elif move.gib_invoice_name == GIB_INVOICE_DEFAULT_NAME:
                 try:
                     self._gib_rename_seq(move)
