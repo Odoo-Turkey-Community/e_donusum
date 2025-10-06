@@ -63,14 +63,6 @@ tr_kdv_wh_20_i,100,KDV %20 (Tevfik edilen) (Dahil),,KDV %20 Tevfik edilen Dahil,
 ,,,,,,,,,,,tax,invoice,tr391000120,,
 ,,,,,,,,,,,base,refund,,,
 ,,,,,,,,,,,tax,refund,tr191020120,,
-tr_kdv_sale_20_wh_10,110,Tevkif Edilmiş KDV %20 (Tevkifat 10/10),,Tevkif Edilmiş KDV %20 Tevkifat 10-10,,-20.0,percent,,none,tr_tax_group_T0100,base,invoice,,,Tevkif Edilmiş KDV %20 (Tevkifat 10/10)
-,,,,,,,,,,,tax,invoice,tr391000120,,
-,,,,,,,,,,,base,refund,,,
-,,,,,,,,,,,tax,refund,tr191020120,,
-tr_kdv_sale_20_i_wh_10,120,Tevkif Edilmiş KDV %20 (Tevkifat 10/10) (Dahil),,Tevkif Edilmiş KDV %20 Tevkifat 10-10 Dahil,True,-20.0,percent,,none,tr_tax_group_T0100,base,invoice,,,Tevkif Edilmiş KDV %20 (Tevkifat 10/10) (Dahil)
-,,,,,,,,,,,tax,invoice,tr391000120,,
-,,,,,,,,,,,base,refund,,,
-,,,,,,,,,,,tax,refund,tr191020120,,
 tr_kdv_sale_20_wh_2,110,Tevkif Edilmiş KDV %20 (Tevkifat 2/10),,Tevkif Edilmiş KDV %20 Tevkifat 2-10,,-4.0,percent,,none,tr_tax_group_T0020,base,invoice,,,Tevkif Edilmiş KDV %20 (Tevkifat 2/10)
 ,,,,,,,,,,,tax,invoice,tr391000120,,
 ,,,,,,,,,,,base,refund,,,
