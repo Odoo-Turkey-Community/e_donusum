@@ -48,9 +48,9 @@
                         <button name="action_retry_edi_documents_error" type="object" class="oe_link" string="Tekrar Dene" />
                     </div>
                 </div>
-                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="gib_profile_id != %(gib_invoice_2kb.profile_id-TICARIFATURA)d or gib_response_code != 'reject' or  state not in ('draft', 'cancel')">
+                <div class="alert alert-warning" role="alert" style="margin-bottom:0px;" invisible="gib_profile_id != %(gib_invoice_2kb.profile_id-TICARIFATURA)d or gib_response_code != 'reject' or  state != 'posted'">
                     <div class="o_row">
-                                    Fatura müşteriniz tarafından REDDEDİLMİŞ! Bu fatura için yapılabilecek tek işlem faturanın iptal edilmesidir.
+                        Fatura müşteriniz tarafından REDDEDİLMİŞ! Bu fatura için yapılabilecek tek işlem faturanın iptal edilmesidir.
                         <button name="cancel_rejected_invoice" type="object" class="oe_link text-danger" icon="fa-ban" string="Faturayı İptal Et" />
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                         <field name="gib_status_code_id" readonly="1"/>
                     </div>
                     <div class="o_row">
-                                    Bu Faturanın GİB e iletilmesi sırasında sorun oluştu! Faturayı <button name="retry_to_send_undelivered_invoice" type="object" class="oe_link text-success" icon="fa-paper-plane" string="Yeniden Gönder" />
-                                    ya da <button name="cancel_undelivered_invoice" type="object" class="oe_link text-danger" icon="fa-times" string="İptal Et" />
+                        Bu Faturanın GİB e iletilmesi sırasında sorun oluştu! Faturayı <button name="retry_to_send_undelivered_invoice" type="object" class="oe_link text-success" icon="fa-paper-plane" string="Yeniden Gönder" />
+                        ya da <button name="cancel_undelivered_invoice" type="object" class="oe_link text-danger" icon="fa-times" string="İptal Et" />
                 </div>
             </div>
         </xpath>
@@ -73,8 +73,8 @@
                     </span>
 
                     <div class="text-warning" invisible="not show_name_warning">
-                                                The current highest number is <field class="oe_inline" name="highest_name"/>
-                                                . You might want to put a higher number here.
+                                        The current highest number is <field class="oe_inline" name="highest_name"/>
+                                        . You might want to put a higher number here.
                     </div>
 
                     <h1>
@@ -109,25 +109,25 @@
             <field name="gib_state" invisible="not gib_state or state == 'draft'"/>
             <label for="gib_profile_id" invisible="move_type not in ['out_invoice', 'in_refund']" />
             <div name="gib_profile_div" class="d-flex" invisible="move_type not in ['out_invoice', 'in_refund']">
-                <field name="gib_profile_id" invisible="move_type not in ('out_invoice', 'in_refund')" readonly="state in ('posted', 'cancel')" options="{'no_create': True, 'no_open': True}"/>
+                <field name="gib_profile_id" invisible="move_type not in ('out_invoice', 'in_refund')" readonly="gib_state == 'sent' and gib_error_message != 'error'" options="{'no_create': True, 'no_open': True}"/>
                 <label for="gib_invoice_type_id" string="Türü" class="oe_inline o_form_label mx-3 fw-bolder" invisible="not gib_profile_id"/>
-                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" invisible="not gib_profile_id"/>
+                <field name="gib_invoice_type_id" options="{'no_create': True, 'no_open': True}" invisible="not gib_profile_id" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
             </div>
-            <field name="gib_alias_pk" force_save="1" invisible="not move_is_invoice or gib_profile_id_value in ('EARSIVFATURA', '', False)" readonly="state in ['posted', 'cancel']"/>
+            <field name="gib_alias_pk" force_save="1" invisible="not move_is_invoice or gib_profile_id_value in ('EARSIVFATURA', '', False)" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
             <field name="gib_sequence_id" options="{'no_create': True}" invisible="not move_is_invoice" readonly="state in ['posted', 'cancel']"/>
         </xpath>
         <xpath expr="//group[@id='other_tab_group']" position="inside">
             <group string="Elektronik Fatura Bilgileri" name="gib_info_group" invisible="not move_is_invoice">
                 <field name="gib_uuid" invisible="not gib_state"/>
                 <field name="gib_invoice_name" invisible="not gib_state"/>
-                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" readonly="state in ['posted', 'cancel']"/>
-                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" readonly="state in ['posted', 'cancel']"/>
+                <field name="gib_template_id" options="{'no_create': True, 'no_open': True}" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
+                <field name="gib_provider_id" options="{'no_create': True, 'no_open': True}" readonly="gib_state == 'sent' and gib_error_message != 'error'"/>
                 <label for="gib_status_code_id" style="font-weight:bold" invisible="gib_invoice_name in ['TASLAK', '', False]"/>
                 <div class="o_row gib_status_code_id_div" invisible="gib_invoice_name in ['TASLAK', '', False]">
                     <field name="gib_status_code_id" readonly="1"/>
                     <button invisible="not gib_show_pdf_button" name="button_gib_status" icon="fa-exchange" type="object" class="oe_inline oe_link pt-0" help="GİB üzerinden faturanın son durumunu eşitleyebilirsiniz.">
                         <span class="text-uppercase text-info">
-                                                GIB DURUM SORGULA
+                                        GIB DURUM SORGULA
                         </span>
                     </button>
                 </div>
