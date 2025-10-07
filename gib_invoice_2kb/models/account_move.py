@@ -583,12 +583,12 @@ class AccountMove(models.Model):
             move_applicability = provider and provider._get_move_applicability(self)
             if move_applicability and move_applicability.get("gib_content"):
                 move_applicability["gib_content"](self)
-        slug = self.env["ir.http"]._slug
+
         return {
             "type": "ir.actions.act_url",
             "name": "PDF - %s" % self.name,
             "target": "new",
-            "url": "/gib_invoice_2kb/pdf2/%s" % (slug(self),),
+            "url": "/gib_invoice_2kb/pdf2/%s" % self.id,
         }
 
     def button_process_gib_web_services(self):
@@ -934,7 +934,7 @@ class AccountMove(models.Model):
             <ul class="o_mail_thread_message_tracking">
                 <li>
                     İptal Sebebi:
-                    <span> Hata Özeti: {self.gib_status_code_id}.</span>
+                    <span> Hata Özeti: {self.gib_status_code_id.name}.</span>
                 </li>
             </ul>
         """

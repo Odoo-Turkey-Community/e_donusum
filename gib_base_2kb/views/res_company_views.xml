@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View res.company form -->
+    <record id="view_res_company_form" model="ir.ui.view">
+        <field name="name">view.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='kita_api_tokens']/group[@name='left']" position="inside">
+                <field name="gib_ubl_gen"/> 
+                <button name="test_kita_api_ubl_connection" string="Test" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
