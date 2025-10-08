@@ -17,7 +17,6 @@ class ResConfigSettings(models.TransientModel):
         string="Kıta API Secret",
         related='company_id.kita_api_secret',
         readonly=False,
-        password=True,
         help="Kıta Yazılım'dan alınan API gizli anahtarı"
     )
 
