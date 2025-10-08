@@ -15,7 +15,7 @@
                         </div>
                         <div class="mt16 row">
                             <label for="kita_api_secret" class="col-3 o_light_label"/>
-                            <field name="kita_api_secret" field_id="kita_api_secret_0"/>
+                            <field name="kita_api_secret" field_id="kita_api_secret_0" password="True"/>
                         </div>
                         <div class="mt16 row">
                             <label for="kita_api_base_url" class="col-3 o_light_label"/>
