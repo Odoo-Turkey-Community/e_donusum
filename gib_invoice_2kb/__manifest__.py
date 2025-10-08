@@ -18,7 +18,7 @@
         * Çoklu para birimi desteği
     """,
     "version": "1.1",
-    "maintainer": "Quanimo",
+    "maintainer": "Kıta",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
     "license": "Other proprietary",
