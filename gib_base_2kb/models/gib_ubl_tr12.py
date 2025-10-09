@@ -172,10 +172,10 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_partner_person_vals(self, partner):
         if self.get_vat_number_type(partner.vat) == "TCKN" or not partner.vat:
-            names = (partner.name or "").split()
+            names = partner.name.split(' ', 1)
             return {
-                "first_name": " ".join(names[:-1]) if len(names) > 1 else partner.name,
-                "family_name": " ".join(names[-1:]) if len(names) > 1 else partner.name,
+                "first_name": names[0],
+                "family_name": names[1] if len(names) > 1 else '\u200B',
             }
         else:
             return {}
