@@ -92,7 +92,7 @@ class GibUblTR12(models.AbstractModel):
         return vat[2:].replace(" ", "")
 
     def get_vat_number_type(self, vat):
-        return "TCKN" if vat and len(self.get_vat_number(vat)) == 11 else "VKN"
+        return "VKN" if vat and len(self.get_vat_number(vat)) == 10 else "TCKN"
 
     def _get_uom_unece_code(self, product_uom):
         xmlid = product_uom.get_external_id()
@@ -172,15 +172,16 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_partner_person_vals(self, partner):
         if self.get_vat_number_type(partner.vat) == "TCKN" or not partner.vat:
-            names = (partner.name or "").split()
+            names = partner.name.split(' ', 1)
             return {
-                "first_name": " ".join(names[:-1]) if len(names) > 1 else partner.name,
-                "family_name": " ".join(names[-1:]) if len(names) > 1 else partner.name,
+                "first_name": names[0],
+                "family_name": names[1] if len(names) > 1 else '\u200B',
             }
         else:
             return {}
 
     def _get_partner_party_vals(self, partner, role):
+        is_tckn = self.get_vat_number_type(partner.vat) == "TCKN"
         return {
             "website_uri": partner.website,
             "party_identification_vals": (
@@ -188,7 +189,7 @@ class GibUblTR12(models.AbstractModel):
                 if role == "export"
                 else self._get_partner_party_identification_vals_list(partner)
             ),
-            "party_name_vals": [{"name": partner.commercial_partner_id.name}],
+            "party_name_vals": [{"name": partner.commercial_partner_id.name}] if not is_tckn else [],
             "postal_address_vals": self._get_partner_address_vals(partner),
             "party_tax_scheme_vals": self._get_partner_party_tax_scheme_vals_list(
                 partner, role

@@ -366,7 +366,7 @@ class GibProvider(models.Model):
             START_DATE=sdate,
             END_DATE=edate,
             READ_INCLUDED=read_included,
-            # LIMIT=100,
+            LIMIT=100,
         )
         return [
             [
