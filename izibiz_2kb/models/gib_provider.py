@@ -839,7 +839,7 @@ class GibProvider(models.Model):
         service = self._get_izibiz_service()
         sdate = (fields.Date.today() - timedelta(days=days_ago)).strftime("%Y-%m-%d")
         result = service.get_invoice(
-            DIRECTION="OUT", START_DATE=sdate, DRAFT_FLAG="N", READ_INCLUDED="Y"
+            DIRECTION="OUT", START_DATE=sdate, DRAFT_FLAG="N", READ_INCLUDED="Y", DATE_TYPE="CREATE", LIMIT=5000
         )
         if not result["success"]:
             _logger.error("cron_get_invoice_state_info: " + result["error"])
@@ -1011,7 +1011,7 @@ class GibProvider(models.Model):
 
         service = self._get_izibiz_service()
         result = service.get_invoice(
-            START_DATE=ldata_str, DIRECTION="IN", READ_INCLUDED="Y", DATE_TYPE="CREATE"
+            START_DATE=ldata_str, DIRECTION="IN", READ_INCLUDED="Y", DATE_TYPE="CREATE", LIMIT=5000
         )
 
         if not result["success"]:
@@ -1071,7 +1071,7 @@ class GibProvider(models.Model):
 
         service = self._get_izibiz_service()
         result = service.get_despatch_advice(
-            START_DATE=ldata_str, DIRECTION="IN", READ_INCLUDED="Y", DATE_TYPE="CREATE"
+            START_DATE=ldata_str, DIRECTION="IN", READ_INCLUDED="Y", DATE_TYPE="CREATE", LIMIT=5000
         )
 
         if not result["success"]:
@@ -1101,6 +1101,8 @@ class GibProvider(models.Model):
                     and incoming.DESPATCHADVICEHEADER.SENDER.ALIAS,
                     "sender_vat": incoming.DESPATCHADVICEHEADER.SENDER
                     and incoming.DESPATCHADVICEHEADER.SENDER.VKN,
+                    "issue_date": incoming.DESPATCHADVICEHEADER.ISSUE_DATE,
+                    "despatch_date": incoming.DESPATCHADVICEHEADER.ACTUAL_SHIPMENT_DATE,
                 }
             )
 
