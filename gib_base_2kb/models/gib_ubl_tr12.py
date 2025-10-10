@@ -233,21 +233,13 @@ class GibUblTR12(models.AbstractModel):
             return self.get_authenticate_on_server(provider, app, vals, retry=True)
 
         if resp.status_code == 200:
-            return resp.text, True
+            return resp.content, True
         else:
             try:
                 error = resp.json().get('detail', 'Bilinmeyen hata oluştu! (UBL Gen)')
             except Exception:
                 error = resp.text or 'Bilinmeyen hata oluştu! (UBL Gen)'
             raise ValidationError(error)
-
-    def _get_url(self, app):
-        raise NotImplementedError
-
-    def _get_base_url(self, endpoint):
-        ICP = self.env["ir.config_parameter"].sudo().get_param
-        url = ICP("2kb.base_url", "https://api.2kb.com.tr")
-        return f"{url}/{endpoint}"
 
 
 class PublisherWarrantyContract(AbstractModel):

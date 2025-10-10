@@ -55,4 +55,4 @@ LGPL-3.0
 
 ## Destek
 
-Kıta Yazılım - kitayazilim.com
+Kıta Yazılım - destek@kitayazilim.com
