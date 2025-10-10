@@ -476,8 +476,3 @@ class GibUblTR12(models.AbstractModel):
         vals = self._export_invoice_vals(invoice)
         provider = invoice._get_gib_provider()
         return self.get_authenticate_on_server(provider, "invoice", vals)
-
-    def _get_url(self, app="invoice"):
-        if app != "invoice":
-            return super()._get_url(app)
-        return self._get_base_url("ubl/v1/invoice")
