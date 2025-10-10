@@ -839,11 +839,11 @@ class AccountMove(models.Model):
         )
         # endregion
         # region #! ------------------ Move Master Fiscal Position Doğrulamaları ------------------
-        move.fiscal_position_id.invoice_type == "exception" and move.fiscal_position_id.exception_code != 351 and move.gib_invoice_type_id.value != "ISTISNA" and error.append(
+        move.fiscal_position_id.invoice_type == "exception" and move.fiscal_position_id.exception_code != "351" and move.gib_invoice_type_id.value != "ISTISNA" and error.append(
             "Fatura türü bu mali koşul için uygun değildir. Fatura türü istisna olmalıdır!"
         )
 
-        move.fiscal_position_id.exception_code == 351 and move.gib_invoice_type_id.value != "SATIS" and error.append(
+        move.fiscal_position_id.exception_code == "351" and move.gib_invoice_type_id.value != "SATIS" and error.append(
             "Fatura türü bu mali koşul için uygun değildir. Fatura türü satış olmalıdır!"
         )
 
