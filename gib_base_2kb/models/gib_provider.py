@@ -132,6 +132,21 @@ class GibUBLProvider(models.Model):
     def configure_gib_template(self):
 
         result_text = []
+        self.prepare_gib_template(result_text)
+
+        message = "\n".join(result_text)
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": "Yapılandırma Tamamlandı!",
+                "message": message,
+                "type": "success",
+                "sticky": False,
+            },
+        }
+
+    def prepare_gib_template(self, result_text):
         earchive_template = etree.parse(
             get_module_resource("gib_base_2kb", "data", "template", "e-Arsiv.xslt")
         )
@@ -143,6 +158,7 @@ class GibUBLProvider(models.Model):
             self._save_template(
                 earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids
             )
+            result_text.append("E-Arşiv şablonu hazırlandı.")
 
         if einvoice_template:
             profile_ids = [
@@ -152,18 +168,8 @@ class GibUBLProvider(models.Model):
             self._save_template(
                 einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids
             )
-
-        message = "<br/>".join(result_text)
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": "Yapılandırma Tamamlandı!",
-                "message": message,
-                "type": "success",
-                "sticky": False,
-            },
-        }
+            result_text.append("E-Fatura şablonu hazırlandı.")
+        return result_text
 
     def get_default_provider(self, company_id=None):
         company = company_id or self.env.company

@@ -11,9 +11,12 @@ class IrAttachment(models.Model):
 
     gib_profile_id = fields.Many2many(
         comodel_name="gib_base_2kb.code",
-        string="Fatura Senaryosu",
+        string="GİB Profili",
         help="Şablonun kullanılacağı GİB Profillerini buradan ekleyebilirsiniz",
         domain="[('type', '=', 'profile_id')]",
+    )
+    gib_profile_id_value2 = fields.Char(
+        related="gib_profile_id.value2", string="GİB Profili Değeri 2", readonly=True
     )
 
     use_for_electronic = fields.Boolean("Elektronik")
