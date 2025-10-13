@@ -15,7 +15,7 @@ class IrSequence(models.Model):
             ("e-arsv", "E-Arşiv"),
             ("e-inv", "E-Fatura"),
         ],
-        string="Fatura Türü",
+        string="GİB Profil Türü",
     )
     gib_profile_id = fields.Many2many(
         comodel_name="gib_base_2kb.code",
@@ -71,7 +71,9 @@ class IrSequence(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if ('prefix' in vals or 'use_for_electronic' in vals) and not self.env.context.get('skip_recursion_sequence'):
+        if (
+            "prefix" in vals or "use_for_electronic" in vals
+        ) and not self.env.context.get("skip_recursion_sequence"):
             for record in self.filtered(lambda x: x.use_for_electronic):
                 record._validate_electronic_sequence()
         return res
