@@ -4,7 +4,6 @@
 
 import logging
 import requests
-import json
 import copy
 import pytz
 from datetime import datetime

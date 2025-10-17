@@ -83,7 +83,6 @@ class AccountMove(models.Model):
     gib_profile_id = fields.Many2one(
         comodel_name="gib_base_2kb.code",
         string="Fatura Senaryosu",
-        # domain="[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]",
         domain=lambda self: self._gib_profile_id_domain(),
         compute="_compute_gib_profile_id",
         store=True,
