@@ -64,7 +64,7 @@ class IzibizService:
         setting = zeep.Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
 
         parent_folder = [env, f"{type}.wsdl"]
-        wsdl_path_root = os.path.join(file_path("izibiz_2kb"), "data", "wsdl", *parent_folder)
+        wsdl_path_root = os.path.join(file_path("izibiz_2kb"), "data", "wsdl", *parent_folder))
         izibiz_clients[key] = zeep.Client(
             f"file://{wsdl_path_root}",
             settings=setting,
