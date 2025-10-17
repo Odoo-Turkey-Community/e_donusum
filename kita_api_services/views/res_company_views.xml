@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View res.company form -->
+    <record id="view_res_company_form" model="ir.ui.view">
+        <field name="name">view.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="test_kita_api_connection" 
+                        string="API Bağlantısını Test Et"
+                        type="object" class="oe_highlight"
+                        groups="base.group_no_one"/>
+                  </header>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Kıta API Tokens" name="kita_api_tokens" groups="base.group_no_one">
+                    <group name="left"/>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

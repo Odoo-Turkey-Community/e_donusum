@@ -40,7 +40,7 @@ class GibUBLProvider(models.Model):
     prod_environment = fields.Boolean(
         "Canlı Ortam", help="Canlı ortamda çalışmak için işaretleyin.", default=True
     )
-    send_as_draft = fields.Boolean("Taslak Olarak Gönder", default=True)
+    send_as_draft = fields.Boolean("Taslak Olarak Gönder", default=False)
     invoice_logo = fields.Image(
         "Döküman Logosu",
         max_width=128,
@@ -132,24 +132,9 @@ class GibUBLProvider(models.Model):
     def configure_gib_template(self):
 
         result_text = []
-        earchive_template = etree.parse(
-            get_module_resource("gib_base_2kb", "data", "template", "e-Arsiv.xslt")
-        )
-        einvoice_template = etree.parse(
-            get_module_resource("gib_base_2kb", "data", "template", "e-Fatura.xslt")
-        )
-        if earchive_template:
-            profile_ids = [self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA").id]
-            self._save_template(earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids)
+        self.prepare_gib_template(result_text)
 
-        if einvoice_template:
-            profile_ids = [
-                self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA").id,
-                self.env.ref("gib_invoice_2kb.profile_id-TICARIFATURA").id,
-            ]
-            self._save_template(einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids)
-
-        message = "<br/>".join(result_text)
+        message = "\n".join(result_text)
         return {
             "type": "ir.actions.client",
             "tag": "display_notification",
@@ -161,9 +146,34 @@ class GibUBLProvider(models.Model):
             },
         }
 
+    def prepare_gib_template(self, result_text):
+        earchive_template = etree.parse(
+            get_module_resource("gib_base_2kb", "data", "template", "e-Arsiv.xslt")
+        )
+        einvoice_template = etree.parse(
+            get_module_resource("gib_base_2kb", "data", "template", "e-Fatura.xslt")
+        )
+        if earchive_template:
+            profile_ids = [self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA").id]
+            self._save_template(
+                earchive_template, f"E-Arsiv Tasarım_{self.company_id.id}", profile_ids
+            )
+            result_text.append("E-Arşiv şablonu hazırlandı.")
+
+        if einvoice_template:
+            profile_ids = [
+                self.env.ref("gib_invoice_2kb.profile_id-TEMELFATURA").id,
+                self.env.ref("gib_invoice_2kb.profile_id-TICARIFATURA").id,
+            ]
+            self._save_template(
+                einvoice_template, f"E-Fatura Tasarım_{self.company_id.id}", profile_ids
+            )
+            result_text.append("E-Fatura şablonu hazırlandı.")
+        return result_text
+
     def get_default_provider(self, company_id=None):
         company = company_id or self.env.company
-        return self.search([('company_id', '=', company.id)], limit=1)
+        return self.search([("company_id", "=", company.id)], limit=1)
 
     @api.model
     def _get_applicability(self, doc_id):

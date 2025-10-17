@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.kita.api</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='integration']" position="inside">
+                <setting string="Kıta Yazılım API Servisleri" help="Kıta Yazılım API Servisleri" id="kita_api_settings">
+                    <div class="content-group" >
+                        <div class="mt16 row">
+                            <label for="kita_api_key" class="col-3 o_light_label"/>
+                            <field name="kita_api_key" field_id="kita_api_key_0"/>
+                        </div>
+                        <div class="mt16 row">
+                            <label for="kita_api_secret" class="col-3 o_light_label"/>
+                            <field name="kita_api_secret" field_id="kita_api_secret_0" password="True"/>
+                        </div>
+                        <div class="mt16 row">
+                            <label for="kita_api_base_url" class="col-3 o_light_label"/>
+                            <field name="kita_api_base_url" field_id="kita_api_base_url_0"/>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
