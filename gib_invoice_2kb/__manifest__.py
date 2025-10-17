@@ -17,7 +17,7 @@
         * GİB'e uyumlu fatura senaryoları (Temel/Ticari)
         * Çoklu para birimi desteği
     """,
-    "version": "1.1",
+    "version": "1.3",
     "maintainer": "Kıta",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
