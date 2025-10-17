@@ -40,7 +40,7 @@ class GibUBLProvider(models.Model):
     prod_environment = fields.Boolean(
         "Canlı Ortam", help="Canlı ortamda çalışmak için işaretleyin.", default=True
     )
-    send_as_draft = fields.Boolean("Taslak Olarak Gönder", default=True)
+    send_as_draft = fields.Boolean("Taslak Olarak Gönder", default=False)
     invoice_logo = fields.Image(
         "Döküman Logosu",
         max_width=128,
