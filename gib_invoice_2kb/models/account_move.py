@@ -677,12 +677,16 @@ class AccountMove(models.Model):
             )
 
     def _check_tax_suitability(self, line):
-
+        tax_error = []
         forbidden_rates = ["8", "18"]
 
         for tax in line.tax_ids.filtered(lambda tax: tax.tax_group_id.code == "0015"):
             if str(int(tax.amount)) in forbidden_rates:
-                return f"{tax.name} için %{int(tax.amount)}  oranı  %{', %'.join(forbidden_rates)}  oranlarından biri olamaz"
+                tax_error.append(
+                    f"{tax.name} için %{int(tax.amount)}  oranı  %{', %'.join(forbidden_rates)}  oranlarından biri olamaz"
+                )
+
+        return tax_error
 
     @api.model
     def _check_move_configuration(self, move):
@@ -695,7 +699,7 @@ class AccountMove(models.Model):
         error.extend(move.gib_provider_id._check_provider_configuration())
 
         not move.gib_template_id and error.append(
-            "Lütfen entegratör detayından şablonları yapılandırın!"
+            "Lütfen Fatura Şablonu seçin yoksa entegratör detayından şablonları yapılandırın!"
         )
 
         not move.gib_provider_id.alias_inv_gb and error.append(
@@ -872,7 +876,7 @@ class AccountMove(models.Model):
 
             line_tax_error = self._check_tax_suitability(line)
             if line_tax_error:
-                error.append(line_tax_error)
+                error.extend(line_tax_error)
 
         # endregion
         return error
