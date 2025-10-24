@@ -14,6 +14,11 @@ class AccountJournal(models.Model):
             (journal, count, total)
             for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
+                    (
+                        "invoice_date",
+                        ">",
+                        datetime.datetime.today() - datetime.timedelta(days=30),
+                    ),
                     ("journal_id", "in", self.ids),
                     ("gib_state", "in", ["to_send", "to_cancel"]),
                 ],
@@ -28,6 +33,11 @@ class AccountJournal(models.Model):
             (journal, count, total)
             for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
+                    (
+                        "invoice_date",
+                        ">",
+                        datetime.datetime.today() - datetime.timedelta(days=30),
+                    ),
                     ("journal_id", "in", self.ids),
                     ("gib_response_code", "=", "reject"),
                     ("state", "not in", ["cancel"]),
@@ -43,6 +53,11 @@ class AccountJournal(models.Model):
             (journal, count, total)
             for journal, count, total in self.env["account.move"]._read_group(
                 domain=[
+                    (
+                        "invoice_date",
+                        ">",
+                        datetime.datetime.today() - datetime.timedelta(days=30),
+                    ),
                     ("journal_id", "in", self.ids),
                     (
                         "gib_status_code_id_value2",
