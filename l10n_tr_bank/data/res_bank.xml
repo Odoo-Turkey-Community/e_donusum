@@ -2,6 +2,7 @@
 <odoo>
   <record id="tr_bank_0010" model="res.bank">
     <field name="name">Türkiye Cumhuriyeti Ziraat Bankası A.Ş.</field>
+    <field name="short_name">Ziraat Bankası</field>
     <field name="street">Hacıbayram Mah. Atatürk Bulvarı No 8 Ulus</field>
     <field name="city">Altındağ</field>
     <field name="state" ref="base.state_tr_06"/>
@@ -14,6 +15,7 @@
   </record>
   <record id="tr_bank_0012" model="res.bank">
     <field name="name">Türkiye Halk Bankası A.Ş.</field>
+    <field name="short_name">Halk Bankası</field>
     <field name="street">Barbaros Mah. Şebboy Sok. No 4/1</field>
     <field name="city">Ataşehir</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -26,6 +28,7 @@
   </record>
   <record id="tr_bank_0015" model="res.bank">
     <field name="name">Türkiye Vakıflar Bankası T.A.O.</field>
+    <field name="short_name">Vakıf Bank</field>
     <field name="street">Finanskent Mahallesi Finans Caddesi No:40/1</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -38,6 +41,7 @@
   </record>
   <record id="tr_bank_0046" model="res.bank">
     <field name="name">Akbank T.A.Ş.</field>
+    <field name="short_name">Akbank</field>
     <field name="street">Sabancı Center 4. Levent</field>
     <field name="city">Beşitaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -50,6 +54,7 @@
   </record>
   <record id="tr_bank_0135" model="res.bank">
     <field name="name">Anadolubank A.Ş.</field>
+    <field name="short_name">Anadolubank</field>
     <field name="street">Saray Mah. Toya Sok. No 3</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -62,6 +67,7 @@
   </record>
   <record id="tr_bank_0103" model="res.bank">
     <field name="name">Fibabanka A.Ş.</field>
+    <field name="short_name">Fibabank</field>
     <field name="street">Esentepe Mah. Büyükdere Cad. No 129</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -74,6 +80,7 @@
   </record>
   <record id="tr_bank_0059" model="res.bank">
     <field name="name">Şekerbank T.A.Ş.</field>
+    <field name="short_name">Şekerbank</field>
     <field name="street">Emniyet Evleri Mah. Eski Büyükdere Cad. No 1/1A</field>
     <field name="city">Kağıthane</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -86,6 +93,7 @@
   </record>
   <record id="tr_bank_0096" model="res.bank">
     <field name="name">Turkish Bank A.Ş.</field>
+    <field name="short_name">Turkish Bank</field>
     <field name="street">Esentepe Mah. Ali Kaya Sk. Polat Plaza A Blok No. 1A/52</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -98,6 +106,7 @@
   </record>
   <record id="tr_bank_0032" model="res.bank">
     <field name="name">Türk Ekonomi Bankası A.Ş.</field>
+    <field name="short_name">TEB</field>
     <field name="street">Saray Mah. Sokullu Cad. TEB Kampüs C ve D Blok No 7A-7B</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -110,6 +119,7 @@
   </record>
   <record id="tr_bank_0064" model="res.bank">
     <field name="name">Türkiye İş Bankası A.Ş.</field>
+    <field name="short_name">İş Bankası</field>
     <field name="street">İş Kuleleri Levent</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -122,6 +132,7 @@
   </record>
   <record id="tr_bank_0067" model="res.bank">
     <field name="name">Yapı ve Kredi Bankası A.Ş.</field>
+    <field name="short_name">Yapı Kredi</field>
     <field name="street">Yapı Kredi Plaza D Blok Levent</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -134,6 +145,7 @@
   </record>
   <record id="tr_bank_0100" model="res.bank">
     <field name="name">Adabank A.Ş.</field>
+    <field name="short_name">Adabank</field>
     <field name="street">Büyükdere Cad. Rumelihan No 40 Kat 2 Mecidiyeköy</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -146,6 +158,7 @@
   </record>
   <record id="tr_bank_0029" model="res.bank">
     <field name="name">Birleşik Fon Bankası A.Ş.</field>
+    <field name="short_name">Birleşik Fon</field>
     <field name="street">Büyükdere Cad. No 143 Kat 1-2 Esentepe</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -158,6 +171,7 @@
   </record>
   <record id="tr_bank_0124" model="res.bank">
     <field name="name">Alternatifbank A.Ş.</field>
+    <field name="short_name">Alternatifbank</field>
     <field name="street">Ayazağa Mah. Azerbaycan Cad. 2D Blok No.3M İç Kapı No 1</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -170,6 +184,7 @@
   </record>
   <record id="tr_bank_0091" model="res.bank">
     <field name="name">Arap Türk Bankası A.Ş.</field>
+    <field name="short_name">Arap Türk Bankası</field>
     <field name="street">Valikonağı Cad. No 10 Nişantaşı</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -182,6 +197,7 @@
   </record>
   <record id="tr_bank_0149" model="res.bank">
     <field name="name">Bank of China Turkey A.Ş.</field>
+    <field name="short_name">Bank of China</field>
     <field name="street">Büyükdere Cad. No 209 Tekfen Tower Kat 21 4. Levent</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -194,6 +210,7 @@
   </record>
   <record id="tr_bank_0125" model="res.bank">
     <field name="name">Burgan Bank A.Ş.</field>
+    <field name="short_name">Burgan Bank</field>
     <field name="street">Maslak Mah. Eski Büyükdere Cad. No 13</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -206,6 +223,7 @@
   </record>
   <record id="tr_bank_0092" model="res.bank">
     <field name="name">Citibank A.Ş.</field>
+    <field name="short_name">Citibank</field>
     <field name="street">Saray Mah. Ömer Faik Atakan Cad. No 3 Yılmaz Plaza</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -218,6 +236,7 @@
   </record>
   <record id="tr_bank_0134" model="res.bank">
     <field name="name">Denizbank A.Ş.</field>
+    <field name="short_name">Denizbank</field>
     <field name="street">Büyükdere Cad. No 141 Esentepe</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -230,6 +249,7 @@
   </record>
   <record id="tr_bank_0115" model="res.bank">
     <field name="name">Deutsche Bank A.Ş.</field>
+    <field name="short_name">Deutsche Bank</field>
     <field name="street">Esentepe Mah. Büyükdere Cad. Ferko Signature No 175/149</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -242,6 +262,7 @@
   </record>
   <record id="tr_bank_0123" model="res.bank">
     <field name="name">HSBC Bank A.Ş.</field>
+    <field name="short_name">HSBC</field>
     <field name="street">Esentepe Mah. Büyükdere Cad. No 128</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -254,6 +275,7 @@
   </record>
   <record id="tr_bank_0109" model="res.bank">
     <field name="name">ICBC Turkey Bank A.Ş.</field>
+    <field name="short_name">ICBC</field>
     <field name="street">Maslak Mah. Dereboyu/2 Cad. No 13</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -266,6 +288,7 @@
   </record>
   <record id="tr_bank_0099" model="res.bank">
     <field name="name">ING Bank A.Ş.</field>
+    <field name="short_name">ING</field>
     <field name="street">Reşitpaşa Mah. Eski Büyükdere Cad. No 8</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -278,6 +301,7 @@
   </record>
   <record id="tr_bank_0147" model="res.bank">
     <field name="name">MUFG Bank Turkey A.Ş.</field>
+    <field name="short_name">MUFG</field>
     <field name="street">Fatih Sultan Mehmet Mah. Poligon Cad. Buyaka 2 Sitesi 2 Blok No: 8B, İç Kapı No: 82</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -290,6 +314,7 @@
   </record>
   <record id="tr_bank_0146" model="res.bank">
     <field name="name">Odea Bank A.Ş.</field>
+    <field name="short_name">Odea Bank</field>
     <field name="street">Büyükdere Cad. Levent 199, No 199/119 Kat 33-40</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -302,6 +327,7 @@
   </record>
   <record id="tr_bank_0111" model="res.bank">
     <field name="name">QNB Finansbank A.Ş.</field>
+    <field name="short_name">QNB Finansbank</field>
     <field name="street">Esentepe Mah. Büyükdere Cad. Kristal Kule Binası No 215</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -314,6 +340,7 @@
   </record>
   <record id="tr_bank_0137" model="res.bank">
     <field name="name">Rabobank A.Ş.</field>
+    <field name="short_name">Rabobank</field>
     <field name="street">Esentepe Mah. Büyükdere Cad. Bahar Sok. River Plaza No 13 Kat 7 Ofis No 15-16</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -326,6 +353,7 @@
   </record>
   <record id="tr_bank_0108" model="res.bank">
     <field name="name">Turkland Bank A.Ş.</field>
+    <field name="short_name">Turkland Bank</field>
     <field name="street">19 Mayıs Mah. 19 Mayıs Cad. Şişli Plaza A Blok No 7</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -338,6 +366,7 @@
   </record>
   <record id="tr_bank_0062" model="res.bank">
     <field name="name">Türkiye Garanti Bankası A.Ş.</field>
+    <field name="short_name">Garanti BBVA</field>
     <field name="street">Nispetiye Mah. Aytar Cad. No 2 Levent</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -350,6 +379,7 @@
   </record>
   <record id="tr_bank_0094" model="res.bank">
     <field name="name">Bank Mellat</field>
+    <field name="short_name">Bank Mellat</field>
     <field name="street">Büyükdere Cad. Binbirçiçek Sok. No 1 1.Levent </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -362,6 +392,7 @@
   </record>
   <record id="tr_bank_0097" model="res.bank">
     <field name="name">Habib Bank Limited</field>
+    <field name="short_name">Habib Bank</field>
     <field name="street">Levent Mah. Meltem Sok. İş Bankası Kuleleri Kule 2 Kat 26 No 10/14 İç Kapı No 27</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -374,6 +405,7 @@
   </record>
   <record id="tr_bank_0148" model="res.bank">
     <field name="name">Intesa Sanpaolo S.p.A.</field>
+    <field name="short_name">Intesa Sanpaolo</field>
     <field name="street">Meltem Sok. No 10 İş Kuleleri Kule 2 Kat 21 Levent</field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -386,6 +418,7 @@
   </record>
   <record id="tr_bank_0098" model="res.bank">
     <field name="name">JPMorgan Chase Bank N.A.</field>
+    <field name="short_name">JPMorgan Chase</field>
     <field name="street">Büyükdere Cad. No 185 Kanyon Ofis Binası Kat 8 Levent </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -398,6 +431,7 @@
   </record>
   <record id="tr_bank_0122" model="res.bank">
     <field name="name">Société Générale (SA)</field>
+    <field name="short_name">Société Générale</field>
     <field name="street">Nispetiye Cad. Akmerkez E-3 Blok Kat 10 Etiler </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -410,6 +444,7 @@
   </record>
   <record id="tr_bank_0004" model="res.bank">
     <field name="name">İller Bankası A.Ş.</field>
+    <field name="short_name">İller Bankası</field>
     <field name="street">Emniyet Mah. Hipodrom Cad. No 9/21 Yenimahalle </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_06"/>
@@ -421,6 +456,7 @@
   </record>
   <record id="tr_bank_0016" model="res.bank">
     <field name="name">Türk Eximbank</field>
+    <field name="short_name">Türk Eximbank</field>
     <field name="street">Saray Mah. Ahmet Tevfik İleri Cad. No 19</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -433,6 +469,7 @@
   </record>
   <record id="tr_bank_0017" model="res.bank">
     <field name="name">Türkiye Kalkınma ve Yatırım Bankası A.Ş.</field>
+    <field name="short_name">Kalkınma ve Yatırım Bankası</field>
     <field name="street">Saray Mah. Dr. Adnan Büyükdeniz Cad. No 10</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -445,6 +482,7 @@
   </record>
   <record id="tr_bank_0143" model="res.bank">
     <field name="name">Aktif Yatırım Bankası A.Ş.</field>
+    <field name="short_name">Aktif Bank</field>
     <field name="street">Esentepe Mah. Kore Şehitleri Cad. No 8/1</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -457,6 +495,7 @@
   </record>
   <record id="tr_bank_0138" model="res.bank">
     <field name="name">Diler Yatırım Bankası A.Ş.</field>
+    <field name="short_name">Diler Bank</field>
     <field name="street">Eski Büyükdere Cad. No 1 Maslak No/1 Plaza Kat 3 Maslak </field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -469,6 +508,7 @@
   </record>
   <record id="tr_bank_0139" model="res.bank">
     <field name="name">GSD Yatırım Bankası A.Ş.</field>
+    <field name="short_name">GSD Bank</field>
     <field name="street">Aydınevler Mah. Kaptan Rıfat Sok. No 3 GSD Binası Küçükyalı</field>
     <field name="city">Maltepe</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -481,6 +521,7 @@
   </record>
   <record id="tr_bank_0132" model="res.bank">
     <field name="name">İstanbul Takas ve Saklama Bankası A.Ş.</field>
+    <field name="short_name">Takasbank</field>
     <field name="street">Reşitpaşa Mah. Borsa İstanbul Cad. No 4 Emirgan</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -493,6 +534,7 @@
   </record>
   <record id="tr_bank_0141" model="res.bank">
     <field name="name">Nurol Yatırım Bankası A.Ş.</field>
+    <field name="short_name">Nurol Bank</field>
     <field name="street">Büyükdere Cad. Nurol Plaza No 255 Kat 15/1502 Maslak</field>
     <field name="city">Sarıyer</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -505,6 +547,7 @@
   </record>
   <record id="tr_bank_0014" model="res.bank">
     <field name="name">Türkiye Sınai Kalkınma Bankası A.Ş.</field>
+    <field name="short_name">TSKB</field>
     <field name="street">Meclisi Mebusan Cad. No 81 Fındıklı </field>
     <field name="city">Beyoğlu</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -517,6 +560,7 @@
   </record>
   <record id="tr_bank_0129" model="res.bank">
     <field name="name">Bank of America Yatırım Bank A.Ş.</field>
+    <field name="short_name">Bank of America</field>
     <field name="street">Büyükdere Cad. No 185 Kanyon Ofisi Bloğu Kat 11 Levent </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -529,6 +573,7 @@
   </record>
   <record id="tr_bank_0142" model="res.bank">
     <field name="name">BankPozitif Kredi ve Kalkınma Bankası A.Ş.</field>
+    <field name="short_name">BankPozitif</field>
     <field name="street">Rüzgarlıbahçe Mah. Kumlu Sok. No 3 Kavacık</field>
     <field name="city">Beykoz</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -541,6 +586,7 @@
   </record>
   <record id="tr_bank_0116" model="res.bank">
     <field name="name">Pasha Yatırım Bankası A.Ş.</field>
+    <field name="short_name">Pasha Bank</field>
     <field name="street">Sultan Selim Mah. Hümeyra Sok. Pasha Plaza No 2/7 Kat 5</field>
     <field name="city">Kağıthane</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -553,6 +599,7 @@
   </record>
   <record id="tr_bank_0121" model="res.bank">
     <field name="name">Standard Chartered Yatırım Bankası Türk A.Ş.</field>
+    <field name="short_name">Standard Chartered</field>
     <field name="street">Büyükdere Cad. Yapı Kredi Plaza, C Blok, Kat 15 Levent </field>
     <field name="city">Beşiktaş</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -565,6 +612,7 @@
   </record>
   <record id="tr_bank_0205" model="res.bank">
     <field name="name">Kuveyt Türk Katılım Bankası A.Ş.</field>
+    <field name="short_name">Kuveyt Türk</field>
     <field name="street">Büyükdere Cad. NO:129/1 34394 Esentepe</field>
     <field name="city">Şişli</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -576,6 +624,7 @@
   </record>
   <record id="tr_bank_0206" model="res.bank">
     <field name="name">Türkiye Finans Katılım Bankası A.Ş.</field>
+    <field name="short_name">Türkiye Finans</field>
     <field name="street">Saray Mahallesi Sokullu Caddesi No:6</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>
@@ -587,6 +636,7 @@
   </record>
   <record id="tr_bank_0223" model="res.bank">
     <field name="name">Albaraka Türk Katılım Bankası A.Ş.</field>
+    <field name="short_name">Albaraka Türk</field>
     <field name="street">Saray Mah. Dr. Adnan Büyükdeniz Caddesi No:6</field>
     <field name="city">Ümraniye</field>
     <field name="state" ref="base.state_tr_34"/>

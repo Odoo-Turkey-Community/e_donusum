@@ -6,7 +6,8 @@ from odoo import models, fields
 
 
 class Bank(models.Model):
-    _inherit = 'res.bank'
+    _inherit = "res.bank"
 
-    eft_code = fields.Char('EFT Code')
-    website = fields.Char('Website Link')
+    short_name = fields.Char("Kısa Ad")
+    eft_code = fields.Char("EFT Kodu")
+    website = fields.Char("Web Adresi")
