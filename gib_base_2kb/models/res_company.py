@@ -15,7 +15,7 @@ class ResCompany(models.Model):
             result = self.get_kita_token(self.get_ubl_service_name())
             if result.get('error'):
                 raise ValidationError(result.get('error'))
-            self.gib_ubl_gen = result.get('access_token')
+            self.sudo().gib_ubl_gen = result.get('access_token')
 
         return self.gib_ubl_gen
 
@@ -40,7 +40,7 @@ class ResCompany(models.Model):
         res = self._decode_jwt_payload_kita(result.get('access_token'))
         service = list(filter(lambda s: s.get('code') == self.get_ubl_service_name(), res.get('services', [])))
         if service:
-            self.gib_ubl_gen = result.get('access_token')
+            self.sudo().gib_ubl_gen = result.get('access_token')
         else:
             return {
                 'type': 'ir.actions.client',
