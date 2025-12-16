@@ -16,7 +16,7 @@
         * Hata yönetimi ve loglama
         * Performans optimizasyonu
     """,
-    "version": "1.0",
+    "version": "1.1",
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
     "website": "https://2kb.com.tr",
