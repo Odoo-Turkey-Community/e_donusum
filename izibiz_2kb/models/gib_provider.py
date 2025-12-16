@@ -886,13 +886,13 @@ class GibProvider(models.Model):
         """
         gib_response_code accept,reject değerlerini alabilir
         """
-        gib_profile_id = self.env.ref("gib_invoice_2kb.profile_id-TICARIFATURA")
+
         domain = [
             ("gib_response_code", "=", False),
-            ("gib_profile_id", "=", gib_profile_id.id),
+            ("gib_profile_id.value", "in", ["TICARIFATURA", "IHRACAT"]),
             ("gib_provider_id.provider", "=", "izibiz"),
         ]
-        move_ids = self.env["account.move"].search(domain, limit=1000)
+        move_ids = self.env["account.move"].search(domain=domain, limit=1000, order="create_date DESC")
         if not move_ids:
             return False
 
