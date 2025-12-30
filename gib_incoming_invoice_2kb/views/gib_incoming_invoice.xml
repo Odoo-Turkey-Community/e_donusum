@@ -123,7 +123,7 @@
 </record>
 
 <record model="ir.ui.menu" id="gib_incoming_invoice_main_menu">
-    <field name="name">Gelen Faturalar</field>
+    <field name="name">Gelen Fatura İşlemleri</field>
     <field name="parent_id" ref="account.menu_finance_payables"/>
     <field name="sequence" eval="210"/>
 </record>
