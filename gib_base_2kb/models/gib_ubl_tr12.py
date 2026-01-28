@@ -140,6 +140,7 @@ class GibUblTR12(models.AbstractModel):
     def _get_partner_address_vals(self, partner):
         postal_zone = partner.zip or ((partner.state_id.code or "00") + "000")
         return {
+            "id": partner.name,
             "street_name": " ".join(filter(None, (partner.street, partner.street2))),
             "city_subdivision_name": partner.city,
             "postal_zone": postal_zone,
