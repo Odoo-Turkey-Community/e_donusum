@@ -67,6 +67,19 @@ class GibIncomingInvoice(models.Model):
         if not answer:
             answer = self.env.context.get("answer")
 
+        self._compute_is_approvable()
+        if not self.is_approvable:
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": "Uyarı",
+                    "message": "Fatura cevaplama süresi doldu. ya da fatura tipi uygun değil.",
+                    "type": "warning",
+                    "sticky": False,
+                },
+            }
+
         success, error = self.gib_provider_id.approve_or_deny(self.ETTN, answer, text)
         if success:
             if answer == "KABUL":
