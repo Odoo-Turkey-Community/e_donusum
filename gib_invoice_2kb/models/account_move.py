@@ -105,6 +105,7 @@ class AccountMove(models.Model):
         compute="_compute_gib_invoice_type_id",
         store=True,
     )
+    gib_invoice_type_id_value = fields.Char(related="gib_profile_id.value")
     gib_provider_id = fields.Many2one(
         comodel_name="gib_base_2kb.provider",
         string="Entegratör",
