@@ -3,23 +3,30 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 import logging
-
 import requests
-import json
 import copy
 import pytz
+from datetime import datetime
 
 from odoo import models, fields, api, _
 from odoo.models import AbstractModel
 from odoo.tools import float_repr
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 from odoo.tools.float_utils import float_round
-from odoo.addons.activation_2kb.tools.crypt_message import CryptEncrypteMessage
+
 
 from datetime import datetime
 
 DEFAULT_DATE_FORMAT = "%Y-%m-%d"
 DEFAULT_TIME_FORMAT = "%H:%M:%S"
+
+session = requests.Session()
+session.mount('https://', requests.adapters.HTTPAdapter(max_retries=requests.adapters.Retry(
+    total=5,
+    backoff_factor=0.1,
+    status_forcelist=[500, 502, 503, 504],
+)))
+
 
 # -------------------------------------------------------------------------
 # UNIT OF MEASURE
@@ -85,7 +92,7 @@ class GibUblTR12(models.AbstractModel):
         return vat[2:].replace(" ", "")
 
     def get_vat_number_type(self, vat):
-        return "TCKN" if vat and len(self.get_vat_number(vat)) == 11 else "VKN"
+        return "VKN" if vat and len(self.get_vat_number(vat)) == 10 else "TCKN"
 
     def _get_uom_unece_code(self, product_uom):
         xmlid = product_uom.get_external_id()
@@ -165,15 +172,16 @@ class GibUblTR12(models.AbstractModel):
 
     def _get_partner_person_vals(self, partner):
         if self.get_vat_number_type(partner.vat) == "TCKN" or not partner.vat:
-            names = (partner.name or "").split()
+            names = partner.name.split(' ', 1)
             return {
-                "first_name": " ".join(names[:-1]) if len(names) > 1 else partner.name,
-                "family_name": " ".join(names[-1:]) if len(names) > 1 else partner.name,
+                "first_name": names[0],
+                "family_name": names[1] if len(names) > 1 else '\u200B',
             }
         else:
             return {}
 
     def _get_partner_party_vals(self, partner, role):
+        is_tckn = self.get_vat_number_type(partner.vat) == "TCKN"
         return {
             "website_uri": partner.website,
             "party_identification_vals": (
@@ -181,7 +189,7 @@ class GibUblTR12(models.AbstractModel):
                 if role == "export"
                 else self._get_partner_party_identification_vals_list(partner)
             ),
-            "party_name_vals": [{"name": partner.commercial_partner_id.name}],
+            "party_name_vals": [{"name": partner.commercial_partner_id.name}] if not is_tckn else [],
             "postal_address_vals": self._get_partner_address_vals(partner),
             "party_tax_scheme_vals": self._get_partner_party_tax_scheme_vals_list(
                 partner, role
@@ -202,83 +210,36 @@ class GibUblTR12(models.AbstractModel):
             "person_vals": self._get_partner_person_vals(partner),
         }
 
-    def get_authenticate_on_server(self, provider, app, vals):
-        data = {
-            "provider": provider.name,
-            "vals": vals,
-        }
+    def get_authenticate_url(self, provider, app):
         company = provider.company_id
+        if app == 'invoice':
+            return f"{company.kita_api_base_url.rstrip('/')}/fapi/ubl_gen_free/invoice/generate"
+        else:
+            raise ValidationError("Bu servisi desteklenmemektedir. Lütfen Paket yükseltiniz!")
 
-        if not company.priv_key_2kb or not company.pub_key_2kb:
-            raise UserError(
-                "2KB dünyasına henüz girişiniz yapılmamış görünüyor. 2KB ile iletişime geçip aktivasyon sürecini tamamlayabilirsiniz! (2kb.com.tr)"
-            )
+    def get_authenticate_on_server(self, provider, app, vals, retry=False):
+        company = provider.company_id
+        token = company.get_ubl_tr_token()
+        url = self.get_authenticate_url(provider, app)
 
         try:
-            data = json.dumps(data)
-            if company.is_encrypted_messaging:
-                db_uuid = (
-                    self.env["ir.config_parameter"].sudo().get_param("database.uuid")
-                )
-                crypter = CryptEncrypteMessage(
-                    company.priv_key_2kb, company.pub_key_2kb, db_uuid
-                )
-                data = crypter.long_encrypte(data).decode()
+            session.headers["Authorization"] = f"Bearer {token}"
+            resp = session.post(url, json=vals.get('vals'), timeout=(5, 25))
+        except requests.exceptions.RequestException as e:
+            raise ValidationError("Kıta API ile bağlantı sorunu, lütfen daha sonra tekrar deneyin. %s" % e)
 
-            payload = {
-                "json_rpc": "2.0",
-                "method": "POST",
-                "params": {
-                    "encrypted_messaging": company.is_encrypted_messaging,
-                    "payload": data,
-                },
-            }
-            headers = {
-                "Content-Type": "application/json",
-                "x-auth": company.auth_key_2kb,
-            }
-            r = requests.post(
-                self._get_url(app), json=payload, headers=headers, timeout=15
-            )
-            r.raise_for_status()
+        if resp.status_code == 401 and 'expired' in resp.text and not retry:
+            company.invalidate_ubl_tr_token()
+            return self.get_authenticate_on_server(provider, app, vals, retry=True)
 
-            response_data = r.json()
-            error = response_data.get("error")
-            if error:
-                message = ""
-                if error.get("data"):
-                    message = error.get("data").get("message")
-                else:
-                    message = error.get("message")
-                raise UserError("Error : %s" % message)
-
-        except requests.exceptions.HTTPError as error:
-            if error.response.status_code == 500:
-                _logger.exception(error)
-            raise UserError(
-                "API Sunucusu: "
-                + _("hata kodu: (code %s) ", error.response.status_code)
-            )
-        except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
-            raise ValidationError("API Sunucusu ile bağlantı kurulamadı.")
-        except Exception as e:
-            _logger.exception(e)
-            raise UserError(e)
-
-        if response_data.get("result"):
-            result = response_data.get("result")
-            if result.get("ubl", False):
-                if company.is_encrypted_messaging:
-                    return crypter.long_decrypte(result.get("ubl")), False
-                return result.get("ubl").encode("utf-8"), False
-
-    def _get_url(self, app):
-        raise NotImplementedError
-
-    def _get_base_url(self, endpoint):
-        ICP = self.env["ir.config_parameter"].sudo().get_param
-        url = ICP("2kb.base_url", "https://api.2kb.com.tr")
-        return f"{url}/{endpoint}"
+        if resp.status_code == 200:
+            return resp.content, True
+        else:
+            try:
+                error = resp.json().get('detail', 'Bilinmeyen hata oluştu! (UBL Gen)')
+            except Exception:
+                error = resp.text or 'Bilinmeyen hata oluştu! (UBL Gen)'
+            raise ValidationError(error)
 
 
 class PublisherWarrantyContract(AbstractModel):

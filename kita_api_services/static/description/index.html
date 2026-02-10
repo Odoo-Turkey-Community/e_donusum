@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kıta API Services</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #7c7bad;
+            border-bottom: 3px solid #7c7bad;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #666;
+            margin-top: 25px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #7c7bad;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+            margin: 15px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kıta API Services</h1>
+
+        <p>Bu modül ile Kıta Yazılım API hizmetlerine API Key ve Secret bilgileriniz ile erişim sağlayabilirsiniz.</p>
+
+        <h2>Amaç</h2>
+        <p>Müşterilere verilen API Key ve API Secret bilgilerini Odoo Settings içerisinde basit ve güvenli bir şekilde saklamak. Bu authenticate bilgileri ile Kıta Yazılım API'lerine erişim sağlanmaktadır. <p><strong>Örnek:</strong> Verimor SMS, Vomsis Banka Hareketleri ve Ödeme Sistemleri, Uygulama Mağazası aracılığı ile uygulama izinleri</p> Erişimlerine bu bilgiler ile sahip olabilirsiniz.</p>
+
+        <h2>Özellikler</h2>
+
+        <h3>Basit Yapılandırma</h3>
+        <ul>
+            <li>Settings menüsünde tek ekranda tüm ayarlar</li>
+            <li>API Key, Secret ve Base URL alanları</li>
+            <li>Şifre olarak saklanan Secret alanı</li>
+        </ul>
+
+        <h3>Kolay Kullanım</h3>
+        <ul>
+            <li>Model gerektirmez</li>
+            <li>Direkt config parameter olarak saklanır</li>
+            <li>Diğer modüller tarafından kolay erişim</li>
+        </ul>
+
+        <h2>Kurulum</h2>
+        <ol>
+            <li>Modülü Odoo addons dizinine kopyalayın</li>
+            <li>Odoo'yu yeniden başlatın</li>
+            <li>Apps menüsünden "Kıta API Services" modülünü yükleyin</li>
+        </ol>
+
+        <h2>Kullanım</h2>
+
+        <h3>Settings Üzerinden Yapılandırma</h3>
+        <ol>
+            <li>Settings > Kıta API Services menüsüne gidin</li>
+            <li>API Key, Secret ve Base URL bilgilerini girin</li>
+            <li>Kaydet butonuna tıklayın</li>
+        </ol>
+
+        <h2>Diğer Modüllerle Entegrasyon</h2>
+        <p>Bu modül diğer Kıta Yazılım modülleri tarafından kullanılmak üzere tasarlanmıştır:</p>
+
+        <pre><code># Config parameter'lardan kimlik bilgilerini alma
+api_key = self.env['ir.config_parameter'].sudo().get_param('kita_api_services.api_key')
+api_secret = self.env['ir.config_parameter'].sudo().get_param('kita_api_services.api_secret')
+base_url = self.env['ir.config_parameter'].sudo().get_param('kita_api_services.base_url')</code></pre>
+
+        <h2>Saklanan Bilgiler</h2>
+
+        <h3>Config Parameters</h3>
+        <ul>
+            <li><code>kita_api_services.api_key</code>: API anahtarı</li>
+            <li><code>kita_api_services.api_secret</code>: API gizli anahtarı</li>
+            <li><code>kita_api_services.base_url</code>: API base URL</li>
+        </ul>
+
+        <div class="highlight">
+            <h2>Lisans</h2>
+            <p>LGPL-3.0</p>
+        </div>
+
+        <div class="footer">
+            <h2>Destek</h2>
+            <p><strong>Kıta Yazılım</strong> - support@kitayazilim.com</p>
+        </div>
+    </div>
+</body>
+</html>

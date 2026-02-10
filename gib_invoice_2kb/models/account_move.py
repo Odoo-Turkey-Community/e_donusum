@@ -83,7 +83,6 @@ class AccountMove(models.Model):
     gib_profile_id = fields.Many2one(
         comodel_name="gib_base_2kb.code",
         string="Fatura Senaryosu",
-        # domain="[('type', '=', 'profile_id'), ('value2', '=', partner_profile_type)]",
         domain=lambda self: self._gib_profile_id_domain(),
         compute="_compute_gib_profile_id",
         store=True,
@@ -106,6 +105,7 @@ class AccountMove(models.Model):
         compute="_compute_gib_invoice_type_id",
         store=True,
     )
+    gib_invoice_type_id_value = fields.Char(related="gib_profile_id.value")
     gib_provider_id = fields.Many2one(
         comodel_name="gib_base_2kb.provider",
         string="Entegratör",
@@ -839,11 +839,15 @@ class AccountMove(models.Model):
         )
         # endregion
         # region #! ------------------ Move Master Fiscal Position Doğrulamaları ------------------
-        move.fiscal_position_id.invoice_type == "exception" and move.fiscal_position_id.exception_code != '351' and move.gib_invoice_type_id.value != "ISTISNA" and error.append(
+        move.fiscal_position_id.invoice_type == "exception" and str(
+            move.fiscal_position_id.exception_code
+        ) != "351" and move.gib_invoice_type_id.value != "ISTISNA" and error.append(
             "Fatura türü bu mali koşul için uygun değildir. Fatura türü istisna olmalıdır!"
         )
 
-        move.fiscal_position_id.exception_code == '351' and move.gib_invoice_type_id.value != "SATIS" and error.append(
+        str(
+            move.fiscal_position_id.exception_code
+        ) == "351" and move.gib_invoice_type_id.value != "SATIS" and error.append(
             "Fatura türü bu mali koşul için uygun değildir. Fatura türü satış olmalıdır!"
         )
 

@@ -15,7 +15,7 @@ class IrSequence(models.Model):
             ("e-arsv", "E-Arşiv"),
             ("e-inv", "E-Fatura"),
         ],
-        string="Fatura Türü",
+        string="GİB Profil Türü",
     )
     gib_profile_id = fields.Many2many(
         comodel_name="gib_base_2kb.code",
@@ -35,6 +35,11 @@ class IrSequence(models.Model):
         if "ABC" in self.prefix:
             raise UserError(
                 "Lütfen Önek kısmında ki YALNIZCA ABC ön ekini geçerli bir seri ile değiştiriniz!"
+            )
+
+        if "GIB" in self.prefix:
+            raise UserError(
+                "Lütfen Önek kısmında ki YALNIZCA GIB ön ekini geçerli bir seri ile değiştiriniz!"
             )
 
         if len(self.prefix) == 3:
@@ -66,7 +71,9 @@ class IrSequence(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if ('prefix' in vals or 'use_for_electronic' in vals) and not self.env.context.get('skip_recursion_sequence'):
+        if (
+            "prefix" in vals or "use_for_electronic" in vals
+        ) and not self.env.context.get("skip_recursion_sequence"):
             for record in self.filtered(lambda x: x.use_for_electronic):
                 record._validate_electronic_sequence()
         return res

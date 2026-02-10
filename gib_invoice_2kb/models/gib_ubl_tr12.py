@@ -45,14 +45,6 @@ class GibUblTR12(models.AbstractModel):
                 }
             )
 
-        res.append(
-            {
-                "id": invoice.name,
-                "issue_date": self.format_date(invoice.invoice_date),
-                "document_type_code": "odoo",
-            }
-        )
-
         if invoice.gib_profile_id == self.env.ref(
             "gib_invoice_2kb.profile_id-EARSIVFATURA"
         ):
@@ -86,6 +78,7 @@ class GibUblTR12(models.AbstractModel):
                 lambda pic: (
                     pic.state != "cancel"
                     and pic.gib_seq
+                    and pic.despatch_type
                     and pic.gib_response_code != "reject"
                 )
             )
@@ -477,8 +470,3 @@ class GibUblTR12(models.AbstractModel):
         vals = self._export_invoice_vals(invoice)
         provider = invoice._get_gib_provider()
         return self.get_authenticate_on_server(provider, "invoice", vals)
-
-    def _get_url(self, app="invoice"):
-        if app != "invoice":
-            return super()._get_url(app)
-        return self._get_base_url("ubl/v1/invoice")
