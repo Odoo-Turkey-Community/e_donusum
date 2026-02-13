@@ -69,12 +69,15 @@
             <field name="name"/>
             <field name="sender"/>
             <filter name="is_approvable" string="Cevap Bekleyenler" domain="[('is_approvable', '=', True)]"/>
-            <filter name="issue_date" string="Düzenleme Tarihi" date="issue_date"/>
+            <filter name="rejected" string="Reddedilenler" domain="[('state', '=', 'Rejected')]"/>
+            <filter name="denied" string="Göz Ardı Edilenler" domain="[('state', '=', 'Deny')]"/>
             <filter name="importable" string="İşlenmedi" domain="[('is_importable', '=', False)]"/>
             <filter name="not_importable" string="İşlenecek" domain="[('is_importable', '=', True)]"/>
+            <filter name="issue_date" string="Düzenleme Tarihi" date="issue_date"/>
             <group expand="0" string="Group By">
                 <filter string="Faturayı Kesen" name="sender" context="{'group_by': 'sender'}"/>
-                <filter string="Fatura Türü" name="gib_profile" context="{'group_by': 'gib_profile'}"/>
+                <filter string="Fatura Profili" name="gib_profile" context="{'group_by': 'gib_profile'}"/>
+                <filter string="Fatura Türü" name="invoice_type" context="{'group_by': 'invoice_type'}"/>
                 <filter string="Durumu" name="state" context="{'group_by': 'state'}"/>
                 <filter string="Para Birimi" name="currency_code" context="{'group_by': 'currency_code'}"/>
             </group>
@@ -120,7 +123,7 @@
 </record>
 
 <record model="ir.ui.menu" id="gib_incoming_invoice_main_menu">
-    <field name="name">Gelen Faturalar</field>
+    <field name="name">Gelen Fatura İşlemleri</field>
     <field name="parent_id" ref="account.menu_finance_payables"/>
     <field name="sequence" eval="210"/>
 </record>
