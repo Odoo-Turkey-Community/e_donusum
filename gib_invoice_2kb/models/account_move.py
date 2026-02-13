@@ -70,9 +70,6 @@ class AccountMove(models.Model):
 
     gib_show_cancel_button = fields.Boolean(compute="_compute_gib_show_cancel_button")
     gib_show_pdf_button = fields.Boolean(compute="_compute_gib_show_pdf_button")
-    gib_show_abandon_cancel_button = fields.Boolean(
-        compute="_compute_edi_show_abandon_cancel_button"
-    )
     gib_content = fields.Binary(compute="_compute_gib_content", compute_sudo=True)
     gib_attachment_id = fields.Many2one(
         comodel_name="ir.attachment",
