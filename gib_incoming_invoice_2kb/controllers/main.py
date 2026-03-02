@@ -20,10 +20,10 @@ class Controller(http.Controller):
                 ("Content-Length", len(pdf_res.content)),
             ]
             return request.make_response(pdf_res.content, headers=pdfhttpheaders)
-        except Exception:
-            text = "PDF alınamadı. Lütfen daha sonra tekrar deneyiniz!"
+        except Exception as err:
+            text = f"PDF alınamadı. Lütfen daha sonra tekrar deneyiniz! Hata Mesajı: {err}"
             texthttpheaders = [
-                ("Content-Type", "text/plain"),
+                ("Content-Type", "text/plain; charset=UTF-8"),
                 ("Content-Length", len(text)),
             ]
             return request.make_response(text, headers=texthttpheaders)
