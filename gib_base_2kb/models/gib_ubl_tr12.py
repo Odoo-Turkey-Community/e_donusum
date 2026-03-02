@@ -95,6 +95,8 @@ class GibUblTR12(models.AbstractModel):
         return "VKN" if vat and len(self.get_vat_number(vat)) == 10 else "TCKN"
 
     def _get_uom_unece_code(self, product_uom):
+        if product_uom.l10n_tr_unit_code:
+            return product_uom.l10n_tr_unit_code
         xmlid = product_uom.get_external_id()
         if xmlid and product_uom.id in xmlid:
             return UOM_TO_UNECE_CODE.get(xmlid[product_uom.id], "C62")
