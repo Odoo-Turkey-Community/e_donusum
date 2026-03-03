@@ -21,7 +21,7 @@ class ResCompany(models.Model):
 
     def invalidate_ubl_tr_token(self):
         for rec in self:
-            rec.gib_ubl_gen = False
+            rec.sudo().gib_ubl_gen = False
 
     def test_kita_api_ubl_connection(self):
         """Test API connection and show result in a notification, ensure that your ip is allowed in GIB API"""

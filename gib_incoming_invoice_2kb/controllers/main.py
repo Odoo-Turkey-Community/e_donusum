@@ -30,9 +30,12 @@ class Controller(http.Controller):
                 in_invoice.ETTN,
                 e,
             )
-            text = "PDF alınamadı. Lütfen daha sonra tekrar deneyiniz!"
+
+            text = (
+                f"PDF alınamadı. Lütfen daha sonra tekrar deneyiniz! Hata Mesajı: {e}"
+            )
             texthttpheaders = [
-                ("Content-Type", "text/plain"),
+                ("Content-Type", "text/plain; charset=UTF-8"),
                 ("Content-Length", len(text)),
             ]
             return request.make_response(text, headers=texthttpheaders)

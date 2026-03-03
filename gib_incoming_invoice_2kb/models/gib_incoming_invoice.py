@@ -16,7 +16,7 @@ class GibIncomingInvoice(models.Model):
     _order = "issue_date DESC,id"
 
     name = fields.Char("Fatura No")
-    ETTN = fields.Char("ETTN")
+    ETTN = fields.Char("ETTN", index=True)
     issue_date = fields.Date("Fatura Tarihi")
     is_importable = fields.Boolean("İşlendi", default=False)
 
@@ -114,4 +114,7 @@ class GibIncomingInvoice(models.Model):
     def get_incoming_invoice_detail(self):
         self.gib_provider_id.get_incoming_invoice_xml(self.ETTN)
 
+        return True
+
+    def _post_process_gii(self):
         return True
