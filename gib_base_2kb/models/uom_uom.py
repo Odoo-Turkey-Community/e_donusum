@@ -172,6 +172,7 @@ def is_valid_unit_code(code):
         'Z1', 'Z11', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6', 'Z8', 'Z9', 'ZP', 'ZZ'
     }
 
+
 class UoM(models.Model):
     _inherit = "uom.uom"
 
