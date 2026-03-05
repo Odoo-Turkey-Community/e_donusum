@@ -24,6 +24,7 @@ _logger = logging.getLogger(__name__)
 
 izibiz_clients = {}
 
+
 class IzibizService:
 
     def __init__(self, provider):
@@ -49,35 +50,39 @@ class IzibizService:
             return ws_client
 
         session = Session()
-        if self.provider.ssl_check != 'local':
-            session.verify = self.provider.ssl_check == 'true'
+        if self.provider.ssl_check != "local":
+            session.verify = self.provider.ssl_check == "true"
 
         retries = Retry(
             total=10,
             backoff_factor=0.1,
             status_forcelist=[500, 502, 503, 504],
-            allowed_methods={'POST', 'GET'},
+            allowed_methods={"POST", "GET"},
         )
-        session.mount('https://', HTTPAdapter(max_retries=retries))
-        session.mount('http://', HTTPAdapter(max_retries=retries))
-        transport = zeep.transports.Transport(session=session, operation_timeout=(10, 30))
-        setting = zeep.Settings(strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True)
+        session.mount("https://", HTTPAdapter(max_retries=retries))
+        session.mount("http://", HTTPAdapter(max_retries=retries))
+        transport = zeep.transports.Transport(
+            session=session, operation_timeout=(10, 30)
+        )
+        setting = zeep.Settings(
+            strict=False, xml_huge_tree=True, xsd_ignore_sequence_order=True
+        )
 
         parent_folder = [env, f"{type}.wsdl"]
-        wsdl_path_root = os.path.join(file_path("izibiz_2kb"), "data", "wsdl", *parent_folder)
+        wsdl_path_root = os.path.join(
+            file_path("izibiz_2kb"), "data", "wsdl", *parent_folder
+        )
         izibiz_clients[key] = zeep.Client(
-            f"file://{wsdl_path_root}",
-            settings=setting,
-            transport=transport
+            f"file://{wsdl_path_root}", settings=setting, transport=transport
         )
         return izibiz_clients[key]
 
     @staticmethod
     def decode_jwt(token):
-        header, payload, signature = token.split('.')
+        header, payload, signature = token.split(".")
 
         def fix_padding(base64_string):
-            return base64_string + '=' * (4 - len(base64_string) % 4)
+            return base64_string + "=" * (4 - len(base64_string) % 4)
 
         header = base64.urlsafe_b64decode(fix_padding(header))
         payload = base64.urlsafe_b64decode(fix_padding(payload))
@@ -86,7 +91,7 @@ class IzibizService:
     def is_token_expired(self, token):
         _, payload_str = IzibizService.decode_jwt(token)
         payload = json.loads(payload_str)
-        exp = payload.get('exp')
+        exp = payload.get("exp")
 
         if exp is None:
             raise ValueError("Token has no expiration date (exp field)")
@@ -101,14 +106,14 @@ class IzibizService:
     # -------------------------------------------------------------------------
 
     def auth(self):
-        responce = self.auth_client().service.Login(
+        response = self.auth_client().service.Login(
             REQUEST_HEADER=False,
             USER_NAME=self.provider.izibiz_username,
             PASSWORD=self.provider.izibiz_password,
         )
-        if responce.ERROR_TYPE:
-            raise UserError(responce.ERROR_TYPE.ERROR_SHORT_DES)
-        self.provider.izibiz_jwt = responce.SESSION_ID
+        if response.ERROR_TYPE:
+            raise UserError(response.ERROR_TYPE.ERROR_SHORT_DES)
+        self.provider.izibiz_jwt = response.SESSION_ID
 
     def get_header(self):
         header_type = self.auth_client().get_type("ns2:REQUEST_HEADERType")
@@ -142,7 +147,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.auth_client().service.CheckUser(
+            response = self.auth_client().service.CheckUser(
                 self.get_header(), USER={"IDENTIFIER": vkn, "UNIT": unit}
             )
         except requests.exceptions.ConnectTimeout as e:
@@ -151,22 +156,24 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 1006):
+            if response.ERROR_TYPE.ERROR_CODE in (10002, 10004, 1006):
                 # login zaman aşımı
                 self.auth()
                 return self.check_user(vkn)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
-            _logger.warning(f"izibiz e-fatura(check_user) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(check_user) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
         return {
             "success": success,
             "error": error,
-            "result": responce.USER if success else False,
+            "result": response.USER if success else False,
         }
 
     def get_gib_user_list(
@@ -187,7 +194,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.auth_client().service.GetGibUserList(
+            response = self.auth_client().service.GetGibUserList(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -204,16 +211,16 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
-            z = zipfile.ZipFile(io.BytesIO(responce.CONTENT._value_1))
+            z = zipfile.ZipFile(io.BytesIO(response.CONTENT._value_1))
             xml = z.read(z.infolist()[0])
             xml_str = xml.decode()
             clean_xml = xml_str.replace('xmlns=""', "")
             clean_xml = clean_xml.replace('xmlns="http://schemas.i2i.com/ei/wsdl"', "")
             xml_tree = etree.fromstring(clean_xml)
         else:
-            if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004):
+            if response.ERROR_TYPE.ERROR_CODE in (10002, 10004):
                 # login zaman aşımı
                 self.auth()
                 return self.get_gib_user_list(
@@ -223,9 +230,11 @@ class IzibizService:
                     alias_modify_date,
                 )
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
-            _logger.warning(f"izibiz e-fatura(get_gib_user_list) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_gib_user_list) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
         return {
             "success": success,
@@ -239,7 +248,7 @@ class IzibizService:
 
     def load_invoice(self, move_content, retry=True):
         blocking_level = error = success = False
-        responce = self.fatura_client().service.LoadInvoice(
+        response = self.fatura_client().service.LoadInvoice(
             REQUEST_HEADER={
                 "SESSION_ID": self.provider.izibiz_jwt,
                 "APPLICATION_NAME": "Odoo-2kb",
@@ -248,26 +257,28 @@ class IzibizService:
             INVOICE={"CONTENT": move_content},
         )
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
+            if response.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
                 blocking_level = "info"
-            elif responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
+            elif response.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
                 # login zaman aşımı
                 self.auth()
                 return self.load_invoice(move_content, retry=False)
-            elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
+            elif response.ERROR_TYPE.ERROR_CODE in (-1, 10001):
                 # bilinmeyen hata
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "error"
 
-            _logger.warning(f"izibiz e-fatura(load_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(load_invoice) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
         return {
             "success": success,
             "error": error,
@@ -277,7 +288,7 @@ class IzibizService:
     def send_invoice(self, move_content, GB, PK, retry=True):
         """SendInvoice metodu ile fatura gönderimi yapılacak."""
         blocking_level = error = success = False
-        responce = self.fatura_client().service.SendInvoice(
+        response = self.fatura_client().service.SendInvoice(
             REQUEST_HEADER={
                 "SESSION_ID": self.provider.izibiz_jwt,
                 "COMPRESSED": "N",
@@ -287,28 +298,30 @@ class IzibizService:
             INVOICE={"CONTENT": move_content},
         )
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(send_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(send_invoice) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
+            if response.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
                 blocking_level = "info"
-            elif responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
+            elif response.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
                 # login zaman aşımı
                 self.auth()
                 return self.send_invoice(move_content, GB, PK, retry=False)
-            elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
+            elif response.ERROR_TYPE.ERROR_CODE in (-1, 10001):
                 # bilinmryen hata
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
             else:
                 error = (
-                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    response.ERROR_TYPE.ERROR_SHORT_DES
                     + " Kod: "
-                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                    + str(response.ERROR_TYPE.ERROR_CODE)
                 )
                 blocking_level = "error"
 
@@ -353,7 +366,7 @@ class IzibizService:
             }
         """
         success = error = False
-        responce = self.fatura_client().service.GetInvoiceStatus(
+        response = self.fatura_client().service.GetInvoiceStatus(
             REQUEST_HEADER={
                 "SESSION_ID": self.provider.izibiz_jwt,
                 "APPLICATION_NAME": "Odoo-2kb",
@@ -361,22 +374,24 @@ class IzibizService:
             INVOICE={"ID": id, "UUID": uuid},
         )
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(get_invoice_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_invoice_status) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
+            if response.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_status(id, uuid, retry=False)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
             "error": error,
-            "result": responce.INVOICE_STATUS if success else False,
+            "result": response.INVOICE_STATUS if success else False,
         }
 
     def get_invoice(
@@ -407,7 +422,7 @@ class IzibizService:
 
         success = error = False
         try:
-            responce = self.fatura_client().service.GetInvoice(
+            response = self.fatura_client().service.GetInvoice(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -424,22 +439,24 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(get_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_invoice) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice(header_only, **kw)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
             "error": error,
-            "result": responce.INVOICE if success else False,
+            "result": response.INVOICE if success else False,
         }
 
     def mark_invoice(self, uuids, value="READ"):
@@ -450,7 +467,7 @@ class IzibizService:
 
         success = error = False
         try:
-            responce = self.fatura_client().service.MarkInvoice(
+            response = self.fatura_client().service.MarkInvoice(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -463,17 +480,19 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(mark_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(mark_invoice) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.mark_invoice(uuids, value)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
@@ -485,7 +504,7 @@ class IzibizService:
 
         success = error = False
         try:
-            responce = self.fatura_client().service.GetInvoiceStatusAll(
+            response = self.fatura_client().service.GetInvoiceStatusAll(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -498,22 +517,24 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(get_invoice_status_all) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_invoice_status_all) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_status_all(uuids)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
             "error": error,
-            "result": responce.INVOICE_STATUS if success else False,
+            "result": response.INVOICE_STATUS if success else False,
         }
 
     def send_invoice_response_with_server_sign(self, uuid, status, desc=None):
@@ -532,7 +553,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.fatura_client().service.SendInvoiceResponseWithServerSign(
+            response = self.fatura_client().service.SendInvoiceResponseWithServerSign(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -547,17 +568,19 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(send_invoice_response_with_server_sign) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(send_invoice_response_with_server_sign) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.send_invoice_response_with_server_sign(uuid, status, desc)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
@@ -572,7 +595,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.fatura_client().service.GetInvoiceWithType(
+            responcs = self.fatura_client().service.GetInvoiceWithType(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -589,20 +612,22 @@ class IzibizService:
             }
 
         content = b""
-        if not responce.ERROR_TYPE:
+        if not responcs.ERROR_TYPE:
             success = True
-            if responce.INVOICE:
-                z = zipfile.ZipFile(io.BytesIO(responce.INVOICE[0].CONTENT._value_1))
+            if responcs.INVOICE:
+                z = zipfile.ZipFile(io.BytesIO(responcs.INVOICE[0].CONTENT._value_1))
                 content = z.read(z.infolist()[0])
         else:
-            _logger.warning(f"izibiz e-fatura(get_invoice_with_type) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_invoice_with_type) uyarısı \n{responcs.ERROR_TYPE.ERROR_CODE}:{responcs.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if responcs.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_invoice_with_type(header_only, **kw)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = responcs.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
@@ -627,7 +652,7 @@ class IzibizService:
         """
         blocking_level = error = success = False
         try:
-            responce = self.arsiv_client().service.WriteToArchiveExtended(
+            response = self.arsiv_client().service.WriteToArchiveExtended(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -657,30 +682,32 @@ class IzibizService:
                 "blocking_level": "info",
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(write_to_archive_extended) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(write_to_archive_extended) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10009, 10017):
+            if response.ERROR_TYPE.ERROR_CODE in (10009, 10017):
                 # tekrarlı gönderin
                 success = True
                 blocking_level = "info"
-            elif responce.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
+            elif response.ERROR_TYPE.ERROR_CODE in (10002, 10004, 10006) and retry:
                 # login zaman aşımı
                 self.auth()
                 return self.write_to_archive_extended(
                     move_content, atype, sub_status, retry=False
                 )
-            elif responce.ERROR_TYPE.ERROR_CODE in (-1, 10001):
+            elif response.ERROR_TYPE.ERROR_CODE in (-1, 10001):
                 # bilinmryen hata
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
                 blocking_level = "info"
             else:
                 error = (
-                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    response.ERROR_TYPE.ERROR_SHORT_DES
                     + " Kod: "
-                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                    + str(response.ERROR_TYPE.ERROR_CODE)
                 )
                 blocking_level = "error"
 
@@ -697,7 +724,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.arsiv_client().service.ReadFromArchive(
+            response = self.arsiv_client().service.ReadFromArchive(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -713,22 +740,24 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(read_from_archive) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(read_from_archive) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.read_from_archive(uuid, format)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
             "error": error,
-            "result": responce.INVOICE[0]._value_1 if success else False,
+            "result": response.INVOICE[0]._value_1 if success else False,
         }
 
     def get_earchive_status(self, uuids):
@@ -755,7 +784,7 @@ class IzibizService:
         200 	FATURA ID BULUNAMADI
         """
         success = error = False
-        responce = self.arsiv_client().service.GetEArchiveInvoiceStatus(
+        response = self.arsiv_client().service.GetEArchiveInvoiceStatus(
             REQUEST_HEADER={
                 "SESSION_ID": self.provider.izibiz_jwt,
                 "APPLICATION_NAME": "Odoo-2kb",
@@ -763,23 +792,24 @@ class IzibizService:
             UUID=uuids,
         )
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(get_earchive_status) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_earchive_status) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_earchive_status(uuids)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
-
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
             "error": error,
-            "result": responce.INVOICE if success else False,
+            "result": response.INVOICE if success else False,
         }
 
     def cancel_earchive_invoice(self, uuids):
@@ -788,7 +818,7 @@ class IzibizService:
         Servis hataları uuid bazlı dönmüyor.
         """
         success = error = False
-        responce = self.arsiv_client().service.CancelEArchiveInvoice(
+        response = self.arsiv_client().service.CancelEArchiveInvoice(
             REQUEST_HEADER={
                 "SESSION_ID": self.provider.izibiz_jwt,
                 "APPLICATION_NAME": "Odoo-2kb",
@@ -796,23 +826,25 @@ class IzibizService:
             CancelEArsivInvoiceContent=[{"FATURA_UUID": uuid} for uuid in uuids],
         )
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(cancel_earchive_invoice) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(cancel_earchive_invoice) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.cancel_earchive_invoice(uuids)
-            if responce.ERROR_TYPE.ERROR_CODE in (10020,):
+            if response.ERROR_TYPE.ERROR_CODE in (10020,):
                 # tekrarlı gönderin
                 success = True
             else:
                 error = (
-                    responce.ERROR_TYPE.ERROR_SHORT_DES
+                    response.ERROR_TYPE.ERROR_SHORT_DES
                     + " Kod: "
-                    + str(responce.ERROR_TYPE.ERROR_CODE)
+                    + str(response.ERROR_TYPE.ERROR_CODE)
                 )
 
         return {
@@ -827,7 +859,7 @@ class IzibizService:
 
         success = error = False
         try:
-            responce = self.arsiv_client().service.GetEArchiveReport(
+            response = self.arsiv_client().service.GetEArchiveReport(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -841,17 +873,19 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
         else:
-            _logger.warning(f"izibiz e-fatura(get_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(get_earchive_report) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.get_earchive_report(period, flag)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {
             "success": success,
@@ -864,7 +898,7 @@ class IzibizService:
         """
         success = error = False
         try:
-            responce = self.arsiv_client().service.ReadEArchiveReport(
+            response = self.arsiv_client().service.ReadEArchiveReport(
                 REQUEST_HEADER={
                     "SESSION_ID": self.provider.izibiz_jwt,
                     "APPLICATION_NAME": "Odoo-2kb",
@@ -877,20 +911,22 @@ class IzibizService:
                 "error": "Connection Error!\n" + str(e),
             }
 
-        if not responce.ERROR_TYPE:
+        if not response.ERROR_TYPE:
             success = True
             # iç-içe zipli dosya
-            z = zipfile.ZipFile(io.BytesIO(responce.EARCHIVEREPORT[0]._value_1))
+            z = zipfile.ZipFile(io.BytesIO(response.EARCHIVEREPORT[0]._value_1))
             z2 = zipfile.ZipFile(io.BytesIO(z.read(z.infolist()[0])))
             xml = z2.read(z2.infolist()[0])
         else:
-            _logger.warning(f"izibiz e-fatura(read_earchive_report) uyarısı \n{responce.ERROR_TYPE.ERROR_CODE}:{responce.ERROR_TYPE.ERROR_SHORT_DES}")
+            _logger.warning(
+                f"izibiz e-fatura(read_earchive_report) uyarısı \n{response.ERROR_TYPE.ERROR_CODE}:{response.ERROR_TYPE.ERROR_SHORT_DES}"
+            )
 
-            if responce.ERROR_TYPE.ERROR_CODE in (10002,):
+            if response.ERROR_TYPE.ERROR_CODE in (10002,):
                 # login zaman aşımı
                 self.auth()
                 return self.read_earchive_report(report_id)
             else:
-                error = responce.ERROR_TYPE.ERROR_SHORT_DES
+                error = response.ERROR_TYPE.ERROR_SHORT_DES
 
         return {"success": success, "error": error, "result": xml if success else False}
