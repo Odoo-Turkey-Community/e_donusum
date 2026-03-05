@@ -2,11 +2,15 @@
 # Copyright (C) 2024 Odoo Turkey Community (https://github.com/orgs/Odoo-Turkey-Community/dashboard)
 # License Other proprietary. Please see the license file in the Addon folder.
 
+import logging
+import base64
+from lxml import etree
 from odoo import models, _
 from odoo.tools import float_repr, float_round
 from odoo.exceptions import ValidationError
 from odoo.tools import html2plaintext
 
+_logger = logging.getLogger(__name__)
 
 class GibUblTR12(models.AbstractModel):
     _inherit = "gib.ubl.tr12"
@@ -468,3 +472,53 @@ class GibUblTR12(models.AbstractModel):
         vals = self._export_invoice_vals(invoice)
         provider = invoice._get_gib_provider()
         return self.get_authenticate_on_server(provider, "invoice", vals)
+
+    def _transform_xml_to_output(self, xml, output_format='pdf', xslt_path=None):
+        """
+        :param tree: XML tree
+        :param output_format: 'pdf' veya 'html' (default: 'pdf')
+        :param xslt_path: XSLT dosya yolu (opsiyonel)
+        :return: PDF veya HTML binary/string data
+        """
+
+        tree = etree.fromstring(xml)
+        ns = {
+            "cbc": "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2",
+            "cac": "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2",
+        }
+
+        look_up_xpath = [
+            "//cac:AdditionalDocumentReference[cbc:DocumentType[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
+            "//cac:AdditionalDocumentReference[cbc:DocumentTypeCode[text() ='XSLT']]//cbc:EmbeddedDocumentBinaryObject",
+            "//cac:AdditionalDocumentReference//cbc:EmbeddedDocumentBinaryObject",
+        ]
+
+        r = False
+        for xpath in look_up_xpath:
+            r = tree.xpath(xpath, namespaces=ns)
+            if len(r) == 1:
+                break
+
+        if r:
+            xslt = etree.fromstring(base64.b64decode(r[0].text))
+        else:
+            if not xslt_path:
+                raise ValueError("XSLT path belirtilmedi ve XML'de XSLT bulunamadı")
+
+            xslt = etree.parse(xslt_path)
+
+        transform = etree.XSLT(xslt)
+        _logger.info(f"transform log: {transform.error_log}")
+        newdom = transform(tree)
+        if output_format == 'html':
+            return str(newdom)
+        elif output_format == 'pdf':
+            return self.env["ir.actions.report"]._run_wkhtmltopdf(
+                [str(newdom)],
+                specific_paperformat_args={
+                    "data-report-margin-top": 8,
+                    "data-report-header-spacing": 8,
+                },
+            )
+        else:
+            raise ValueError(f"Geçersiz çıktı formatı: {output_format}. 'pdf' veya 'html' kullanın.")

@@ -994,7 +994,7 @@ class AccountMove(models.Model):
                 == self.env.ref("gib_invoice_2kb.profile_id-EARSIVFATURA")
                 else "e-Fatura.xslt"
             )
-            xslt = etree.parse(file_path("gib_base_2kb", "data", "template", f_xslt))
+            xslt = etree.parse(file_path(f"gib_base_2kb/data/template/{f_xslt}"))
         else:
             xslt = etree.fromstring(base64.b64decode(r[0].text))
 
