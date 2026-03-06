@@ -1017,7 +1017,7 @@ class GibProvider(models.Model):
             "cron_daily_get_invoice_advice: Alınan fatura adedi: "
             + str(len(result["result"]))
         )
-        gid_to_create = []
+        gii_to_create = []
         for incoming in result["result"]:
             if incoming.HEADER.CDATE.strftime("%Y-%m-%d") > ldata_str:
                 ldata_str = incoming.HEADER.CDATE.strftime("%Y-%m-%d")
@@ -1025,7 +1025,7 @@ class GibProvider(models.Model):
             if GII.search([("ETTN", "=", incoming.UUID)]):
                 continue
 
-            gid_to_create.append(
+            gii_to_create.append(
                 {
                     "gib_provider_id": self.id,
                     "company_id": self.company_id.id,
@@ -1044,11 +1044,13 @@ class GibProvider(models.Model):
                 }
             )
 
-        GII.create(gid_to_create)
+        gii_ids = GII.create(gii_to_create)
         ICP.set_param(icp_key, ldata_str)
+        self.env.cr.commit()
         _logger.info(
             "cron_daily_get_invoice_advice: Fatura alındı. Tarih: " + ldata_str
         )
+        gii_ids._post_process_gii()
         return True
 
     # endregion
@@ -1111,8 +1113,21 @@ class GibProvider(models.Model):
                 }
             )
 
-        GID.create(gid_to_create)
+        gid_ids = GID.create(gid_to_create)
         ICP.set_param(icp_key, ldata_str)
+        self.env.cr.commit()
+        _logger.info(
+            "cron_daily_get_despatch_advice: İrsaliye alındı. Tarih: " + ldata_str
+        )
+        try:
+            gid_ids._post_process_gid()
+        except Exception as e:
+            _logger.error(
+                "E-irsaliye UBL leri içeri alınırken ya da irsaliyeler içeri aktarılırken: Hata oluştu - "
+                + str(e)
+            )
+            pass
+
         return True
 
     # endregion
