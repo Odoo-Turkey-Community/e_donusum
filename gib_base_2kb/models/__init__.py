@@ -3,6 +3,7 @@
 # License Other proprietary. Please see the license file in the Addon folder.
 
 from . import gib_base_2kb_code
+from . import uom_uom
 from . import gib_provider
 from . import gib_user
 from . import gib_ubl_tr12
