@@ -15,7 +15,7 @@
         * GİB servisleri ile iletişim için güvenlik protokolleri
         * Çoklu entegratör desteği
     """,
-    "version": "1.2",
+    "version": "1.3",
     "license": "Other proprietary",
     "maintainer": "Quanimo",
     "author": "Kıta, Quanimo, Broadmax",
