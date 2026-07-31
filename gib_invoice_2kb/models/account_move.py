@@ -542,9 +542,7 @@ class AccountMove(models.Model):
         if not id_elements:
             to_inject = """
                 <cbc:ID xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">%s</cbc:ID>
-            """ % (
-                self.gib_invoice_name
-            )
+            """ % (self.gib_invoice_name)
             tree.insert(
                 tree.index(copy_indicator_elements[0]), etree.fromstring(to_inject)
             )
@@ -717,7 +715,7 @@ class AccountMove(models.Model):
             limit=1,
         )
 
-        last_invoice and last_invoice.invoice_date and last_invoice.invoice_date > invoice_date and error.append(
+        not move.gib_invoice_name and last_invoice and last_invoice.invoice_date and last_invoice.invoice_date > invoice_date and error.append(
             f"{invoice_sequence.name} serisinde Fatura kesmeyi denediğiniz {invoice_date.strftime('%d.%m.%Y')} tarihinden sonra kesilmiş en az bir fatura var!"
         )
 
